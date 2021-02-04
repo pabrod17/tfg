@@ -40,14 +40,15 @@ CREATE TABLE Team (
 CREATE INDEX TeamIndexByTeamName ON Team (teamName);
 
 CREATE TABLE SeasonTeam (
-    idSeason BIGINT NOT NULL,
-    idTeam BIGINT NOT NULL,
-    idUser BIGINT NOT NULL,    
-    CONSTRAINT SeasonTeamPK PRIMARY KEY (idSeason, idTeam),
-    CONSTRAINT SeasonTeamIdUserFK FOREIGN KEY(idUser)
+    id BIGINT NOT NULL AUTO_INCREMENT,    
+    seasonId BIGINT NOT NULL,
+    teamId BIGINT NOT NULL,
+    userId BIGINT NOT NULL,    
+    CONSTRAINT SeasonTeamPK PRIMARY KEY (id),
+    CONSTRAINT SeasonTeamUserIdFK FOREIGN KEY(userId)
         REFERENCES User (id),    
-    CONSTRAINT SeasonTeamIdSeasonFK FOREIGN KEY(idSeason)
+    CONSTRAINT SeasonTeamSeasonIdFK FOREIGN KEY(seasonId)
         REFERENCES Season (id),
-    CONSTRAINT SeasonTeamIdTeamFK FOREIGN KEY(idTeam)
+    CONSTRAINT SeasonTeamTeamIdFK FOREIGN KEY(teamId)
         REFERENCES Team (id)
 ) ENGINE = InnoDB;
