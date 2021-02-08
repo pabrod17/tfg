@@ -6,7 +6,7 @@ public interface TeamService {
 
     Team findTeamById(Long teamId);
 
-    Team findTeamByName(String name);
+    Team findTeamByName(String teamName);
     
     Team removeTeam(Long teamId);
 
