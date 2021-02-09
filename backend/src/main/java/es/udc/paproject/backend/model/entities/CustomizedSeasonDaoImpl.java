@@ -14,7 +14,7 @@ public class CustomizedSeasonDaoImpl implements CustomizedSeasonDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Season> findSeasons(Long seasonId, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Season> find(LocalDateTime startDate, LocalDateTime endDate) {
 
         String queryString = "SELECT s FROM Season s";
 
@@ -25,11 +25,8 @@ public class CustomizedSeasonDaoImpl implements CustomizedSeasonDao {
         }
 
         Query query = entityManager.createQuery(queryString);
-
         List<Season> seasons = query.getResultList();
-
 
         return seasons;
     }
-    
 }

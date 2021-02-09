@@ -7,4 +7,11 @@ public class InstanceNotFoundException extends InstanceException {
     	super(name, key); 	
     }
 
+    public InstanceNotFoundException(String name, String teamName) {
+    	super(name, teamName); 	
+    }
+
+	public InstanceNotFoundException(String message) {
+        super(message);
+	}
 }

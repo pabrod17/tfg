@@ -4,14 +4,25 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Season;
+import es.udc.paproject.backend.model.entities.Team;
+import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface SeasonService {
     
-    Season findSeasonById(Long seasonId);
+    void addSeason(LocalDateTime startDate, LocalDateTime endDate, String calendario);
 
-    List<Season> findSeasons(LocalDateTime startDate, LocalDateTime endDate);
+    void addTeamToSeason(Season season, Team team, User user);
 
-    Season removeSeason(Long seasonId);
+    Season findSeasonById(Long seasonId) throws InstanceNotFoundException;
 
-    Season updateSeason(Long seasonId, LocalDateTime startDate, LocalDateTime endDate);
+    List<Season> findSeasonsBetweenTwoDates(LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException;
+
+    List<Season> findAllSeasons();
+
+    List<Team> findTeamsToSeason(Long seasonId) throws InstanceNotFoundException;
+
+    void removeSeason(Long seasonId) throws InstanceNotFoundException;
+
+    Season updateSeason(Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException;
 }

@@ -1,5 +1,6 @@
 package es.udc.paproject.backend.model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,8 @@ public class SeasonTeam {
         this.id = id;
     }
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    //cascada para borrar as referencias de dita season na taboa intermedia
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "seasonId")
     public Season getSeason() {
         return season;
@@ -44,8 +46,9 @@ public class SeasonTeam {
     public void setSeason(Season season) {
         this.season = season;
     }
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    
+    //cascada para borrar as referencias de dita season na taboa intermedia
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "teamId")
     public Team getTeam() {
         return team;

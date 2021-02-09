@@ -1,8 +1,10 @@
 package es.udc.paproject.backend.model.entities;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TeamDao extends PagingAndSortingRepository<Team, Long>{
 
-    Team findByTeamName(String teamName);
+    Optional<Team> findByTeamName(String teamName);
 }

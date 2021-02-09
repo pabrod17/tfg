@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface CustomizedSeasonDao {
 
-    List<Season> findSeasons(Long seasonId, LocalDateTime startDate, LocalDateTime endDate);
+    List<Season> find(LocalDateTime startDate, LocalDateTime endDate);
 
 }

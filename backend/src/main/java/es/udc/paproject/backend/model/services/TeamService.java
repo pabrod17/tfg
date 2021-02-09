@@ -1,16 +1,26 @@
 package es.udc.paproject.backend.model.services;
 
+import java.util.List;
+
+import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
+import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.TeamWithSeasonException;
 
 public interface TeamService {
 
-    Team findTeamById(Long teamId);
+    void addTeam(String teamName);
 
-    Team findTeamByName(String teamName);
-    
-    Team removeTeam(Long teamId);
+    void addTeamToSeason(Season season, Team team, User user);
 
-    //Añadir mas cosas luego
-    Team updateTeam(Long teamId, String name);
+    Team findTeamById(Long teamId) throws InstanceNotFoundException;
+
+    Team findTeamByName(String teamName) throws InstanceNotFoundException;
+
+    List<Team> findAllTeams();
     
+    void removeTeam(Long teamId) throws InstanceNotFoundException, TeamWithSeasonException;
+
+    Team updateTeam(Long teamId, String name) throws InstanceNotFoundException;
 }
