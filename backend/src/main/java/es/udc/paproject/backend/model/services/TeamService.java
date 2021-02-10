@@ -10,7 +10,7 @@ import es.udc.paproject.backend.model.exceptions.TeamWithSeasonException;
 
 public interface TeamService {
 
-    void addTeam(String teamName);
+    void addTeam(Team team);
 
     void addTeamToSeason(Season season, Team team, User user);
 
@@ -20,7 +20,7 @@ public interface TeamService {
 
     List<Team> findAllTeams();
     
-    void removeTeam(Long teamId) throws InstanceNotFoundException, TeamWithSeasonException;
+    void removeTeam(Long teamId) throws InstanceNotFoundException;
 
     Team updateTeam(Long teamId, String name) throws InstanceNotFoundException;
 }

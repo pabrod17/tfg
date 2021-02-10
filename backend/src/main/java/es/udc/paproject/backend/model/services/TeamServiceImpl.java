@@ -28,9 +28,7 @@ public class TeamServiceImpl implements TeamService {
     private SeasonTeamDao seasonTeamDao;
 
     @Override
-    public void addTeam(String teamName) {
-
-        Team team = new Team(teamName);
+    public void addTeam(Team team) {
         teamDao.save(team);
     }
 
@@ -47,7 +45,7 @@ public class TeamServiceImpl implements TeamService {
 
         Optional<Team> team = teamDao.findById(teamId);
 
-        if (team.isPresent()) {
+        if (!team.isPresent()) {
             throw new InstanceNotFoundException("project.entities.team", teamId);
         }
 
@@ -79,7 +77,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void removeTeam(Long teamId) throws InstanceNotFoundException, TeamWithSeasonException {
+    public void removeTeam(Long teamId) throws InstanceNotFoundException {
 
         Optional<Team> existingTeam = teamDao.findById(teamId);
 
