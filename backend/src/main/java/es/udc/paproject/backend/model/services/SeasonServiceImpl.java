@@ -28,9 +28,8 @@ public class SeasonServiceImpl implements SeasonService {
     private SeasonTeamDao seasonTeamDao;
 
     @Override
-    public void addSeason(LocalDateTime startDate, LocalDateTime endDate, String calendario) {
+    public void addSeason(Season season) {
         
-        Season season = new Season(startDate, endDate, calendario);
         seasonDao.save(season);
     }
 
@@ -58,7 +57,7 @@ public class SeasonServiceImpl implements SeasonService {
     public List<Season> findSeasonsBetweenTwoDates(LocalDateTime startDate, LocalDateTime endDate)
             throws InstanceNotFoundException {
 
-        List<Season> seasons = seasonDao.find(startDate, endDate);
+        List<Season> seasons = seasonDao.findSeasons(startDate, endDate);
 
         if (seasons.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.season");

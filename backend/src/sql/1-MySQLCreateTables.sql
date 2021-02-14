@@ -22,8 +22,8 @@ CREATE INDEX UserIndexByUserName ON User (userName);
 
 CREATE TABLE Season (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    startDate VARCHAR(60) COLLATE latin1_bin NOT NULL,
-    endDate VARCHAR(60) NOT NULL, 
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL, 
     Calendario VARCHAR(60) NOT NULL,
     CONSTRAINT SeasonPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;

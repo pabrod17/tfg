@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
-import es.udc.paproject.backend.model.exceptions.TeamWithSeasonException;
 import es.udc.paproject.backend.model.services.TeamService;
 
 @SpringBootTest

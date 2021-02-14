@@ -17,7 +17,7 @@ public class Season {
 
     public Season() {
     }
- 
+
     public Season(LocalDateTime startDate, LocalDateTime endDate, String calendario) {
         this.startDate = startDate;
         this.endDate = endDate;
