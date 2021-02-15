@@ -1,8 +1,9 @@
 package es.udc.paproject.backend.test.model.services;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -20,9 +21,11 @@ import es.udc.paproject.backend.model.services.SeasonService;
 @Transactional
 public class SeasonServiceTest {
 
-    //private final Long NON_EXISTENT_ID = new Long(-1);
+    private final Long NON_EXISTENT_ID = new Long(-1);
     private final LocalDateTime startDate = LocalDateTime.of(2015, 5, 12, 15, 56);    
     private final LocalDateTime endDate = LocalDateTime.of(2022, 5, 12, 15, 56);    
+    private final LocalDateTime startDateUpdated = LocalDateTime.of(2030, 1, 7, 15, 56);    
+    private final LocalDateTime endDateUpdated = LocalDateTime.of(2035, 2, 6, 15, 56);    
 
 
 
@@ -74,10 +77,73 @@ public class SeasonServiceTest {
         List<Season> seasons = seasonService.findSeasonsBetweenTwoDates(startDate, endDate);
         assertEquals(3, seasons.size());
     }
-    //hIbernate jpa dates
-//FALLA POR LA CREACION DE LA TABLA
-    //Ya que en el create de la tabla en el .sql
-        //Tengo las fechas como VARCHAR!!!!!
-        //https://thorben-janssen.com/hibernate-jpa-date-and-time/#Mapping_javautil_classes
-        //https://thorben-janssen.com/hibernate-jpa-date-and-time/
+
+    @Test
+    public void testAddSeasonAndFindSeasonByIdFromNonExistentId(){
+        assertThrows(InstanceNotFoundException.class, () -> seasonService.findSeasonById(NON_EXISTENT_ID));
+    }
+
+    @Test
+    public void testFindAllSeasons(){
+
+        Season season1 = createSeason();
+        seasonService.addSeason(season1);
+        Season season2 = createSeason2();
+        seasonService.addSeason(season2);
+        Season season3 = createSeason3();
+        seasonService.addSeason(season3);
+
+        List<Season> seasons = new ArrayList<>();
+        seasons.add(season1);
+        seasons.add(season2);
+        seasons.add(season3);
+
+        assertEquals(seasons.size(), seasonService.findAllSeasons().size());
+        assertEquals(seasons.get(0), seasonService.findAllSeasons().get(0));
+        assertEquals(seasons.get(1), seasonService.findAllSeasons().get(1));
+        assertEquals(seasons.get(2), seasonService.findAllSeasons().get(2));
+    }
+
+    @Test
+    public void testReomveSeason() throws InstanceNotFoundException {
+
+        Season season1 = createSeason();
+        seasonService.addSeason(season1);
+        Season season2 = createSeason2();
+        seasonService.addSeason(season2);
+        Season season3 = createSeason3();
+        seasonService.addSeason(season3);
+
+        seasonService.removeSeason(season2.getId());
+
+        assertEquals(2, seasonService.findAllSeasons().size());
+    }
+
+    @Test
+    public void testRemoveSeasonFromNonExistentId(){
+		assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(NON_EXISTENT_ID));
+    }
+
+    @Test
+    public void testUpdateSeason() throws InstanceNotFoundException {
+
+        Season season = createSeason();
+        seasonService.addSeason(season);
+        Long seasonId = season.getId();
+        seasonService.updateSeason(seasonId, startDateUpdated, endDateUpdated);
+
+        assertEquals(startDateUpdated, seasonService.findSeasonById(seasonId).getStartDate());
+        assertEquals(endDateUpdated, seasonService.findSeasonById(seasonId).getEndDate());
+    }
+
+    @Test
+    public void testUpdateSeasonFromNonExistenId(){
+        assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(NON_EXISTENT_ID));
+    }
+
+
+
+    	//FALTA CREAR EL TEST PARA LA FUNCION DE: 
+		//-->     List<Team> findTeamsToSeason(Long seasonId) throws InstanceNotFoundException;
+
 }
