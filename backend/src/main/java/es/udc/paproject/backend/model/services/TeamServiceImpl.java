@@ -76,6 +76,23 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public List<Season> findSeasonsToTeam(Long teamId) throws InstanceNotFoundException {
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+        List<Season> seasons = new ArrayList<>();
+
+        if (seasonTeams.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.team");
+        }
+
+        for(int i = 0; i < seasonTeams.size(); i++){
+            seasons.add(seasonTeams.get(i).getSeason());
+        }
+
+
+        return seasons;
+    }
+
+    @Override
     public void removeTeam(Long teamId) throws InstanceNotFoundException {
 
         Optional<Team> existingTeam = teamDao.findById(teamId);

@@ -13,8 +13,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Season;
+import es.udc.paproject.backend.model.entities.Team;
+import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.services.SeasonService;
+import es.udc.paproject.backend.model.services.TeamService;
+import es.udc.paproject.backend.model.services.UserService;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -31,6 +36,12 @@ public class SeasonServiceTest {
 
     @Autowired
     private SeasonService seasonService;
+
+    @Autowired
+	private TeamService teamService;
+
+	@Autowired
+	private UserService userService;
 
     private Season createSeason(){
 
@@ -50,6 +61,14 @@ public class SeasonServiceTest {
         LocalDateTime endDate = LocalDateTime.of(2021, 8, 14, 15, 56);    
         return new Season(startDate, endDate, "Calendario");
     }
+
+    private Team createTeam(String teamName) {
+		return new Team(teamName);
+	}
+
+	private User createUser(String userName) {
+		return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
+	}
 
     @Test
     public void testAddSeasonAndFindSeasonById() throws InstanceNotFoundException {
@@ -141,9 +160,25 @@ public class SeasonServiceTest {
         assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(NON_EXISTENT_ID));
     }
 
+	@Test
+	public void testFindTeamsToSeason() throws DuplicateInstanceException, InstanceNotFoundException {
+		Team team = createTeam("equipo");
+		teamService.addTeam(team);
+		Team team2 = createTeam("dos");
+		teamService.addTeam(team2);
+		Season season = createSeason();
+		seasonService.addSeason(season);
+		User user = createUser("usuario");
+		userService.signUp(user);
 
+		teamService.addTeamToSeason(season, team, user);
+		teamService.addTeamToSeason(season, team2, user);
 
-    	//FALTA CREAR EL TEST PARA LA FUNCION DE: 
-		//-->     List<Team> findTeamsToSeason(Long seasonId) throws InstanceNotFoundException;
+        List<Team> teams = seasonService.findTeamsToSeason(season.getId());
 
+        assertEquals(2, teams.size());
+        assertEquals(seasonService.findTeamsToSeason(season.getId()).get(0), team);
+        assertEquals(seasonService.findTeamsToSeason(season.getId()).get(1), team2);
+
+	}
 }

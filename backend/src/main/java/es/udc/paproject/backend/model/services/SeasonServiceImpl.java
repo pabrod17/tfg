@@ -80,10 +80,15 @@ public class SeasonServiceImpl implements SeasonService {
     @Override
     public List<Team> findTeamsToSeason(Long seasonId) throws InstanceNotFoundException {
 
-        List<Team> teams = seasonTeamDao.findBySeasonId(seasonId);
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
+        List<Team> teams = new ArrayList<>();
 
-        if (teams.isEmpty()) {
+        if (seasonTeams.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.team");
+        }
+
+        for(int i = 0; i < seasonTeams.size(); i++){
+            teams.add(seasonTeams.get(i).getTeam());
         }
 
         return teams;

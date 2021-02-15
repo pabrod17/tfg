@@ -2,6 +2,7 @@ package es.udc.paproject.backend.test.model.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
+import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.services.SeasonService;
 import es.udc.paproject.backend.model.services.TeamService;
+import es.udc.paproject.backend.model.services.UserService;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -25,8 +31,25 @@ public class TeamServiceTest {
 	@Autowired
 	private TeamService teamService;
 
+	@Autowired
+	private SeasonService seasonService;
+
+	@Autowired
+	private UserService userService;
+
 	private Team createTeam(String teamName) {
 		return new Team(teamName);
+	}
+
+	private Season createSeason() {
+
+		LocalDateTime startDate = LocalDateTime.of(2020, 5, 12, 15, 56);
+		LocalDateTime endDate = LocalDateTime.of(2021, 2, 14, 15, 56);
+		return new Season(startDate, endDate, "Calendario");
+	}
+
+	private User createUser(String userName) {
+		return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
 	}
 
 	@Test
@@ -111,13 +134,31 @@ public class TeamServiceTest {
 
 		teamService.updateTeam(team1.getId(), "segundo");
 
-
 		assertEquals("segundo", teamService.findTeamById(team1.getId()).getTeamName());
 	}
 
+	@Test
 	public void testUpdateTeamFromNonExistentId() {
 		assertThrows(InstanceNotFoundException.class, () -> teamService.updateTeam(NON_EXISTENT_ID, "primero"));
 	}
-	//FALTA CREAR EL TEST PARA LA FUNCION DE: 
-		//--> addTeamToSeason(Season season, Team team, User user)
+
+	@Test
+	public void testAddTeamToSeasonAndfindSeasonTeamsByTeamId() throws DuplicateInstanceException,
+			InstanceNotFoundException {
+		Team team = createTeam("equipo");
+		teamService.addTeam(team);
+		Team team2 = createTeam("dos");
+		teamService.addTeam(team2);
+		Season season = createSeason();
+		seasonService.addSeason(season);
+		User user = createUser("usuario");
+		userService.signUp(user);
+
+		teamService.addTeamToSeason(season, team, user);
+		teamService.addTeamToSeason(season, team2, user);
+
+		List<Season> seasons = teamService.findSeasonsToTeam(team.getId());
+		assertEquals(1, seasons.size());
+		assertEquals(teamService.findSeasonsToTeam(team.getId()).get(0), season);
+	}
 }
