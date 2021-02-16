@@ -9,9 +9,9 @@ import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface TeamService {
 
-    void addTeam(Team team);
+    Team addTeam(Team team);
 
-    void addTeamToSeason(Season season, Team team, User user);
+    void addTeamToSeason(Long seasonId, Long teamId, Long userId);
 
     Team findTeamById(Long teamId) throws InstanceNotFoundException;
 

@@ -10,9 +10,7 @@ import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface SeasonService {
     
-    void addSeason(Season season);
-
-    void addTeamToSeason(Season season, Team team, User user);
+    Season addSeason(Season season);
 
     Season findSeasonById(Long seasonId) throws InstanceNotFoundException;
 

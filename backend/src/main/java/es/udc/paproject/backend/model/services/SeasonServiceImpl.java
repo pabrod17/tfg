@@ -28,16 +28,10 @@ public class SeasonServiceImpl implements SeasonService {
     private SeasonTeamDao seasonTeamDao;
 
     @Override
-    public void addSeason(Season season) {
+    public Season addSeason(Season season) {
         
         seasonDao.save(season);
-    }
-
-    @Override
-    public void addTeamToSeason(Season season, Team team, User user) {
-
-        SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
-        seasonTeamDao.save(seasonTeam);
+        return season;
     }
 
     @Override

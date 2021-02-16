@@ -154,8 +154,8 @@ public class TeamServiceTest {
 		User user = createUser("usuario");
 		userService.signUp(user);
 
-		teamService.addTeamToSeason(season, team, user);
-		teamService.addTeamToSeason(season, team2, user);
+		teamService.addTeamToSeason(season.getId(),team.getId(), user.getId());
+		teamService.addTeamToSeason(season.getId(), team2.getId(), user.getId());
 
 		List<Season> seasons = teamService.findSeasonsToTeam(team.getId());
 		assertEquals(1, seasons.size());

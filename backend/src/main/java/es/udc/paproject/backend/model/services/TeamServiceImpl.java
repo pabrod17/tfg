@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Season;
+import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.TeamDao;
 import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.entities.UserDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 @Service
@@ -26,15 +28,26 @@ public class TeamServiceImpl implements TeamService {
     @Autowired
     private SeasonTeamDao seasonTeamDao;
 
+    @Autowired
+    private SeasonDao seasonDao;
+
+    @Autowired
+    private UserDao userDao;
+
     @Override
-    public void addTeam(Team team) {
+    public Team addTeam(Team team) {
         teamDao.save(team);
+        return team;
     }
 
     @Override
-    public void addTeamToSeason(Season season, Team team, User user) {
+    public void addTeamToSeason(Long seasonId, Long teamId, Long userId) {
         
-        SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
+        Optional<Team> team = teamDao.findById(teamId);
+        Optional<Season> season = seasonDao.findById(seasonId);
+        Optional<User> user = userDao.findById(userId);
+
+        SeasonTeam seasonTeam = new SeasonTeam(season.get(), team.get(), user.get());
         seasonTeamDao.save(seasonTeam);
     }
 
