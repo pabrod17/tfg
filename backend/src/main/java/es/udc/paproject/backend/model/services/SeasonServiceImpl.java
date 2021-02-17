@@ -14,7 +14,6 @@ import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
-import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 @Service
@@ -101,17 +100,17 @@ public class SeasonServiceImpl implements SeasonService {
     }
 
     @Override
-    public Season updateSeason(Long seasonId, LocalDateTime startDate, LocalDateTime endDate)
+    public Season updateSeason(Season season)
             throws InstanceNotFoundException {
 
-        Optional<Season> existingSeason = seasonDao.findById(seasonId);
+        Optional<Season> existingSeason = seasonDao.findById(season.getId());
 
         if (!existingSeason.isPresent()) {
-            throw new InstanceNotFoundException("project.entities.team", seasonId);
+            throw new InstanceNotFoundException("project.entities.team", season.getId());
         }
 
-        existingSeason.get().setStartDate(startDate);
-        existingSeason.get().setEndDate(endDate);
+        existingSeason.get().setStartDate(season.getStartDate());
+        existingSeason.get().setEndDate(season.getEndDate());
 
         seasonDao.save(existingSeason.get());
 

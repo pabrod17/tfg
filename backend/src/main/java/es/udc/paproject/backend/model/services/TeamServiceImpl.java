@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Season;
-import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.TeamDao;
 import es.udc.paproject.backend.model.entities.User;
-import es.udc.paproject.backend.model.entities.UserDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 @Service
@@ -28,12 +26,6 @@ public class TeamServiceImpl implements TeamService {
     @Autowired
     private SeasonTeamDao seasonTeamDao;
 
-    @Autowired
-    private SeasonDao seasonDao;
-
-    @Autowired
-    private UserDao userDao;
-
     @Override
     public Team addTeam(Team team) {
         teamDao.save(team);
@@ -41,13 +33,9 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void addTeamToSeason(Long seasonId, Long teamId, Long userId) {
-        
-        Optional<Team> team = teamDao.findById(teamId);
-        Optional<Season> season = seasonDao.findById(seasonId);
-        Optional<User> user = userDao.findById(userId);
+    public void addTeamToSeason(Season season, Team team, User user) {
 
-        SeasonTeam seasonTeam = new SeasonTeam(season.get(), team.get(), user.get());
+        SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
         seasonTeamDao.save(seasonTeam);
     }
 
@@ -118,16 +106,15 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Team updateTeam(Long teamId, String teamName) throws InstanceNotFoundException {
+    public Team updateTeam(Team team) throws InstanceNotFoundException {
 
-        Optional<Team> existingTeam = teamDao.findById(teamId);
+        Optional<Team> existingTeam = teamDao.findById(team.getId());
 
         if (!existingTeam.isPresent()) {
-            throw new InstanceNotFoundException("project.entities.team", teamId);
+            throw new InstanceNotFoundException("project.entities.team", team.getId());
         }
 
-        existingTeam.get().setTeamName(teamName);
-
+        existingTeam.get().setTeamName(team.getTeamName());
         teamDao.save(existingTeam.get());
 
         return existingTeam.get();

@@ -19,10 +19,6 @@ public class TeamConversor {
     }
 
     public final static Team toTeam(TeamDto teamDto) {
-		
 		return new Team(teamDto.getTeamName());
     }
-    
-    //Falta añadir Season --> Igual hay que cambiar la cabecera para que reciba los parametros clave y no el objeto entero
-    //Falta buscar por fechas
 }

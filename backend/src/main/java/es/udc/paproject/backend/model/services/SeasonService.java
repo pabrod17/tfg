@@ -5,7 +5,6 @@ import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
-import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface SeasonService {
@@ -22,5 +21,5 @@ public interface SeasonService {
 
     void removeSeason(Long seasonId) throws InstanceNotFoundException;
 
-    Season updateSeason(Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException;
+    Season updateSeason(Season seaon) throws InstanceNotFoundException;
 }

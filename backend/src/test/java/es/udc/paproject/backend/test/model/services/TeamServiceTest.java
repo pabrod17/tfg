@@ -131,15 +131,11 @@ public class TeamServiceTest {
 
 		Team team1 = createTeam("primero");
 		teamService.addTeam(team1);
+		team1.setTeamName("segundo");
 
-		teamService.updateTeam(team1.getId(), "segundo");
+		teamService.updateTeam(team1);
 
 		assertEquals("segundo", teamService.findTeamById(team1.getId()).getTeamName());
-	}
-
-	@Test
-	public void testUpdateTeamFromNonExistentId() {
-		assertThrows(InstanceNotFoundException.class, () -> teamService.updateTeam(NON_EXISTENT_ID, "primero"));
 	}
 
 	@Test
@@ -154,8 +150,8 @@ public class TeamServiceTest {
 		User user = createUser("usuario");
 		userService.signUp(user);
 
-		teamService.addTeamToSeason(season.getId(),team.getId(), user.getId());
-		teamService.addTeamToSeason(season.getId(), team2.getId(), user.getId());
+		teamService.addTeamToSeason(season,team, user);
+		teamService.addTeamToSeason(season, team2, user);
 
 		List<Season> seasons = teamService.findSeasonsToTeam(team.getId());
 		assertEquals(1, seasons.size());

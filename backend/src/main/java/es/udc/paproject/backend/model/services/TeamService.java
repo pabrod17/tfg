@@ -11,7 +11,7 @@ public interface TeamService {
 
     Team addTeam(Team team);
 
-    void addTeamToSeason(Long seasonId, Long teamId, Long userId);
+    void addTeamToSeason(Season season, Team team, User user);
 
     Team findTeamById(Long teamId) throws InstanceNotFoundException;
 
@@ -23,5 +23,5 @@ public interface TeamService {
     
     void removeTeam(Long teamId) throws InstanceNotFoundException;
 
-    Team updateTeam(Long teamId, String name) throws InstanceNotFoundException;
+    Team updateTeam(Team team) throws InstanceNotFoundException;
 }

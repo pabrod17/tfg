@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDtos;
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDto;
+
 import es.udc.paproject.backend.rest.dtos.TeamDto;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
@@ -29,7 +31,7 @@ public class TeamController {
         return toTeamDtos(teamService.findAllTeams());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public TeamDto findTeamById(@PathVariable Long id) throws InstanceNotFoundException {
         return toTeamDto(teamService.findTeamById(id));
     }
@@ -39,8 +41,20 @@ public class TeamController {
         return toTeamDto(teamService.findTeamByName(name));
     }
 
-    @PostMapping("/add/{name}")
-    public TeamDto addTeam(@RequestBody String name){
-        return toTeamDto(teamService.addTeam(new Team(name)));
+    @PostMapping("/new/")
+    public TeamDto addTeam(@RequestBody  Team team){
+        return toTeamDto(teamService.addTeam(team));
     }
+
+    @PutMapping("/{id}")
+    public TeamDto updateTeam(@RequestBody Team team) throws InstanceNotFoundException {
+        return toTeamDto(teamService.updateTeam(team));
+    }
+
+    @PostMapping("/remove/{id}")
+    public void removeTeam(@PathVariable Long id) throws InstanceNotFoundException {
+        teamService.removeTeam(id);
+    }
+
+
 }

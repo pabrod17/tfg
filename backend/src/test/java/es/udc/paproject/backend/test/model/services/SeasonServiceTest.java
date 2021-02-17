@@ -62,6 +62,13 @@ public class SeasonServiceTest {
         return new Season(startDate, endDate, "Calendario");
     }
 
+    private Season createSeasonOutDate(){
+
+        LocalDateTime startDate = LocalDateTime.of(2014, 8, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2023, 8, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
+
     private Team createTeam(String teamName) {
 		return new Team(teamName);
 	}
@@ -91,6 +98,8 @@ public class SeasonServiceTest {
         seasonService.addSeason(season2);
         Season season3 = createSeason3();
         seasonService.addSeason(season3);
+        Season seasonOutDate = createSeasonOutDate();
+        seasonService.addSeason(seasonOutDate);
 
 
         List<Season> seasons = seasonService.findSeasonsBetweenTwoDates(startDate, endDate);
@@ -148,16 +157,12 @@ public class SeasonServiceTest {
 
         Season season = createSeason();
         seasonService.addSeason(season);
-        Long seasonId = season.getId();
-        seasonService.updateSeason(seasonId, startDateUpdated, endDateUpdated);
+        season.setStartDate(startDateUpdated);
+        season.setEndDate(endDateUpdated);
+        seasonService.updateSeason(season);
 
-        assertEquals(startDateUpdated, seasonService.findSeasonById(seasonId).getStartDate());
-        assertEquals(endDateUpdated, seasonService.findSeasonById(seasonId).getEndDate());
-    }
-
-    @Test
-    public void testUpdateSeasonFromNonExistenId(){
-        assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(NON_EXISTENT_ID));
+        assertEquals(startDateUpdated, seasonService.findSeasonById(season.getId()).getStartDate());
+        assertEquals(endDateUpdated, seasonService.findSeasonById(season.getId()).getEndDate());
     }
 
 	@Test
@@ -171,8 +176,8 @@ public class SeasonServiceTest {
 		User user = createUser("usuario");
 		userService.signUp(user);
 
-		teamService.addTeamToSeason(season.getId(), team.getId(), user.getId());
-		teamService.addTeamToSeason(season.getId(), team2.getId(), user.getId());
+		teamService.addTeamToSeason(season, team, user);
+		teamService.addTeamToSeason(season, team2, user);
 
         List<Team> teams = seasonService.findTeamsToSeason(season.getId());
 
