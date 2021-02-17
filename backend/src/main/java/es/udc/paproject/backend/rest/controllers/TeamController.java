@@ -41,13 +41,19 @@ public class TeamController {
         return toTeamDto(teamService.findTeamByName(name));
     }
 
+//http://localhost:8080/teams/findByName/:name?name=PRIMERO
+/**    @GetMapping("/findByName/{name}")
+    public TeamDto findTeamByName(@RequestParam String name) throws InstanceNotFoundException {
+        return toTeamDto(teamService.findTeamByName(name));
+    }/ */
+
     @PostMapping("/new/")
     public TeamDto addTeam(@RequestBody  Team team){
         return toTeamDto(teamService.addTeam(team));
     }
 
-    @PutMapping("/{id}")
-    public TeamDto updateTeam(@RequestBody Team team) throws InstanceNotFoundException {
+    @PutMapping("/update/{id}")
+    public TeamDto updateTeam(@PathVariable Long id, @RequestBody Team team) throws InstanceNotFoundException {
         return toTeamDto(teamService.updateTeam(team));
     }
 

@@ -40,8 +40,8 @@ public class SeasonController {
         return toSeasonDto(seasonService.addSeason(season));
     }
 
-    @PutMapping("/{id}")
-    public SeasonDto updateSeason(@PathVariable Season season) throws InstanceNotFoundException {
+    @PutMapping("/update/{id}")
+    public SeasonDto updateSeason(@PathVariable Long id, @RequestBody Season season) throws InstanceNotFoundException {
         return toSeasonDto(seasonService.updateSeason(season));
     }
 
