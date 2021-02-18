@@ -4,14 +4,13 @@ import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
-import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface TeamService {
 
     Team addTeam(Team team);
 
-    void addTeamToSeason(Season season, Team team, User user);
+    void addTeamToSeason(Long seasonId, Team team, Long userId) throws InstanceNotFoundException;
 
     Team findTeamById(Long teamId) throws InstanceNotFoundException;
 

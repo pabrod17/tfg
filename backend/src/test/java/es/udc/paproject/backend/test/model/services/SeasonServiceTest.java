@@ -176,8 +176,8 @@ public class SeasonServiceTest {
 		User user = createUser("usuario");
 		userService.signUp(user);
 
-		teamService.addTeamToSeason(season, team, user);
-		teamService.addTeamToSeason(season, team2, user);
+		teamService.addTeamToSeason(season.getId(), team, user.getId());
+		teamService.addTeamToSeason(season.getId(), team2, user.getId());
 
         List<Team> teams = seasonService.findTeamsToSeason(season.getId());
 
