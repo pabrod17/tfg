@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/teams/update/*").permitAll()
 			.antMatchers("/teams/new/*").permitAll()
 			.antMatchers("/teams/remove/*").permitAll()
+			.antMatchers("/teams/toseason/*").permitAll()
 			.antMatchers("/seasons/*").permitAll()
 			.antMatchers("/seasons/all").permitAll()
 			.antMatchers("/seasons/find/*").permitAll()
