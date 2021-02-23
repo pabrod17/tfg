@@ -13,5 +13,3 @@ INSERT INTO Team (teamName) VALUES ('CUARTO');
 INSERT INTO Team (teamName) VALUES ('QUINTO');
 INSERT INTO Team (teamName) VALUES ('SEXTO');
 
-INSERT INTO User(userName, password, firstName, lastName, email, role)
-    VALUES ('pablo', 'pablo', 'pablo', 'pablo', 'pablo@gmail.com', 5);
