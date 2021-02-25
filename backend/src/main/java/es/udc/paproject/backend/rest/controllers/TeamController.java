@@ -39,6 +39,7 @@ public class TeamController {
 
     @GetMapping("/{name}")
     public TeamDto findTeamByName(@PathVariable String name) throws InstanceNotFoundException {
+        System.out.println("HOLAAA -> " + name);
         return toTeamDto(teamService.findTeamByName(name));
     }
 

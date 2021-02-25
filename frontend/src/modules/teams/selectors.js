@@ -4,7 +4,7 @@ export const getTeam = state =>
     getModuleState(state).team;
 
 export const getAllTeams = state =>
-    getModuleState(state).teams;
+    getModuleState(state);
 
 export const getTeamName = (teams, id) => {
 
