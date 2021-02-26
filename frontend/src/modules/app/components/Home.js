@@ -1,14 +1,18 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
+import video from './video-2.mp4';
 
 const Home = () => (
 
 
-    <div className="text-center">
-        <FormattedMessage id="project.app.Home.welcome"/>
+    <div className='hero-container'>
 
+        <video className="background-video" src={video} autoPlay loop muted />
+    <div>
+    <a className='btn--primary' href="/teams/all">TEAMS</a>
+    <a className='btn--secundary' href="/teams/all">SEASONS</a>
 
-    <a href="/teams/all"> --   BUTOON</a>
+    </div>
 
     </div>
 

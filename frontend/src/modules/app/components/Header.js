@@ -12,7 +12,7 @@ const Header = () => {
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light border">
-            <Link className="navbar-brand" to="/">PA Project</Link>
+            <Link className="centrado" to="/">BASKET</Link>
             <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent" 
                 aria-controls="navbarSupportedContent" aria-expanded="false" 
@@ -62,7 +62,7 @@ const Header = () => {
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/users/login">
+                        <Link className="derecha" to="/users/login">
                             <FormattedMessage id="project.users.Login.title"/>
                         </Link>
                     </li>

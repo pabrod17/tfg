@@ -19,6 +19,7 @@ function List({ items, fallback, dispatch}) {
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
     return(
+
         <List items={teams} fallback={"Loading..."} dispatch = {dispatch} />
         )
     };
