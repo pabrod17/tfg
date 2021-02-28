@@ -7,7 +7,7 @@ const Home = () => (
 
     <div className='hero-container'>
 
-        <video className="background-video" src={video} autoPlay loop muted />
+        <video src={video} autoPlay loop muted />
     <div>
     <a className='btn--primary' href="/teams/all">TEAMS</a>
     <a className='btn--secundary' href="/teams/all">SEASONS</a>

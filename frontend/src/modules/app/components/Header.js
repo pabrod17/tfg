@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light border">
+        <nav className="navbar navbar-expand-lg">
             <Link className="centrado" to="/">BASKET</Link>
             <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent" 
