@@ -2,8 +2,8 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
-
 import users from '../../users';
+import logo1 from './logo1.png';
 
 const Header = () => {
 
@@ -12,7 +12,11 @@ const Header = () => {
     return (
 
         <nav className="navbar navbar-expand-lg">
-            <Link className="centrado" to="/">BASKET</Link>
+            <a className="logo" href="/"><img src={logo1}></img></a>
+
+
+            <Link className="centrado" to="/">TeamHub</Link>
+
             <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent" 
                 aria-controls="navbarSupportedContent" aria-expanded="false" 
@@ -26,9 +30,7 @@ const Header = () => {
                 </ul>
                 
                 <ul className="navbar-nav mr-auto">
-                    <li>
 
-                    </li>
                 </ul>
                 {userName ? 
 
@@ -62,7 +64,7 @@ const Header = () => {
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="derecha" to="/users/login">
+                        <Link className="nav-link" to="/users/login">
                             <FormattedMessage id="project.users.Login.title"/>
                         </Link>
                     </li>

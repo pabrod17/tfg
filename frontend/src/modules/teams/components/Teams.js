@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import * as actions from '../actions';
+import logo22 from './logo22.png';
 
 function List({ items, fallback, dispatch}) {
     if (!items || items.length === 0) {
@@ -11,7 +12,22 @@ function List({ items, fallback, dispatch}) {
         return fallback;
     } else {
       return items.map(item => {
-        return <div key={item.id}>{item.teamName}</div>;
+        return <a href="/" key={item.id}>
+              <ul className="menu">
+
+                 <li>
+                   <a  className="encima">
+                   {"TEAM --> " + item.teamName}</a>
+
+
+
+
+                  </li>
+              </ul>
+
+              </a>;
+
+
       });
     }
   }
@@ -19,8 +35,9 @@ function List({ items, fallback, dispatch}) {
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
     return(
-
-        <List items={teams} fallback={"Loading..."} dispatch = {dispatch} />
+      <div>
+                <List items={teams} fallback={"Loading..."} dispatch = {dispatch} />
+      </div>
         )
     };
 

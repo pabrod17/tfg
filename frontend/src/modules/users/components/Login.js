@@ -42,8 +42,8 @@ const Login = () => {
 
     return (
         <div>
-            <p className="text-center">
-                <Link to="/users/signup">
+            <p className="text-left">
+                <Link className="encima margen" to="/users/signup">
                     <FormattedMessage id="project.users.SignUp.title"/>
                 </Link>
             </p>

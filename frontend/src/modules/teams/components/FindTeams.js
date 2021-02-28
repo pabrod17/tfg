@@ -23,8 +23,12 @@ const FindTeams = () => {
         <form className="form-inline mt-2 mt-md-0" onSubmit={e => handleSubmit(e)}>
 
 
-            <button type="submit" className="btn btn-primary my-2 my-sm-0">
-                <FormattedMessage id='project.global.buttons.search'/>
+            <button type="submit" className="btn--primary">
+                <FormattedMessage id='ALL TEAMS'/>
+
+            </button>
+            <button type="submit" className="btn--secundary">
+                <FormattedMessage id='TEAM NAME'/>
 
             </button>
 

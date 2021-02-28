@@ -7,6 +7,8 @@ import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
 import {FindTeamsResult, FindTeams} from '../../teams';
+import video from './video-2.mp4';
+import fondoCanasta from './fondoCanasta.jpg';
 
 const Body = () => {
 
@@ -14,7 +16,10 @@ const Body = () => {
     
    return (
 
-        <div className="container">
+        <div className="hero-container">
+                    <video src={video} autoPlay loop muted />
+{/* <img className="fondoBasket"  src={fondoCanasta}></img> */}
+
             <br/>
             <AppGlobalComponents/>
             <Switch>
