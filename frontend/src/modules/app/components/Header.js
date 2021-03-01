@@ -15,7 +15,7 @@ const Header = () => {
             <a className="logo" href="/"><img src={logo1}></img></a>
 
 
-            <Link className="centrado" to="/">TeamHub</Link>
+            <Link className=" nav-link centrado" to="/">TeamHub</Link>
 
             <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent" 
@@ -64,7 +64,7 @@ const Header = () => {
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/users/login">
+                        <Link className="nav-link link-color" to="/users/login">
                             <FormattedMessage id="project.users.Login.title"/>
                         </Link>
                     </li>

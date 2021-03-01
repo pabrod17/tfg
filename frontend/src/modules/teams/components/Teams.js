@@ -14,20 +14,12 @@ function List({ items, fallback, dispatch}) {
       return items.map(item => {
         return <a href="/" key={item.id}>
               <ul className="menu">
-
                  <li>
                    <a  className="encima">
                    {"TEAM --> " + item.teamName}</a>
-
-
-
-
                   </li>
               </ul>
-
               </a>;
-
-
       });
     }
   }
