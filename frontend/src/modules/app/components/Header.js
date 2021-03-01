@@ -16,6 +16,39 @@ const Header = () => {
 
 
             <Link className=" nav-link centrado" to="/">TeamHub</Link>
+            {/* <Link className=" nav-link " to="/">Teams</Link>
+            <Link className=" nav-link " to="/">Seasons</Link> */}
+            <div class="wrapper">
+                <ul>
+                    <li><Link className=" nav-link link-color" to="/">Teams</Link>
+                            <ul>
+                                <li><Link className=" nav-link link-color" to="/">AddTeam</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">UpdateTeam</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">RemoveTeam</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">Find</Link>
+                                    <ul>
+                                        <li><Link className=" nav-link link-color" to="/">ByName</Link></li>
+                                        <li><Link className=" nav-link link-color" to="/teams/all/result">AllTeams</Link></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </li>
+                    <li><Link className=" nav-link link-color" to="/">Seasons</Link>
+                            <ul>
+                                <li><Link className=" nav-link link-color" to="/">AddSeason</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">UpdateSeason</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">RemoveSeason</Link></li>
+                                <li><Link className=" nav-link link-color" to="/">Find</Link>
+                                    <ul>
+                                        <li><Link className=" nav-link link-color" to="/">ByDates</Link></li>
+                                        <li><Link className=" nav-link link-color" to="/">AllSeasons</Link></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </li>
+                </ul>
+            </div>
+
 
             <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent" 
