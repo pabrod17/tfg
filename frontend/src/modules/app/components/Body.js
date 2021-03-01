@@ -9,6 +9,7 @@ import users from '../../users';
 import {FindTeamsResult, FindTeams} from '../../teams';
 import video from './video-2.mp4';
 import fondoCanasta from './fondoCanasta.jpg';
+import { findTeamByName } from '../../../backend/teamService';
 
 const Body = () => {
 
@@ -25,6 +26,7 @@ const Body = () => {
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route exact path="/teams/all"><FindTeams/></Route>
+                <Route exact path="/teams/all/name"><findTeamByName/></Route>
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
