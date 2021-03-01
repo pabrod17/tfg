@@ -41,11 +41,12 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <p className="text-left">
-                <Link className="encima margen" to="/users/signup">
+        <div >
+            <p className="">
+                <Link className=" signup encima " to="/users/signup">
                     <FormattedMessage id="project.users.SignUp.title"/>
                 </Link>
+
             </p>
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark">
