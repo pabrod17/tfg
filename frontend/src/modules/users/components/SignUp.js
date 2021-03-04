@@ -86,7 +86,7 @@ const SignUp = () => {
                         className="needs-validation" noValidate 
                         onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
-                            <label htmlFor="userName" className="col-md-3 col-form-label">
+                            <label htmlFor="userName" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.userName"/>
                             </label>
                             <div className="col-md-4">
@@ -101,7 +101,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="password" className="col-md-3 col-form-label">
+                            <label htmlFor="password" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.password"/>
                             </label>
                             <div className="col-md-4">
@@ -115,7 +115,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="confirmPassword" className="col-md-3 col-form-label">
+                            <label htmlFor="confirmPassword" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.users.SignUp.fields.confirmPassword"/>
                             </label>
                             <div className="col-md-4">
@@ -132,7 +132,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="firstName" className="col-md-3 col-form-label">
+                            <label htmlFor="firstName" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.firstName"/>
                             </label>
                             <div className="col-md-4">
@@ -146,7 +146,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="lastName" className="col-md-3 col-form-label">
+                            <label htmlFor="lastName" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.lastName"/>
                             </label>
                             <div className="col-md-4">
@@ -160,7 +160,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="email" className="col-md-3 col-form-label">
+                            <label htmlFor="email" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.email"/>
                             </label>
                             <div className="col-md-4">
@@ -174,7 +174,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <div className="offset-md-3 col-md-2">
+                            <div className="offset-md-4 col-md-2">
                                 <button type="submit" className="btn btn-primary">
                                     <FormattedMessage id="project.users.SignUp.title"/>
                                 </button>

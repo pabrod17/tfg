@@ -67,6 +67,10 @@ float: left;
 position: relative;
 }
 
+.color-signup {
+  color:#242424;
+}
+
 
 .wrapper ul ul{
 display: none;

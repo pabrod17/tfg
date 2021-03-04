@@ -43,9 +43,15 @@ const Login = () => {
     return (
         <div >
             <p className="">
-                <Link className=" signup encima " to="/users/signup">
+
+            <div className="card bg-light border-dark">
+                <h5 className="card-header">
+                <Link className=" signup color-signup" to="/users/signup">
                     <FormattedMessage id="project.users.SignUp.title"/>
                 </Link>
+                </h5>
+            </div>
+                
 
             </p>
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
@@ -58,10 +64,10 @@ const Login = () => {
                         className="needs-validation" noValidate 
                         onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
-                            <label htmlFor="userName" className="col-md-3 col-form-label">
+                            <label htmlFor="userName" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.userName"/>
                             </label>
-                            <div className="col-md-4">
+                            <div className="col-md-5">
                                 <input type="text" id="userName" className="form-control"
                                     value={userName}
                                     onChange={e => setUserName(e.target.value)}
@@ -73,10 +79,10 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="password" className="col-md-3 col-form-label">
+                            <label htmlFor="password" className="col-md-4 col-form-label">
                                 <FormattedMessage id="project.global.fields.password"/>
                             </label>
-                            <div className="col-md-4">
+                            <div className="col-md-5">
                                 <input type="password" id="password" className="form-control"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
@@ -87,7 +93,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <div className="offset-md-3 col-md-1">
+                            <div className="offset-md-4 col-md-1">
                                 <button type="submit" className="btn btn-primary">
                                     <FormattedMessage id="project.users.Login.title"/>
                                 </button>
