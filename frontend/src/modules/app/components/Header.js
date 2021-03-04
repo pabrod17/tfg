@@ -18,7 +18,7 @@ const Header = () => {
             <Link className=" nav-link centrado" to="/">TeamHub</Link>
             {/* <Link className=" nav-link " to="/">Teams</Link>
             <Link className=" nav-link " to="/">Seasons</Link> */}
-            <div class="wrapper">
+            <div className="wrapper">
                 <ul>
                     <li><Link className=" nav-link link-color" to="/">Teams</Link>
                             <ul>

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import logo22 from './logo22.png';
 
 function List({ items, fallback, dispatch}) {
     if (!items || items.length === 0) {

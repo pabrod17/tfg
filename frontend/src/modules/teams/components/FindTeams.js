@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
-import {useEffect} from 'react';
 
 import * as actions from '../actions';
-import FindTeamsResult from './FindTeamsResult';
 
 const FindTeams = () => {
 
@@ -27,9 +25,8 @@ const FindTeams = () => {
                 <FormattedMessage id='ALL TEAMS'/>
 
             </button>
-            <Link href="/teams/all/name" className="btn--secundary">
+            <Link className="btn--secundary" to="/teams/all/name">
                 <FormattedMessage id='TEAM NAME'/>
-
             </Link>
 
 

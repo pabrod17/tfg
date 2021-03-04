@@ -7,10 +7,8 @@ export const findTeamById = (id, onSuccess) =>
     appFetch('/teams/find/${id}', config('GET'), onSuccess);
 
 export const findTeamByName = (name, onSuccess) =>{
-    let path = '/catalog/products?page=${page}';
-    path += name.length > 0 ? `&name=${name}` : "";
 
-    appFetch(path, config('GET'), onSuccess);
+    appFetch(`/teams/${name}`, config('GET'), onSuccess);
 }
 
 export const addTeam = (id, teamName, onSuccess) =>

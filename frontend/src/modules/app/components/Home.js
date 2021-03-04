@@ -1,7 +1,4 @@
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import video from './video-2.mp4';
-import fondoCanasta from './fondoCanasta.jpg';
 
 const Home = () => (
 

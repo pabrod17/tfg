@@ -1,19 +1,27 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-
 import * as selectors from '../selectors';
-import * as actions from '../actions';
-import Teams from './Teams';
-import {useEffect} from 'react';
+
+
 
 const FindTeamByNameResult = () => {
-    const dispatch = useDispatch();
-
+    
     const team = useSelector(selectors.getTeam);
+    console.log(team);
+    if(team){
+        return(
+            <a  className="encima">
+            {"TEAM --> " + team.teamName}</a>
+        );
+    } else{
+        return(
+            <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>        
+        );
+    }
 
-    return(
-            <Teams team={team.team}/>
-    );
+    
 }
 
 export default FindTeamByNameResult;

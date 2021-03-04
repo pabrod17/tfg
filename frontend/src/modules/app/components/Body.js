@@ -10,6 +10,8 @@ import {FindTeamsResult, FindTeams} from '../../teams';
 import video from './video-2.mp4';
 import fondoCanasta from './fondoCanasta.jpg';
 import { findTeamByName } from '../../../backend/teamService';
+import FindTeamByName from '../../teams/components/FindTeamByName';
+import FindTeamByNameResult from '../../teams/components/FindTeamByNameResult';
 
 const Body = () => {
 
@@ -18,7 +20,7 @@ const Body = () => {
    return (
 
         <div className="hero-container">
-                    <video src={video} autoPlay loop muted />
+                    {/* <video src={video} autoPlay loop muted /> */}
 {/* <img className="fondoBasket"  src={fondoCanasta}></img> */}
 
             <br/>
@@ -26,8 +28,9 @@ const Body = () => {
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route exact path="/teams/all"><FindTeams/></Route>
-                <Route exact path="/teams/all/name"><findTeamByName/></Route>
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
+                <Route exact path="/teams/all/name"><FindTeamByName/></Route>
+                <Route exact path="/teams/all/name/result"><FindTeamByNameResult/></Route>
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}
