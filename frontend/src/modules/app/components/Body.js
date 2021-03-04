@@ -20,7 +20,7 @@ const Body = () => {
    return (
 
         <div className="hero-container">
-                    {/* <video src={video} autoPlay loop muted /> */}
+                    <video src={video} autoPlay loop muted />
 {/* <img className="fondoBasket"  src={fondoCanasta}></img> */}
 
             <br/>

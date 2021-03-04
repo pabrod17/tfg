@@ -70,7 +70,9 @@ position: relative;
 .color-signup {
   color:#242424;
 }
-
+.color-byTeamName {
+  color:rgb(21, 255, 0);
+}
 
 .wrapper ul ul{
 display: none;
