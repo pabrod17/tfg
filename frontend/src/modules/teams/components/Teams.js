@@ -11,10 +11,10 @@ function List({ items, fallback, dispatch}) {
         return fallback;
     } else {
       return items.map(item => {
-        return <a href="/" key={item.id}>
+        return <a  key={item.id}>
               <ul className="menu">
                  <li>
-                   <a  className="encima">
+                   <a  href="/" className="encima color-byTeamName">
                    {"TEAM --> " + item.teamName}</a>
                   </li>
               </ul>

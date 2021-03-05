@@ -15,13 +15,11 @@
 }
 
 .menu li {
-  display: inline-flexbox;
+  display: flex;
+  justify-content: space-between;
+
 }
 
-.menu li a {
-  padding: 20px;
-  display: inline-block;
-}
 
 
 .encima{
