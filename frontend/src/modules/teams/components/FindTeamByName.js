@@ -13,7 +13,7 @@ const FindTeamByName = () => {
     const handleSubmit = event => {
         event.preventDefault();
         dispatch(actions.findTeamByName( teamName.trim()));
-        history.push('/teams/all/name/result');
+        history.push(`/teams/all/name/result/${teamName.trim()}`);
     }
 
     return (

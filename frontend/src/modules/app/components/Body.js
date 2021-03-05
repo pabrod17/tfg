@@ -30,7 +30,7 @@ const Body = () => {
                 <Route exact path="/teams/all"><FindTeams/></Route>
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
                 <Route exact path="/teams/all/name"><FindTeamByName/></Route>
-                <Route exact path="/teams/all/name/result"><FindTeamByNameResult/></Route>
+                <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}
