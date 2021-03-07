@@ -10,8 +10,20 @@ function TeamName({team, teamName, dispatch}){
 
   if(team){
     return(
-        <a href="/" className="encima color-byTeamName">
-        {"TEAM --> " + team.teamName}</a>
+      <div>
+        <div className="encima">
+
+        <a  href="/" className=" color-byTeamName">
+        {"TEAM --> " + team.teamName}                </a>
+        </div>
+        <div className="encima remove-team">
+          <button class="btn btn-primary" type="submit" 
+            onClick={() => handleRemoveItem()}>
+            <span className="fas fa-trash-alt"></span>
+          </button>
+          </div>
+         </div>
+
     );
   } else{
       dispatch(actions.findTeamByName(teamName));
@@ -23,14 +35,19 @@ function TeamName({team, teamName, dispatch}){
     }
 }
 
+const handleRemoveItem = () => {
+
+
+}
+
 
 
 const Team = ({team, teamName}) => {
     const dispatch = useDispatch();
     return(
-      <div>
-        <TeamName team={team} teamName={teamName} dispatch={dispatch} />
-      </div>
+        <div>
+          <TeamName team={team} teamName={teamName} dispatch={dispatch} />
+        </div>
     )
 };
 

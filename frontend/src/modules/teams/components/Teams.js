@@ -14,8 +14,17 @@ function List({ items, fallback, dispatch}) {
         return <a  key={item.id}>
               <ul className="menu">
                  <li>
-                   <a  href="/" className="encima color-byTeamName">
-                   {"TEAM --> " + item.teamName}</a>
+                   <div className="encima">
+
+                   <a  href="/" className=" color-byTeamName">
+                   {"TEAM --> " + item.teamName}                </a>
+                   </div>
+                   <div className="encima remove-team">
+                      <button class="btn btn-primary" type="submit" 
+                        onClick={() => handleRemoveItem()}>
+                        <span className="fas fa-trash-alt"></span>
+                      </button>
+                      </div>
                   </li>
               </ul>
               </a>;
@@ -23,11 +32,17 @@ function List({ items, fallback, dispatch}) {
     }
   }
 
+  const handleRemoveItem = () => {
+
+
+  }
+
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
     return(
       <div>
                 <List items={teams} fallback={"Loading..."} dispatch = {dispatch} />
+
       </div>
         )
     };

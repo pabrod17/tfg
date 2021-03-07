@@ -4,6 +4,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    position: absolute;
     align-items: center;
     object-fit: contain;
   }
@@ -14,21 +15,24 @@
   display: flex;
 }
 
-.menu li {
-  display: flex;
-  justify-content: space-between;
 
+
+.remove-button {
+  padding-bottom: 80px;
+  padding-top: 80px;
 }
-
-
-
 .encima{
   position: absolute;
+  text-align: center;
+
 }
 
 .signup {
-  top: 40%;
   left: 47%;
+}
+
+.remove-team {
+  left: 45%;
 }
 
 .fondoBasket {
