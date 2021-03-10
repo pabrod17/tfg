@@ -17,7 +17,8 @@ export const addTeam = (id, teamName, onSuccess) =>
 export const updateTeam = (id, teamName, onSuccess) =>
     appFetch(`/teams/update/${id}`, config('PUT', {id, teamName}), onSuccess);
 
-export const removeTeam = (id, onSuccess, onErrors) =>
-    appFetch(`teams/remove/${id}`, config('DELETE'), onSuccess, onErrors);
-    
+export const removeTeam = (id, onSuccess, onErrors) =>{
+    console.log('servicio ' + id);
+    appFetch(`/teams/remove/${id}`, config('DELETE'), onSuccess, onErrors);
+}
 //FALTA addTeamToSeason

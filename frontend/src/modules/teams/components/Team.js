@@ -42,7 +42,6 @@ function TeamName({team, teamName, dispatch, history}){
 
 const handleRemoveItem = (id, dispatch, history ) => {
   dispatch(actions.removeTeam(id, () => history.push('/')));
-
 }
 
 
