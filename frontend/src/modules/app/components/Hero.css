@@ -15,7 +15,13 @@
   display: flex;
 }
 
-
+.footer {
+  color:rgb(184, 175, 175);
+  width: 100%;
+  position:fixed;
+  bottom: 0;
+  left: 0;
+}
 
 .remove-button {
   padding-bottom: 80px;

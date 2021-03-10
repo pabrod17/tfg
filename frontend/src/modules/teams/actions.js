@@ -1,5 +1,4 @@
 import * as actionTypes from './actionsTypes';
-import * as selectors from './selectors';
 import backend from '../../backend';
 
 const findAllTeamsCompleted = teams => ({
@@ -22,6 +21,7 @@ export const findTeamById = teamId => dispatch => {
     backend.teamService.findTeamById(teamId,
         team => dispatch(findTeamtByIdCompleted(team)));
 }
+
 
 const findTeamtByNameCompleted = team => ({
     type: actionTypes.FIND_TEAM_BY_NAME_COMPLETED,
@@ -61,4 +61,9 @@ export const addTeam =  (team, onSuccess, onErrors) => dispatch =>{
         onErrors);
 }
 
+export const removeTeam = (id, onSuccess, onErrors) => {
+    backend.teamService.removeTeam(id, onSuccess, onErrors);
+    return {type: actionTypes.REMOVE_TEAM_COMPLETED};
+
+}
 //falta removeTeam y addTeamToSeason

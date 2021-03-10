@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.HttpStatus;
 
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDtos;
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDto;
@@ -59,7 +62,8 @@ public class TeamController {
         return toTeamDto(teamService.updateTeam(team));
     }
 
-    @PostMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeTeam(@PathVariable Long id) throws InstanceNotFoundException {
         teamService.removeTeam(id);
     }

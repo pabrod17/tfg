@@ -6,10 +6,9 @@ import AppGlobalComponents from './AppGlobalComponents';
 import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
-import {FindTeamsResult, FindTeams} from '../../teams';
+import {FindTeamsResult, FindTeams, RemoveTeam} from '../../teams';
 import video from './video-2.mp4';
 import fondoCanasta from './fondoCanasta.jpg';
-import { findTeamByName } from '../../../backend/teamService';
 import FindTeamByName from '../../teams/components/FindTeamByName';
 import FindTeamByNameResult from '../../teams/components/FindTeamByNameResult';
 
@@ -20,8 +19,8 @@ const Body = () => {
    return (
 
         <div className="hero-container">
-                    <video src={video} autoPlay loop muted />
-{/* <img className="fondoBasket"  src={fondoCanasta}></img> */}
+                    {/* <video src={video} autoPlay loop muted /> */}
+<img className="fondoBasket"  src={fondoCanasta}></img>
 
             <br/>
             <AppGlobalComponents/>
@@ -31,6 +30,7 @@ const Body = () => {
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
                 <Route exact path="/teams/all/name"><FindTeamByName/></Route>
                 <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>
+                <Route exact path="/teams/remove/:teamId"><RemoveTeam/></Route>
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

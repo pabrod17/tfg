@@ -1,14 +1,14 @@
 import React from 'react';
 import * as actions from '../actions';
-import {useSelector, useDispatch} from 'react-redux';
-import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 
-
-function TeamName({team, teamName, dispatch}){
+function TeamName({team, teamName, dispatch, history}){
 
   if(team){
+
     return(
       <div>
         <div className="encima">
@@ -17,10 +17,15 @@ function TeamName({team, teamName, dispatch}){
         {"TEAM --> " + team.teamName}                </a>
         </div>
         <div className="encima remove-team">
-          <button class="btn btn-primary" type="submit" 
-            onClick={() => handleRemoveItem()}>
+          <button class="btn btn-primary" type="button" 
+            onClick={() => handleRemoveItem(team.id, dispatch, history)}>
             <span className="fas fa-trash-alt"></span>
           </button>
+          
+          {/* <button className="btn btn-primary" type="button" 
+            onClick={() => history.push(`/teams/remove/${team.id}`)}>
+            <span className="fas fa-trash-alt"></span>
+          </button> */}
           </div>
          </div>
 
@@ -28,25 +33,28 @@ function TeamName({team, teamName, dispatch}){
   } else{
       dispatch(actions.findTeamByName(teamName));
       return(
-          <div class="spinner-border color-byTeamName" role="status">
-          <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border color-byTeamName" role="status">
+          <span className="visually-hidden">Loading...</span>
           </div>        
       );
     }
 }
 
-const handleRemoveItem = () => {
-
+const handleRemoveItem = (id, dispatch, history ) => {
+  dispatch(actions.removeTeam(id, () => history.push('/')));
 
 }
 
 
 
-const Team = ({team, teamName}) => {
+  const Team = ({team, teamName}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+
     return(
         <div>
-          <TeamName team={team} teamName={teamName} dispatch={dispatch} />
+          <TeamName team={team} teamName={teamName} dispatch={dispatch} history={history} />
         </div>
     )
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
 
 function List({ items, fallback, dispatch}) {
@@ -20,7 +20,7 @@ function List({ items, fallback, dispatch}) {
                    {"TEAM --> " + item.teamName}                </a>
                    </div>
                    <div className="encima remove-team">
-                      <button class="btn btn-primary" type="submit" 
+                      <button className="btn btn-primary" type="submit" 
                         onClick={() => handleRemoveItem()}>
                         <span className="fas fa-trash-alt"></span>
                       </button>

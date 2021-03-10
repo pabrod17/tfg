@@ -7,5 +7,6 @@ export {default as FindTeams} from './components/FindTeams';
 export {default as FindTeamsResult} from './components/FindTeamsResult';
 export {default as FindTeamByName} from './components/FindTeamByName';
 export {default as FindTeamByNameResult} from './components/FindTeamByNameResult';
+export {default as RemoveTeam} from './components/RemoveTeam';
 
 export default {actions, actionsTypes, reducer, selectors};

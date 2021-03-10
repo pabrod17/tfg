@@ -12,7 +12,7 @@ const Header = () => {
     return (
 
         <nav className="navbar navbar-expand-lg">
-            <a className="logo" href="/"><img src={logo1}></img></a>
+            <a className="logo" href="/"><img src={logo1} alt="description"></img></a>
 
 
             <Link className=" nav-link centrado" to="/">TeamHub</Link>
