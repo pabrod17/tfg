@@ -18,6 +18,7 @@ const RemoveTeam = () => {
     function TeamRemoved(){
 
     if(team){
+      
         dispatch(actions.removeTeam(teamId));
             return(
                 <div>
