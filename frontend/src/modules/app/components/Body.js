@@ -6,7 +6,7 @@ import AppGlobalComponents from './AppGlobalComponents';
 import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
-import {FindTeamsResult, FindTeams, RemoveTeam} from '../../teams';
+import {FindTeamsResult, FindTeams, RemoveTeam, AddTeam} from '../../teams';
 import video from './video-2.mp4';
 import fondoCanasta from './fondoCanasta.jpg';
 import FindTeamByName from '../../teams/components/FindTeamByName';
@@ -26,6 +26,7 @@ const Body = () => {
             <AppGlobalComponents/>
             <Switch>
                 <Route exact path="/"><Home/></Route>
+                <Route exact path="/teams/new"><AddTeam/></Route>
                 <Route exact path="/teams/all"><FindTeams/></Route>
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
                 <Route exact path="/teams/all/name"><FindTeamByName/></Route>

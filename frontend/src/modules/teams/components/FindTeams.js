@@ -23,11 +23,18 @@ const FindTeams = () => {
 
             <button type="submit" className="btn--primary">
                 <FormattedMessage id='ALL TEAMS'/>
-
             </button>
+
             <Link className="btn--secundary" to="/teams/all/name">
                 <FormattedMessage id='TEAM NAME'/>
             </Link>
+
+            <Link className="btn--third" to="/teams/new">
+                <FormattedMessage id='Add New Team'/>
+            </Link>
+            
+            
+            
 
 
 

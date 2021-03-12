@@ -170,7 +170,7 @@ video {
     color: #242424;
     border: 50px solid rgb(0, 0, 0);
     border-radius: 20px;
-    right: 50%;
+    right: 69%;
   }
 
   .btn--secundary {
@@ -184,6 +184,20 @@ video {
     color: #242424;
     border: 50px solid rgb(0, 0, 0);
     border-radius: 20px;
-    left: 60%;
+    right: 47%;
+  }
+
+  .btn--third {
+    position: absolute;
+    font-family: fantasy;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    font-size: 200%;
+    padding: 8px 20px;
+    background-color:rgb(255, 255, 255);
+    color: #242424;
+    border: 50px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    right: 20%;
   }
 

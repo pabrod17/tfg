@@ -11,14 +11,13 @@ export const findTeamByName = (name, onSuccess) =>{
     appFetch(`/teams/${name}`, config('GET'), onSuccess);
 }
 
-export const addTeam = (id, teamName, onSuccess) =>
-    appFetch('/teams/new/', config('POST', {id, teamName}), onSuccess);
+export const addTeam = (team, onSuccess, onErrors) =>
+    appFetch('/teams/new/', config('POST', team), onSuccess, onErrors);
 
-export const updateTeam = (id, teamName, onSuccess) =>
-    appFetch(`/teams/update/${id}`, config('PUT', {id, teamName}), onSuccess);
+export const updateTeam = (team, onSuccess, onErrors) =>
+    appFetch(`/teams/update/${team.id}`, config('PUT', team), onSuccess, onErrors);
 
 export const removeTeam = (id, onSuccess, onErrors) =>{
-    console.log('servicio ' + id);
     appFetch(`/teams/remove/${id}`, config('DELETE'), onSuccess, onErrors);
 }
 //FALTA addTeamToSeason
