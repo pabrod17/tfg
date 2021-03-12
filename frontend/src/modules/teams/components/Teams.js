@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
+import { useHistory } from 'react-router';
 
-function List({ items, fallback, dispatch}) {
+function List({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
 
         dispatch(actions.findAllTeams());
@@ -20,11 +21,11 @@ function List({ items, fallback, dispatch}) {
                    {"TEAM --> " + item.teamName}                </a>
                    </div>
                    <div className="encima remove-team">
-                      <button className="btn btn-primary" type="submit" 
-                        onClick={() => handleRemoveItem()}>
+                      <button className="btn btn-primary" type="button" 
+                        onClick={() => handleRemoveItem(item.id, dispatch, history)}>
                         <span className="fas fa-trash-alt"></span>
                       </button>
-                      </div>
+                    </div>
                   </li>
               </ul>
               </a>;
@@ -32,16 +33,17 @@ function List({ items, fallback, dispatch}) {
     }
   }
 
-  const handleRemoveItem = () => {
-
-
-  }
+const handleRemoveItem = (id, dispatch, history) => {
+  dispatch(actions.removeTeam(id, () => history.push('/teams/all/result')));
+  window.location.reload('true');
+}
 
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     return(
       <div>
-                <List items={teams} fallback={"Loading..."} dispatch = {dispatch} />
+                <List items={teams} fallback={"Loading..."} dispatch = {dispatch} history={history} />
 
       </div>
         )

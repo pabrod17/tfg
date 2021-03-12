@@ -19,8 +19,8 @@ const Body = () => {
    return (
 
         <div className="hero-container">
-                    {/* <video src={video} autoPlay loop muted /> */}
-<img className="fondoBasket"  src={fondoCanasta}></img>
+            {/* <video src={video} autoPlay loop muted /> */}
+            <img className="fondoBasket"  src={fondoCanasta}></img>
 
             <br/>
             <AppGlobalComponents/>
@@ -30,7 +30,6 @@ const Body = () => {
                 <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
                 <Route exact path="/teams/all/name"><FindTeamByName/></Route>
                 <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>
-                <Route exact path="/teams/remove/:teamId"><RemoveTeam/></Route>
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

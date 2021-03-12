@@ -33,6 +33,8 @@ const teams = (state = initialState.teams, action) => {
 
         case actionTypes.FIND_ALL_TEAMS_COMPLETED:
             return action.teams;
+        case actionTypes.REMOVE_TEAM_COMPLETED:
+            return initialState.teams;
         default:
             return state;
 
