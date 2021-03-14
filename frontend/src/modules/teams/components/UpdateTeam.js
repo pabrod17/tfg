@@ -30,13 +30,18 @@ const UpdateTeam = () => {
         dispatch(actions.updateTeam({
             id: team.id,
             teamName: teamName.trim()
-        }, () => history.push('/'),
+        }, () => reloadWindow(),
             errors => setBackendErrors(errors),
         ));
     } else {
         setBackendErrors(null);
         form.classList.add('was-validated');
         }
+    }
+
+    const reloadWindow = () =>{
+        history.push('/teams/all/result');
+        window.location.reload('true');
     }
 
     return(
