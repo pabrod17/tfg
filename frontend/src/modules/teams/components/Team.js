@@ -11,10 +11,11 @@ function TeamName({team, teamName, dispatch, history}){
 
     return(
       <div>
-        <div className="encima">
-
-        <a  href="/" className=" color-byTeamName">
-        {"TEAM --> " + team.teamName}</a>
+        <div className="encima ">
+          <button className="btn btn-info" type="button" 
+            onClick={() => history.push(`/teams/view/${team.id}`)}>
+            {"TEAM --> " + team.teamName}
+          </button>
         </div>
         <div className="encima remove-team">
           <button class="btn btn-primary" type="button" 
@@ -44,8 +45,6 @@ function TeamName({team, teamName, dispatch, history}){
 const handleRemoveItem = (id, dispatch, history ) => {
   dispatch(actions.removeTeam(id, () => history.push('/')));
 }
-
-
 
   const Team = ({team, teamName}) => {
     const dispatch = useDispatch();

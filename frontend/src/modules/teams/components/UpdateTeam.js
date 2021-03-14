@@ -6,15 +6,10 @@ import {FormattedMessage} from 'react-intl';
 import {Errors} from '../../common';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
-import {useParams} from 'react-router-dom';
 
 const UpdateTeam = () => {
 
    const team = useSelector(selectors.getTeam);
-   //creo que esto solo funciona para cuando busco por el nombre
-   //ya que ahi tengo el estado previo de team. Y en el caso de AllTeams
-   //tengo el estado teams que me devolveria una lista y tendria que ver 
-   //cual de la lista e seleccionado
    const dispatch = useDispatch();
    const history = useHistory();
    const [teamName, setTeamName] = useState(team.teamName);

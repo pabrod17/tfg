@@ -14,9 +14,11 @@ function List({ items, fallback, dispatch, history}) {
         return <a  key={item.id}>
                 <ul className="menu">
                   <li>
-                    <div className="encima">
-                      <a  href="/" className=" color-byTeamName">
-                        {"TEAM --> " + item.teamName}</a>
+                    <div className="encima ">
+                        <button className="btn btn-info" type="button" 
+                          onClick={() => handleViewTeam(item.id, dispatch, history)}>
+                            {"TEAM --> " + item.teamName}
+                        </button>
                     </div>
                     <div className="encima remove-team">
                         <button className="btn btn-primary" type="button" 
@@ -44,6 +46,10 @@ const handleRemoveItem = (id, dispatch, history) => {
 
 const handleUpdateItem = (id, dispatch, history) => {
   dispatch(actions.findTeamById(id, () => history.push('/teams/update')));
+}
+
+const handleViewTeam = (id, dispatch, history) => {
+  dispatch(actions.findTeamById(id, () => history.push(`/teams/view/${id}`)));
 }
 
 const Teams = ({teams}) => {
