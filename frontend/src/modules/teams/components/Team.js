@@ -14,20 +14,21 @@ function TeamName({team, teamName, dispatch, history}){
         <div className="encima">
 
         <a  href="/" className=" color-byTeamName">
-        {"TEAM --> " + team.teamName}                </a>
+        {"TEAM --> " + team.teamName}</a>
         </div>
         <div className="encima remove-team">
           <button class="btn btn-primary" type="button" 
             onClick={() => handleRemoveItem(team.id, dispatch, history)}>
             <span className="fas fa-trash-alt"></span>
           </button>
-          
-          {/* <button className="btn btn-primary" type="button" 
-            onClick={() => history.push(`/teams/remove/${team.id}`)}>
-            <span className="fas fa-trash-alt"></span>
-          </button> */}
-          </div>
-         </div>
+        </div>
+        <div className="encima update-button">
+          <button className="btn btn-secondary" type="button" 
+              onClick={() => history.push('/teams/update')}>
+              <span className="fas fa-pencil-alt"></span>
+          </button>
+        </div>
+      </div>
 
     );
   } else{

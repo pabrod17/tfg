@@ -46,7 +46,7 @@ const AddTeam = () => {
                                 Team Name
                             </label>
                             <div className="col-md-5">
-                                <input type="text" id="userName" className="form-control"
+                                <input type="text" id="teamName" className="form-control"
                                     value={teamName}
                                     onChange={e => setTeamName(e.target.value)}
                                     autoFocus

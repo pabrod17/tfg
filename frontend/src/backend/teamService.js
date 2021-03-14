@@ -7,7 +7,6 @@ export const findTeamById = (id, onSuccess) =>
     appFetch(`/teams/find/${id}`, config('GET'), onSuccess);
 
 export const findTeamByName = (name, onSuccess) =>{
-
     appFetch(`/teams/${name}`, config('GET'), onSuccess);
 }
 

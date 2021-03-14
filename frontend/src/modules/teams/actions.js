@@ -17,9 +17,12 @@ const findTeamtByIdCompleted = team => ({
     team
 });
 
-export const findTeamById = teamId => dispatch => {
-    backend.teamService.findTeamById(teamId,
-        team => dispatch(findTeamtByIdCompleted(team)));
+export const findTeamById = (id, onSuccess) => dispatch => {
+    backend.teamService.findTeamById(id,
+        team => {dispatch(findTeamtByIdCompleted(team));
+        onSuccess();
+        }
+        );
 }
 
 
