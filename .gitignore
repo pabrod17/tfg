@@ -13,3 +13,7 @@ backend/.settings/
 # IntelliJ IDEA configuration.
 backend/.idea/
 backend/pa-project-backend.iml
+
+# others
+node_modules/
+package-lock.json
