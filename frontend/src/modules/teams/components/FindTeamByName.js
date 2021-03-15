@@ -18,7 +18,7 @@ const FindTeamByName = () => {
 
     return (
 
-        <form className="form-inline mt-2 mt-md-0 encima" onSubmit={e => handleSubmit(e)}>
+        <form className="form-inline mt-2 mt-md-0 encima centrado" onSubmit={e => handleSubmit(e)}>
 
             <input id="teamName" type="text" className="form-control mr-sm-2"
                 value={teamName} onChange={e => setTeamName(e.target.value)}/>

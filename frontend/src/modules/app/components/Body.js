@@ -12,6 +12,8 @@ import fondoCanasta from './fondoCanasta.jpg';
 import FindTeamByName from '../../teams/components/FindTeamByName';
 import FindTeamByNameResult from '../../teams/components/FindTeamByNameResult';
 
+
+
 const Body = () => {
 
     const loggedIn = useSelector(users.selectors.isLoggedIn);
@@ -20,7 +22,6 @@ const Body = () => {
 
         <div className="hero-container">
             {/* <video src={video} autoPlay loop muted /> */}
-            <img className="fondoBasket"  src={fondoCanasta}></img>
 
             <br/>
             <AppGlobalComponents/>

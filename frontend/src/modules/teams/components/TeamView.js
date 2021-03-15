@@ -21,7 +21,7 @@ const TeamView = () => {
 
             return(
 
-                <div>
+                <div className="centrado">
                     <div className="card bg-dark text-white border-dark col-md-50">
                         <h5 className="card-header">
                             {team.teamName}

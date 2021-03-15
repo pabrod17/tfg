@@ -20,7 +20,7 @@ const AddTeam = () => {
 
             dispatch(actions.addTeam({
                 teamName: teamName.trim()
-            }, () => history.push('/'),
+            }, () => reloadWindow(),
                 errors => setBackendErrors(errors),
             ));
 
@@ -30,10 +30,15 @@ const AddTeam = () => {
         }
     }
 
+    const reloadWindow = () =>{
+        history.push('/teams/new');
+        window.location.reload('true');
+    }
+
     return (
 <div>
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
-            <div className="card bg-light border-dark">
+            <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
                     NEW TEAM
                 </h5>

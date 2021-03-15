@@ -7,7 +7,7 @@ import Body from './Body';
 import Footer from './Footer';
 import users from '../../users';
 import './Hero.css';
-import video from './video-2.mp4';
+import canastaRed from './canastaRed.jpg';
 
 const App = () => {
 
@@ -24,6 +24,8 @@ const App = () => {
         <div>
             <Router>
                 <div>
+                <img className="fondoBasket"  src={canastaRed}></img>
+
                     <Header/>
                     <Body/>
                 </div>
