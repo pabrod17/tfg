@@ -21,4 +21,10 @@ public class TeamConversor {
     public final static Team toTeam(TeamDto teamDto) {
 		return new Team(teamDto.getTeamName());
     }
+
+    public final static Team toTeamUpdate(TeamDto teamDto) {
+        Team team = new Team(teamDto.getTeamName());
+        team.setId(teamDto.getId());
+		return team;
+    }
 }

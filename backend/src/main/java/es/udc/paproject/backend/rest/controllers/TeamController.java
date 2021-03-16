@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDtos;
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDto;
+import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeam;
+import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamUpdate;
 
 import es.udc.paproject.backend.rest.dtos.TeamDto;
 import es.udc.paproject.backend.model.entities.Team;
@@ -53,12 +55,14 @@ public class TeamController {
     }/ */
 
     @PostMapping("/new/")
-    public TeamDto addTeam(@RequestBody  Team team){
+    public TeamDto addTeam(@RequestBody  TeamDto teamDto){
+        Team team = toTeam(teamDto);
         return toTeamDto(teamService.addTeam(team));
     }
 
     @PutMapping("/update/{id}")
-    public TeamDto updateTeam(@PathVariable Long id, @RequestBody Team team) throws InstanceNotFoundException {
+    public TeamDto updateTeam(@PathVariable Long id, @RequestBody TeamDto teamDto) throws InstanceNotFoundException {
+        Team team = toTeamUpdate(teamDto);
         return toTeamDto(teamService.updateTeam(team));
     }
 
@@ -69,7 +73,8 @@ public class TeamController {
     }
 
     @PostMapping("/toseason/{id}")
-    public void addTeamToSeason(@PathVariable Long id, @RequestBody Team team, @RequestAttribute Long userId) throws InstanceNotFoundException {
+    public void addTeamToSeason(@PathVariable Long id, @RequestBody TeamDto teamDto, @RequestAttribute Long userId) throws InstanceNotFoundException {
+        Team team = toTeam(teamDto);
         teamService.addTeamToSeason(id, team, userId);
     }
 }
