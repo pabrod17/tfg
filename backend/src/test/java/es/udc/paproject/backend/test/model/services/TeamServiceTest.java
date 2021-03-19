@@ -141,6 +141,7 @@ public class TeamServiceTest {
 
 	@Test
 	public void testRemoveTeam() throws InstanceNotFoundException, DuplicateInstanceException {
+		
 		User user = createUser("usuario");
 		userService.signUp(user);
 		Team team1 = createTeam("primero");
@@ -164,16 +165,19 @@ public class TeamServiceTest {
 
 	@Test
 	public void testUpdateTeam() throws InstanceNotFoundException, DuplicateInstanceException {
+		
 		User user = createUser("usuario");
 		userService.signUp(user);
 
-		Team team1 = createTeam("primero");
-		teamService.addTeam(user.getId(),team1);
-		team1.setTeamName("segundo");
+		Team team = createTeam("primero");
+		teamService.addTeam(user.getId(),team);
+		team.setTeamName("segundo");
 
-		teamService.updateTeam(user.getId(),team1);
+		teamService.updateTeam(user.getId(),team);
 
-		assertEquals("segundo", teamService.findTeamById(user.getId(),team1.getId()).getTeamName());
+		assertEquals("segundo", teamService.findTeamById(user.getId(),team.getId()).getTeamName());
+		assertEquals("segundo", seasonTeamDao.findByUserId(user.getId()).get(0).getTeam().getTeamName());
+
 	}
 
 	// @Test

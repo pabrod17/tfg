@@ -41,17 +41,17 @@ public class TeamServiceImpl implements TeamService {
         teamDao.save(team);
         SeasonTeam seasonTeam = new SeasonTeam(null, team, user);
         seasonTeamDao.save(seasonTeam);
-       
+
         return team;
     }
 
     @Override
     public void addTeamToSeason(Long seasonId, Team team, Long userId) throws InstanceNotFoundException {
-
-        Season season = seasonService.findSeasonById(seasonId);
-        User user = userService.loginFromId(userId);
         
+        User user = userService.loginFromId(userId);
+        Season season = seasonService.findSeasonById(userId, seasonId);
         SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
+
         seasonTeamDao.save(seasonTeam);
     }
 
@@ -111,7 +111,7 @@ public class TeamServiceImpl implements TeamService {
         }
 
         if (teams.isEmpty()) {
-            //EXCEPCION
+            throw new InstanceNotFoundException("project.entities.team");
         }
 
         return teams;
@@ -125,7 +125,7 @@ public class TeamServiceImpl implements TeamService {
         List<Season> seasons = new ArrayList<>();
 
         if (seasonTeams.isEmpty()) {
-            throw new InstanceNotFoundException("project.entities.team");
+            throw new InstanceNotFoundException("project.entities.seasonTeam");
         }
         for (SeasonTeam seasonTeam : seasonTeams) {
             if(seasonTeam.getTeam().getId() == teamId && seasonTeam.getSeason() != null){
@@ -133,7 +133,7 @@ public class TeamServiceImpl implements TeamService {
             }
         }
         if (seasons.isEmpty()) {
-            throw new InstanceNotFoundException("project.entities.team");
+            throw new InstanceNotFoundException("project.entities.season");
         }
 
         return seasons;
@@ -141,14 +141,24 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void removeTeam(Long userId, Long teamId) throws InstanceNotFoundException {
+        
+        Optional<Team> existingTeam = teamDao.findById(teamId);
+        if (!existingTeam.isPresent()) {
+            throw new InstanceNotFoundException("project.entities.season", teamId);
+        }
+
         User user = userService.loginFromId(userId);
         List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
         Long id = (long) -1;
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == teamId && seasonTeam.getTeam() != null){
+            if(seasonTeam.getTeam().getId() == teamId){
                 id = seasonTeam.getTeam().getId();
                 teamDao.delete(seasonTeam.getTeam());
                 seasonTeam.setTeam(null);
+
+                if(seasonTeam.getSeason() == null && seasonTeam.getTeam()==null){
+                    seasonTeamDao.delete(seasonTeam);
+                }
             }
         }
         if(id == -1) {
@@ -158,27 +168,30 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Team updateTeam(Long userId, Team team) throws InstanceNotFoundException {
-        User user = userService.loginFromId(userId);
-        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
-        Team existingTeam = null;
 
-        for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == team.getId()){
-                existingTeam = seasonTeam.getTeam();
-
-                existingTeam.setTeamName(team.getTeamName());
-                teamDao.save(existingTeam);
-
-                Optional<SeasonTeam> seasonTeam2 = seasonTeamDao.findById(seasonTeam.getId());
-                seasonTeam2.get().setTeam(existingTeam);
-                seasonTeamDao.save(seasonTeam2.get());
-            }
-        }
-        
-        if (existingTeam == null) {
+        Optional<Team> existingTeam = teamDao.findById(team.getId());
+        if (!existingTeam.isPresent()) {
             throw new InstanceNotFoundException("project.entities.team", team.getId());
         }
 
-        return existingTeam;
+        User user = userService.loginFromId(userId);
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
+        Team existingTeam2 = null;
+
+        for (SeasonTeam seasonTeam : seasonTeams) {
+            if(seasonTeam.getTeam().getId() == team.getId()){
+                existingTeam2 = seasonTeam.getTeam();
+                existingTeam2.setTeamName(team.getTeamName());
+                teamDao.save(existingTeam2);
+
+                Optional<SeasonTeam> seasonTeam2 = seasonTeamDao.findById(seasonTeam.getId());
+                seasonTeam2.get().getTeam().setTeamName(team.getTeamName());
+                seasonTeamDao.save(seasonTeam2.get());
+            }
+        }
+        if (existingTeam2 == null) {
+            throw new InstanceNotFoundException("project.entities.team", team.getId());
+        }
+        return existingTeam2;
     }
 }

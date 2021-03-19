@@ -25,28 +25,28 @@ public class SeasonController {
     @Autowired
     private SeasonService seasonService;
 
-    @GetMapping("/all")
-    public List<SeasonDto> findAllSeasons() {
-        return toSeasonDtos(seasonService.findAllSeasons());
-    }
+    // @GetMapping("/all")
+    // public List<SeasonDto> findAllSeasons() {
+    //     return toSeasonDtos(seasonService.findAllSeasons());
+    // }
 
-    @GetMapping("/find/{id}")
-    public SeasonDto findSeasonById(@PathVariable Long id) throws InstanceNotFoundException {
-        return toSeasonDto(seasonService.findSeasonById(id));
-    }
+    // @GetMapping("/find/{id}")
+    // public SeasonDto findSeasonById(@PathVariable Long id) throws InstanceNotFoundException {
+    //     return toSeasonDto(seasonService.findSeasonById(id));
+    // }
 
-    @PostMapping("/new/")
-    public SeasonDto addSeason(@RequestBody  Season season){
-        return toSeasonDto(seasonService.addSeason(season));
-    }
+    // @PostMapping("/new/")
+    // public SeasonDto addSeason(@RequestBody  Season season){
+    //     return toSeasonDto(seasonService.addSeason(season));
+    // }
 
-    @PutMapping("/update/{id}")
-    public SeasonDto updateSeason(@PathVariable Long id, @RequestBody Season season) throws InstanceNotFoundException {
-        return toSeasonDto(seasonService.updateSeason(season));
-    }
+    // @PutMapping("/update/{id}")
+    // public SeasonDto updateSeason(@PathVariable Long id, @RequestBody Season season) throws InstanceNotFoundException {
+    //     return toSeasonDto(seasonService.updateSeason(season));
+    // }
 
-    @PostMapping("/remove/{id}")
-    public void removeSeason(@PathVariable Long id) throws InstanceNotFoundException {
-        seasonService.removeSeason(id);
-    }
+    // @PostMapping("/remove/{id}")
+    // public void removeSeason(@PathVariable Long id) throws InstanceNotFoundException {
+    //     seasonService.removeSeason(id);
+    // }
 }

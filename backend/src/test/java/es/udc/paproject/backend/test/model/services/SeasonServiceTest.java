@@ -13,6 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Season;
+import es.udc.paproject.backend.model.entities.SeasonTeam;
+import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
@@ -41,129 +43,165 @@ public class SeasonServiceTest {
 	private TeamService teamService;
 
 	@Autowired
+	private SeasonTeamDao seasonTeamDao;
+    
+	@Autowired
 	private UserService userService;
 
-    // private Season createSeason(){
+    private Season createSeason(){
 
-    //     LocalDateTime startDate = LocalDateTime.of(2020, 5, 12, 15, 56);    
-    //     LocalDateTime endDate = LocalDateTime.of(2021, 2, 14, 15, 56);    
-    //     return new Season(startDate, endDate, "Calendario");
-    // }
-    // private Season createSeason2(){
+        LocalDateTime startDate = LocalDateTime.of(2020, 5, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2021, 2, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
+    private Season createSeason2(){
 
-    //     LocalDateTime startDate = LocalDateTime.of(2020, 7, 12, 15, 56);    
-    //     LocalDateTime endDate = LocalDateTime.of(2021, 7, 14, 15, 56);    
-    //     return new Season(startDate, endDate, "Calendario");
-    // }
-    // private Season createSeason3(){
+        LocalDateTime startDate = LocalDateTime.of(2020, 7, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2021, 7, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
+    private Season createSeason3(){
 
-    //     LocalDateTime startDate = LocalDateTime.of(2020, 8, 12, 15, 56);    
-    //     LocalDateTime endDate = LocalDateTime.of(2021, 8, 14, 15, 56);    
-    //     return new Season(startDate, endDate, "Calendario");
-    // }
+        LocalDateTime startDate = LocalDateTime.of(2020, 8, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2021, 8, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
 
-    // private Season createSeasonOutDate(){
+    private Season createSeasonOutDate(){
 
-    //     LocalDateTime startDate = LocalDateTime.of(2014, 8, 12, 15, 56);    
-    //     LocalDateTime endDate = LocalDateTime.of(2023, 8, 14, 15, 56);    
-    //     return new Season(startDate, endDate, "Calendario");
-    // }
+        LocalDateTime startDate = LocalDateTime.of(2014, 8, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2023, 8, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
 
-    // private Team createTeam(String teamName) {
-	// 	return new Team(teamName);
-	// }
+    private Team createTeam(String teamName) {
+		return new Team(teamName);
+	}
 
-	// private User createUser(String userName) {
-	// 	return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
-	// }
+	private User createUser(String userName) {
+		return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
+	}
 
-    // @Test
-    // public void testAddSeasonAndFindSeasonById() throws InstanceNotFoundException {
+    @Test
+    public void testAddSeasonAndFindSeasonById() throws InstanceNotFoundException, DuplicateInstanceException {
 
-    //     Season season = createSeason();
-    //     seasonService.addSeason(season);
+		User user = createUser("usuario");
+		userService.signUp(user);
 
-    //     Long seasonId = season.getId();
-    //     Season foundSeason = seasonService.findSeasonById(seasonId);
+        Season season = createSeason();
+        seasonService.addSeason(user.getId(),season);
 
-    //     assertEquals(season, foundSeason);
-    // }
+        Long seasonId = season.getId();
+        Season foundSeason = seasonService.findSeasonById(user.getId(), seasonId);
+        List<SeasonTeam> seasonsTeams = seasonTeamDao.findByUserId(user.getId());
+        Season foundSeasonByUser = seasonsTeams.get(0).getSeason();
 
-    // @Test
-    // public void testAddSeasonAndFindSeasonBetweenTwoDates() throws InstanceNotFoundException {
+        assertEquals(season, foundSeason);
+        assertEquals(season, foundSeasonByUser);
+    }
 
-    //     Season season = createSeason();
-    //     seasonService.addSeason(season);
-    //     Season season2 = createSeason2();
-    //     seasonService.addSeason(season2);
-    //     Season season3 = createSeason3();
-    //     seasonService.addSeason(season3);
-    //     Season seasonOutDate = createSeasonOutDate();
-    //     seasonService.addSeason(seasonOutDate);
+    @Test
+    public void testAddSeasonAndFindSeasonBetweenTwoDates() throws InstanceNotFoundException,
+            DuplicateInstanceException {
+
+        User user = createUser("usuario");
+		userService.signUp(user);
+
+        Season season = createSeason();
+        seasonService.addSeason(user.getId(),season);
+        Season season2 = createSeason2();
+        seasonService.addSeason(user.getId(),season2);
+        Season season3 = createSeason3();
+        seasonService.addSeason(user.getId(),season3);
+        Season seasonOutDate = createSeasonOutDate();
+        seasonService.addSeason(user.getId(),seasonOutDate);
 
 
-    //     List<Season> seasons = seasonService.findSeasonsBetweenTwoDates(startDate, endDate);
-    //     assertEquals(3, seasons.size());
-    // }
+        List<Season> seasons = seasonService.findSeasonsBetweenTwoDates(user.getId(),startDate, endDate);
+        assertEquals(3, seasons.size());
+    }
 
-    // @Test
-    // public void testAddSeasonAndFindSeasonByIdFromNonExistentId(){
-    //     assertThrows(InstanceNotFoundException.class, () -> seasonService.findSeasonById(NON_EXISTENT_ID));
-    // }
+    @Test
+    public void testAddSeasonAndFindSeasonByIdFromNonExistentId() throws DuplicateInstanceException {
+        User user = createUser("usuario");
+		userService.signUp(user);
+        assertThrows(InstanceNotFoundException.class, () -> seasonService.findSeasonById(user.getId(),NON_EXISTENT_ID));
+    }
 
-    // @Test
-    // public void testFindAllSeasons(){
+    @Test
+    public void testFindAllSeasons() throws InstanceNotFoundException, DuplicateInstanceException {
 
-    //     Season season1 = createSeason();
-    //     seasonService.addSeason(season1);
-    //     Season season2 = createSeason2();
-    //     seasonService.addSeason(season2);
-    //     Season season3 = createSeason3();
-    //     seasonService.addSeason(season3);
+		User user = createUser("usuario");
+		userService.signUp(user);
+        Season season1 = createSeason();
+        seasonService.addSeason(user.getId(),season1);
+        Season season2 = createSeason2();
+        seasonService.addSeason(user.getId(),season2);
+        Season season3 = createSeason3();
+        seasonService.addSeason(user.getId(),season3);
 
-    //     List<Season> seasons = new ArrayList<>();
-    //     seasons.add(season1);
-    //     seasons.add(season2);
-    //     seasons.add(season3);
+        User user2 = createUser("usuario2");
+		userService.signUp(user2);
+        Season season11 = createSeason();
+        seasonService.addSeason(user2.getId(),season11);
+        Season season22 = createSeason2();
+        seasonService.addSeason(user2.getId(),season22
+        );
+        List<Season> seasons = new ArrayList<>();
+        seasons.add(season1);
+        seasons.add(season2);
+        seasons.add(season3);
 
-    //     assertEquals(seasons.size(), seasonService.findAllSeasons().size());
-    //     assertEquals(seasons.get(0), seasonService.findAllSeasons().get(0));
-    //     assertEquals(seasons.get(1), seasonService.findAllSeasons().get(1));
-    //     assertEquals(seasons.get(2), seasonService.findAllSeasons().get(2));
-    // }
+		assertEquals(3, seasonService.findAllSeasons(user.getId()).size());
+		assertEquals(2, seasonService.findAllSeasons(user2.getId()).size());
 
-    // @Test
-    // public void testReomveSeason() throws InstanceNotFoundException {
+        assertEquals(seasons.size(), seasonService.findAllSeasons(user.getId()).size());
+        assertEquals(seasons.get(0), seasonService.findAllSeasons(user.getId()).get(0));
+        assertEquals(seasons.get(1), seasonService.findAllSeasons(user.getId()).get(1));
+        assertEquals(seasons.get(2), seasonService.findAllSeasons(user.getId()).get(2));
+    }
 
-    //     Season season1 = createSeason();
-    //     seasonService.addSeason(season1);
-    //     Season season2 = createSeason2();
-    //     seasonService.addSeason(season2);
-    //     Season season3 = createSeason3();
-    //     seasonService.addSeason(season3);
+    @Test
+    public void testRemoveSeason() throws InstanceNotFoundException, DuplicateInstanceException {
 
-    //     seasonService.removeSeason(season2.getId());
+		User user = createUser("usuario");
+		userService.signUp(user);
+        Season season1 = createSeason();
+        seasonService.addSeason(user.getId(),season1);
+        Season season2 = createSeason2();
+        seasonService.addSeason(user.getId(),season2);
+        Season season3 = createSeason3();
+        seasonService.addSeason(user.getId(),season3);
 
-    //     assertEquals(2, seasonService.findAllSeasons().size());
-    // }
+        seasonService.removeSeason(user.getId(),season2.getId());
 
-    // @Test
-    // public void testRemoveSeasonFromNonExistentId(){
-	// 	assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(NON_EXISTENT_ID));
-    // }
+        assertEquals(2, seasonService.findAllSeasons(user.getId()).size());
+    }
 
-    // @Test
-    // public void testUpdateSeason() throws InstanceNotFoundException {
+    @Test
+    public void testRemoveSeasonFromNonExistentId() throws DuplicateInstanceException {
+        User user = createUser("usuario");
+		userService.signUp(user);
+		assertThrows(InstanceNotFoundException.class, () -> seasonService.removeSeason(user.getId(),NON_EXISTENT_ID));
+    }
 
-    //     Season season = createSeason();
-    //     seasonService.addSeason(season);
-    //     season.setStartDate(startDateUpdated);
-    //     season.setEndDate(endDateUpdated);
-    //     seasonService.updateSeason(season);
+    @Test
+    public void testUpdateSeason() throws InstanceNotFoundException, DuplicateInstanceException {
 
-    //     assertEquals(startDateUpdated, seasonService.findSeasonById(season.getId()).getStartDate());
-    //     assertEquals(endDateUpdated, seasonService.findSeasonById(season.getId()).getEndDate());
-    // }
+		User user = createUser("usuario");
+		userService.signUp(user);
+
+        Season season = createSeason();
+        seasonService.addSeason(user.getId(),season);
+        season.setStartDate(startDateUpdated);
+        season.setEndDate(endDateUpdated);
+        seasonService.updateSeason(user.getId(),season);
+
+        assertEquals(startDateUpdated, seasonService.findSeasonById(user.getId(),season.getId()).getStartDate());
+        assertEquals(endDateUpdated, seasonService.findSeasonById(user.getId(),season.getId()).getEndDate());
+        assertEquals(startDateUpdated, seasonTeamDao.findByUserId(user.getId()).get(0).getSeason().getStartDate());
+        assertEquals(endDateUpdated, seasonTeamDao.findByUserId(user.getId()).get(0).getSeason().getEndDate());
+    }
 
 	// @Test
 	// public void testFindTeamsToSeason() throws DuplicateInstanceException, InstanceNotFoundException {
