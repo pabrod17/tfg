@@ -9,6 +9,8 @@ public interface SeasonTeamDao extends PagingAndSortingRepository<SeasonTeam, Lo
     //Aqui accedo a los seasonTeam de una temporada y de ahi saco los teams de una temporada
     List<SeasonTeam> findSeasonTeamsBySeasonId(Long seasonId);
 
+    List<SeasonTeam> findByUserId(Long userId);
+
     List<SeasonTeam> findSeasonTeamsByTeamId(Long teamId);
 
     boolean existsByTeamId(Long teamId);

@@ -32,49 +32,43 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    @GetMapping("/all")
-    public List<TeamDto> findAllTeams() {
-        return toTeamDtos(teamService.findAllTeams());
-    }
+    // @GetMapping("/all")
+    // public List<TeamDto> findAllTeams() {
+    //     return toTeamDtos(teamService.findAllTeams());
+    // }
 
-    @GetMapping("/find/{id}")
-    public TeamDto findTeamById(@PathVariable Long id) throws InstanceNotFoundException {
-        return toTeamDto(teamService.findTeamById(id));
-    }
+    // @GetMapping("/find/{id}")
+    // public TeamDto findTeamById(@PathVariable Long id) throws InstanceNotFoundException {
+    //     return toTeamDto(teamService.findTeamById(id));
+    // }
 
-    @GetMapping("/{name}")
-    public TeamDto findTeamByName(@PathVariable String name) throws InstanceNotFoundException {
-        System.out.println("HOLAAA -> " + name);
-        return toTeamDto(teamService.findTeamByName(name));
-    }
+    // @GetMapping("/{name}")
+    // public TeamDto findTeamByName(@PathVariable String name) throws InstanceNotFoundException {
+    //     System.out.println("HOLAAA -> " + name);
+    //     return toTeamDto(teamService.findTeamByName(name));
+    // }
 
-//http://localhost:8080/teams/findByName/:name?name=PRIMERO
-/**    @GetMapping("/findByName/{name}")
-    public TeamDto findTeamByName(@RequestParam String name) throws InstanceNotFoundException {
-        return toTeamDto(teamService.findTeamByName(name));
-    }/ */
+    // @PostMapping("/new/")
+    // public TeamDto addTeam(@RequestBody  TeamDto teamDto){
+    //     Team team = toTeam(teamDto);
+    //     return toTeamDto(teamService.addTeam(team));
+    // }
 
-    @PostMapping("/new/")
-    public TeamDto addTeam(@RequestBody  TeamDto teamDto){
-        Team team = toTeam(teamDto);
-        return toTeamDto(teamService.addTeam(team));
-    }
+    // @PutMapping("/update/{id}")
+    // public TeamDto updateTeam(@PathVariable Long id, @RequestBody TeamDto teamDto) throws InstanceNotFoundException {
+    //     Team team = toTeamUpdate(teamDto);
+    //     return toTeamDto(teamService.updateTeam(team));
+    // }
 
-    @PutMapping("/update/{id}")
-    public TeamDto updateTeam(@PathVariable Long id, @RequestBody TeamDto teamDto) throws InstanceNotFoundException {
-        Team team = toTeamUpdate(teamDto);
-        return toTeamDto(teamService.updateTeam(team));
-    }
+    // @DeleteMapping("/remove/{id}")
+	// @ResponseStatus(HttpStatus.NO_CONTENT)
+    // public void removeTeam(@PathVariable Long id) throws InstanceNotFoundException {
+    //     teamService.removeTeam(id);
+    // }
 
-    @DeleteMapping("/remove/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeTeam(@PathVariable Long id) throws InstanceNotFoundException {
-        teamService.removeTeam(id);
-    }
-
-    @PostMapping("/toseason/{id}")
-    public void addTeamToSeason(@PathVariable Long id, @RequestBody TeamDto teamDto, @RequestAttribute Long userId) throws InstanceNotFoundException {
-        Team team = toTeam(teamDto);
-        teamService.addTeamToSeason(id, team, userId);
-    }
+    // @PostMapping("/toseason/{id}")
+    // public void addTeamToSeason(@PathVariable Long id, @RequestBody TeamDto teamDto, @RequestAttribute Long userId) throws InstanceNotFoundException {
+    //     Team team = toTeam(teamDto);
+    //     teamService.addTeamToSeason(id, team, userId);
+    // }
 }

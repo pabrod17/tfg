@@ -7,20 +7,20 @@ import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface TeamService {
-
-    Team addTeam(Team team);
-
+    //done
+    Team addTeam(Long userId, Team team) throws InstanceNotFoundException;
+    //done
     void addTeamToSeason(Long seasonId, Team team, Long userId) throws InstanceNotFoundException;
-
-    Team findTeamById(Long teamId) throws InstanceNotFoundException;
-
-    Team findTeamByName(String teamName) throws InstanceNotFoundException;
-
-    List<Team> findAllTeams();
+    //done
+    Team findTeamById(Long userId,Long teamId) throws InstanceNotFoundException;
+    //done
+    Team findTeamByName(Long userId, String teamName) throws InstanceNotFoundException;
+    //done
+    List<Team> findAllTeams(Long userId) throws InstanceNotFoundException;
     
-    List<Season> findSeasonsToTeam(Long teamId) throws InstanceNotFoundException;
-    
-    void removeTeam(Long teamId) throws InstanceNotFoundException;
-
-    Team updateTeam(Team team) throws InstanceNotFoundException;
+    List<Season> findSeasonsToTeam(Long userId, Long teamId) throws InstanceNotFoundException;
+    //done
+    void removeTeam(Long userId, Long teamId) throws InstanceNotFoundException;
+    //done
+    Team updateTeam(Long userId, Team team) throws InstanceNotFoundException;
 }

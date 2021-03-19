@@ -41,9 +41,9 @@ CREATE INDEX TeamIndexByTeamName ON Team (teamName);
 
 CREATE TABLE SeasonTeam (
     id BIGINT NOT NULL AUTO_INCREMENT,    
-    seasonId BIGINT NOT NULL,
-    teamId BIGINT NOT NULL,
-    userId BIGINT NOT NULL,    
+    seasonId BIGINT,
+    teamId BIGINT,
+    userId BIGINT,    
     CONSTRAINT SeasonTeamPK PRIMARY KEY (id),
     CONSTRAINT SeasonTeamUserIdFK FOREIGN KEY(userId)
         REFERENCES User (id),    

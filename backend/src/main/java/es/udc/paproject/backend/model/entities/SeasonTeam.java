@@ -26,6 +26,16 @@ public class SeasonTeam {
         this.user = user;
     }
 
+    public SeasonTeam(Team team, User user) {
+        this.team = team;
+        this.user = user;
+    }
+
+    public SeasonTeam(Season season, User user) {
+        this.season = season;
+        this.user = user;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -37,8 +47,8 @@ public class SeasonTeam {
     }
 
     //cascada para borrar as referencias de dita season na taboa intermedia
-    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "seasonId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "seasonId", nullable = true)
     public Season getSeason() {
         return season;
     }
@@ -48,8 +58,8 @@ public class SeasonTeam {
     }
     
     //cascada para borrar as referencias de dita season na taboa intermedia
-    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "teamId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "teamId", nullable = true)
     public Team getTeam() {
         return team;
     }
@@ -58,8 +68,8 @@ public class SeasonTeam {
         this.team = team;
     }
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = true)
     public User getUser() {
         return user;
     }
