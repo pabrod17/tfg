@@ -1,7 +1,7 @@
 package es.udc.paproject.backend.model.exceptions;
 
 import java.time.LocalDateTime;
-
+@SuppressWarnings("serial")
 public class StartDateAfterEndDateException extends Exception{
 
     private LocalDateTime startDate;
