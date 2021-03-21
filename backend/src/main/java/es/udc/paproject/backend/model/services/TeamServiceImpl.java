@@ -14,6 +14,7 @@ import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.TeamDao;
 import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 @Service
@@ -33,8 +34,12 @@ public class TeamServiceImpl implements TeamService {
     private UserService userService;
 
     @Override
-    public Team addTeam(Long userId, Team team) throws InstanceNotFoundException {
+    public Team addTeam(Long userId, Team team) throws InstanceNotFoundException, DuplicateInstanceException {
         
+        if(teamDao.existsByTeamName(team.getTeamName())){
+            throw new DuplicateInstanceException("project.entities.team", team.getTeamName());
+        }
+
         User user = userService.loginFromId(userId);
         teamDao.save(team);
         SeasonTeam seasonTeam = new SeasonTeam(null, team, user);
@@ -84,7 +89,7 @@ public class TeamServiceImpl implements TeamService {
         Team team = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason() != null && seasonTeam.getTeam().getTeamName() == teamName){
+            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getTeamName() == teamName){
                 team = seasonTeam.getTeam();
             }
         }

@@ -16,6 +16,7 @@ import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
 @Service
 @Transactional
@@ -31,7 +32,12 @@ public class SeasonServiceImpl implements SeasonService {
     private UserService userService;
     
     @Override
-    public Season addSeason(Long userId, Season season) throws InstanceNotFoundException {
+    public Season addSeason(Long userId, Season season) throws InstanceNotFoundException,
+            StartDateAfterEndDateException {
+
+        if(season.getStartDate().isAfter(season.getEndDate())){
+            throw new StartDateAfterEndDateException(season.getStartDate(), season.getEndDate());
+        }
 
         User user = userService.loginFromId(userId);
         seasonDao.save(season);
@@ -63,7 +69,11 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Override
     public List<Season> findSeasonsBetweenTwoDates(Long userId, LocalDateTime startDate, LocalDateTime endDate)
-            throws InstanceNotFoundException {
+            throws InstanceNotFoundException, StartDateAfterEndDateException {
+
+                if(startDate.isAfter(endDate)){
+                    throw new StartDateAfterEndDateException(startDate, endDate);
+                }
 
         User user = userService.loginFromId(userId);
         List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());

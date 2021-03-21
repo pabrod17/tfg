@@ -19,6 +19,7 @@ import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 import es.udc.paproject.backend.model.services.SeasonService;
 import es.udc.paproject.backend.model.services.TeamService;
 import es.udc.paproject.backend.model.services.UserService;
@@ -53,12 +54,12 @@ public class TeamServiceTest {
 		return new Season(startDate, endDate, "Calendario");
 	}
 
-	private Season createSeason2(){
+	private Season createSeason2() {
 
-        LocalDateTime startDate = LocalDateTime.of(2020, 7, 12, 15, 56);    
-        LocalDateTime endDate = LocalDateTime.of(2021, 7, 14, 15, 56);    
-        return new Season(startDate, endDate, "Calendario");
-    }
+		LocalDateTime startDate = LocalDateTime.of(2020, 7, 12, 15, 56);
+		LocalDateTime endDate = LocalDateTime.of(2021, 7, 14, 15, 56);
+		return new Season(startDate, endDate, "Calendario");
+	}
 
 	private User createUser(String userName) {
 		return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
@@ -71,7 +72,7 @@ public class TeamServiceTest {
 		userService.signUp(user);
 
 		Team team = createTeam("primero");
-		teamService.addTeam(user.getId(),team);
+		teamService.addTeam(user.getId(), team);
 
 		Long teamId = team.getId();
 		Team foundTeam = teamService.findTeamById(user.getId(), teamId);
@@ -91,7 +92,7 @@ public class TeamServiceTest {
 		Team team = createTeam("segundo");
 		teamService.addTeam(user.getId(), team);
 
-		Team foundTeam = teamService.findTeamByName(user.getId(),"segundo");
+		Team foundTeam = teamService.findTeamByName(user.getId(), "segundo");
 
 		List<SeasonTeam> seasonsTeams = seasonTeamDao.findByUserId(user.getId());
 		Team foundTeamByUser = seasonsTeams.get(0).getTeam();
@@ -104,14 +105,26 @@ public class TeamServiceTest {
 	public void testAddTeamAndFindTeamByIdFromNonExistentId() throws DuplicateInstanceException {
 		User user = createUser("usuario");
 		userService.signUp(user);
-		assertThrows(InstanceNotFoundException.class, () -> teamService.findTeamById(user.getId(),NON_EXISTENT_ID));
+		assertThrows(InstanceNotFoundException.class, () -> teamService.findTeamById(user.getId(), NON_EXISTENT_ID));
 	}
 
 	@Test
 	public void testAddTeamAndFindTeamByIdFromNonExistentName() throws DuplicateInstanceException {
 		User user = createUser("usuario");
 		userService.signUp(user);
-		assertThrows(InstanceNotFoundException.class, () -> teamService.findTeamByName(user.getId(),"noexiste"));
+		assertThrows(InstanceNotFoundException.class, () -> teamService.findTeamByName(user.getId(), "noexiste"));
+	}
+
+	@Test
+	public void testAddTeamWithDuplicateTeamName() throws DuplicateInstanceException, InstanceNotFoundException {
+		User user = createUser("usuario");
+		userService.signUp(user);
+
+		Team team = createTeam("segundo");
+		teamService.addTeam(user.getId(), team);
+		Team team2 = createTeam("segundo");
+
+		assertThrows(DuplicateInstanceException.class, () -> teamService.addTeam(user.getId(), team2));
 	}
 
 	@Test
@@ -120,18 +133,18 @@ public class TeamServiceTest {
 		User user = createUser("usuario");
 		userService.signUp(user);
 		Team team1 = createTeam("primero");
-		teamService.addTeam(user.getId(),team1);
+		teamService.addTeam(user.getId(), team1);
 		Team team2 = createTeam("segundo");
-		teamService.addTeam(user.getId(),team2);
+		teamService.addTeam(user.getId(), team2);
 		Team team3 = createTeam("tercero");
-		teamService.addTeam(user.getId(),team3);
+		teamService.addTeam(user.getId(), team3);
 
 		User user2 = createUser("usuario2");
 		userService.signUp(user2);
 		Team team11 = createTeam("primero2");
-		teamService.addTeam(user2.getId(),team11);
+		teamService.addTeam(user2.getId(), team11);
 		Team team22 = createTeam("segundo2");
-		teamService.addTeam(user2.getId(),team22);
+		teamService.addTeam(user2.getId(), team22);
 
 		List<Team> teams = new ArrayList<>();
 		teams.add(team1);
@@ -148,17 +161,17 @@ public class TeamServiceTest {
 
 	@Test
 	public void testRemoveTeam() throws InstanceNotFoundException, DuplicateInstanceException {
-		
+
 		User user = createUser("usuario");
 		userService.signUp(user);
 		Team team1 = createTeam("primero");
-		teamService.addTeam(user.getId(),team1);
+		teamService.addTeam(user.getId(), team1);
 		Team team2 = createTeam("segundo");
-		teamService.addTeam(user.getId(),team2);
+		teamService.addTeam(user.getId(), team2);
 		Team team3 = createTeam("tercero");
-		teamService.addTeam(user.getId(),team3);
+		teamService.addTeam(user.getId(), team3);
 
-		teamService.removeTeam(user.getId(),team2.getId());
+		teamService.removeTeam(user.getId(), team2.getId());
 
 		assertEquals(2, teamService.findAllTeams(user.getId()).size());
 	}
@@ -167,29 +180,29 @@ public class TeamServiceTest {
 	public void testRemoveTeamFromNonExistentId() throws DuplicateInstanceException {
 		User user = createUser("usuario");
 		userService.signUp(user);
-		assertThrows(InstanceNotFoundException.class, () -> teamService.removeTeam(user.getId(),NON_EXISTENT_ID));
+		assertThrows(InstanceNotFoundException.class, () -> teamService.removeTeam(user.getId(), NON_EXISTENT_ID));
 	}
 
 	@Test
 	public void testUpdateTeam() throws InstanceNotFoundException, DuplicateInstanceException {
-		
+
 		User user = createUser("usuario");
 		userService.signUp(user);
 
 		Team team = createTeam("primero");
-		teamService.addTeam(user.getId(),team);
+		teamService.addTeam(user.getId(), team);
 		team.setTeamName("segundo");
 
-		teamService.updateTeam(user.getId(),team);
+		teamService.updateTeam(user.getId(), team);
 
-		assertEquals("segundo", teamService.findTeamById(user.getId(),team.getId()).getTeamName());
+		assertEquals("segundo", teamService.findTeamById(user.getId(), team.getId()).getTeamName());
 		assertEquals("segundo", seasonTeamDao.findByUserId(user.getId()).get(0).getTeam().getTeamName());
 
 	}
 
 	@Test
-	public void testAddTeamToSeasonAndfindSeasonTeamsByTeamId() throws DuplicateInstanceException,
-			InstanceNotFoundException {
+	public void testAddTeamToSeasonAndfindSeasonTeamsByTeamId()
+			throws DuplicateInstanceException, InstanceNotFoundException, StartDateAfterEndDateException {
 
 		User user = createUser("usuario");
 		userService.signUp(user);
