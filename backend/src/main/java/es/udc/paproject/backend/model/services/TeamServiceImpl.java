@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.constraints.Null;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +64,7 @@ public class TeamServiceImpl implements TeamService {
         Team team = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == teamId){
+            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getId() == teamId){
                 team = seasonTeam.getTeam();
             }
         }
@@ -86,7 +84,7 @@ public class TeamServiceImpl implements TeamService {
         Team team = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getTeamName() == teamName){
+            if(seasonTeam.getSeason() != null && seasonTeam.getTeam().getTeamName() == teamName){
                 team = seasonTeam.getTeam();
             }
         }
@@ -128,7 +126,7 @@ public class TeamServiceImpl implements TeamService {
             throw new InstanceNotFoundException("project.entities.seasonTeam");
         }
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == teamId && seasonTeam.getSeason() != null){
+            if(seasonTeam.getTeam() != null && seasonTeam.getSeason() != null && seasonTeam.getTeam().getId() == teamId){
                 seasons.add(seasonTeam.getSeason());
             }
         }
@@ -151,7 +149,7 @@ public class TeamServiceImpl implements TeamService {
         List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
         Long id = (long) -1;
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == teamId){
+            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getId() == teamId){
                 id = seasonTeam.getTeam().getId();
                 teamDao.delete(seasonTeam.getTeam());
                 seasonTeam.setTeam(null);
@@ -179,7 +177,7 @@ public class TeamServiceImpl implements TeamService {
         Team existingTeam2 = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam().getId() == team.getId()){
+            if(seasonTeam.getTeam() != null &&seasonTeam.getTeam().getId() == team.getId()){
                 existingTeam2 = seasonTeam.getTeam();
                 existingTeam2.setTeamName(team.getTeamName());
                 teamDao.save(existingTeam2);

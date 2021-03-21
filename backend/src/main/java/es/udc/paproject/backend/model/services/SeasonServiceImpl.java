@@ -50,7 +50,7 @@ public class SeasonServiceImpl implements SeasonService {
         Season season = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason().getId() == seasonId){
+            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() == seasonId){
                 season = seasonTeam.getSeason();
             }
         }
@@ -70,7 +70,7 @@ public class SeasonServiceImpl implements SeasonService {
         List<Season> seasons = new ArrayList<>();
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason().getStartDate().isAfter(startDate) && seasonTeam.getSeason().getEndDate().isBefore(endDate)) {
+            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getStartDate().isAfter(startDate) && seasonTeam.getSeason().getEndDate().isBefore(endDate)) {
                 seasons.add(seasonTeam.getSeason());
             }
         }
@@ -111,7 +111,7 @@ public class SeasonServiceImpl implements SeasonService {
         }
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason().getId() == seasonId && seasonTeam.getTeam() != null){
+            if(seasonTeam.getSeason() != null && seasonTeam.getTeam() != null && seasonTeam.getSeason().getId() == seasonId){
                 teams.add(seasonTeam.getTeam());
             }
         }
@@ -136,7 +136,7 @@ public class SeasonServiceImpl implements SeasonService {
         Long id = (long) -1;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason().getId() == seasonId){
+            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() == seasonId){
                 id = seasonTeam.getSeason().getId();
                 seasonDao.delete(seasonTeam.getSeason());
                 seasonTeam.setSeason(null);
@@ -165,7 +165,7 @@ public class SeasonServiceImpl implements SeasonService {
         Season existingSeason2 = null;
 
         for (SeasonTeam seasonTeam : seasonTeams){
-            if(seasonTeam.getSeason().getId() == season.getId()){
+            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() == season.getId()){
                 existingSeason2 = seasonTeam.getSeason();
                 existingSeason2.setStartDate(season.getStartDate());
                 existingSeason2.setEndDate(season.getEndDate());

@@ -53,6 +53,13 @@ public class TeamServiceTest {
 		return new Season(startDate, endDate, "Calendario");
 	}
 
+	private Season createSeason2(){
+
+        LocalDateTime startDate = LocalDateTime.of(2020, 7, 12, 15, 56);    
+        LocalDateTime endDate = LocalDateTime.of(2021, 7, 14, 15, 56);    
+        return new Season(startDate, endDate, "Calendario");
+    }
+
 	private User createUser(String userName) {
 		return new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
 	}
@@ -180,24 +187,31 @@ public class TeamServiceTest {
 
 	}
 
-	// @Test
-	// public void testAddTeamToSeasonAndfindSeasonTeamsByTeamId() throws DuplicateInstanceException,
-	// 		InstanceNotFoundException {
-				
-	// 	Team team = createTeam("equipo");
-	// 	teamService.addTeam(team);
-	// 	Team team2 = createTeam("dos");
-	// 	teamService.addTeam(team2);
-	// 	Season season = createSeason();
-	// 	seasonService.addSeason(season);
-	// 	User user = createUser("usuario");
-	// 	userService.signUp(user);
+	@Test
+	public void testAddTeamToSeasonAndfindSeasonTeamsByTeamId() throws DuplicateInstanceException,
+			InstanceNotFoundException {
 
-	// 	teamService.addTeamToSeason(season.getId(),team, user.getId());
-	// 	teamService.addTeamToSeason(season.getId(), team2, user.getId());
+		User user = createUser("usuario");
+		userService.signUp(user);
+		
+		Team team = createTeam("equipo");
+		teamService.addTeam(user.getId(),team);
+		Team team2 = createTeam("dos");
+		teamService.addTeam(user.getId(),team2);
 
-	// 	List<Season> seasons = teamService.findSeasonsToTeam(team.getId());
-	// 	assertEquals(1, seasons.size());
-	// 	assertEquals(teamService.findSeasonsToTeam(team.getId()).get(0), season);
-	// }
+		Season season = createSeason();
+		seasonService.addSeason(user.getId(),season);
+		Season season2 = createSeason2();
+		seasonService.addSeason(user.getId(),season2);
+
+		teamService.addTeamToSeason(season.getId(),team, user.getId());
+		teamService.addTeamToSeason(season.getId(), team2, user.getId());
+		teamService.addTeamToSeason(season2.getId(), team, user.getId());
+
+		List<Season> seasons = teamService.findSeasonsToTeam(user.getId(), team.getId());
+		
+		assertEquals(2, seasons.size());
+		assertEquals(teamService.findSeasonsToTeam(user.getId(), team.getId()).get(0), season);
+		assertEquals(teamService.findSeasonsToTeam(user.getId(), team.getId()).get(1), season2);
+	}
 }
