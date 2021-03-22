@@ -89,7 +89,7 @@ public class TeamServiceImpl implements TeamService {
         Team team = null;
 
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getTeamName() == teamName){
+            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getTeamName().equals(teamName)){
                 team = seasonTeam.getTeam();
             }
         }
