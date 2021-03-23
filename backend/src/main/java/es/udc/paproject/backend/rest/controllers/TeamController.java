@@ -46,7 +46,6 @@ public class TeamController {
     @GetMapping("/{name}")
     public TeamDto findTeamByName(@RequestAttribute Long userId, @PathVariable String name)
             throws InstanceNotFoundException {
-        System.out.println("HOLAAA -> " + name);
         return toTeamDto(teamService.findTeamByName(userId, name));
     }
 
@@ -75,4 +74,6 @@ public class TeamController {
         Team team = toTeam(teamDto);
         teamService.addTeamToSeason(id, team, userId);
     }
+
+    //findSeasonsToTeam
 }

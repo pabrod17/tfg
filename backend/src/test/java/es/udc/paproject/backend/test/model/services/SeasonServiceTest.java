@@ -231,12 +231,16 @@ public class SeasonServiceTest {
         seasonService.addSeason(user.getId(),season);
         season.setStartDate(startDateUpdated);
         season.setEndDate(endDateUpdated);
+        season.setCalendario("cambio");
         seasonService.updateSeason(user.getId(),season);
 
         assertEquals(startDateUpdated, seasonService.findSeasonById(user.getId(),season.getId()).getStartDate());
         assertEquals(endDateUpdated, seasonService.findSeasonById(user.getId(),season.getId()).getEndDate());
+        assertEquals("cambio", seasonService.findSeasonById(user.getId(),season.getId()).getCalendario());
+
         assertEquals(startDateUpdated, seasonTeamDao.findByUserId(user.getId()).get(0).getSeason().getStartDate());
         assertEquals(endDateUpdated, seasonTeamDao.findByUserId(user.getId()).get(0).getSeason().getEndDate());
+        assertEquals("cambio", seasonTeamDao.findByUserId(user.getId()).get(0).getSeason().getCalendario());
     }
 
 	@Test

@@ -1,8 +1,9 @@
 package es.udc.paproject.backend.rest.dtos;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.temporal.ChronoUnit;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class SeasonConversor {
     }
 
     public final static SeasonDto toSeasonDto(Season season) {
-      return new SeasonDto(season.getId(), toMillis(season.getStartDate()), toMillis(season.getEndDate()),
+      return new SeasonDto(season.getId(), toDate(season.getStartDate()), toDate(season.getEndDate()),
       season.getCalendario());
     }
 
@@ -22,7 +23,23 @@ public class SeasonConversor {
       return seasons.stream().map(c -> toSeasonDto(c)).collect(Collectors.toList());
     }
 
-    private final static long toMillis(LocalDateTime localDate) {
-      return localDate.truncatedTo(ChronoUnit.MINUTES).atZone(ZoneOffset.systemDefault()).toInstant().toEpochMilli();
+    public final static Date toDate(LocalDateTime localDateTime) {
+      Date date = Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
+      return date;
+    }
+
+    public final static LocalDateTime toLocalDateTime(Date date) {
+      LocalDateTime localDateTime = Instant.ofEpochMilli( date.getTime()).atZone( ZoneId.systemDefault()).toLocalDateTime();      
+      return localDateTime;
+    }
+
+    public final static Season toSeason(SeasonDto seasonDto){
+      return new Season(toLocalDateTime(seasonDto.getStartDate()), toLocalDateTime(seasonDto.getEndDate()), seasonDto.getCalendario());
+    }
+
+    public final static Season toSeasonUpdate(SeasonDto seasonDto){
+      Season season = new Season(toLocalDateTime(seasonDto.getStartDate()), toLocalDateTime(seasonDto.getEndDate()), seasonDto.getCalendario());
+      season.setId(seasonDto.getId());
+      return season;
     }
 }

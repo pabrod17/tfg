@@ -35,12 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/teams/addTeam/*").permitAll()
 			.antMatchers("/teams/remove/*").permitAll()
 			.antMatchers("/teams/addTeamToSeason/*").permitAll()
+
+			.antMatchers("/seasons*").permitAll()
 			.antMatchers("/seasons/*").permitAll()
-			.antMatchers("/seasons/all").permitAll()
-			.antMatchers("/seasons/find/*").permitAll()
+			.antMatchers("/seasons/season/*").permitAll()
 			.antMatchers("/seasons/update/*").permitAll()
-			.antMatchers("/seasons/new/*").permitAll()
+			.antMatchers("/seasons/addSeason/*").permitAll()
 			.antMatchers("/seasons/remove/*").permitAll()
+
 			.antMatchers("/users/login").permitAll()
 			.antMatchers("/users/loginFromServiceToken").permitAll()
 			.anyRequest().hasRole("USER");

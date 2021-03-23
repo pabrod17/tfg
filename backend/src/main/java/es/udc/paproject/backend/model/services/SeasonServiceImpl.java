@@ -179,11 +179,13 @@ public class SeasonServiceImpl implements SeasonService {
                 existingSeason2 = seasonTeam.getSeason();
                 existingSeason2.setStartDate(season.getStartDate());
                 existingSeason2.setEndDate(season.getEndDate());
+                existingSeason2.setCalendario(season.getCalendario());
                 seasonDao.save(existingSeason2);
 
                 Optional<SeasonTeam> seasonTeam2 = seasonTeamDao.findById(seasonTeam.getId());
                 seasonTeam2.get().getSeason().setStartDate(season.getStartDate());
                 seasonTeam2.get().getSeason().setEndDate(season.getEndDate());
+                seasonTeam2.get().getSeason().setCalendario(season.getCalendario());
                 seasonTeamDao.save(seasonTeam2.get());
             }
         }
