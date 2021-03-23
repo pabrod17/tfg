@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/seasons*").permitAll()
 			.antMatchers("/seasons/*").permitAll()
 			.antMatchers("/seasons/season/*").permitAll()
+			.antMatchers("/seasons/betweenDates*").permitAll()
 			.antMatchers("/seasons/update/*").permitAll()
 			.antMatchers("/seasons/addSeason/*").permitAll()
 			.antMatchers("/seasons/remove/*").permitAll()

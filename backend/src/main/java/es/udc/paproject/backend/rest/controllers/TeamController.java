@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
@@ -69,10 +70,9 @@ public class TeamController {
     }
 
     //Probar cuando tenga El controlador de season
-    @PostMapping("/addTeamToSeason/{id}")
-    public void addTeamToSeason(@RequestAttribute Long userId, @PathVariable Long id, @RequestBody TeamDto teamDto) throws InstanceNotFoundException {
-        Team team = toTeam(teamDto);
-        teamService.addTeamToSeason(id, team, userId);
+    @PostMapping("/addTeamtoSeason/{seasonId}")
+    public void addTeamToSeason(@RequestAttribute Long userId, @PathVariable Long seasonId, @RequestParam Long teamId) throws InstanceNotFoundException {
+        teamService.addTeamToSeason(seasonId, teamId, userId);
     }
 
     //findSeasonsToTeam

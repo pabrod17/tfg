@@ -47,7 +47,7 @@ public class SeasonTeam {
     }
 
     //cascada para borrar as referencias de dita season na taboa intermedia
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "seasonId", nullable = true)
     public Season getSeason() {
         return season;
@@ -58,7 +58,7 @@ public class SeasonTeam {
     }
     
     //cascada para borrar as referencias de dita season na taboa intermedia
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "teamId", nullable = true)
     public Team getTeam() {
         return team;

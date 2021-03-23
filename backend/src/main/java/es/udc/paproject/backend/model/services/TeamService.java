@@ -11,7 +11,7 @@ public interface TeamService {
 
     Team addTeam(Long userId, Team team) throws InstanceNotFoundException, DuplicateInstanceException;
 
-    void addTeamToSeason(Long seasonId, Team team, Long userId) throws InstanceNotFoundException;
+    void addTeamToSeason(Long seasonId, Long teamId, Long userId) throws InstanceNotFoundException;
 
     Team findTeamById(Long userId,Long teamId) throws InstanceNotFoundException;
 

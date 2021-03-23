@@ -260,9 +260,9 @@ public class SeasonServiceTest {
         Season season2 = createSeason2();
 		seasonService.addSeason(user.getId(),season2);
 
-		teamService.addTeamToSeason(season.getId(), team, user.getId());
-		teamService.addTeamToSeason(season.getId(), team2, user.getId());
-        teamService.addTeamToSeason(season2.getId(), team2, user.getId());
+		teamService.addTeamToSeason(season.getId(), team.getId(), user.getId());
+		teamService.addTeamToSeason(season.getId(), team2.getId(), user.getId());
+        teamService.addTeamToSeason(season2.getId(), team2.getId(), user.getId());
 
         List<Team> teams = seasonService.findTeamsToSeason(user.getId(),season.getId());
         List<Team> teams2 = seasonService.findTeamsToSeason(user.getId(),season2.getId());

@@ -31,6 +31,9 @@ public class TeamServiceImpl implements TeamService {
     private SeasonService seasonService;
 
     @Autowired
+    private TeamService teamService;
+
+    @Autowired
     private UserService userService;
 
     @Override
@@ -49,10 +52,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void addTeamToSeason(Long seasonId, Team team, Long userId) throws InstanceNotFoundException {
+    public void addTeamToSeason(Long seasonId, Long teamId, Long userId) throws InstanceNotFoundException {
         
         User user = userService.loginFromId(userId);
         Season season = seasonService.findSeasonById(userId, seasonId);
+        Team team = teamService.findTeamById(userId, teamId);
         SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
 
         seasonTeamDao.save(seasonTeam);

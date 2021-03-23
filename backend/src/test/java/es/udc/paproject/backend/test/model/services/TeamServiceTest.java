@@ -217,9 +217,9 @@ public class TeamServiceTest {
 		Season season2 = createSeason2();
 		seasonService.addSeason(user.getId(),season2);
 
-		teamService.addTeamToSeason(season.getId(),team, user.getId());
-		teamService.addTeamToSeason(season.getId(), team2, user.getId());
-		teamService.addTeamToSeason(season2.getId(), team, user.getId());
+		teamService.addTeamToSeason(season.getId(),team.getId(), user.getId());
+		teamService.addTeamToSeason(season.getId(), team2.getId(), user.getId());
+		teamService.addTeamToSeason(season2.getId(), team.getId(), user.getId());
 
 		List<Season> seasons = teamService.findSeasonsToTeam(user.getId(), team.getId());
 		
