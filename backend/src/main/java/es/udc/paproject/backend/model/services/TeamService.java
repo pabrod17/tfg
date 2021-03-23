@@ -2,7 +2,6 @@ package es.udc.paproject.backend.model.services;
 
 import java.util.List;
 
-import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
@@ -19,7 +18,7 @@ public interface TeamService {
 
     List<Team> findAllTeams(Long userId) throws InstanceNotFoundException;
 
-    List<Season> findSeasonsToTeam(Long userId, Long teamId) throws InstanceNotFoundException;
+    List<Team> findTeamsToSeason(Long userId, Long seasonId) throws InstanceNotFoundException;
 
     void removeTeam(Long userId, Long teamId) throws InstanceNotFoundException;
 

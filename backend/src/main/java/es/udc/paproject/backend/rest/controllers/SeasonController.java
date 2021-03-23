@@ -65,6 +65,11 @@ public class SeasonController {
         return toSeasonDtos(seasonService.findAllSeasons(userId));
     }
 
+    @GetMapping("/toTeam/{teamId}")
+    public List<SeasonDto> findSeasonsToTeam(@RequestAttribute Long userId, @PathVariable Long teamId) throws InstanceNotFoundException {
+        return toSeasonDtos(seasonService.findSeasonsToTeam(userId, teamId));
+    }
+
     @GetMapping("/betweenDates")
     public List<SeasonDto> findSeasonsBetweenTwoDates(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestAttribute Long userId)
@@ -96,9 +101,6 @@ public class SeasonController {
     public void removeSeason(@RequestAttribute Long userId, @PathVariable Long id) throws InstanceNotFoundException {
         seasonService.removeSeason(userId, id);
     }
-
-
-    
     //findTeamsToSeason
 
 

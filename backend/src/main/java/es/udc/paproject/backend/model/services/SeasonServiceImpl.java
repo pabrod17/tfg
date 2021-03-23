@@ -13,7 +13,6 @@ import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
-import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
@@ -110,27 +109,25 @@ public class SeasonServiceImpl implements SeasonService {
     }
 
     @Override
-    public List<Team> findTeamsToSeason(Long userId, Long seasonId) throws InstanceNotFoundException {
+    public List<Season> findSeasonsToTeam(Long userId, Long teamId) throws InstanceNotFoundException {
 
         User user = userService.loginFromId(userId);
         List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
-        List<Team> teams = new ArrayList<>();
+        List<Season> seasons = new ArrayList<>();
 
         if (seasonTeams.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.seasonTeam");
         }
-
         for (SeasonTeam seasonTeam : seasonTeams) {
-            if(seasonTeam.getSeason() != null && seasonTeam.getTeam() != null && seasonTeam.getSeason().getId() == seasonId){
-                teams.add(seasonTeam.getTeam());
+            if(seasonTeam.getTeam() != null && seasonTeam.getSeason() != null && seasonTeam.getTeam().getId() == teamId){
+                seasons.add(seasonTeam.getSeason());
             }
         }
-
-        if (teams.isEmpty()) {
-            throw new InstanceNotFoundException("project.entities.team");
+        if (seasons.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.season");
         }
 
-        return teams;
+        return seasons;
     }
 
     @Override

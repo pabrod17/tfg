@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Season;
-import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
@@ -18,7 +17,7 @@ public interface SeasonService {
 
     List<Season> findAllSeasons(Long userId) throws InstanceNotFoundException;
     
-    List<Team> findTeamsToSeason(Long userId, Long seasonId) throws InstanceNotFoundException;
+    List<Season> findSeasonsToTeam(Long userId, Long teamId) throws InstanceNotFoundException;
 
     void removeSeason(Long userId, Long seasonId) throws InstanceNotFoundException;
 

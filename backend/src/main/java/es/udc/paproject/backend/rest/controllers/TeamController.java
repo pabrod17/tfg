@@ -39,9 +39,9 @@ public class TeamController {
         return toTeamDtos(teamService.findAllTeams(userId));
     }
 
-    @GetMapping("/team/{id}")
-    public TeamDto findTeamById(@RequestAttribute Long userId, @PathVariable Long id) throws InstanceNotFoundException {
-        return toTeamDto(teamService.findTeamById(userId, id));
+    @GetMapping("/toSeason/{seasonId}")
+    public List<TeamDto> findTeamsToSeason(@RequestAttribute Long userId, @PathVariable Long seasonId) throws InstanceNotFoundException {
+        return toTeamDtos(teamService.findTeamsToSeason(userId, seasonId));
     }
 
     @GetMapping("/{name}")
@@ -69,11 +69,8 @@ public class TeamController {
         teamService.removeTeam(userId, id);
     }
 
-    //Probar cuando tenga El controlador de season
     @PostMapping("/addTeamtoSeason/{seasonId}")
     public void addTeamToSeason(@RequestAttribute Long userId, @PathVariable Long seasonId, @RequestParam Long teamId) throws InstanceNotFoundException {
         teamService.addTeamToSeason(seasonId, teamId, userId);
     }
-
-    //findSeasonsToTeam
 }
