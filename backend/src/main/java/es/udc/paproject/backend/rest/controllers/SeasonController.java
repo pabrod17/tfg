@@ -101,7 +101,4 @@ public class SeasonController {
     public void removeSeason(@RequestAttribute Long userId, @PathVariable Long id) throws InstanceNotFoundException {
         seasonService.removeSeason(userId, id);
     }
-    //findTeamsToSeason
-
-
 }

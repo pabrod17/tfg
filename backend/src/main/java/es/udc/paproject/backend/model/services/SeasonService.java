@@ -20,6 +20,8 @@ public interface SeasonService {
     List<Season> findSeasonsToTeam(Long userId, Long teamId) throws InstanceNotFoundException;
 
     void removeSeason(Long userId, Long seasonId) throws InstanceNotFoundException;
+    
+    void clearSeasonTeamTable(Long userId) throws InstanceNotFoundException;
 
     Season updateSeason(Long userId, Season seaon) throws InstanceNotFoundException;
 }

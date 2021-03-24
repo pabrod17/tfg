@@ -1,8 +1,11 @@
 package es.udc.paproject.backend.model.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,14 +55,50 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public void clearSeasonTeamTable(Long userId) throws InstanceNotFoundException {
+        
+        User user = userService.loginFromId(userId);
+
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
+        List<SeasonTeam> seasonTeamsRepeat = new ArrayList<>();
+
+        for (int i = 0; i < seasonTeams.size(); i++) {
+            for (int j = i+1; j < seasonTeams.size(); j++) {
+                if(seasonTeams.get(i).equals(seasonTeams.get(j))){
+                    seasonTeamsRepeat.add(seasonTeams.get(i));
+                }
+            }
+        }
+        for (int i = 0; i < seasonTeamsRepeat.size(); i++) {
+            seasonTeamDao.delete(seasonTeamsRepeat.get(i));
+        }
+    }
+
+    @Override
     public void addTeamToSeason(Long seasonId, Long teamId, Long userId) throws InstanceNotFoundException {
         
         User user = userService.loginFromId(userId);
+
         Season season = seasonService.findSeasonById(userId, seasonId);
         Team team = teamService.findTeamById(userId, teamId);
-        SeasonTeam seasonTeam = new SeasonTeam(season, team, user);
 
-        seasonTeamDao.save(seasonTeam);
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
+        for (SeasonTeam seasonTeam : seasonTeams) {
+            if(seasonTeam.getTeam() != null && seasonTeam.getTeam().getId() == teamId){
+                if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() != seasonId){
+                    SeasonTeam seasonTeamNew = new SeasonTeam(season, team, user);
+                    seasonTeamDao.save(seasonTeamNew);
+                    break;
+                } else {
+                    if(seasonTeam.getSeason() == null){
+                        seasonTeam.setSeason(season);
+                        seasonTeamDao.save(seasonTeam);
+                        break;
+                    }
+                }
+            }
+        }
+        clearSeasonTeamTable(userId);
     }
 
     @Override
@@ -110,16 +149,17 @@ public class TeamServiceImpl implements TeamService {
         User user = userService.loginFromId(userId);
         List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
         List<Team> teams = new ArrayList<>();
-        
+
+        if (seasonTeams.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.seasonTeam");
+        }
+
         for (SeasonTeam seasonTeam : seasonTeams) {
             if(seasonTeam.getTeam() != null){
                 teams.add(seasonTeam.getTeam());
             }
         }
-
-        if (teams.isEmpty()) {
-            throw new InstanceNotFoundException("project.entities.team");
-        }
+        teams = teams.stream().distinct().collect(Collectors.toList());
 
         return teams;
     }
@@ -166,6 +206,8 @@ public class TeamServiceImpl implements TeamService {
                 id = seasonTeam.getTeam().getId();
                 teamDao.delete(seasonTeam.getTeam());
                 seasonTeam.setTeam(null);
+                clearSeasonTeamTable(userId);
+
 
                 if(seasonTeam.getSeason() == null && seasonTeam.getTeam()==null){
                     seasonTeamDao.delete(seasonTeam);

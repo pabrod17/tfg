@@ -44,10 +44,16 @@ public class TeamController {
         return toTeamDtos(teamService.findTeamsToSeason(userId, seasonId));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public TeamDto findTeamByName(@RequestAttribute Long userId, @PathVariable String name)
             throws InstanceNotFoundException {
         return toTeamDto(teamService.findTeamByName(userId, name));
+    }
+
+    @GetMapping("/team/{id}")
+    public TeamDto findTeamById(@RequestAttribute Long userId, @PathVariable Long id)
+            throws InstanceNotFoundException {
+        return toTeamDto(teamService.findTeamById(userId, id));
     }
 
     @PostMapping("/addTeam/")

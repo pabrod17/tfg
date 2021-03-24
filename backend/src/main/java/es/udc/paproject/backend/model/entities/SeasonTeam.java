@@ -77,4 +77,25 @@ public class SeasonTeam {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        SeasonTeam other = (SeasonTeam) obj;
+        if (season == null) {
+            if (other.season != null)
+                return false;
+        } else if (!season.equals(other.season))
+            return false;
+        if (team == null) {
+            if (other.team != null)
+                return false;
+        } else if (!team.equals(other.team))
+            return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        return true;
+    }
 }

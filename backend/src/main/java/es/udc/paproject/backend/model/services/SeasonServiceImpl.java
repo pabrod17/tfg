@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,6 +87,7 @@ public class SeasonServiceImpl implements SeasonService {
         if (seasons.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.season");
         }
+        seasons = seasons.stream().distinct().collect(Collectors.toList());
 
         return seasons;
     }
@@ -104,6 +106,7 @@ public class SeasonServiceImpl implements SeasonService {
         if (seasons.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.season");
         }
+        seasons = seasons.stream().distinct().collect(Collectors.toList());
 
         return seasons;
     }
@@ -131,6 +134,26 @@ public class SeasonServiceImpl implements SeasonService {
     }
 
     @Override
+    public void clearSeasonTeamTable(Long userId) throws InstanceNotFoundException {
+        
+        User user = userService.loginFromId(userId);
+
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(user.getId());
+        List<SeasonTeam> seasonTeamsRepeat = new ArrayList<>();
+
+        for (int i = 0; i < seasonTeams.size(); i++) {
+            for (int j = i+1; j < seasonTeams.size(); j++) {
+                if(seasonTeams.get(i).equals(seasonTeams.get(j))){
+                    seasonTeamsRepeat.add(seasonTeams.get(i));
+                }
+            }
+        }
+        for (int i = 0; i < seasonTeamsRepeat.size(); i++) {
+            seasonTeamDao.delete(seasonTeamsRepeat.get(i));
+        }
+    }
+
+    @Override
     public void removeSeason(Long userId, Long seasonId) throws InstanceNotFoundException {
 
         Optional<Season> existingSeason = seasonDao.findById(seasonId);
@@ -147,6 +170,7 @@ public class SeasonServiceImpl implements SeasonService {
                 id = seasonTeam.getSeason().getId();
                 seasonDao.delete(seasonTeam.getSeason());
                 seasonTeam.setSeason(null);
+                clearSeasonTeamTable(userId);
 
                 if(seasonTeam.getSeason() == null && seasonTeam.getTeam()==null){
                     seasonTeamDao.delete(seasonTeam);
