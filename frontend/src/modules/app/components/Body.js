@@ -27,13 +27,13 @@ const Body = () => {
             <AppGlobalComponents/>
             <Switch>
                 <Route exact path="/"><Home/></Route>
-                <Route exact path="/teams/new"><AddTeam/></Route>
-                <Route exact path="/teams/update"><UpdateTeam/></Route>
-                <Route exact path="/teams/view/:id"><TeamView/></Route>
-                <Route exact path="/teams/all"><FindTeams/></Route>
-                <Route exact path="/teams/all/result"><FindTeamsResult/></Route>
-                <Route exact path="/teams/all/name"><FindTeamByName/></Route>
-                <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>
+                {loggedIn && <Route exact path="/teams/new"><AddTeam/></Route>}
+                {loggedIn && <Route exact path="/teams/update"><UpdateTeam/></Route>}
+                {loggedIn && <Route exact path="/teams/view/:id"><TeamView/></Route>}
+                {loggedIn && <Route exact path="/teams/all"><FindTeams/></Route>}
+                {loggedIn && <Route exact path="/teams/all/result"><FindTeamsResult/></Route>}
+                {loggedIn && <Route exact path="/teams/all/name"><FindTeamByName/></Route>}
+                {loggedIn && <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

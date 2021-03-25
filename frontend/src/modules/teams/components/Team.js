@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
+import {FormattedMessage} from 'react-intl';
 
 
 function TeamName({team, teamName, dispatch, history}){
@@ -11,9 +12,7 @@ function TeamName({team, teamName, dispatch, history}){
   if(team){
 
     return(
-      
-
-<div className="images-teams centrado-update-add">
+      <div className="images-teams centrado-update-add">
           
           <Card className="images-teams" style={{ width: '20rem' }}>
           <img class="card-img-top" src={logo22} alt="Card image cap"/>
@@ -33,28 +32,7 @@ function TeamName({team, teamName, dispatch, history}){
                       </button>
             </Card.Body>
           </Card>
-
-    </div>
-      // <div>
-      //   <div className="encima ">
-      //     <button className="btn btn-info" type="button" 
-      //       onClick={() => history.push(`/teams/view/${team.id}`)}>
-      //       {"TEAM --> " + team.teamName}
-      //     </button>
-      //   </div>
-      //   <div className="encima remove-team">
-      //     <button class="btn btn-primary" type="button" 
-      //       onClick={() => handleRemoveItem(team.id, dispatch, history)}>
-      //       <span className="fas fa-trash-alt"></span>
-      //     </button>
-      //   </div>
-      //   <div className="encima update-button">
-      //     <button className="btn btn-secondary" type="button" 
-      //         onClick={() => history.push('/teams/update')}>
-      //         <span className="fas fa-pencil-alt"></span>
-      //     </button>
-      //   </div>
-      // </div>
+      </div>
     );
   } else{
       dispatch(actions.findTeamByName(teamName));
@@ -65,7 +43,6 @@ function TeamName({team, teamName, dispatch, history}){
           <span className="visually-hidden centrado-update-add">Loading...</span>
           </div>  
           </div>
-      
       );
     }
 }
@@ -77,6 +54,13 @@ const handleRemoveItem = (id, dispatch, history ) => {
   const Team = ({team, teamName}) => {
     const dispatch = useDispatch();
     const history = useHistory();
+    if(!team){
+      return (
+        <div className="alert alert-info color-alert" role="alert">
+            <FormattedMessage id='project.teams.FindTeamByName.noTeam'/>
+        </div>
+    );
+}
 
 
     return(

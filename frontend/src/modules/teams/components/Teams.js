@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
+import {FormattedMessage} from 'react-intl';
 
 function List({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
@@ -31,7 +32,7 @@ function List({ items, fallback, dispatch, history}) {
                           onClick={() => handleRemoveItem(item.id, dispatch, history)}>
                           <span className="fas fa-trash-alt"></span>
                         </button>
-                         <button className="btn btn-secondary" type="button" 
+                        <button className="btn btn-secondary" type="button" 
                           onClick={() => handleUpdateItem(item.id, dispatch, history)}>
                           <span className="fas fa-pencil-alt"></span>
                         </button>
@@ -41,34 +42,8 @@ function List({ items, fallback, dispatch, history}) {
                         </button>
               </Card.Body>
             </Card>
-
-      </div>;
-});
-      //   return <a  key={item.id}>
-      //           <ul className="menu">
-      //             <li>
-      //               <div className="encima ">
-      //                   <button className="btn btn-info" type="button" 
-      //                     onClick={() => handleViewTeam(item.id, dispatch, history)}>
-      //                       {"TEAM --> " + item.teamName}
-      //                   </button>
-      //               </div>
-      //               <div className="encima remove-team">
-      //                   <button className="btn btn-primary" type="button" 
-      //                     onClick={() => handleRemoveItem(item.id, dispatch, history)}>
-      //                     <span className="fas fa-trash-alt"></span>
-      //                   </button>
-      //               </div>
-      //               <div className="encima update-button">
-      //                   <button className="btn btn-secondary" type="button" 
-      //                     onClick={() => handleUpdateItem(item.id, dispatch, history)}>
-      //                     <span className="fas fa-pencil-alt"></span>
-      //                   </button>
-      //               </div>
-      //             </li>
-      //           </ul>
-      //         </a>;
-      // });
+        </div>;
+      });
     }
   }
 
@@ -88,10 +63,10 @@ const handleViewTeam = (id, dispatch, history) => {
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    return(
-<div class="card-group">
-                <List items={teams} fallback={"Loading..."} dispatch = {dispatch} history={history} />
 
+    return(
+      <div class="card-group">
+          <List items={teams} fallback={"Loading..."} dispatch = {dispatch} history={history} />
       </div>
         )
     };
