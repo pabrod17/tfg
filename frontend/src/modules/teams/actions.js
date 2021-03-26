@@ -22,7 +22,7 @@ export const findTeamById = (id, onSuccess) => dispatch => {
         team => {dispatch(findTeamtByIdCompleted(team));
         onSuccess();
         }
-        );
+    );
 }
 
 
@@ -69,4 +69,6 @@ export const removeTeam = (id, onSuccess, onErrors) => {
     return {type: actionTypes.REMOVE_TEAM_COMPLETED};
 
 }
-//falta removeTeam y addTeamToSeason
+//addTeamToSeason
+//findTeamsToSeason
+
