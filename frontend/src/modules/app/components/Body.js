@@ -11,6 +11,8 @@ import video from './video-2.mp4';
 import fondoCanasta from './fondoCanasta.jpg';
 import FindTeamByName from '../../teams/components/FindTeamByName';
 import FindTeamByNameResult from '../../teams/components/FindTeamByNameResult';
+import FindSeasons from '../../seasons/components/FindSeasons';
+import AddSeason from '../../seasons/components/AddSeason';
 
 
 
@@ -34,6 +36,8 @@ const Body = () => {
                 {loggedIn && <Route exact path="/teams/all/result"><FindTeamsResult/></Route>}
                 {loggedIn && <Route exact path="/teams/all/name"><FindTeamByName/></Route>}
                 {loggedIn && <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>}
+                {loggedIn && <Route exact path="/seasons/all"><FindSeasons/></Route>}
+                {loggedIn && <Route exact path="/seasons/new"><AddSeason/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

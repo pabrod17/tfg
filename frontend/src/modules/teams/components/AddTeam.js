@@ -36,7 +36,7 @@ const AddTeam = () => {
     }
 
     return (
-<div>
+        <div>
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
@@ -47,7 +47,7 @@ const AddTeam = () => {
                         className="needs-validation" noValidate 
                         onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
-                            <label htmlFor="userName" className="col-md-4 col-form-label">
+                            <label htmlFor="teamName" className="col-md-4 col-form-label">
                                 Team Name
                             </label>
                             <div className="col-md-5">

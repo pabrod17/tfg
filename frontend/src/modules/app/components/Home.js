@@ -8,7 +8,7 @@ const Home = () => (
 
     <div>
     <a className='btn--primary' href="/teams/all">TEAMS</a>
-    <a className='btn--secundary' href="/teams/all">SEASONS</a>
+    <a className='btn--secundary' href="/seasons/all">SEASONS</a>
 
     </div>
 
