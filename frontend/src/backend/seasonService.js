@@ -1,7 +1,7 @@
 import {config, appFetch} from './appFetch';
 
 export const findAllSeasons = (onSuccess) =>
-    appFetch('/seasons/', config('GET'), onSuccess);
+    appFetch('/seasons', config('GET'), onSuccess);
 
 export const findSeasonById = (id, onSuccess) =>
     appFetch(`/seasons/season/${id}`, config('GET'), onSuccess);

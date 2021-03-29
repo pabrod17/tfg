@@ -13,7 +13,9 @@ import FindTeamByName from '../../teams/components/FindTeamByName';
 import FindTeamByNameResult from '../../teams/components/FindTeamByNameResult';
 import FindSeasons from '../../seasons/components/FindSeasons';
 import AddSeason from '../../seasons/components/AddSeason';
-
+import FindSeasonsResult from '../../seasons/components/FindSeasonsResult';
+import SeasonView from '../../seasons/components/SeasonView';
+import UpdateSeason from '../../seasons/components/UpdateSeason';
 
 
 const Body = () => {
@@ -38,6 +40,9 @@ const Body = () => {
                 {loggedIn && <Route exact path="/teams/all/name/result/:teamName"><FindTeamByNameResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/all"><FindSeasons/></Route>}
                 {loggedIn && <Route exact path="/seasons/new"><AddSeason/></Route>}
+                {loggedIn && <Route exact path="/seasons/update"><UpdateSeason/></Route>}
+                {loggedIn && <Route exact path="/seasons/all/result"><FindSeasonsResult/></Route>}
+                {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

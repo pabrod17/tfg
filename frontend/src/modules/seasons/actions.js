@@ -3,7 +3,7 @@ import backend from '../../backend';
 
 
 const findAllSeaonsCompleted = seasons => ({
-    typeo: actionTypes.FIND_ALL_SEASONS_COMPLETED,
+    type: actionTypes.FIND_ALL_SEASONS_COMPLETED,
     seasons
 });
 

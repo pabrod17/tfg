@@ -55,7 +55,7 @@ const AddSeason = () => {
                             <label htmlFor="startDate" className="col-md-4 col-form-label">
                                 Start Date
                             </label>
-                            <div className="col-md-5">
+                            <div className="col-md-8">
                                 <input type="date" id="startDate" className="form-control"
                                     value={startDate}
                                     onChange={e => setStartDate(e.target.value)}
@@ -70,7 +70,7 @@ const AddSeason = () => {
                             <label htmlFor="endDate" className="col-md-4 col-form-label">
                                 End Date
                             </label>
-                            <div className="col-md-5">
+                            <div className="col-md-8">
                                 <input type="date" id="endDate" className="form-control"
                                     value={endDate}
                                     onChange={e => setEndDate(e.target.value)}
@@ -85,7 +85,7 @@ const AddSeason = () => {
                             <label htmlFor="calendario" className="col-md-4 col-form-label">
                                 Calendario
                             </label>
-                            <div className="col-md-5">
+                            <div className="col-md-8">
                                 <input type="text" id="calendario" className="form-control"
                                     value={calendario}
                                     onChange={e => setCalendario(e.target.value)}

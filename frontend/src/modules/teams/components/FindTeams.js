@@ -20,7 +20,6 @@ const FindTeams = () => {
 
         <form className="form-inline mt-2 mt-md-0" onSubmit={e => handleSubmit(e)}>
 
-
             <button type="submit" className="btn--primary">
                 <FormattedMessage id='ALL TEAMS'/>
             </button>
@@ -32,18 +31,8 @@ const FindTeams = () => {
             <Link className="btn--third" to="/teams/new">
                 <FormattedMessage id='Add New Team'/>
             </Link>
-            
-            
-            
-
-
-
         </form>
-
     );
 }
-
-
-
 
 export default FindTeams;
