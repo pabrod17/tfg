@@ -23,8 +23,8 @@ const FindSeasons = () => {
                 <FormattedMessage id='ALL SEASONS'/>
             </button>
 
-            <Link className="btn--secundary--seasons" to="/">
-                <FormattedMessage id='SEASONS BY TWO DATES'/>
+            <Link className="btn--secundary--seasons" to="/seasons/betweenDates">
+                <FormattedMessage id='SEASONS BETWEEN TWO DATES'/>
             </Link>
 
             <Link className="btn--third--seasons" to="/seasons/new">

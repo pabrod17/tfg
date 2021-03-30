@@ -14,9 +14,6 @@ const SeasonView = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    let form;
-
-
     function SeasonView({season, dispatch}){
         if(season){
 

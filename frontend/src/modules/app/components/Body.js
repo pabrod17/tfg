@@ -16,7 +16,8 @@ import AddSeason from '../../seasons/components/AddSeason';
 import FindSeasonsResult from '../../seasons/components/FindSeasonsResult';
 import SeasonView from '../../seasons/components/SeasonView';
 import UpdateSeason from '../../seasons/components/UpdateSeason';
-
+import FindSeasonsBetweenTwoDates from '../../seasons/components/FindSeasonsBetweenTwoDates';
+import FindSeasonsBetweenTwoDatesResult from '../../seasons/components/FindSeasonsBetweenTwoDatesResult';
 
 const Body = () => {
 
@@ -42,6 +43,8 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/new"><AddSeason/></Route>}
                 {loggedIn && <Route exact path="/seasons/update"><UpdateSeason/></Route>}
                 {loggedIn && <Route exact path="/seasons/all/result"><FindSeasonsResult/></Route>}
+                {loggedIn && <Route exact path="/seasons/betweenDates"><FindSeasonsBetweenTwoDates/></Route>}
+                {loggedIn && <Route exact path="/seasons/betweenDates/result/:startDate/:endDate"><FindSeasonsBetweenTwoDatesResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}

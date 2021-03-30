@@ -59,8 +59,8 @@ const handleRemoveItem = (id, dispatch, history ) => {
         <div className="alert alert-info color-alert" role="alert">
             <FormattedMessage id='project.teams.FindTeamByName.noTeam'/>
         </div>
-    );
-}
+       );
+    }
 
 
     return(

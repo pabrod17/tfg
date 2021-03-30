@@ -7,7 +7,7 @@ export const findSeasonById = (id, onSuccess) =>
     appFetch(`/seasons/season/${id}`, config('GET'), onSuccess);
 
 export const findSeasonsBetweenTwoDates = (startDate, endDate, onSuccess, onErrors) =>
-    appFetch(`/seasons/betweenDates?startDate=${startDate}?endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+    appFetch(`/seasons/betweenDates?startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
 
 export const addSeason = (season, onSuccess, onErrors) =>
     appFetch('/seasons/addSeason/', config('POST', season), onSuccess, onErrors);
