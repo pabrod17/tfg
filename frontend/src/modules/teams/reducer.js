@@ -21,6 +21,8 @@ const team = (state = initialState.team, action) => {
             return action.team;
         case actionTypes.REMOVE_TEAM_COMPLETED:
             return state;
+        case actionTypes.ADD_TEAM_TO_SEASON_COMPLETED:
+            return state;
         default:
             return state;
 

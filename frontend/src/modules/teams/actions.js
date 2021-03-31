@@ -69,6 +69,11 @@ export const removeTeam = (id, onSuccess, onErrors) => {
     return {type: actionTypes.REMOVE_TEAM_COMPLETED};
 
 }
-//addTeamToSeason
+
+export const addTeamToSeason = (seasonId, teamId, onSuccess, onErrors) => {
+    backend.teamService.addTeamToSeason(seasonId, teamId, onSuccess, onErrors);
+    return {type: actionTypes.ADD_TEAM_TO_SEASON_COMPLETED};
+}
+
 //findTeamsToSeason
 

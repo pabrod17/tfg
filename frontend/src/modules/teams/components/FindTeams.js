@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
+import * as actionsSeasons from '../../seasons/actions';
 
 import * as actions from '../actions';
 
@@ -14,6 +15,12 @@ const FindTeams = () => {
         event.preventDefault();
         dispatch(actions.findAllTeams());
         history.push('/teams/all/result');
+    }
+
+    const handleAddTeamToSeason = (dispatch, history ) => {
+        dispatch(actions.findAllTeams());
+        dispatch(actionsSeasons.findAllSeasons());
+        history.push('/teams/addTeamToSeason');;
     }
 
     return (
@@ -31,6 +38,16 @@ const FindTeams = () => {
             <Link className="btn--third" to="/teams/new">
                 <FormattedMessage id='Add New Team'/>
             </Link>
+
+            {/* <Link className="btn--secundary--seasons" to="/teams/addTeamToSeason">
+                <FormattedMessage id='Add Team To Season'/>
+            </Link> */}
+
+            <button className="btn--secundary--seasons" type="button" 
+                onClick={() => handleAddTeamToSeason(dispatch, history)}>
+                    <FormattedMessage id='Add Team To Season'/>
+            </button>
+
         </form>
     );
 }

@@ -245,6 +245,7 @@ video {
 
 }
 
+
 .centrado-update-add{
   position: absolute;
   top: 50%;
@@ -357,3 +358,24 @@ video {
     border-radius: 20px;
     right: 6%;
   }
+
+.ancho-dropdown--teams {
+  width: 300px;
+}
+
+.ancho-dropdown {
+  width: 200px;
+}
+
+
+.dropDown-teams{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+.dropDown-seasons{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
