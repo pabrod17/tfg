@@ -75,5 +75,15 @@ export const addTeamToSeason = (seasonId, teamId, onSuccess, onErrors) => {
     return {type: actionTypes.ADD_TEAM_TO_SEASON_COMPLETED};
 }
 
-//findTeamsToSeason
+const findTeamsToSeasonCompleted = teams => ({
+    type: actionTypes.FIND_TEAMS_TO_SEASON_COMPLETED,
+    teams
+});
 
+export const findTeamsToSeason = (seasonId, onSuccess, onErrors) => dispatch => {
+    backend.teamService.findTeamsToSeason(seasonId,
+        teams => { dispatch(findTeamsToSeasonCompleted(teams));
+        },
+        onSuccess,
+        onErrors);
+}

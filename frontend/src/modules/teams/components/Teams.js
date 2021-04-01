@@ -40,6 +40,7 @@ function List({ items, fallback, dispatch, history}) {
                           onClick={() => handleViewTeam(item.id, dispatch, history)}>
                           {"View"}
                         </button>
+
               </Card.Body>
             </Card>
         </div>;
@@ -59,6 +60,8 @@ const handleUpdateItem = (id, dispatch, history) => {
 const handleViewTeam = (id, dispatch, history) => {
   dispatch(actions.findTeamById(id, () => history.push(`/teams/view/${id}`)));
 }
+
+
 
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
