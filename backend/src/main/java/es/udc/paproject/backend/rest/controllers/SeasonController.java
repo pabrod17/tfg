@@ -41,8 +41,9 @@ import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toLocalDateTime
 @RequestMapping("/seasons")
 public class SeasonController {
 
-	private final static String STARTDATE_AFTER_ENDDATE_EXCEPTION_CODE = "project.exceptions.startDateAfterEndDateException";
-	
+	private final static String STARTDATE_AFTER_ENDDATE_EXCEPTION_CODE = "project.exceptions.StartDateAfterEndDateException";
+    private final static String NOT_FOUND_EXCEPTION = "project.exceptions.InstanceNotFoundException";
+
     @Autowired
 	private MessageSource messageSource;
 
@@ -56,6 +57,17 @@ public class SeasonController {
 		
 		String errorMessage = messageSource.getMessage(STARTDATE_AFTER_ENDDATE_EXCEPTION_CODE, null,
         STARTDATE_AFTER_ENDDATE_EXCEPTION_CODE, locale);
+
+		return new ErrorsDto(errorMessage);
+	}
+
+    @ExceptionHandler(InstanceNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseBody
+	public ErrorsDto handleNotFoundException(InstanceNotFoundException exception, Locale locale) {
+		
+		String errorMessage = messageSource.getMessage(NOT_FOUND_EXCEPTION, null,
+        NOT_FOUND_EXCEPTION, locale);
 
 		return new ErrorsDto(errorMessage);
 	}

@@ -36,7 +36,7 @@ export default {
     'project.users.SignUp.title': 'Sign up',
     'project.users.UpdateProfile.title': 'Update profile',
 
-    'project.teams.FindTeamByName.noTeam': 'No teams found'
-
+    'project.teams.FindTeamByName.noTeam': 'No teams found',
+    'project.seasons.FindSeason.noSeason': 'No seasons found'
 
 }

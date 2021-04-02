@@ -19,7 +19,6 @@ const FindTeams = () => {
 
     const handleAddTeamToSeason = (dispatch, history ) => {
         dispatch(actions.findAllTeams());
-        dispatch(actionsSeasons.findAllSeasons());
         history.push('/teams/addTeamToSeason');;
     }
 

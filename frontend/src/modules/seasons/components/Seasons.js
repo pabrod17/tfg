@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
 import {FormattedDate} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 function List({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
@@ -87,6 +88,14 @@ const handleViewSeason = (id, dispatch, history) => {
 const Seasons = ({seasons}) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    if(!seasons){
+      return (
+        <div className="alert alert-info color-alert" role="alert">
+            <FormattedMessage id='project.seasons.FindSeason.noSeason'/>
+        </div>
+       );
+    }
 
     return(
         <div class="card-group">
