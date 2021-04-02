@@ -6,6 +6,7 @@ import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import basketball from './basketball.jpg';
+import * as actionSeasons from '../../seasons/actions';
 
 //http://envato.jayasankarkr.in/code/profile/assets/img/profile-6.jpg
 
@@ -23,7 +24,9 @@ const TeamView = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    let form;
+    const handleFindSeasonsToTeam = (id, dispatch, history) => {
+        dispatch(actionSeasons.findSeasonsToTeam(id, () => history.push('/seasons/all/result')));
+    }
 
 
     function TeamView({team, dispatch}){
@@ -65,8 +68,8 @@ const TeamView = () => {
                                         <p>Players</p>
                                     </div>
                                     <div class="col-xs-4">
-                                        <h3>50</h3>
-                                        <p>Seasons</p>
+                                        {/* <h3>50</h3> */}
+                                        <button className="btn btn-primary" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</button>
                                     </div>
                                     <div class="col-xs-4">
                                         <h3>35</h3>

@@ -7,9 +7,6 @@ import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
 import {FormattedDate} from 'react-intl';
 
-import * as actionsTeams from '../../teams/actions';
-
-
 function List({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAllSeasons());
@@ -17,11 +14,6 @@ function List({ items, fallback, dispatch, history}) {
 
     } else {
       return items.map(item => {
-
-
-
-
-
         return <div className="images-teams" key={item.id}>
             <Card className="images-teams" style={{ width: '20rem' }}>
             <img class="card-img-top" src={logo22} alt="Card image cap"/>

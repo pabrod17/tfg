@@ -5,7 +5,6 @@ import * as actions from '../actions';
 import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
-import {FormattedMessage} from 'react-intl';
 
 function List({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {

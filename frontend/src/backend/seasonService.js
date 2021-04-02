@@ -18,4 +18,5 @@ export const updateSeason = (season, onSuccess, onErrors) =>
 export const removeSeason = (id, onSuccess, onErrors) =>
     appFetch(`/seasons/remove/${id}`, config('DELETE'), onSuccess, onErrors);
 
-//findSeasonsToTeam
+export const findSeasonsToTeam = (teamId, onSuccess, onErrors) => 
+    appFetch(`/seasons/toTeam/${teamId}`, config('GET'), onSuccess, onErrors);
