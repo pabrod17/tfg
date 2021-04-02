@@ -83,7 +83,7 @@ const findTeamsToSeasonCompleted = teams => ({
 export const findTeamsToSeason = (seasonId, onSuccess, onErrors) => dispatch => {
     backend.teamService.findTeamsToSeason(seasonId,
         teams => { dispatch(findTeamsToSeasonCompleted(teams));
+            onSuccess();
         },
-        onSuccess,
         onErrors);
 }

@@ -6,7 +6,7 @@ import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import {FormattedDate} from 'react-intl';
-import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
+// import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import * as selectorsTeams from '../../teams/selectors';
 import * as actionsTeams from '../../teams/actions';
 
@@ -17,7 +17,7 @@ const SeasonView = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [dropdownTeams, setDropdownTeams] = useState(false);
-    const [teamId, setTeamId] = useState(null);
+    // const [teamId, setTeamId] = useState(null);
 
     const teams = useSelector(selectorsTeams.getAllTeams);
     const teamsList = teams.teams;
@@ -31,18 +31,20 @@ const SeasonView = () => {
         dispatch(actionsTeams.findTeamById(id, () => history.push(`/teams/view/${id}`)));
       }
 
+      const handleFindTeamsToSeason = (id, dispatch, history) => {
+        dispatch(actionsTeams.findTeamsToSeason(id, () => history.push('/teams/all/result')));
+      }
+
     function SeasonView({season, dispatch}){
 
             if(season){
-
                 if(!teamsList) {
-                    dispatch(actionsTeams.findTeamsToSeason(season.id));
+                    dispatch(actionsTeams.findTeamsToSeason(season.id,() => history.push(`/seasons/view/${id}`)));
                     return "Loading...";
                 }
 
                 return(
                     <div className="col-md-4">
-
                         <h4 class="text-center color-byTeamName"><strong>SEASON</strong></h4>
                         {/* <div class="profile-card-6"><img src="https://cdn.pixabay.com/photo/2016/03/27/20/58/sky-1284256_960_720.jpg" class="img img-responsive"/> */}
                         <div class="profile-card-6"><img src="https://cdn.pixabay.com/photo/2021/01/18/10/59/basketball-5927762_960_720.jpg" class="img img-responsive"/>
@@ -67,14 +69,15 @@ const SeasonView = () => {
                                             <p>Games</p>
                                         </div>
                                         <div class="col-xs-4">
-                                            <h3>{teamsList.length}</h3>
-                                            <p>Teams</p>
+                                        <h3>{teamsList.length}</h3>
+                                            <button className="btn btn-primary" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}>Teams</button>
                                         </div>
                                         <div class="col-xs-4">
                                             <h3>35</h3>
                                             <p>Plays</p>
                                         </div>
-                                        <div>
+
+                                        {/* <div>
                                             <Dropdown className="dropDown-teams" isOpen={dropdownTeams} toggle={openCloseDropdownTeams} size="lg">
                                                 <DropdownToggle caret className="btn--primary ">
                                                     Teams
@@ -88,21 +91,19 @@ const SeasonView = () => {
                                                         </DropdownItem>)}
                                                 </DropdownMenu>
                                             </Dropdown>
-                                        </div>
+                                        </div> */}
+
+
                                         
                                     </div>
                                 </div>
                         </div>
                         </div>
-    
                     </div>
-
                 );
-
             }
             else{
                 dispatch(actions.findSeasonById(id, () => history.push(`/seasons/view/${id}`)));
-
                 return(
                     <div className="spinner-border color-byTeamName" role="status">
                     <span className="visually-hidden">Loading...</span>
