@@ -81,12 +81,16 @@ const handleUpdateItem = (id, dispatch, history) => {
   }
 
 const handleViewSeason = (id, dispatch, history) => {
-    dispatch(actions.findSeasonById(id, () => handleFindTeamsToSeason(id, dispatch, history)));
+    dispatch(actions.findSeasonById(id, () => history.push(`/seasons/view/${id}`)));
   }
 
-const handleFindTeamsToSeason = (id, dispatch, history) => {
-  dispatch(actionsTeams.findTeamsToSeason(id, () => history.push(`/seasons/view/${id}`)));
-}
+// const handleViewSeason = (id, dispatch, history) => {
+//     dispatch(actions.findSeasonById(id, () => handleFindTeamsToSeason(id, dispatch, history)));
+//   }
+
+// const handleFindTeamsToSeason = (id, dispatch, history) => {
+//   dispatch(actionsTeams.findTeamsToSeason(id, () => history.push(`/seasons/view/${id}`)));
+// }
 
 const Seasons = ({seasons}) => {
     const dispatch = useDispatch();
