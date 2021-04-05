@@ -9,7 +9,9 @@ const FindTeamsResult = () => {
     const teams = useSelector(selectors.getAllTeams);
 
     return(
+        <div>
             <Teams teams={teams.teams}/>
+        </div>
     );
 }
 

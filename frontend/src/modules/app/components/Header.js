@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
 
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
             <a className="logo" href="/"><img src={logo1} alt="description"></img></a>
 
 
@@ -20,7 +20,7 @@ const Header = () => {
             <Link className=" nav-link " to="/">Seasons</Link> */}
             <div className="wrapper">
                 <ul>
-                    <li><Link className=" nav-link link-color" to="/">Teams</Link>
+                    <li><Link className=" nav-link" to="/">Teams</Link>
                             <ul>
                                 <li><Link className=" nav-link link-color" to="/">AddTeam</Link></li>
                                 <li><Link className=" nav-link link-color" to="/">UpdateTeam</Link></li>
@@ -33,7 +33,7 @@ const Header = () => {
                                 </li>
                             </ul>
                     </li>
-                    <li><Link className=" nav-link link-color" to="/">Seasons</Link>
+                    <li><Link className=" nav-link" to="/">Seasons</Link>
                             <ul>
                                 <li><Link className=" nav-link link-color" to="/">AddSeason</Link></li>
                                 <li><Link className=" nav-link link-color" to="/">UpdateSeason</Link></li>

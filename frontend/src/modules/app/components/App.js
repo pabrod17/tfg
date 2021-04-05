@@ -30,7 +30,7 @@ const App = () => {
                     <Body/>
                 </div>
             </Router>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     );
 

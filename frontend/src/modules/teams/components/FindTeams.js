@@ -3,6 +3,11 @@ import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import * as actionsSeasons from '../../seasons/actions';
+import basketball from './basketball.jpg';
+import blue from './blue.jpg';
+import logoBalonOscuro from './logoBalonOscuro.jpg'
+import moon from './moon.jpg'
+import balon from './balon.png'
 
 import * as actions from '../actions';
 
@@ -26,6 +31,39 @@ const FindTeams = () => {
 
         <form className="form-inline mt-2 mt-md-0" onSubmit={e => handleSubmit(e)}>
 
+
+
+
+            <div class="gallery button-container">
+
+                <figure class="gallery__item gallery__item--1">
+                    <img src={logoBalonOscuro} class="gallery__img pixel" alt="Image 1"/>
+                        <button type="submit" className="btn-neon2">
+                            <FormattedMessage id='ALL TEAMS'/>
+                        </button>
+                </figure>
+                <figure class="gallery__item gallery__item--2">
+                    <img src={logoBalonOscuro} class="gallery__img pixel" alt="Image 1"/>
+                    <Link className="btn-neon3" to="/teams/all/name">
+                        <FormattedMessage id='TEAM NAME'/>
+                    </Link>
+                </figure>
+                <figure class="gallery__item gallery__item--3">
+                    <img src={moon} class="gallery__img pixel" alt="Image 1"/>
+                    <Link className="btn-neon4" to="/teams/new">
+                        <FormattedMessage id='Add New Team'/>
+                    </Link>
+                </figure>
+                <figure class="gallery__item gallery__item--4">
+                    <img src={moon} class="gallery__img pixel" alt="Image 1"/>
+                    <button className="btn-neon5" type="button" 
+                        onClick={() => handleAddTeamToSeason(dispatch, history)}>
+                        <FormattedMessage id='Add Team To Season'/>
+                    </button>
+                </figure>
+            </div>
+
+{/* 
             <button type="submit" className="btn--primary">
                 <FormattedMessage id='ALL TEAMS'/>
             </button>
@@ -36,16 +74,16 @@ const FindTeams = () => {
 
             <Link className="btn--third" to="/teams/new">
                 <FormattedMessage id='Add New Team'/>
-            </Link>
-
+            </Link> */}
+{/* esto no */}
             {/* <Link className="btn--secundary--seasons" to="/teams/addTeamToSeason">
                 <FormattedMessage id='Add Team To Season'/>
             </Link> */}
-
-            <button className="btn--secundary--seasons" type="button" 
+{/* esto si */}
+            {/* <button className="btn--secundary--seasons" type="button" 
                 onClick={() => handleAddTeamToSeason(dispatch, history)}>
                     <FormattedMessage id='Add Team To Season'/>
-            </button>
+            </button> */}
 
         </form>
     );
