@@ -2,6 +2,8 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
+import logoBalonOscuro from './logoBalonOscuro.jpg'
+import moon from './moon.jpg'
 
 import * as actions from '../actions';
 
@@ -19,7 +21,50 @@ const FindSeasons = () => {
     return(
         <form className="form-inline mt-2 mt-md-0" onSubmit={e => handleSubmit(e)}>
             
-            <button type="submit" className="btn--primary--seasons">
+
+
+
+            <div class="gallery-seasons button-container">
+                <figure class="gallery__item gallery__item--1-seasons">
+                    <img src={logoBalonOscuro} class="gallery__imgSeasons pixel" alt="Image 1"/>
+                        <button type="submit" className="btn-neon2-seasons">
+                            <FormattedMessage id='ALL SEASONS'/>
+                        </button>
+                </figure>
+                <figure class="gallery__item gallery__item--2-seasons">
+                    <img src={logoBalonOscuro} class="gallery__imgSeasons pixel" alt="Image 1"/>
+                    <Link className="btn-neon3" to="/seasons/betweenDates">
+                        <FormattedMessage id='SEASONS BETWEEN TWO DATES'/>
+                    </Link>
+                </figure>
+                <figure class="gallery__item gallery__item--3-seasons">
+                    <img src={moon} class="gallery__imgSeasons pixel" alt="Image 1"/>
+                    <Link className="btn-neon5-seasons" to="/seasons/new">
+                        <FormattedMessage id='Add New Season'/>
+                    </Link>
+                </figure>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <button type="submit" className="btn--primary--seasons">
                 <FormattedMessage id='ALL SEASONS'/>
             </button>
 
@@ -29,7 +74,7 @@ const FindSeasons = () => {
 
             <Link className="btn--third--seasons" to="/seasons/new">
                 <FormattedMessage id='Add New Season'/>
-            </Link>
+            </Link> */}
         </form>
     );
 }
