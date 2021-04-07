@@ -89,14 +89,6 @@ const Seasons = ({seasons}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    if(!seasons){
-      return (
-        <div className="alert alert-info color-alert" role="alert">
-            <FormattedMessage id='project.seasons.FindSeason.noSeason'/>
-        </div>
-       );
-    }
-
     return(
         <div class="card-group">
             <List items={seasons} fallback={"Loading..."} dispatch = {dispatch} history={history} />

@@ -1,8 +1,4 @@
 import React from 'react';
-
-import {Grid} from '@material-ui/core';
-import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import canastaRed from './canastaRed.jpg';
 import basketball from './basketball.jpg';
 import basketRed2 from './basketRed2.jpg';

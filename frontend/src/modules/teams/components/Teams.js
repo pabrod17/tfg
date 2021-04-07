@@ -67,14 +67,6 @@ const Teams = ({teams}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    if(!teams){
-      return (
-        <div className="alert alert-info color-alert" role="alert">
-            <FormattedMessage id='project.teams.FindTeamByName.noTeam'/>
-        </div>
-       );
-    }
-    
     return(
       <div class="card-group">
           <List items={teams} fallback={"Loading..."} dispatch = {dispatch} history={history} />

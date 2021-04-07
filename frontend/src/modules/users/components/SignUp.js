@@ -75,7 +75,7 @@ const SignUp = () => {
     }
 
     return (
-        <div>
+        <div className="centrado-dashboard">
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark">
                 <h5 className="card-header">

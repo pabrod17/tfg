@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     return (
-        <div >
+        <div className="centrado-dashboard">
             <p className="">
 
             <div className="card bg-light border-dark">
