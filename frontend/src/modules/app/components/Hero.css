@@ -870,14 +870,8 @@ padding:0;
 /* dashboard */
 .centrado-dashboard{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
+  left: 25%;
 }
-
-
-
 
 .text-primary-p {
   color: #a5aaad;
@@ -923,7 +917,7 @@ padding:0;
 
 } */
 main {
-  background: #000000;
+  background: #1d2029;
   grid-area: main;
   overflow-y: auto;
   position: absolute;
@@ -931,6 +925,7 @@ main {
 
 .main__container {
   padding: 20px 35px;
+
 }
 
 .main__title {
@@ -963,15 +958,17 @@ main {
   margin: 20px 0;
 }
 
-/* .card {
+.card-view {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 70px;
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
-} */
+  background: #252b43;
+}
+
+
 
 .card_inner {
   display: flex;
@@ -993,7 +990,7 @@ main {
 .charts__left {
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
+  background: #252b43;
 }
 
 .charts__left__title {
@@ -1004,7 +1001,7 @@ main {
 
 .charts__left__title > div > h1 {
   font-size: 24px;
-  color: #2e4a66;
+  color: #008040;
   margin-bottom: 5px;
 }
 
@@ -1028,7 +1025,7 @@ main {
 .charts__right {
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
+  background: #252b43;
 }
 
 .charts__right__title {
@@ -1039,7 +1036,7 @@ main {
 
 .charts__right__title > div > h1 {
   font-size: 24px;
-  color: #2e4a66;
+  color: #008040;
   margin-bottom: 5px;
 }
 
@@ -1052,7 +1049,7 @@ main {
 .charts__right__title > i {
   color: #ffffff;
   font-size: 20px;
-  background: #39447a;
+  background: #7990ff;
   border-radius: 200px 0px 200px 200px;
   -moz-border-radius: 200px 0px 200px 200px;
   -webkit-border-radius: 200px 0px 200px 200px;

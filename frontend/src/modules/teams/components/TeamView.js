@@ -58,18 +58,15 @@ const TeamView = () => {
                                 </div>
                             </div>
                             <div class="main__cards">
-                                <div class="card">
-                                <i
-                                    class="fa fa-user-o fa-2x text-lightblue"
-                                    aria-hidden="true"
-                                ></i>
+                                <div class="card-view">
+                                <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
                                 <div class="card_inner">
                                     <p class="text-primary-p">Players</p>
                                     <span class="font-bold text-title">578</span>
                                 </div>
                                 </div>
 
-                                <div class="card">
+                                <div class="card-view">
                                 <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                                 <div class="card_inner">
                                     <p class="text-primary-p" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</p>
@@ -77,20 +74,17 @@ const TeamView = () => {
                                 </div>
                                 </div>
 
-                                <div class="card">
-                                <i
-                                    class="fa fa-video-camera fa-2x text-yellow"
-                                    aria-hidden="true"
-                                ></i>
+                                <div class="card-view">
+                                <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
                                 <div class="card_inner">
                                     <p class="text-primary-p">Plays</p>
                                     <span class="font-bold text-title">340</span>
                                 </div>
                                 </div>
 
-                                <div class="card">
+                                <div class="card-view">
                                 <i
-                                    class="fa fa-thumbs-up fa-2x text-green"
+                                    class="fa fa-user fa-2x text-green"
                                     aria-hidden="true"
                                 ></i>
                                 <div class="card_inner">
