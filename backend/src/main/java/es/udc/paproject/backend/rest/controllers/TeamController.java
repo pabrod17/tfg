@@ -80,16 +80,14 @@ public class TeamController {
     }
 
     @PostMapping("/addTeam/")
-    public TeamDto addTeam(@RequestAttribute Long userId, @RequestBody TeamDto teamDto)
+    public TeamDto addTeam(@RequestAttribute Long userId, @RequestParam String name)
             throws InstanceNotFoundException, DuplicateInstanceException {
-        Team team = toTeam(teamDto);
-        return toTeamDto(teamService.addTeam(userId, team));
+        return toTeamDto(teamService.addTeam(userId, name));
     }
 
     @PutMapping("/update/{id}")
-    public TeamDto updateTeam(@RequestAttribute Long userId, @PathVariable Long id, @RequestBody TeamDto teamDto) throws InstanceNotFoundException {
-        Team team = toTeamUpdate(teamDto);
-        return toTeamDto(teamService.updateTeam(userId, team));
+    public TeamDto updateTeam(@RequestAttribute Long userId, @PathVariable Long id, @RequestParam String name) throws InstanceNotFoundException {
+        return toTeamDto(teamService.updateTeam(userId, id, name));
     }
 
     @DeleteMapping("/remove/{id}")

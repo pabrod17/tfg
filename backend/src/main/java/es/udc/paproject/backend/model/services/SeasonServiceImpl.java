@@ -32,13 +32,14 @@ public class SeasonServiceImpl implements SeasonService {
     private UserService userService;
     
     @Override
-    public Season addSeason(Long userId, Season season) throws InstanceNotFoundException,
+    public Season addSeason(Long userId, LocalDateTime startDate, LocalDateTime endDate, String calendario) throws InstanceNotFoundException,
             StartDateAfterEndDateException {
 
-        if(season.getStartDate().isAfter(season.getEndDate())){
-            throw new StartDateAfterEndDateException(season.getStartDate(), season.getEndDate());
+        if(startDate.isAfter(endDate)){
+            throw new StartDateAfterEndDateException(startDate, endDate);
         }
 
+        Season season = new Season(startDate, endDate, calendario);
         User user = userService.loginFromId(userId);
         seasonDao.save(season);
         SeasonTeam seasonTeam = new SeasonTeam(season, null, user);
@@ -183,12 +184,12 @@ public class SeasonServiceImpl implements SeasonService {
     }
 
     @Override
-    public Season updateSeason(Long userId, Season season)
+    public Season updateSeason(Long userId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate, String calendario)
             throws InstanceNotFoundException {
 
-        Optional<Season> existingSeason = seasonDao.findById(season.getId());
+        Optional<Season> existingSeason = seasonDao.findById(seasonId);
         if (!existingSeason.isPresent()) {
-            throw new InstanceNotFoundException("project.entities.season", season.getId());
+            throw new InstanceNotFoundException("project.entities.season", seasonId);
         }
 
         User user = userService.loginFromId(userId);
@@ -196,22 +197,22 @@ public class SeasonServiceImpl implements SeasonService {
         Season existingSeason2 = null;
 
         for (SeasonTeam seasonTeam : seasonTeams){
-            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() == season.getId()){
+            if(seasonTeam.getSeason() != null && seasonTeam.getSeason().getId() == seasonId){
                 existingSeason2 = seasonTeam.getSeason();
-                existingSeason2.setStartDate(season.getStartDate());
-                existingSeason2.setEndDate(season.getEndDate());
-                existingSeason2.setCalendario(season.getCalendario());
+                existingSeason2.setStartDate(startDate);
+                existingSeason2.setEndDate(endDate);
+                existingSeason2.setCalendario(calendario);
                 seasonDao.save(existingSeason2);
 
                 Optional<SeasonTeam> seasonTeam2 = seasonTeamDao.findById(seasonTeam.getId());
-                seasonTeam2.get().getSeason().setStartDate(season.getStartDate());
-                seasonTeam2.get().getSeason().setEndDate(season.getEndDate());
-                seasonTeam2.get().getSeason().setCalendario(season.getCalendario());
+                seasonTeam2.get().getSeason().setStartDate(startDate);
+                seasonTeam2.get().getSeason().setEndDate(endDate);
+                seasonTeam2.get().getSeason().setCalendario(calendario);
                 seasonTeamDao.save(seasonTeam2.get());
             }
         }
         if (existingSeason2 == null) {
-            throw new InstanceNotFoundException("project.entities.season", season.getId());
+            throw new InstanceNotFoundException("project.entities.season", seasonId);
         }
         return existingSeason2;
     }

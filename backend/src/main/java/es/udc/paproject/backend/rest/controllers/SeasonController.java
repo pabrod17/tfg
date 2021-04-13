@@ -96,16 +96,16 @@ public class SeasonController {
     }
 
     @PostMapping("/addSeason/")
-    public SeasonDto addSeason(@RequestAttribute Long userId, @RequestBody SeasonDto seasonDto)
+    public SeasonDto addSeason(@RequestAttribute Long userId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
+    @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestParam String calendario)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
-        Season season = toSeason(seasonDto);
-        return toSeasonDto(seasonService.addSeason(userId, season));
+        return toSeasonDto(seasonService.addSeason(userId, toLocalDateTime(startDate), toLocalDateTime(endDate), calendario));
     }
 
     @PutMapping("/update/{id}")
-    public SeasonDto updateSeason(@RequestAttribute Long userId, @PathVariable Long id, @RequestBody SeasonDto seasonDto) throws InstanceNotFoundException {
-        Season season = toSeasonUpdate(seasonDto);
-        return toSeasonDto(seasonService.updateSeason(userId, season));
+    public SeasonDto updateSeason(@RequestAttribute Long userId, @PathVariable Long id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
+    @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestParam String calendario) throws InstanceNotFoundException {
+        return toSeasonDto(seasonService.updateSeason(userId, id, toLocalDateTime(startDate), toLocalDateTime(endDate), calendario));
     }
 
     @DeleteMapping("/remove/{id}")
