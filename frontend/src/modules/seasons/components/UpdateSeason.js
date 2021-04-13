@@ -24,12 +24,12 @@ const UpdateSeason = () => {
 
     if (form.checkValidity()) {
         
-        dispatch(actions.updateSeason({
-            id: season.id,
-            startDate: startDate,
-            endDate: endDate,
-            calendario: calendario.trim()
-        }, () => reloadWindow(),
+        dispatch(actions.updateSeason(
+            season.id,
+            startDate,
+            endDate,
+            calendario.trim()
+        , () => reloadWindow(),
             errors => setBackendErrors(errors),
         ));
     } else {

@@ -21,11 +21,11 @@ const AddSeason = () => {
         event.preventDefault();
         if (form.checkValidity()) {
 
-            dispatch(actions.addSeason({
-                startDate: startDate,
-                endDate: endDate,
-                calendario: calendario.trim()
-            }, () => reloadWindow(),
+            dispatch(actions.addSeason(
+                startDate,
+                endDate,
+                calendario.trim()
+            , () => reloadWindow(),
                 errors => setBackendErrors(errors),
             ));
 

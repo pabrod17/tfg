@@ -22,10 +22,8 @@ const UpdateTeam = () => {
 
     if (form.checkValidity()) {
         
-        dispatch(actions.updateTeam({
-            id: team.id,
-            teamName: teamName.trim()
-        }, () => reloadWindow(),
+        dispatch(actions.updateTeam(team.id, teamName.trim(),
+        () => reloadWindow(),
             errors => setBackendErrors(errors),
         ));
     } else {

@@ -18,9 +18,9 @@ const AddTeam = () => {
         event.preventDefault();
         if (form.checkValidity()) {
 
-            dispatch(actions.addTeam({
-                teamName: teamName.trim()
-            }, () => reloadWindow(),
+            dispatch(actions.addTeam(
+                teamName.trim(),
+            () => reloadWindow(),
                 errors => setBackendErrors(errors),
             ));
 

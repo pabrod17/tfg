@@ -10,11 +10,11 @@ export const findTeamByName = (name, onSuccess) =>{
     appFetch(`/teams/name/${name}`, config('GET'), onSuccess);
 }
 
-export const addTeam = (team, onSuccess, onErrors) =>
-    appFetch('/teams/addTeam/', config('POST', team), onSuccess, onErrors);
+export const addTeam = (name, onSuccess, onErrors) =>
+    appFetch(`/teams/addTeam/?name=${name}`, config('POST'), onSuccess, onErrors);
 
-export const updateTeam = (team, onSuccess, onErrors) =>
-    appFetch(`/teams/update/${team.id}`, config('PUT', team), onSuccess, onErrors);
+export const updateTeam = (id, name, onSuccess, onErrors) =>
+    appFetch(`/teams/update/${id}?name=${name}`, config('PUT'), onSuccess, onErrors);
 
 export const removeTeam = (id, onSuccess, onErrors) =>{
     appFetch(`/teams/remove/${id}`, config('DELETE'), onSuccess, onErrors);

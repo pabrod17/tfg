@@ -44,8 +44,8 @@ const updateSeasonCompleted = season => ({
     season
 });
 
-export const updateSeason =  (season, onSuccess, onErrors) => dispatch =>{
-    backend.seasonService.updateSeason(season,
+export const updateSeason =  (id, startDate, endDate, calendario, onSuccess, onErrors) => dispatch =>{
+    backend.seasonService.updateSeason(id, startDate, endDate, calendario,
         season => {
             dispatch(updateSeasonCompleted(season));
             onSuccess();
@@ -58,8 +58,8 @@ const addSeasonCompleted = season => ({
     season
 });
 
-export const addSeason =  (season, onSuccess, onErrors) => dispatch =>{
-    backend.seasonService.addSeason(season,
+export const addSeason =  (startDate, endDate, calendario, onSuccess, onErrors) => dispatch =>{
+    backend.seasonService.addSeason(startDate, endDate, calendario,
         season => {
             dispatch(addSeasonCompleted(season));
             onSuccess();

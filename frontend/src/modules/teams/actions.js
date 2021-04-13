@@ -41,8 +41,8 @@ const updateTeamCompleted = team => ({
     team
 });
 
-export const updateTeam =  (team, onSuccess, onErrors) => dispatch =>{
-    backend.teamService.updateTeam(team,
+export const updateTeam =  (id, name, onSuccess, onErrors) => dispatch =>{
+    backend.teamService.updateTeam(id, name,
         team => {
             dispatch(updateTeamCompleted(team));
             onSuccess();
@@ -55,8 +55,8 @@ const addTeamCompleted = team => ({
     team
 });
 
-export const addTeam =  (team, onSuccess, onErrors) => dispatch =>{
-    backend.teamService.addTeam(team,
+export const addTeam =  (name, onSuccess, onErrors) => dispatch =>{
+    backend.teamService.addTeam(name,
         team => {
             dispatch(addTeamCompleted(team));
             onSuccess();

@@ -9,11 +9,11 @@ export const findSeasonById = (id, onSuccess) =>
 export const findSeasonsBetweenTwoDates = (startDate, endDate, onSuccess, onErrors) =>
     appFetch(`/seasons/betweenDates?startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
 
-export const addSeason = (season, onSuccess, onErrors) =>
-    appFetch('/seasons/addSeason/', config('POST', season), onSuccess, onErrors);
+export const addSeason = (startDate, endDate, calendario, onSuccess, onErrors) =>
+    appFetch(`/seasons/addSeason/?startDate=${startDate}&endDate=${endDate}&calendario=${calendario}`, config('POST'), onSuccess, onErrors);
 
-export const updateSeason = (season, onSuccess, onErrors) =>
-    appFetch(`/seasons/update/${season.id}`, config('PUT', season), onSuccess, onErrors);
+export const updateSeason = (id, startDate, endDate, calendario, onSuccess, onErrors) =>
+    appFetch(`/seasons/update/${id}?startDate=${startDate}&endDate=${endDate}&calendario=${calendario}`, config('PUT'), onSuccess, onErrors);
 
 export const removeSeason = (id, onSuccess, onErrors) =>
     appFetch(`/seasons/remove/${id}`, config('DELETE'), onSuccess, onErrors);
