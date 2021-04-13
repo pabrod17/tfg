@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
-import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 import es.udc.paproject.backend.model.services.SeasonService;
@@ -30,8 +28,6 @@ import es.udc.paproject.backend.rest.common.ErrorsDto;
 import es.udc.paproject.backend.rest.dtos.SeasonDto;
 import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toSeasonDto;
 import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toSeasonDtos;
-import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toSeason;
-import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toSeasonUpdate;
 import static es.udc.paproject.backend.rest.dtos.SeasonConversor.toLocalDateTime;;
 
 

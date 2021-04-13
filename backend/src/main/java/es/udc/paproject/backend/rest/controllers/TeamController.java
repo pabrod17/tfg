@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,12 +21,9 @@ import org.springframework.http.HttpStatus;
 
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDtos;
 import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamDto;
-import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeam;
-import static es.udc.paproject.backend.rest.dtos.TeamConversor.toTeamUpdate;
 
 import es.udc.paproject.backend.rest.common.ErrorsDto;
 import es.udc.paproject.backend.rest.dtos.TeamDto;
-import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.services.TeamService;
