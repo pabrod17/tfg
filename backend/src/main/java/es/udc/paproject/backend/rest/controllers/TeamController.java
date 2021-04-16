@@ -58,41 +58,41 @@ public class TeamController {
         return toTeamDtos(teamService.findAllTeams(userId));
     }
 
-    @GetMapping("/toSeason/{seasonId}")
+    @GetMapping("/{seasonId}/season")
     public List<TeamDto> findTeamsToSeason(@RequestAttribute Long userId, @PathVariable Long seasonId) throws InstanceNotFoundException {
         return toTeamDtos(teamService.findTeamsToSeason(userId, seasonId));
     }
 
-    @GetMapping("/name/{name}")
-    public TeamDto findTeamByName(@RequestAttribute Long userId, @PathVariable String name)
+    @GetMapping("/")
+    public TeamDto findTeamByName(@RequestAttribute Long userId, @RequestParam String name)
             throws InstanceNotFoundException {
         return toTeamDto(teamService.findTeamByName(userId, name));
     }
 
-    @GetMapping("/team/{id}")
+    @GetMapping("/{id}")
     public TeamDto findTeamById(@RequestAttribute Long userId, @PathVariable Long id)
             throws InstanceNotFoundException {
         return toTeamDto(teamService.findTeamById(userId, id));
     }
 
-    @PostMapping("/addTeam/")
+    @PostMapping("")
     public TeamDto addTeam(@RequestAttribute Long userId, @RequestParam String name)
             throws InstanceNotFoundException, DuplicateInstanceException {
         return toTeamDto(teamService.addTeam(userId, name));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public TeamDto updateTeam(@RequestAttribute Long userId, @PathVariable Long id, @RequestParam String name) throws InstanceNotFoundException {
         return toTeamDto(teamService.updateTeam(userId, id, name));
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeTeam(@RequestAttribute Long userId, @PathVariable Long id) throws InstanceNotFoundException {
         teamService.removeTeam(userId, id);
     }
 
-    @PostMapping("/addTeamtoSeason/{seasonId}")
+    @PostMapping("/{seasonId}/addTeamtoSeason")
     public void addTeamToSeason(@RequestAttribute Long userId, @PathVariable Long seasonId, @RequestParam Long teamId) throws InstanceNotFoundException {
         teamService.addTeamToSeason(seasonId, teamId, userId);
     }

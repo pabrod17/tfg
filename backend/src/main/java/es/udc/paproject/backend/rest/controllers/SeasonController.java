@@ -73,38 +73,38 @@ public class SeasonController {
         return toSeasonDtos(seasonService.findAllSeasons(userId));
     }
 
-    @GetMapping("/toTeam/{teamId}")
+    @GetMapping("/{teamId}/team")
     public List<SeasonDto> findSeasonsToTeam(@RequestAttribute Long userId, @PathVariable Long teamId) throws InstanceNotFoundException {
         return toSeasonDtos(seasonService.findSeasonsToTeam(userId, teamId));
     }
 
-    @GetMapping("/betweenDates")
+    @GetMapping("/dates")
     public List<SeasonDto> findSeasonsBetweenTwoDates(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestAttribute Long userId)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
         return toSeasonDtos(seasonService.findSeasonsBetweenTwoDates(userId, toLocalDateTime(startDate), toLocalDateTime(endDate)));
     }
 
-    @GetMapping("/season/{id}")
+    @GetMapping("/{id}")
     public SeasonDto findSeasonById(@RequestAttribute Long userId, @PathVariable Long id)
             throws InstanceNotFoundException {
         return toSeasonDto(seasonService.findSeasonById(userId, id));
     }
 
-    @PostMapping("/addSeason/")
+    @PostMapping("")
     public SeasonDto addSeason(@RequestAttribute Long userId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestParam String calendario)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
         return toSeasonDto(seasonService.addSeason(userId, toLocalDateTime(startDate), toLocalDateTime(endDate), calendario));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public SeasonDto updateSeason(@RequestAttribute Long userId, @PathVariable Long id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, 
     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestParam String calendario) throws InstanceNotFoundException {
         return toSeasonDto(seasonService.updateSeason(userId, id, toLocalDateTime(startDate), toLocalDateTime(endDate), calendario));
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeSeason(@RequestAttribute Long userId, @PathVariable Long id) throws InstanceNotFoundException {
         seasonService.removeSeason(userId, id);
