@@ -63,7 +63,7 @@ CREATE TABLE Player (
     primaryLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     secondLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     position    ENUM('PointGuard','ShootingGuard', 'SmallForward', 'PowerForward', 'Center') NOT NULL,
-    trends VARCHAR(60) NOT NULL,
+    trends VARCHAR(500) NOT NULL,
     tutorPhoneNumber VARCHAR(60) NOT NULL, 
     email VARCHAR(60) NOT NULL,
     dni VARCHAR(60) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE Player (
 CREATE TABLE Note (
     id BIGINT NOT NULL AUTO_INCREMENT,
     title VARCHAR(60) COLLATE latin1_bin NOT NULL,
-    description VARCHAR(200) NOT NULL,
+    description VARCHAR(500) NOT NULL,
     noteDate DATE NOT NULL,
     playerId BIGINT,
     CONSTRAINT PlayerPlayerIdFK FOREIGN KEY(playerId)
@@ -88,9 +88,9 @@ CREATE TABLE Note (
 CREATE TABLE Lesion (
     id BIGINT NOT NULL AUTO_INCREMENT,
     lesionName VARCHAR(60) COLLATE latin1_bin NOT NULL,
-    description VARCHAR(200) NOT NULL,
-    medication VARCHAR(200) NOT NULL,
-    lesionType    ENUM('PointGuard','ShootingGuard', 'SmallForward', 'PowerForward', 'Center') NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    medication VARCHAR(500) NOT NULL,
+    lesionType    ENUM('Muscle','Tendon', 'Joint', 'Spine', 'Psychological') NOT NULL,
     CONSTRAINT LesionPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 

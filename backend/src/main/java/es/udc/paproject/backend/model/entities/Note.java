@@ -23,8 +23,7 @@ public class Note {
     public Note() {
     }
 
-    public Note(Long id, String title, String description, LocalDateTime noteDate, Player player) {
-        this.id = id;
+    public Note(String title, String description, LocalDateTime noteDate, Player player) {
         this.title = title;
         this.description = description;
         this.noteDate = noteDate;

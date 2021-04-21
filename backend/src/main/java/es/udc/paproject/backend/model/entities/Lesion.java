@@ -16,8 +16,7 @@ public class Lesion {
     public Lesion() {
     }
 
-    public Lesion(Long id, String lesionName, String description, String medication, LesionType lesionType) {
-        this.id = id;
+    public Lesion(String lesionName, String description, String medication, LesionType lesionType) {
         this.lesionName = lesionName;
         this.description = description;
         this.medication = medication;

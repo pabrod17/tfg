@@ -26,9 +26,8 @@ public class Player {
     public Player() {
     }
     
-    public Player(Long id, String playerName, String primaryLastName, String secondLastName, Position position,
+    public Player(String playerName, String primaryLastName, String secondLastName, Position position,
             String trends, String tutorPhoneNumber, String email, String dni, Team team) {
-        this.id = id;
         this.playerName = playerName;
         this.primaryLastName = primaryLastName;
         this.secondLastName = secondLastName;
