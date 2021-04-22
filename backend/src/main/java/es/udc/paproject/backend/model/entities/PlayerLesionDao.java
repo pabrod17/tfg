@@ -1,5 +1,7 @@
 package es.udc.paproject.backend.model.entities;
 
-public interface PlayerLesionDao {
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface PlayerLesionDao extends PagingAndSortingRepository<PlayerLesion, Long> {
     
 }

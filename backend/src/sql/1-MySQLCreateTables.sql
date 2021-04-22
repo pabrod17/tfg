@@ -63,14 +63,16 @@ CREATE TABLE Player (
     primaryLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     secondLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     position    ENUM('PointGuard','ShootingGuard', 'SmallForward', 'PowerForward', 'Center') NOT NULL,
-    trends VARCHAR(500) NOT NULL,
-    tutorPhoneNumber VARCHAR(60) NOT NULL, 
+    trends VARCHAR(500),
+    phoneNumber VARCHAR(60) NOT NULL, 
     email VARCHAR(60) NOT NULL,
     dni VARCHAR(60) NOT NULL,
-    teamId BIGINT,
+    teamId BIGINT NOT NULL,
     CONSTRAINT PlayerTeamIdFK FOREIGN KEY(teamId)
         REFERENCES Team (id),
-    CONSTRAINT PlayerPK PRIMARY KEY (id)
+    CONSTRAINT PlayerPK PRIMARY KEY (id),
+    CONSTRAINT DniUniqueKey UNIQUE (dni),
+    CONSTRAINT EmailUniqueKey UNIQUE (email)
 ) ENGINE = InnoDB;
 
 CREATE TABLE Note (

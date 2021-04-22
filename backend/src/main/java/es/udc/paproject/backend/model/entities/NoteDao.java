@@ -1,5 +1,7 @@
 package es.udc.paproject.backend.model.entities;
 
-public interface NoteDao {
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface NoteDao extends PagingAndSortingRepository<Note, Long> {
     
 }

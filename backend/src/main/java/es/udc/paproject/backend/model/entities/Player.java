@@ -18,7 +18,7 @@ public class Player {
     private String secondLastName;
     private Position position;
     private String trends;
-    private String tutorPhoneNumber;
+    private String phoneNumber;
     private String email;
     private String dni;
     private Team team;
@@ -27,13 +27,13 @@ public class Player {
     }
     
     public Player(String playerName, String primaryLastName, String secondLastName, Position position,
-            String trends, String tutorPhoneNumber, String email, String dni, Team team) {
+            String trends, String phoneNumber, String email, String dni, Team team) {
         this.playerName = playerName;
         this.primaryLastName = primaryLastName;
         this.secondLastName = secondLastName;
         this.position = position;
         this.trends = trends;
-        this.tutorPhoneNumber = tutorPhoneNumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.dni = dni;
         this.team = team;
@@ -89,12 +89,12 @@ public class Player {
         this.trends = trends;
     }
 
-    public String getTutorPhoneNumber() {
-        return tutorPhoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTutorPhoneNumber(String tutorPhoneNumber) {
-        this.tutorPhoneNumber = tutorPhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -106,7 +106,7 @@ public class Player {
     }
     
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name= "teamId", nullable = true)
+	@JoinColumn(name= "teamId")
     public Team getTeam() {
         return team;
     }
