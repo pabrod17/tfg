@@ -34,7 +34,7 @@ public class PlayerLesion {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "lesionId", nullable = true)
     public Lesion getLesion() {
         return lesion;
