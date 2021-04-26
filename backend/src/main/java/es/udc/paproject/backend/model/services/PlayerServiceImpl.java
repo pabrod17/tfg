@@ -100,7 +100,7 @@ public class PlayerServiceImpl implements PlayerService {
         return players;
     }
 
-    @Override
+    @Override//Function de apoyo
     public Player findPlayerByIdOfTeam(Long playerId, Long teamId) throws InstanceNotFoundException {
 
         if (!teamDao.existsById(teamId)) {
@@ -350,9 +350,10 @@ public class PlayerServiceImpl implements PlayerService {
             throws InstanceNotFoundException, IncorrectDniException, IncorrectEmailException,
             IncorrectPhoneNumberException {
 
-        if (!teamDao.existsById(teamId)) {
-            throw new InstanceNotFoundException("project.entities.team");
-        }
+
+
+
+
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
@@ -373,9 +374,20 @@ public class PlayerServiceImpl implements PlayerService {
         //No busco dentro de los player de team porque el player que actualizara ya estara dentro del team del usuario
         Player player = playerDao.findById(playerId).get();
 
-        if (player.getTeam().getId() != teamId) {
+        if (player.getTeam() != null && player.getTeam().getId() != teamId){
+            if (!teamDao.existsById(teamId)) {
+                throw new InstanceNotFoundException("project.entities.team");
+            }
             player.setTeam(teamDao.findById(teamId).get());
+        } else {
+            if(player.getTeam() == null){
+                if (!teamDao.existsById(teamId)) {
+                    throw new InstanceNotFoundException("project.entities.team");
+                }
+                player.setTeam(teamDao.findById(teamId).get());
+            }
         }
+
 
         player.setPlayerName(playerName);
         player.setPrimaryLastName(primaryLastName);
@@ -387,6 +399,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setEmail(email);
         player.setDni(dni);
         playerDao.save(player);
+
         return null;
     }
 }
