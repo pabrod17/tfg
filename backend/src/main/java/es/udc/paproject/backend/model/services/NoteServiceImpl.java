@@ -12,7 +12,6 @@ import es.udc.paproject.backend.model.entities.Note;
 import es.udc.paproject.backend.model.entities.NoteDao;
 import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.PlayerDao;
-import es.udc.paproject.backend.model.entities.PlayerLesionDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 @Service
