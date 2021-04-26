@@ -35,7 +35,7 @@ public class NoteServiceImpl implements NoteService {
 
         Player player = playerDao.findById(playerId).get();
         Note note = new Note(title, description, noteDate, player);
-
+        noteDao.save(note);
         return note;
     }
 
@@ -76,6 +76,7 @@ public class NoteServiceImpl implements NoteService {
 
         note.setTitle(title);
         note.setDescription(description);
+        noteDao.save(note);
         return note;
     }
     
