@@ -31,7 +31,7 @@ public class LesionServiceImpl implements LesionService {
     private PlayerDao playerDao;
 
     @Override
-    public Lesion addLesion(Long playerId, String lesionName, String description, String medication, String lesionType)
+    public Lesion addLesion(String lesionName, String description, String medication, String lesionType)
             throws InstanceNotFoundException {
 
         if (!lesionType.equals("Muscle") && !lesionType.equals("Tendon") && !lesionType.equals("Joint")
@@ -39,22 +39,8 @@ public class LesionServiceImpl implements LesionService {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
         LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
-
-        if(playerId == null){
-            Lesion lesion = new Lesion(lesionName, description, medication, lesionTypeEnum);
-            return lesion;
-        }
-
-        if (!playerDao.existsById(playerId)) {
-            throw new InstanceNotFoundException("project.entities.player");
-        }
-        
-        Player player = playerDao.findById(playerId).get();
         Lesion lesion = new Lesion(lesionName, description, medication, lesionTypeEnum);
-        PlayerLesion playerLesion = new PlayerLesion(lesion, player);
-
         lesionDao.save(lesion);
-        playerLesionDao.save(playerLesion);
 
         return lesion;
     }

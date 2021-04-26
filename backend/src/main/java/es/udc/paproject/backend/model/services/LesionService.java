@@ -12,7 +12,7 @@ public interface LesionService {
         //Asi cualquier usuario podria ver y añadir lesiones. Como si fuera una bd comun
         //Igual hare con los ejercicios en los entrenamientos
     //Luego añado la lesion a playerLesion con playerId null y ale
-    Lesion addLesion(Long playerId, String lesionName, String description, String medication, String lesionType) throws InstanceNotFoundException;
+    Lesion addLesion(String lesionName, String description, String medication, String lesionType) throws InstanceNotFoundException;
 
     void addLesionToPlayer(Long playerId, Long lesionId) throws InstanceNotFoundException;
     //miro que exista la lesion en Lesion
