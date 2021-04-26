@@ -24,9 +24,6 @@ public class NoteServiceImpl implements NoteService {
     private NoteDao noteDao;
 
     @Autowired
-    private PlayerLesionDao playerLesionDao;
-
-    @Autowired
     private PlayerDao playerDao;
 
     @Override
