@@ -7,8 +7,11 @@ public class Validations {
     
     public static boolean isValidPhoneNumber(String phoneNumber) 
     { 
-        Pattern p = Pattern.compile("^\\+(?:[0-9] ?){6,14}[0-9]$"); 
- 
+        //movil:
+        Pattern p = Pattern.compile("^(\\+34|0034|34)?[6789]\\d{8}$");
+        //fijo:
+        //Pattern pattern = Pattern.compile("^(\\+34|0034|34)?[67]\\d{8}$");
+
         Matcher m = p.matcher(phoneNumber); 
         return (m.find() && m.group().equals(phoneNumber)); 
     }

@@ -73,12 +73,12 @@ public class Player {
         this.secondLastName = secondLastName;
     }
 
-    public Position getPosition() {
-        return position;
+    public String getPosition() {
+        return position.name();
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(String position) {
+        this.position = Position.valueOf(position);
     }
 
     public String getTrends() {

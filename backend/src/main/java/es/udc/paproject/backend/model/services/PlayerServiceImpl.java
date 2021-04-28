@@ -126,7 +126,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public List<Player> findPlayerByCompletedNameOfTeam(Long teamId, String name, String primaryLastName,
+    public List<Player> findPlayersByCompletedNameOfTeam(Long teamId, String name, String primaryLastName,
             String secondLastName) throws InstanceNotFoundException {
 
         if (!teamDao.existsById(teamId)) {
@@ -143,6 +143,7 @@ public class PlayerServiceImpl implements PlayerService {
                         && player.getSecondLastName().equals(secondLastName)) {
                     playersResult.add(player);
                 }
+                continue;
             }
 
             if (name == null) {
@@ -151,15 +152,18 @@ public class PlayerServiceImpl implements PlayerService {
                         if (player.getPrimaryLastName().equals(primaryLastName)
                                 && player.getSecondLastName().equals(secondLastName)) {
                             playersResult.add(player);
+                            continue;
                         }
                     } else {
                         if (player.getPrimaryLastName().equals(primaryLastName)) {
                             playersResult.add(player);
+                            continue;
                         }
                     }
                 } else {
                     if (player.getSecondLastName().equals(secondLastName)) {
                         playersResult.add(player);
+                        continue;
                     }
                 }
             } else {
@@ -169,21 +173,25 @@ public class PlayerServiceImpl implements PlayerService {
                                 && player.getSecondLastName().equals(secondLastName)
                                 && player.getPlayerName().equals(name)) {
                             playersResult.add(player);
+                            continue;
                         }
                     } else {
                         if (player.getPrimaryLastName().equals(primaryLastName)
                                 && player.getPlayerName().equals(name)) {
                             playersResult.add(player);
+                            continue;
                         }
                     }
                 } else {
                     if (secondLastName != null) {
                         if (player.getSecondLastName().equals(secondLastName) && player.getPlayerName().equals(name)) {
                             playersResult.add(player);
+                            continue;
                         }
                     } else {
                         if (player.getPlayerName().equals(name)) {
                             playersResult.add(player);
+                            continue;
                         }
                     }
                 }
@@ -234,7 +242,7 @@ public class PlayerServiceImpl implements PlayerService {
                 && !position.equals("PowerForward") && !position.equals("Center")) {
             throw new InstanceNotFoundException("project.entities.Position");
         }
-        // Position positionEnum = Position.valueOf(position); //paso string a enum
+        //Position positionEnum = Position.valueOf(position); //paso string a enum
         List<Player> players = playerDao.findByTeamIdAndPosition(teamId, position);
 
         if (players.isEmpty()) {
@@ -326,7 +334,7 @@ public class PlayerServiceImpl implements PlayerService {
         }
         //No busco dentro de los player de team porque el player que actualizara ya estara dentro del team del usuario
         Player player = playerDao.findById(playerId).get();
-        List<PlayerLesion> playerLesions = playerLesionDao.findbyPlayerId(playerId);
+        List<PlayerLesion> playerLesions = playerLesionDao.findByPlayerId(playerId);
 
         if (playerLesions.isEmpty()) {
             playerDao.delete(player);
@@ -392,8 +400,8 @@ public class PlayerServiceImpl implements PlayerService {
         player.setPlayerName(playerName);
         player.setPrimaryLastName(primaryLastName);
         player.setSecondLastName(secondLastName);
-        Position positionEnum = Position.valueOf(position); // paso string a enum
-        player.setPosition(positionEnum);
+        //Position positionEnum = Position.valueOf(position); // paso string a enum
+        player.setPosition(position);
         player.setTrends(trends);
         player.setPhoneNumber(phoneNumber);
         player.setEmail(email);

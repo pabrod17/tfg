@@ -19,7 +19,7 @@ public interface PlayerService {
 
     Player findPlayerByDniOfTeam(Long teamId, String dni) throws InstanceNotFoundException, IncorrectDniException;
 
-    List<Player> findPlayerByCompletedNameOfTeam(Long teamId, String name, String primaryLastName, String secondLastName) throws InstanceNotFoundException;
+    List<Player> findPlayersByCompletedNameOfTeam(Long teamId, String name, String primaryLastName, String secondLastName) throws InstanceNotFoundException;
     
     List<Player> findAPlayersOfTeam(Long teamId) throws InstanceNotFoundException;
 
