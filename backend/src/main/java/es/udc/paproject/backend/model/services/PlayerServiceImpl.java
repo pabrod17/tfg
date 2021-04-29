@@ -357,10 +357,6 @@ public class PlayerServiceImpl implements PlayerService {
             throws InstanceNotFoundException, IncorrectDniException, IncorrectEmailException,
             IncorrectPhoneNumberException {
 
-
-
-
-
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }

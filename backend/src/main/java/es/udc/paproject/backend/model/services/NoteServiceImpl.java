@@ -73,9 +73,10 @@ public class NoteServiceImpl implements NoteService {
         }
 
         Note note = noteDao.findById(noteId).get();
-
-        note.setTitle(title);
-        note.setDescription(description);
+        if(title != null)
+            note.setTitle(title);
+        if(description != null)
+            note.setDescription(description);
         noteDao.save(note);
         return note;
     }

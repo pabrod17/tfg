@@ -147,7 +147,7 @@ public class LesionServiceTest {
     }
 
     @Test
-    public void testFindLesionsByPlayer() throws InstanceNotFoundException, UsedLesionException, IncorrectDniException,
+    public void testFindLesionByPlayer() throws InstanceNotFoundException, UsedLesionException, IncorrectDniException,
             IncorrectEmailException, IncorrectPhoneNumberException, DuplicateInstanceException {
 
         User user = createUser("usuario");
