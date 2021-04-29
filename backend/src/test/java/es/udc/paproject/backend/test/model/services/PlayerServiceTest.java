@@ -321,31 +321,6 @@ public class PlayerServiceTest {
     }
 
     @Test
-    public void testUpdatePlayer() throws DuplicateInstanceException, InstanceNotFoundException, IncorrectDniException,
-            IncorrectEmailException, IncorrectPhoneNumberException {
-        User user = createUser("usuario");
-        Team team = createTeam(user.getId(), "team");
-        Team team2 = createTeam(user.getId(), "team2");
-        Player player = playerService.addPlayer(team.getId(), "jugador1", "apellido1", "apellido2", "ShootingGuard", 
-        "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065", "paco@gmail.com", "87930523M");
-
-        playerService.updatePlayer(team2.getId(), player.getId(), "updated", "updated2", "updated3", "SmallForward", "Mucha tendencia de tiro de 3", "638677065", "paco3@gmail.com", "53984323B");
-
-        Player playerFound = playerService.findPlayerByIdOfTeam(player.getId(), team2.getId());
-        List<Player> players2 = playerService.findAPlayersOfTeam(team2.getId());
-
-        assertEquals(1, players2.size());
-        assertEquals(playerFound.getPlayerName(), "updated");
-        assertEquals(playerFound.getPrimaryLastName(), "updated2");
-        assertEquals(playerFound.getSecondLastName(), "updated3");
-        assertEquals(playerFound.getPosition(), "SmallForward");
-        assertEquals(playerFound.getTrends(), "Mucha tendencia de tiro de 3");
-        assertEquals(playerFound.getPhoneNumber(), "638677065");
-        assertEquals(playerFound.getEmail(), "paco3@gmail.com");
-        assertEquals(playerFound.getDni(), "53984323B");
-    }
-
-    @Test
     public void testRemovePlayerWithLesion() throws DuplicateInstanceException, InstanceNotFoundException, IncorrectDniException,
             IncorrectEmailException, IncorrectPhoneNumberException {
         User user = createUser("usuario");
@@ -375,5 +350,61 @@ public class PlayerServiceTest {
         assertEquals(2, lesions.size());
         assertEquals(1, players.size());
         assertEquals(0, playerlesion.size());
+    }
+
+    @Test
+    public void testUpdatePlayer() throws DuplicateInstanceException, InstanceNotFoundException, IncorrectDniException,
+            IncorrectEmailException, IncorrectPhoneNumberException {
+        User user = createUser("usuario");
+        Team team = createTeam(user.getId(), "team");
+        Team team2 = createTeam(user.getId(), "team2");
+        Player player = playerService.addPlayer(team.getId(), "jugador1", "apellido1", "apellido2", "ShootingGuard", 
+        "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065", "paco@gmail.com", "87930523M");
+
+        playerService.updatePlayer(team2.getId(), player.getId(), "updated", "updated2", "updated3", "SmallForward", "Mucha tendencia de tiro de 3", "638677065", "paco3@gmail.com", "53984323B");
+
+        Player playerFound = playerService.findPlayerByIdOfTeam(player.getId(), team2.getId());
+        List<Player> players2 = playerService.findAPlayersOfTeam(team2.getId());
+
+        assertEquals(1, players2.size());
+        assertEquals(playerFound.getPlayerName(), "updated");
+        assertEquals(playerFound.getPrimaryLastName(), "updated2");
+        assertEquals(playerFound.getSecondLastName(), "updated3");
+        assertEquals(playerFound.getPosition(), "SmallForward");
+        assertEquals(playerFound.getTrends(), "Mucha tendencia de tiro de 3");
+        assertEquals(playerFound.getPhoneNumber(), "638677065");
+        assertEquals(playerFound.getEmail(), "paco3@gmail.com");
+        assertEquals(playerFound.getDni(), "53984323B");
+    }
+
+    @Test
+    public void testUpdatePlayerWithLesion() throws DuplicateInstanceException, InstanceNotFoundException, IncorrectDniException,
+            IncorrectEmailException, IncorrectPhoneNumberException {
+        User user = createUser("usuario");
+        Team team = createTeam(user.getId(), "team");
+        Team team2 = createTeam(user.getId(), "team2");
+        Player player = playerService.addPlayer(team.getId(), "jugador1", "apellido1", "apellido2", "ShootingGuard", 
+        "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065", "paco@gmail.com", "87930523M");
+        Lesion lesion2 = lesionService.addLesion("Nombre de la lesion2", "Aqui pongo una descripcion de la lesion2", "Aqui pongo los medicamentos", "Joint");
+
+        lesionService.addLesionToPlayer(player.getId(), lesion2.getId());
+
+        playerService.updatePlayer(team2.getId(), player.getId(), "updated", "updated2", "updated3", "SmallForward", "Mucha tendencia de tiro de 3", "638677065", "paco3@gmail.com", "53984323B");
+
+        Player playerFound = playerService.findPlayerByIdOfTeam(player.getId(), team2.getId());
+        List<Player> players2 = playerService.findAPlayersOfTeam(team2.getId());
+        List<PlayerLesion> playerLesion = (List<PlayerLesion>) playerLesionDao.findAll();
+
+        assertEquals(playerFound, playerLesion.get(0).getPlayer());
+
+        assertEquals(1, players2.size());
+        assertEquals(playerFound.getPlayerName(), "updated");
+        assertEquals(playerFound.getPrimaryLastName(), "updated2");
+        assertEquals(playerFound.getSecondLastName(), "updated3");
+        assertEquals(playerFound.getPosition(), "SmallForward");
+        assertEquals(playerFound.getTrends(), "Mucha tendencia de tiro de 3");
+        assertEquals(playerFound.getPhoneNumber(), "638677065");
+        assertEquals(playerFound.getEmail(), "paco3@gmail.com");
+        assertEquals(playerFound.getDni(), "53984323B");
     }
 }

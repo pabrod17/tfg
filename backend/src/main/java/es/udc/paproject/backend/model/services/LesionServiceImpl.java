@@ -178,19 +178,51 @@ public class LesionServiceImpl implements LesionService {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 
-        Lesion lesion = lesionDao.findById(lesionId).get();
-        if(lesionName != null)
-            lesion.setLesionName(lesionName);
-        if(description != null)
-            lesion.setDescription(description);
-        if(medication != null)
-            lesion.setMedication(medication);
-        // LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
-        if(lesionType != null)
-            lesion.setLesionType(lesionType);
-        lesionDao.save(lesion);
-        
-        return lesion;
+        Lesion existingLesion = null;
+        Long id = (long) -1;
+        List<PlayerLesion> playerLesions = (List<PlayerLesion>) playerLesionDao.findAll();
+        for (PlayerLesion playerLesion : playerLesions) {
+            if(playerLesion.getLesion() != null && playerLesion.getLesion().getId() == lesionId){
+                id = playerLesion.getLesion().getId();
+                existingLesion = playerLesion.getLesion();
+                if(lesionName != null)
+                existingLesion.setLesionName(lesionName);
+                if(description != null)
+                existingLesion.setDescription(description);
+                if(medication != null)
+                existingLesion.setMedication(medication);
+                if(lesionType != null)
+                existingLesion.setLesionType(lesionType);
+                lesionDao.save(existingLesion);
+
+                PlayerLesion playerLesion2 = playerLesionDao.findById(playerLesion.getId()).get();
+                if(lesionName != null)
+                playerLesion2.getLesion().setLesionName(lesionName);
+                if(description != null)
+                playerLesion2.getLesion().setDescription(description);
+                if(medication != null)
+                playerLesion2.getLesion().setMedication(medication);
+                if(lesionType != null)
+                playerLesion2.getLesion().setLesionType(lesionType);
+                playerLesionDao.save(playerLesion2);
+            }
+
+        }
+
+        if(id == -1){
+            existingLesion = lesionDao.findById(lesionId).get();
+            if(lesionName != null)
+            existingLesion.setLesionName(lesionName);
+            if(description != null)
+            existingLesion.setDescription(description);
+            if(medication != null)
+            existingLesion.setMedication(medication);
+            // LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
+            if(lesionType != null)
+            existingLesion.setLesionType(lesionType);
+            lesionDao.save(existingLesion);
+        }
+        return existingLesion;
     }
 
 

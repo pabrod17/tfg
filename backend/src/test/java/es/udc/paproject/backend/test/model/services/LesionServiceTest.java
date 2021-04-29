@@ -253,6 +253,32 @@ public class LesionServiceTest {
         assertEquals(lesion2Updated.getLesionType(), "Tendon");
     }
 
+    @Test
+    public void testUpdateLesionWithPlayer() throws InstanceNotFoundException, DuplicateInstanceException, IncorrectDniException,
+                    IncorrectEmailException, IncorrectPhoneNumberException {
+        User user = createUser("usuario");
+        Team team = createTeam(user.getId(), "team");
 
+        Player player = playerService.addPlayer(team.getId(), "jugador1", "apellido1", "apellido2", "PointGuard",
+                "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065",
+                "paco@gmail.com", "46095900J");
+        lesionService.addLesion("Nombre de la lesion", "Aqui pongo una descripcion de la lesion", "Aqui pongo los medicamentos", "Muscle");
+        Lesion lesion2 = lesionService.addLesion("Nombre de la lesion2", "Aqui pongo una descripcion de la lesion2", "Aqui pongo los medicamentos", "Joint");
+        lesionService.addLesion("Nombre de la lesion3", "Aqui pongo una descripcion de la lesion3", "Aqui pongo los medicamentos", "Tendon");
 
+        lesionService.addLesionToPlayer(player.getId(), lesion2.getId());
+
+        lesionService.updateLesion(lesion2.getId(), "Nuevo nombre", null, "Nueva medicacion", "Tendon");
+
+        List<Lesion> lesions = lesionService.findLesionByType("Tendon");
+        List<PlayerLesion> playerLesion = (List<PlayerLesion>) playerLesionDao.findAll();
+        Lesion lesionUpdated = lesionService.findLesionById(lesion2.getId());
+        assertEquals(2, lesions.size());
+        assertEquals(lesionUpdated.getLesionName(), playerLesion.get(0).getLesion().getLesionName());
+
+        assertEquals(lesionUpdated.getLesionName(), "Nuevo nombre");
+        assertEquals(lesionUpdated.getDescription(), "Aqui pongo una descripcion de la lesion2");
+        assertEquals(lesionUpdated.getMedication(), "Nueva medicacion");
+        assertEquals(lesionUpdated.getLesionType(), "Tendon");
+    }
 }
