@@ -57,11 +57,11 @@ public class Lesion {
         this.medication = medication;
     }
 
-    public LesionType getLesionType() {
-        return lesionType;
+    public String getLesionType() {
+        return lesionType.name();
     }
 
-    public void setLesionType(LesionType lesionType) {
-        this.lesionType = lesionType;
+    public void setLesionType(String lesionType) {
+        this.lesionType = LesionType.valueOf(lesionType);
     }
 }

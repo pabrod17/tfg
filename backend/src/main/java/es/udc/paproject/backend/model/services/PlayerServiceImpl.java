@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.udc.paproject.backend.model.entities.LesionType;
 import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.PlayerDao;
 import es.udc.paproject.backend.model.entities.PlayerLesion;
@@ -294,7 +293,7 @@ public class PlayerServiceImpl implements PlayerService {
         && !typeLesion.equals("Spine") && !typeLesion.equals("Psychological")) {
             throw new InstanceNotFoundException("project.entities.LesionType");
         }
-        LesionType typeLesionEnum = LesionType.valueOf(typeLesion);
+        // LesionType typeLesionEnum = LesionType.valueOf(typeLesion);
         List<Player> playersResult = new ArrayList<>();
         List<Player> players = playerDao.findByTeamId(teamId);
 
@@ -309,7 +308,7 @@ public class PlayerServiceImpl implements PlayerService {
         
         for (Player player : players) {
             for (PlayerLesion playerLesion : playersWithLesion) {
-                if (playerLesion.getPlayer() != null && player.getId() == playerLesion.getPlayer().getId() && playerLesion.getLesion().getLesionType() == typeLesionEnum){
+                if (playerLesion.getPlayer() != null && player.getId() == playerLesion.getPlayer().getId() && playerLesion.getLesion().getLesionType() == typeLesion){
                     playersResult.add(player);
                 }
             }
@@ -365,7 +364,7 @@ public class PlayerServiceImpl implements PlayerService {
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
-        if (!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
+        if (position != null &&!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
                 && !position.equals("PowerForward") && !position.equals("Center")) {
             throw new InstanceNotFoundException("project.entities.Position");
         }
@@ -396,16 +395,23 @@ public class PlayerServiceImpl implements PlayerService {
             }
         }
 
-
-        player.setPlayerName(playerName);
-        player.setPrimaryLastName(primaryLastName);
-        player.setSecondLastName(secondLastName);
+        if(playerName != null)
+            player.setPlayerName(playerName);
+        if(primaryLastName != null)
+            player.setPrimaryLastName(primaryLastName);
+        if(secondLastName != null)
+            player.setSecondLastName(secondLastName);
         //Position positionEnum = Position.valueOf(position); // paso string a enum
-        player.setPosition(position);
-        player.setTrends(trends);
-        player.setPhoneNumber(phoneNumber);
-        player.setEmail(email);
-        player.setDni(dni);
+        if(position != null)
+            player.setPosition(position);
+        if(trends != null)
+            player.setTrends(trends);
+        if(phoneNumber != null)
+            player.setPhoneNumber(phoneNumber);
+        if(email != null)
+            player.setEmail(email);
+        if(dni != null)
+            player.setDni(dni);
         playerDao.save(player);
 
         return null;

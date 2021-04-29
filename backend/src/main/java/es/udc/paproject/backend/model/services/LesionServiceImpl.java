@@ -2,6 +2,7 @@ package es.udc.paproject.backend.model.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,44 @@ public class LesionServiceImpl implements LesionService {
     }
 
     @Override
+    public Lesion findLesionById(Long lesionId) throws InstanceNotFoundException {
+        
+        if (!lesionDao.existsById(lesionId)) {
+            throw new InstanceNotFoundException("project.entities.lesion");
+        }
+        Lesion lesion = lesionDao.findById(lesionId).get();
+        return lesion;
+    }
+
+    @Override
+    public List<Lesion> findLesionByPlayer(Long playerId) throws InstanceNotFoundException {
+
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+
+        List<PlayerLesion> playerLesions = playerLesionDao.findByPlayerId(playerId);
+
+        if (playerLesions.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.lesion");
+        }
+
+        List<Lesion> lesions = new ArrayList<>();
+        for (PlayerLesion playerLesion : playerLesions) {
+            if(playerLesion.getLesion() != null) {
+                lesions.add(playerLesion.getLesion());
+            }
+        }
+        
+        if (lesions.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.lesion");
+        }
+
+        lesions = lesions.stream().distinct().collect(Collectors.toList());
+        return lesions;
+    }
+
+    @Override
     public List<Lesion> findAllLesion() throws InstanceNotFoundException {
 
         List<Lesion> lesions = new ArrayList<>();
@@ -85,7 +124,7 @@ public class LesionServiceImpl implements LesionService {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 
-        return null;
+        return lesions;
     }
 
     @Override
@@ -109,6 +148,24 @@ public class LesionServiceImpl implements LesionService {
     }
 
     @Override
+    public void removeLesionToPlayer(Long playerId, Long lesionId) throws InstanceNotFoundException {
+
+        if (!lesionDao.existsById(lesionId)) {
+            throw new InstanceNotFoundException("project.entities.lesion");
+        }
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        
+        List<PlayerLesion> playerLesions = (List<PlayerLesion>) playerLesionDao.findAll();
+        for (PlayerLesion playerLesion : playerLesions) {
+            if(playerLesion.getLesion() != null && playerLesion.getLesion().getId() == lesionId && playerLesion.getPlayer().getId() == playerId){
+                playerLesionDao.delete(playerLesion);
+            }
+        }
+    }
+
+    @Override
     public Lesion updateLesion(Long lesionId, String lesionName, String description, String medication, String lesionType)
             throws InstanceNotFoundException {
 
@@ -116,20 +173,25 @@ public class LesionServiceImpl implements LesionService {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 
-        if (!lesionType.equals("Muscle") && !lesionType.equals("Tendon") && !lesionType.equals("Joint")
+        if (lesionType !=null && !lesionType.equals("Muscle") && !lesionType.equals("Tendon") && !lesionType.equals("Joint")
                 && !lesionType.equals("Spine") && !lesionType.equals("Psychological")) {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 
         Lesion lesion = lesionDao.findById(lesionId).get();
-
-        lesion.setLesionName(lesionName);
-        lesion.setDescription(description);
-        lesion.setMedication(medication);
-        LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
-        lesion.setLesionType(lesionTypeEnum);
+        if(lesionName != null)
+            lesion.setLesionName(lesionName);
+        if(description != null)
+            lesion.setDescription(description);
+        if(medication != null)
+            lesion.setMedication(medication);
+        // LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
+        if(lesionType != null)
+            lesion.setLesionType(lesionType);
         lesionDao.save(lesion);
         
         return lesion;
     }
+
+
 }
