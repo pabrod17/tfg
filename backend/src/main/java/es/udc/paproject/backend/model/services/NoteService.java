@@ -8,9 +8,11 @@ import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface NoteService {
     
-    Note addNoteToPlayer(Long playerId, String title, String description, LocalDateTime noteDate) throws InstanceNotFoundException;
+    Note addNoteToPlayer(Long playerId, String title, String description) throws InstanceNotFoundException;
 
     List<Note> findNotesByPlayer(Long playerId) throws InstanceNotFoundException;
+
+    List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException;
 
     void removeNote(Long noteId) throws InstanceNotFoundException;
 

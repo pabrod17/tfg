@@ -26,13 +26,13 @@ public class NoteServiceImpl implements NoteService {
     private PlayerDao playerDao;
 
     @Override
-    public Note addNoteToPlayer(Long playerId, String title, String description, LocalDateTime noteDate)
+    public Note addNoteToPlayer(Long playerId, String title, String description)
             throws InstanceNotFoundException {
 
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
-
+        LocalDateTime noteDate = LocalDateTime.now();
         Player player = playerDao.findById(playerId).get();
         Note note = new Note(title, description, noteDate, player);
         noteDao.save(note);
@@ -48,6 +48,28 @@ public class NoteServiceImpl implements NoteService {
 
         List<Note> notes = new ArrayList<>();
         notes = noteDao.findByPlayerId(playerId);
+
+        if (notes.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.note");
+        }
+
+        return notes;
+    }
+
+    @Override
+    public List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException {
+
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        List<Note> notesByPlayer = noteDao.findByPlayerId(playerId);
+        List<Note> notes = new ArrayList<>();
+
+        for (Note note : notesByPlayer) {
+            if(note.getNoteDate().isAfter(startDate) && note.getNoteDate().isBefore(endDate)) {
+                notes.add(note);
+            }
+        }
 
         if (notes.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.note");
@@ -80,5 +102,4 @@ public class NoteServiceImpl implements NoteService {
         noteDao.save(note);
         return note;
     }
-    
 }
