@@ -13,6 +13,7 @@ import es.udc.paproject.backend.model.entities.NoteDao;
 import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.PlayerDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
 @Service
 @Transactional
@@ -40,6 +41,17 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
+    public Note findNoteById(Long noteId) throws InstanceNotFoundException {
+
+        if (!noteDao.existsById(noteId)) {
+            throw new InstanceNotFoundException("project.entities.note");
+        }
+
+        Note note = noteDao.findById(noteId).get();
+        return note;
+    }
+
+    @Override
     public List<Note> findNotesByPlayer(Long playerId) throws InstanceNotFoundException {
         
         if (!playerDao.existsById(playerId)) {
@@ -57,11 +69,17 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException {
+    public List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException,
+            StartDateAfterEndDateException {
+
+        if(startDate.isAfter(endDate)){
+            throw new StartDateAfterEndDateException(startDate, endDate);
+        }
 
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
+        
         List<Note> notesByPlayer = noteDao.findByPlayerId(playerId);
         List<Note> notes = new ArrayList<>();
 

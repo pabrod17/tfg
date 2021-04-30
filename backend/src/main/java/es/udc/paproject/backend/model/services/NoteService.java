@@ -5,6 +5,7 @@ import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Note;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
 public interface NoteService {
     
@@ -12,7 +13,9 @@ public interface NoteService {
 
     List<Note> findNotesByPlayer(Long playerId) throws InstanceNotFoundException;
 
-    List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException;
+    Note findNoteById(Long noteId) throws InstanceNotFoundException;
+
+    List<Note> findNotesByPlayerAndDates(Long playerId, LocalDateTime startDate, LocalDateTime endDate) throws InstanceNotFoundException, StartDateAfterEndDateException;
 
     void removeNote(Long noteId) throws InstanceNotFoundException;
 
