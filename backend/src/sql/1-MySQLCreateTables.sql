@@ -5,6 +5,7 @@ DROP TABLE User;
 DROP TABLE Season;
 DROP TABLE PlayerLesion;
 DROP TABLE Note;
+DROP TABLE Play;
 DROP TABLE Player;
 DROP TABLE Lesion;
 DROP TABLE Team;
@@ -81,10 +82,35 @@ CREATE TABLE Note (
     description VARCHAR(500) NOT NULL,
     noteDate DATE NOT NULL,
     playerId BIGINT,
-    CONSTRAINT PlayerPlayerIdFK FOREIGN KEY(playerId)
+    CONSTRAINT NotePlayerIdFK FOREIGN KEY(playerId)
         REFERENCES Player (id),
     CONSTRAINT NotePK PRIMARY KEY (id),
     CONSTRAINT TitleUniqueKey UNIQUE (title)
+) ENGINE = InnoDB;
+
+CREATE TABLE Play (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(60) COLLATE latin1_bin NOT NULL,
+    playType    ENUM('Attack','Defense') NOT NULL,
+    gesture VARCHAR(60),
+    pointGuardText VARCHAR(500),
+    shootingGuardText VARCHAR(500),
+    smallForwardText VARCHAR(500),
+    powerForwardText VARCHAR(500),
+    centerText VARCHAR(500),
+    CONSTRAINT PlayPK PRIMARY KEY (id),
+    CONSTRAINT TitleUniqueKey UNIQUE (title)
+) ENGINE = InnoDB;
+
+CREATE TABLE PlayTeam (
+    id BIGINT NOT NULL AUTO_INCREMENT,   
+    playId BIGINT,
+    teamId BIGINT,
+    CONSTRAINT PlayTeamPK PRIMARY KEY (id),
+    CONSTRAINT PlayTeamPlayIdFK FOREIGN KEY(playId)
+        REFERENCES Play (id),    
+    CONSTRAINT PlayTeamTeamIdFK FOREIGN KEY(teamId)
+        REFERENCES Team (id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE Lesion (
