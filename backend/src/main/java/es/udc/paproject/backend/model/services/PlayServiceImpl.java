@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Play;
 import es.udc.paproject.backend.model.entities.PlayDao;
@@ -16,7 +18,8 @@ import es.udc.paproject.backend.model.entities.TeamDao;
 import es.udc.paproject.backend.model.exceptions.IncorrectPlayTypeException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.UsedPlayException;
-
+@Service
+@Transactional
 public class PlayServiceImpl implements PlayService {
 
     @Autowired
@@ -179,23 +182,6 @@ public class PlayServiceImpl implements PlayService {
     }
 
     @Override
-    public void removePlay(Long playId) throws InstanceNotFoundException, UsedPlayException {
-
-        if (!playDao.existsById(playId)) {
-            throw new InstanceNotFoundException("project.entities.play");
-        }
-
-        List<PlayTeam> playTeams = (List<PlayTeam>) playTeamDao.findAll();
-        for (PlayTeam playTeam : playTeams) {
-            if(playTeam.getPlay() != null && playTeam.getPlay().getId() == playId) {
-                throw new UsedPlayException(playTeam.getPlay().getTitle());
-            }
-        }
-        Play play = playDao.findById(playId).get();
-        playDao.delete(play);
-    }
-
-    @Override
     public void removePlayToTeam(Long playId, Long teamId) throws InstanceNotFoundException {
 
         if (!playDao.existsById(playId)) {
@@ -205,11 +191,20 @@ public class PlayServiceImpl implements PlayService {
             throw new InstanceNotFoundException("project.entities.team");
         }
 
+        Long id = (long) -1;
         List<PlayTeam> playTeams = (List<PlayTeam>) playTeamDao.findAll();
         for (PlayTeam playTeam : playTeams) {
-            if(playTeam.getTeam() != null && playTeam.getPlay() != null && playTeam.getPlay().getId() == playId && playTeam.getPlay().getId() == teamId) {
+            if(playTeam.getTeam() != null && playTeam.getPlay() != null && playTeam.getPlay().getId() == playId) {
+                id = playTeam.getPlay().getId();
+            }
+            if(playTeam.getTeam() != null && playTeam.getPlay() != null && playTeam.getPlay().getId() == playId && playTeam.getTeam().getId() == teamId) {
                 playTeamDao.delete(playTeam);
             }
+        }
+
+        if(id == -1){
+            Play play = playDao.findById(playId).get();
+            playDao.delete(play);
         }
     }
 

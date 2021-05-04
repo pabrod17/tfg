@@ -22,8 +22,6 @@ public interface PlayService {
 
     List<Play> findPlaysByTypeAndTeam(Long teamId, String playType) throws InstanceNotFoundException, IncorrectPlayTypeException;
 
-    void removePlay(Long playId) throws InstanceNotFoundException, UsedPlayException;
-
     void removePlayToTeam(Long playId, Long teamId) throws InstanceNotFoundException;
 
     Play updatePlay(Long playId, String title, String playType, String gesture, String pointGuardText, String shootingGuardText,
