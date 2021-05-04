@@ -34,8 +34,8 @@ public class PlayTeam {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "playId", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "playId", nullable = false)
     public Play getPlay() {
         return play;
     }
@@ -44,8 +44,8 @@ public class PlayTeam {
         this.play = play;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "teamId", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teamId", nullable = false)
     public Team getTeam() {
         return team;
     }

@@ -28,9 +28,22 @@ public class PlayServiceImpl implements PlayService {
     @Autowired
     private TeamDao teamDao;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TeamService teamService;
+
     @Override
-    public Play addPlay(String title, String playType, String gesture, String pointGuardText, String shootingGuardText,
-            String smallForwardText, String powerForwardText, String centerText) throws IncorrectPlayTypeException {
+    public Play addPlay(Long teamId, String title, String playType, String gesture, String pointGuardText, String shootingGuardText,
+            String smallForwardText, String powerForwardText, String centerText) throws IncorrectPlayTypeException,
+            InstanceNotFoundException {
+
+        if (!teamDao.existsById(teamId)) {
+            throw new InstanceNotFoundException("project.entities.team");
+        }
+
+        Team team = teamDao.findById(teamId).get();
 
         if (!playType.equals("Attack") && !playType.equals("Defense")) {
             throw new IncorrectPlayTypeException(playType);
@@ -38,20 +51,27 @@ public class PlayServiceImpl implements PlayService {
 
         PlayType playTypeEnum = PlayType.valueOf(playType);
         Play play = new Play(title, playTypeEnum, gesture, pointGuardText, shootingGuardText, smallForwardText, powerForwardText, centerText);
-
-        playDao.save(play);
-
+        PlayTeam playTeam = new PlayTeam(play, team);
+        playTeamDao.save(playTeam);
         return play;
     }
 
     @Override
-    public void addPlayToTeam(Long teamId, Long playId) throws InstanceNotFoundException {
+    public void addPlayToTeam(Long teamId, Long playId) throws InstanceNotFoundException, UsedPlayException {
 
         if (!teamDao.existsById(teamId)) {
             throw new InstanceNotFoundException("project.entities.team");
         }
         if (!playDao.existsById(playId)) {
             throw new InstanceNotFoundException("project.entities.play");
+        }
+
+        List<PlayTeam> playTeams = playTeamDao.findByTeamId(teamId);
+
+        for (PlayTeam playTeam : playTeams) {
+            if(playTeam.getPlay() != null && playTeam.getPlay().getId() == playId) {
+                throw new UsedPlayException(playTeam.getPlay().getTitle());
+            }
         }
 
         Play play = playDao.findById(playId).get();
@@ -70,6 +90,31 @@ public class PlayServiceImpl implements PlayService {
 
         Play play = playDao.findById(playId).get();
         return play;
+    }
+
+    @Override
+    public List<Play> findPlaysByUserId(Long userId) throws InstanceNotFoundException {
+        
+        userService.loginFromId(userId);
+
+        List<Team> teams = teamService.findAllTeams(userId);
+        List<PlayTeam> playTeams = (List<PlayTeam>) playTeamDao.findAll();
+
+        List<Play> plays = new ArrayList<>();
+        for (PlayTeam playTeam : playTeams) {
+            for (Team team : teams) {
+                if(playTeam.getTeam() != null && team.getId() == playTeam.getTeam().getId()){
+                    plays.add(playTeam.getPlay());
+                }
+            }
+        }
+
+        if (plays.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.play");
+        }
+        
+        plays = plays.stream().distinct().collect(Collectors.toList());
+        return plays;
     }
 
     @Override
@@ -101,10 +146,15 @@ public class PlayServiceImpl implements PlayService {
     }
 
     @Override
-    public List<Play> findPlaysByTypeAndTeam(Long teamId, String playType) throws InstanceNotFoundException {
+    public List<Play> findPlaysByTypeAndTeam(Long teamId, String playType) throws InstanceNotFoundException,
+            IncorrectPlayTypeException {
 
         if (!teamDao.existsById(teamId)) {
             throw new InstanceNotFoundException("project.entities.team");
+        }
+
+        if (!playType.equals("Attack") && !playType.equals("Defense")) {
+            throw new IncorrectPlayTypeException(playType);
         }
 
         List<PlayTeam> playTeams = playTeamDao.findByTeamId(teamId);
@@ -141,7 +191,6 @@ public class PlayServiceImpl implements PlayService {
                 throw new UsedPlayException(playTeam.getPlay().getTitle());
             }
         }
-
         Play play = playDao.findById(playId).get();
         playDao.delete(play);
     }
@@ -158,14 +207,14 @@ public class PlayServiceImpl implements PlayService {
 
         List<PlayTeam> playTeams = (List<PlayTeam>) playTeamDao.findAll();
         for (PlayTeam playTeam : playTeams) {
-            if(playTeam.getPlay() != null && playTeam.getPlay().getId() == playId) {
+            if(playTeam.getTeam() != null && playTeam.getPlay() != null && playTeam.getPlay().getId() == playId && playTeam.getPlay().getId() == teamId) {
                 playTeamDao.delete(playTeam);
             }
         }
     }
 
     @Override
-    public Play updatePlay(Long playId, Long teamId, String title, String playType, String gesture,
+    public Play updatePlay(Long playId, String title, String playType, String gesture,
             String pointGuardText, String shootingGuardText, String smallForwardText, String powerForwardText,
             String centerText) throws InstanceNotFoundException, IncorrectPlayTypeException {
 
@@ -176,6 +225,7 @@ public class PlayServiceImpl implements PlayService {
         if (!playType.equals("Attack") && !playType.equals("Defense")) {
             throw new IncorrectPlayTypeException(playType);
         }
+
         Play updatedPlay = null;
         Long id = (long) -1;
         List<PlayTeam> playTeams = (List<PlayTeam>) playTeamDao.findAll();
@@ -226,4 +276,6 @@ public class PlayServiceImpl implements PlayService {
 
         return updatedPlay;
     }
+
+
 }

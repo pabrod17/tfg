@@ -5,6 +5,7 @@ DROP TABLE User;
 DROP TABLE Season;
 DROP TABLE PlayerLesion;
 DROP TABLE Note;
+DROP TABLE PlayTeam;
 DROP TABLE Play;
 DROP TABLE Player;
 DROP TABLE Lesion;
@@ -104,8 +105,8 @@ CREATE TABLE Play (
 
 CREATE TABLE PlayTeam (
     id BIGINT NOT NULL AUTO_INCREMENT,   
-    playId BIGINT,
-    teamId BIGINT,
+    playId BIGINT NOT NULL,
+    teamId BIGINT NOT NULL,
     CONSTRAINT PlayTeamPK PRIMARY KEY (id),
     CONSTRAINT PlayTeamPlayIdFK FOREIGN KEY(playId)
         REFERENCES Play (id),    
