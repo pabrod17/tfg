@@ -2,16 +2,6 @@
 -- Put here INSERT statements for inserting data required by the application
 -- in the "pa-project" database.
 -------------------------------------------------------------------------------
-INSERT INTO Season (startDate, endDate, Calendario) VALUES ('2012-01-01', '2014-01-01', 'Calendario1');
-INSERT INTO Season (startDate, endDate, Calendario) VALUES ('2015-01-01', '2017-01-01', 'Calendario2');
-INSERT INTO Season (startDate, endDate, Calendario) VALUES ('2018-01-01', '2020-01-01', 'Calendario3');
-
-INSERT INTO Team (teamName) VALUES ('PRIMERO');
-INSERT INTO Team (teamName) VALUES ('SEGUNDO');
-INSERT INTO Team (teamName) VALUES ('TERCERO');
-INSERT INTO Team (teamName) VALUES ('CUARTO');
-INSERT INTO Team (teamName) VALUES ('QUINTO');
-INSERT INTO Team (teamName) VALUES ('SEXTO');
 
 INSERT INTO Lesion (lesionName, description, medication, lesionType) VALUES ('Contusion','They are produced by a blow to the muscle and can cause inflammation, pain and bruising.', 'Local cold and repose.', 1);
 INSERT INTO Lesion (lesionName, description, medication, lesionType) VALUES ('Cramp','In this case, the sudden contraction of the muscle is maintained over time, causing pain and limiting movement.', 'Analgesic, stretching and massage.', 1);
