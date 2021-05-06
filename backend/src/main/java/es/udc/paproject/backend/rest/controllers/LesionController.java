@@ -52,9 +52,9 @@ public class LesionController {
 	}
 
     @ExceptionHandler(UsedLesionException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseStatus(HttpStatus.CONFLICT)
 	@ResponseBody
-	public ErrorsDto handleNotFoundException(UsedLesionException exception, Locale locale) {
+	public ErrorsDto handleUsedLesionException(UsedLesionException exception, Locale locale) {
 		
 		String errorMessage = messageSource.getMessage(USED_LESION_EXCEPTION, null,
         USED_LESION_EXCEPTION, locale);

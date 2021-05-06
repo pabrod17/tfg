@@ -1,5 +1,6 @@
 package es.udc.paproject.backend.rest.dtos;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -25,5 +26,10 @@ public class NoteConversor {
     public final static Date toDate(LocalDateTime localDateTime) {
         Date date = Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
         return date;
+      }
+
+      public final static LocalDateTime toLocalDateTime(Date date) {
+        LocalDateTime localDateTime = Instant.ofEpochMilli( date.getTime()).atZone( ZoneId.systemDefault()).toLocalDateTime();      
+        return localDateTime;
       }
 }
