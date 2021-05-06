@@ -101,7 +101,7 @@ public class PlayerController {
 		return new ErrorsDto(errorMessage);
 	}
 
-    @GetMapping("/{playerId}/player")
+    @GetMapping("/{playerId}")
     public PlayerDto findPlayerByIdOfTeam(@PathVariable Long playerId, @RequestAttribute Long teamId)
             throws InstanceNotFoundException {
         return toPlayerDto(playerService.findPlayerByIdOfTeam(playerId, teamId));
@@ -119,7 +119,7 @@ public class PlayerController {
         return toPlayerDtos(playerService.findPlayersByCompletedNameOfTeam(teamId, name, primaryLastName, secondLastName));
     }
 
-    @GetMapping("/{teamId}")
+    @GetMapping("/{teamId}/team")
     public List<PlayerDto> findAPlayersOfTeam(@PathVariable Long teamId) throws InstanceNotFoundException {
         return toPlayerDtos(playerService.findAPlayersOfTeam(teamId));
     }

@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/players*").permitAll()
 			.antMatchers("/players/*").permitAll()
 
+			.antMatchers("/lesion*").permitAll()
+			.antMatchers("/lesion/*").permitAll()
+
 			.antMatchers("/users/login").permitAll()
 			.antMatchers("/users/loginFromServiceToken").permitAll()
 			.anyRequest().hasRole("USER");
