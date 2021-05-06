@@ -11,8 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Play;
-import es.udc.paproject.backend.model.entities.PlayTeam;
-import es.udc.paproject.backend.model.entities.PlayTeamDao;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
@@ -38,9 +36,6 @@ public class PlayServiceTest {
 
     @Autowired
     private PlayService playService;
-
-    @Autowired
-    private PlayTeamDao playTeamDao;
 
     private User createUser(String userName) throws DuplicateInstanceException {
         User user = new User(userName, "password", "firstName", "lastName", userName + "@" + userName + ".com");
@@ -78,13 +73,13 @@ public class PlayServiceTest {
         Play play = playService.addPlay(team.getId(), "title", "Attack", "gesture", "pointGuardText", "shootingGuardText", "smallForwardText", "powerForwardText", "centerText");
         
         playService.addPlayToTeam(team2.getId(), play.getId());
-        List<PlayTeam> playTeams = playTeamDao.findByTeamId(team2.getId());
-        List<PlayTeam> playTeams2 = playTeamDao.findByTeamId(team.getId());
+        List<Play> playTeams = playService.findPlaysByTeamId(team2.getId());
+        List<Play> playTeams2 = playService.findPlaysByTeamId(team.getId());
 
         assertEquals(1, playTeams2.size());
         assertEquals(1, playTeams.size());
-        assertEquals(play.getId(), playTeams.get(0).getPlay().getId());
-        assertEquals(play.getId(), playTeams2.get(0).getPlay().getId());
+        assertEquals(play.getId(), playTeams.get(0).getId());
+        assertEquals(play.getId(), playTeams2.get(0).getId());
     }
 
     @Test
