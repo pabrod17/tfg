@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,20 +102,21 @@ public class PlayerController {
 	}
 
     @GetMapping("/{playerId}")
-    public PlayerDto findPlayerByIdOfTeam(@PathVariable Long playerId, @RequestAttribute Long teamId)
+    public PlayerDto findPlayerByIdOfTeam(@PathVariable Long playerId, @RequestParam Long teamId)
             throws InstanceNotFoundException {
         return toPlayerDto(playerService.findPlayerByIdOfTeam(playerId, teamId));
     }
 
     @GetMapping("/{teamId}/dni")
-    public PlayerDto findPlayerByDniOfTeam(@PathVariable Long teamId, @RequestAttribute String dni)
+    public PlayerDto findPlayerByDniOfTeam(@PathVariable Long teamId, @RequestParam String dni)
             throws InstanceNotFoundException, IncorrectDniException {
         return toPlayerDto(playerService.findPlayerByDniOfTeam(teamId, dni));
     }
 
     @GetMapping("/{teamId}/name")
-    public List<PlayerDto> findPlayersByCompletedNameOfTeam(@PathVariable Long teamId, @RequestAttribute String name, @RequestAttribute String primaryLastName, @RequestAttribute String secondLastName)
+    public List<PlayerDto> findPlayersByCompletedNameOfTeam(@PathVariable Long teamId, @RequestParam(required=false) String name, @RequestParam(required=false) String primaryLastName, @RequestParam(required=false) String secondLastName)
             throws InstanceNotFoundException {
+                System.out.println("HOLA --> " + primaryLastName);
         return toPlayerDtos(playerService.findPlayersByCompletedNameOfTeam(teamId, name, primaryLastName, secondLastName));
     }
 
@@ -130,34 +131,34 @@ public class PlayerController {
     }
 
     @GetMapping("/{teamId}/typeLesion")
-    public List<PlayerDto> findPlayersWithOneTypeLesion(@PathVariable Long teamId, @RequestAttribute String typeLesion) throws InstanceNotFoundException {
+    public List<PlayerDto> findPlayersWithOneTypeLesion(@PathVariable Long teamId, @RequestParam String typeLesion) throws InstanceNotFoundException {
         return toPlayerDtos(playerService.findPlayersWithOneTypeLesion(typeLesion, teamId));
     }
 
     @PostMapping("")
-    public PlayerDto addPlayer(@RequestAttribute Long teamId, @RequestAttribute String playerName, @RequestAttribute String primaryLastName, @RequestAttribute String secondLastName,
-    @RequestAttribute String position, @RequestAttribute String trends, @RequestAttribute String phoneNumber, @RequestAttribute String email, @RequestAttribute String dni)
+    public PlayerDto addPlayer(@RequestParam Long teamId, @RequestParam String playerName, @RequestParam String primaryLastName, @RequestParam String secondLastName,
+    @RequestParam String position, @RequestParam String trends, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String dni)
             throws InstanceNotFoundException, IncorrectDniException, IncorrectEmailException,
             IncorrectPhoneNumberException {
         return toPlayerDto(playerService.addPlayer(teamId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni));
     }
 
     @PostMapping("/{teamId}/changePlayerToTeam")
-    public void changePlayerToTeam(@PathVariable Long teamId, @RequestAttribute Long playerId)
+    public void changePlayerToTeam(@PathVariable Long teamId, @RequestParam Long playerId)
             throws InstanceNotFoundException {
         playerService.changePlayerToTeam(playerId, teamId);
     }
     
     @PutMapping("/{playerId}")
-    public PlayerDto updatePlayer(@RequestAttribute Long teamId, @PathVariable Long playerId, @RequestAttribute String playerName, @RequestAttribute String primaryLastName, @RequestAttribute String secondLastName,
-    @RequestAttribute String position, @RequestAttribute String trends, @RequestAttribute String phoneNumber, @RequestAttribute String email, @RequestAttribute String dni)
+    public PlayerDto updatePlayer(@RequestParam Long teamId, @PathVariable Long playerId, @RequestParam String playerName, @RequestParam String primaryLastName, @RequestParam String secondLastName,
+    @RequestParam String position, @RequestParam String trends, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String dni)
             throws InstanceNotFoundException, IncorrectDniException, IncorrectEmailException,
             IncorrectPhoneNumberException {
         return toPlayerDto(playerService.updatePlayer(teamId, playerId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni));
     }
 
     @DeleteMapping("/{playerId}")
-    public void removePlayer(@RequestAttribute Long teamId, @PathVariable Long playerId)
+    public void removePlayer(@RequestParam Long teamId, @PathVariable Long playerId)
             throws InstanceNotFoundException {
         playerService.removePlayer(teamId, playerId);
     }

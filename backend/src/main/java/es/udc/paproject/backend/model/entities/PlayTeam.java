@@ -34,7 +34,7 @@ public class PlayTeam {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "playId", nullable = false)
     public Play getPlay() {
         return play;

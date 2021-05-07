@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,7 +52,7 @@ public class NoteController {
     }
 
     @GetMapping("")
-    public List<NoteDto> findNotesByPlayer(@RequestAttribute Long playerId) throws InstanceNotFoundException {
+    public List<NoteDto> findNotesByPlayer(@RequestParam Long playerId) throws InstanceNotFoundException {
         return toNoteDtos(noteService.findNotesByPlayer(playerId));
     }
 
@@ -63,7 +62,7 @@ public class NoteController {
     }
 
     @GetMapping("/dates")
-    public List<NoteDto> findNotesByPlayerAndDates(@RequestAttribute Long playerId,
+    public List<NoteDto> findNotesByPlayerAndDates(@RequestParam Long playerId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
@@ -71,13 +70,13 @@ public class NoteController {
     } 
 
     @PostMapping("")
-    public NoteDto addNoteToPlayer(@RequestAttribute Long playerId, @RequestAttribute String title, @RequestAttribute String description)
+    public NoteDto addNoteToPlayer(@RequestParam Long playerId, @RequestParam String title, @RequestParam String description)
             throws InstanceNotFoundException {
         return toNoteDto(noteService.addNoteToPlayer(playerId, title, description));
     }
 
     @PutMapping("/{noteId}")
-    public NoteDto updateNote(@PathVariable Long noteId,  @RequestAttribute String title, @RequestAttribute String description)
+    public NoteDto updateNote(@PathVariable Long noteId,  @RequestParam String title, @RequestParam String description)
             throws InstanceNotFoundException {
         return toNoteDto(noteService.updateNote(noteId, title, description));
     }

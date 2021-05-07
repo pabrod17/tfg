@@ -298,23 +298,32 @@ public class PlayerServiceImpl implements PlayerService {
         List<Player> players = playerDao.findByTeamId(teamId);
 
         if (players.isEmpty()) {
+            System.out.println("HOLA1");
             throw new InstanceNotFoundException("project.entities.player");
         }
         List<PlayerLesion> playersWithLesion = (List<PlayerLesion>) playerLesionDao.findAll();
         if (playersWithLesion.isEmpty()) {
+            System.out.println("HOLA2");
+
             throw new InstanceNotFoundException("project.entities.player");
         }
         
         
         for (Player player : players) {
             for (PlayerLesion playerLesion : playersWithLesion) {
-                if (playerLesion.getPlayer() != null && player.getId() == playerLesion.getPlayer().getId() && playerLesion.getLesion().getLesionType() == typeLesion){
+                System.out.println("PROBANDO---" + player.getId() + " ---- " + playerLesion.getPlayer().getId() + "------" + playerLesion.getLesion().getLesionType());
+
+                if (player.getId() == playerLesion.getPlayer().getId() && playerLesion.getLesion().getLesionType().equals(typeLesion)){
+                    System.out.println("PROBANDO" + typeLesion);
+
                     playersResult.add(player);
                 }
             }
         }
 
         if (playersResult.isEmpty()) {
+            System.out.println("HOLA3" + typeLesion);
+
             throw new InstanceNotFoundException("project.entities.player");
         }
 
@@ -410,6 +419,6 @@ public class PlayerServiceImpl implements PlayerService {
             player.setDni(dni);
         playerDao.save(player);
 
-        return null;
+        return player;
     }
 }

@@ -105,7 +105,7 @@ public class Player {
         this.email = email;
     }
     
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name= "teamId")
     public Team getTeam() {
         return team;

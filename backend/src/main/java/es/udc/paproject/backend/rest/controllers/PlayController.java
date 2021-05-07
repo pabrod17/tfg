@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,9 +79,9 @@ public class PlayController {
     public PlayDto findPlayById(@PathVariable Long playId) throws InstanceNotFoundException {
         return toPlayDto(playService.findPlayById(playId));
     }
-
+    //no utilizar en el front
     @GetMapping("/{userId}/user")
-    public List<PlayDto> findPlaysByUserId(@PathVariable Long userId) throws InstanceNotFoundException {
+    public List<PlayDto> findPlaysByUserId(@RequestAttribute Long userId) throws InstanceNotFoundException {
         return toPlayDtos(playService.findPlaysByUserId(userId));
     }
 
@@ -90,35 +91,35 @@ public class PlayController {
     }
 
     @GetMapping("/{teamId}/playType")
-    public List<PlayDto> findPlaysByTeamId(@PathVariable Long teamId, @RequestAttribute String playType) throws InstanceNotFoundException,
+    public List<PlayDto> findPlaysByTypeAndTeam(@PathVariable Long teamId, @RequestParam String playType) throws InstanceNotFoundException,
             IncorrectPlayTypeException {
         return toPlayDtos(playService.findPlaysByTypeAndTeam(teamId, playType));
     }
 
     @PostMapping("")
-    public PlayDto addPlay(@RequestAttribute Long teamId, @RequestAttribute String title, @RequestAttribute String playType, @RequestAttribute String gesture, 
-    @RequestAttribute String pointGuardText, @RequestAttribute String shootingGuardText, @RequestAttribute String smallForwardText, 
-    @RequestAttribute String powerForwardText, @RequestAttribute String centerText)
+    public PlayDto addPlay(@RequestParam Long teamId, @RequestParam String title, @RequestParam String playType, @RequestParam String gesture, 
+    @RequestParam String pointGuardText, @RequestParam String shootingGuardText, @RequestParam String smallForwardText, 
+    @RequestParam String powerForwardText, @RequestParam String centerText)
             throws InstanceNotFoundException, IncorrectPlayTypeException {
         return toPlayDto(playService.addPlay(teamId, title, playType, gesture, pointGuardText, shootingGuardText, smallForwardText, powerForwardText, centerText));
     }
 
     @PostMapping("/{teamId}/addPlayToTeam")
-    public void addPlayToTeam(@PathVariable Long teamId, @RequestAttribute Long playId)
+    public void addPlayToTeam(@PathVariable Long teamId, @RequestParam Long playId)
             throws InstanceNotFoundException, IncorrectPlayTypeException, UsedPlayException {
         playService.addPlayToTeam(teamId, playId);
     }
 
     @PutMapping("/{playId}")
-    public PlayDto updatePlay(@PathVariable Long playId, @RequestAttribute String title, @RequestAttribute String playType, @RequestAttribute String gesture, 
-    @RequestAttribute String pointGuardText, @RequestAttribute String shootingGuardText, @RequestAttribute String smallForwardText, 
-    @RequestAttribute String powerForwardText, @RequestAttribute String centerText)
+    public PlayDto updatePlay(@PathVariable Long playId, @RequestParam String title, @RequestParam String playType, @RequestParam String gesture, 
+    @RequestParam String pointGuardText, @RequestParam String shootingGuardText, @RequestParam String smallForwardText, 
+    @RequestParam String powerForwardText, @RequestParam String centerText)
             throws InstanceNotFoundException, IncorrectPlayTypeException {
         return toPlayDto(playService.updatePlay(playId, title, playType, gesture, pointGuardText, shootingGuardText, smallForwardText, powerForwardText, centerText));
     }
 
     @DeleteMapping("/{playId}")
-    public void removePlayToTeam(@PathVariable Long playId, @RequestAttribute Long teamId)
+    public void removePlayToTeam(@PathVariable Long playId, @RequestParam Long teamId)
             throws InstanceNotFoundException {
         playService.removePlayToTeam(playId, teamId);
     }

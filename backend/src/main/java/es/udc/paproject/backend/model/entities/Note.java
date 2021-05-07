@@ -64,7 +64,7 @@ public class Note {
         this.noteDate = noteDate;
     }
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name= "playerId", nullable = true)
     public Player getPlayer() {
         return player;

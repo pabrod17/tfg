@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -72,7 +72,7 @@ public class LesionController {
         return toLesionDtos(lesionService.findAllLesion());
     }
 
-    @GetMapping("/{lesionType}")
+    @GetMapping("/{lesionType}/typeLesion")
     public List<LesionDto> findLesionByType(@PathVariable String lesionType) throws InstanceNotFoundException {
         return toLesionDtos(lesionService.findLesionByType(lesionType));
     }
@@ -83,19 +83,19 @@ public class LesionController {
     }
 
     @PostMapping("")
-    public LesionDto addLesion(@RequestAttribute String lesionName, @RequestAttribute String description, @RequestAttribute String medication, @RequestAttribute String lesionType)
+    public LesionDto addLesion(@RequestParam String lesionName, @RequestParam String description, @RequestParam String medication, @RequestParam String lesionType)
             throws InstanceNotFoundException {
         return toLesionDto(lesionService.addLesion(lesionName, description, medication, lesionType));
     }
 
     @PostMapping("/{playerId}/addLesionToPlayer")
-    public void addLesionToPlayer(@PathVariable Long playerId, @RequestAttribute Long lesionId)
+    public void addLesionToPlayer(@PathVariable Long playerId, @RequestParam Long lesionId)
             throws InstanceNotFoundException {
         lesionService.addLesionToPlayer(playerId, lesionId);
-    } 
+    }
 
     @PutMapping("/{lesionId}")
-    public LesionDto updateLesion(@PathVariable Long lesionId, @RequestAttribute String lesionName, @RequestAttribute String description, @RequestAttribute String medication, @RequestAttribute String lesionType)
+    public LesionDto updateLesion(@PathVariable Long lesionId, @RequestParam String lesionName, @RequestParam String description, @RequestParam String medication, @RequestParam String lesionType)
             throws InstanceNotFoundException {
         return toLesionDto(lesionService.updateLesion(lesionId, lesionName, description, medication, lesionType));
     }
@@ -106,7 +106,7 @@ public class LesionController {
     }
 
     @DeleteMapping("/{playerId}/player")
-    public void removeLesionToPlayer(@PathVariable Long playerId, @RequestAttribute Long lesionId) throws InstanceNotFoundException, UsedLesionException {
+    public void removeLesionToPlayer(@PathVariable Long playerId, @RequestParam Long lesionId) throws InstanceNotFoundException, UsedLesionException {
         lesionService.removeLesionToPlayer(playerId, lesionId);
     }
 }
