@@ -63,7 +63,7 @@ const ChangePassword = () => {
     }
 
     return (
-        <div className="centrado-dashboard">
+        <div className="">
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark">
                 <h5 className="card-header">

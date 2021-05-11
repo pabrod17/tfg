@@ -27,7 +27,7 @@ const SeasonView = () => {
 
                 return (
                     <div className="">
-                            <main className="centrado-dashboard">
+                            <main className="">
                                 <div class="main__container">
     
                                 <div class="main__title">

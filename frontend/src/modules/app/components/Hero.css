@@ -3,7 +3,7 @@
     /* height: 100vh; */
     width: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     /* position: absolute; */
     align-items: center;
     object-fit: contain;
@@ -19,7 +19,11 @@
     margin: 10px auto;
     cursor: pointer;
 }
-
+.viewteam {
+  position:absolute;
+   top: 50%;
+   left: 50px;
+}
 .profile-card-6 img {
     transition: all 0.15s linear;
 }
@@ -157,7 +161,7 @@
 }
 
 .centrado:hover {
-  background: rgb(184, 175, 175);
+  background: rgb(15, 15, 15);
 }
 
 .nav-link:hover {
@@ -238,7 +242,12 @@ video {
     padding: none;
     position: fixed; 
     } */
-
+.centrado-signup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+}
 .centrado{
     position: absolute;
     top: 50%;
@@ -870,7 +879,7 @@ padding:0;
 /* dashboard */
 .centrado-dashboard{
   position: absolute;
-  left: 25%;
+  /* left: 25%; */
 }
 
 .text-primary-p {
@@ -921,8 +930,16 @@ main {
   grid-area: main;
   overflow-y: auto;
   position: absolute;
+  width: 1000px;
+  left: 50;
+  margin-left: -500px;
 }
-
+.centrar {
+  width: 500px;
+  position: absolute;
+  left: 50;
+  margin-left: -250px;
+}
 .main__container {
   padding: 20px 35px;
 
