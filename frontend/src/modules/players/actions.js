@@ -8,7 +8,7 @@ const findPlayerByIdOfTeamCompleted = player => ({
 });
 
 export const findPlayerByIdOfTeam = (playerId, teamId, onSuccess, onErrors) => dispatch => {
-    backend.playerService.findAPlayersOfTeam(playerId, teamId,
+    backend.playerService.findPlayerByIdOfTeam(playerId, teamId,
         player => {
             dispatch(findPlayerByIdOfTeamCompleted(player));
             onSuccess();

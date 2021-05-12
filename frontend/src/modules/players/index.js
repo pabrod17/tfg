@@ -3,4 +3,8 @@ import * as actionsTypes from './actionsTypes';
 import reducer from './reducer';
 import * as selectors from './selectors';
 
+export {default as PlayersHome} from './components/PlayersHome';
+export {default as UpdatePlayer} from './components/UpdatePlayer';
+export {default as PlayerView} from './components/PlayerView';
+
 export default {actions, actionsTypes, reducer, selectors};

@@ -68,11 +68,11 @@ const Teams = ({teams}) => {
     const history = useHistory();
 
     return(
-      <div class="card-group">
+      <div className="card-group">
           <List items={teams} fallback={"Loading..."} dispatch = {dispatch} history={history} />
       </div>
         )
-    };
+};
 
 Teams.propTypes = {
     teams: PropTypes.array

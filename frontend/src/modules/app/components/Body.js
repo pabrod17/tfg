@@ -19,6 +19,9 @@ import UpdateSeason from '../../seasons/components/UpdateSeason';
 import FindSeasonsBetweenTwoDates from '../../seasons/components/FindSeasonsBetweenTwoDates';
 import FindSeasonsBetweenTwoDatesResult from '../../seasons/components/FindSeasonsBetweenTwoDatesResult';
 import AddTeamToSeason from '../../teams/components/AddTeamToSeason';
+import PlayersHome from '../../players/components/PlayersHome';
+import UpdatePlayer from '../../players/components/UpdatePlayer';
+import PlayerView from '../../players/components/PlayerView';
 
 const Body = () => {
 
@@ -28,7 +31,7 @@ const Body = () => {
 
         <div className="hero-container">
             {/* <video src={video} autoPlay loop muted /> */}
-
+            
             <br/>
             <AppGlobalComponents/>
             <Switch>
@@ -48,6 +51,9 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/betweenDates"><FindSeasonsBetweenTwoDates/></Route>}
                 {loggedIn && <Route exact path="/seasons/betweenDates/result/:startDate/:endDate"><FindSeasonsBetweenTwoDatesResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
+                {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
+                {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}
+                {loggedIn && <Route exact path="/players/view/:id"><PlayerView/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

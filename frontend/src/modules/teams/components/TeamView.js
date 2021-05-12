@@ -9,6 +9,7 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import basketball from './basketball.jpg';
 import * as actionSeasons from '../../seasons/actions';
+import * as actionPlayers from '../../players/actions';
 
 import {Grid} from '@material-ui/core';
 import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
@@ -41,6 +42,9 @@ const TeamView = () => {
         dispatch(actionSeasons.findSeasonsToTeam(id, () => history.push('/seasons/all/result')));
     }
 
+    const handlePlayersHome = (id, dispatch, history) => {
+        dispatch(actionPlayers.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
+    }
 
     function TeamView({team, dispatch}){
         if(team){
@@ -61,11 +65,11 @@ const TeamView = () => {
                                 <div class="card-view">
                                 <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
                                 <div class="card_inner">
-                                    <p class="text-primary-p">Players</p>
+                                    <p class="text-primary-p" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}>Players</p>
                                     <span class="font-bold text-title">578</span>
                                 </div>
                                 </div>
-
+                                
                                 <div class="card-view">
                                 <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                                 <div class="card_inner">
