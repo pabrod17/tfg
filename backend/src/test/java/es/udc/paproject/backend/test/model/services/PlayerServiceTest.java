@@ -348,7 +348,7 @@ public class PlayerServiceTest {
         List<PlayerLesion> playerlesion = (List<PlayerLesion>) playerLesionDao.findAll();
 
         assertEquals(2, lesions.size());
-        assertEquals(1, players.size());
+        assertEquals(1, players.size());//aqui deberia de borrarlo
         assertEquals(0, playerlesion.size());
     }
 

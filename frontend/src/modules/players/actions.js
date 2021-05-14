@@ -7,13 +7,13 @@ const findPlayerByIdOfTeamCompleted = player => ({
     player
 });
 
-export const findPlayerByIdOfTeam = (playerId, teamId, onSuccess, onErrors) => dispatch => {
+export const findPlayerByIdOfTeam = (playerId, teamId, onSuccess) => dispatch => {
     backend.playerService.findPlayerByIdOfTeam(playerId, teamId,
         player => {
             dispatch(findPlayerByIdOfTeamCompleted(player));
             onSuccess();
-        },
-        onErrors);
+        }
+        );
 }
 
 const findPlayerByDniOfTeamCompleted = player => ({
@@ -111,7 +111,7 @@ const updatePlayerCompleted = player => ({
 });
 
 export const updatePlayer = (playerId, teamId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni, onSuccess, onErrors) => dispatch => {
-    backend.playerService.addPlayer(playerId, teamId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni,
+    backend.playerService.updatePlayer(playerId, teamId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni,
         player => {
             dispatch(updatePlayerCompleted(player));
             onSuccess();

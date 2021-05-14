@@ -14,7 +14,7 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
 }
 
 const handleUpdatePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push('/players/update/${id}')));
+  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
 }
 
 const handleViewPlayer = (playerId, id, dispatch, history) => {
@@ -40,9 +40,9 @@ function PlayersList({ items, id, fallback, dispatch, history}) {
                   <li><a type="button" onClick={() => handleRemovePlayer(item.id, id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
-                  <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
-                    <i class="fa fa-address-book"></i></a></li>
                   <li><a type="button" onClick={() => handleViewPlayer(item.id, id, dispatch, history)}>
+                    <i class="fa fa-address-book"></i></a></li>
+                  <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
@@ -67,6 +67,9 @@ const Players = ({players, id}) => {
     )
 };
 
+Players.propTypes = {
+    players: PropTypes.array
+};
 
 
 export default Players;

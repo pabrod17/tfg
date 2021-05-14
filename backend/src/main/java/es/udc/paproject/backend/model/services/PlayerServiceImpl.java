@@ -369,6 +369,8 @@ public class PlayerServiceImpl implements PlayerService {
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
+        System.out.println("HOLA --> " + position);
+
         if (position != null &&!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
                 && !position.equals("PowerForward") && !position.equals("Center")) {
             throw new InstanceNotFoundException("project.entities.Position");

@@ -53,7 +53,6 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
                 {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}
-                {loggedIn && <Route exact path="/players/view/:id"><PlayerView/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}
