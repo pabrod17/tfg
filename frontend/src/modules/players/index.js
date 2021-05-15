@@ -5,6 +5,7 @@ import * as selectors from './selectors';
 
 export {default as PlayersHome} from './components/PlayersHome';
 export {default as UpdatePlayer} from './components/UpdatePlayer';
+export {default as AddPlayer} from './components/AddPlayer';
 export {default as PlayerView} from './components/PlayerView';
 
 export default {actions, actionsTypes, reducer, selectors};

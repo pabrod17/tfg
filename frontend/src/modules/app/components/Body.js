@@ -21,6 +21,7 @@ import FindSeasonsBetweenTwoDatesResult from '../../seasons/components/FindSeaso
 import AddTeamToSeason from '../../teams/components/AddTeamToSeason';
 import PlayersHome from '../../players/components/PlayersHome';
 import UpdatePlayer from '../../players/components/UpdatePlayer';
+import AddPlayer from '../../players/components/AddPlayer';
 import PlayerView from '../../players/components/PlayerView';
 
 const Body = () => {
@@ -52,6 +53,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/betweenDates/result/:startDate/:endDate"><FindSeasonsBetweenTwoDatesResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
+                {loggedIn && <Route exact path="/players/addPlayer/:id"><AddPlayer/></Route>}
                 {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
