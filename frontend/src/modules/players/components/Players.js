@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
@@ -6,10 +7,12 @@ import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
+import * as actionsTeams from '../../teams/actions';
+import * as selectorsTeams from '../../teams/selectors';
 //https://freefrontend.com/css-cards/
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.removePlayer(playerId, id, () => history.push('/players/home/${id}')));
+  dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
   window.location.reload('true');
 }
 
@@ -21,7 +24,12 @@ const handleViewPlayer = (playerId, id, dispatch, history) => {
   dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}`)));
 }
 
-function PlayersList({ items, id, fallback, dispatch, history}) {
+const handleChangeTeam = (playerId, id, dispatch, history) => {
+  dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
+  window.location.reload('true');
+}
+
+function PlayersList({ items, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
     
@@ -48,6 +56,16 @@ function PlayersList({ items, id, fallback, dispatch, history}) {
                 </ul>
                 <button class="btn-player draw-border">Notes</button>
                 <button class="btn-player draw-border">Lesion</button>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Team</button>
+                            <div class="dropdown-content">
+                            {teamsList.map(team => 
+                                        <a type="button" onClick={() => handleChangeTeam(item.id, team.id, dispatch, history)}> 
+                                            {team.id} : {"  "}{team.teamName}
+                                        </a>)}
+                            </div>
+                        </div>
+
               </div>
             </div>
 
@@ -60,9 +78,17 @@ const Players = ({players, id}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const teams = useSelector(selectorsTeams.getAllTeams);
+    const teamsList = teams.teams;
+
+    if(!teamsList) {
+        dispatch(actionsTeams.findAllTeams());
+        return "Loading...";
+    }
+
     return(
         <div className="card-group">
-          <PlayersList items={players} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };
