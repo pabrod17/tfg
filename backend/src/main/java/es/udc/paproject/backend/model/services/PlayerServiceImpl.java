@@ -137,7 +137,7 @@ public class PlayerServiceImpl implements PlayerService {
 
         for (Player player : players) {
 
-            if (name != null && primaryLastName != null && secondLastName != null) {
+            if (!name.isEmpty() && !primaryLastName.isEmpty() && !secondLastName.isEmpty()) {
                 if (player.getPlayerName().equals(name) && player.getPrimaryLastName().equals(primaryLastName)
                         && player.getSecondLastName().equals(secondLastName)) {
                     playersResult.add(player);
@@ -145,9 +145,9 @@ public class PlayerServiceImpl implements PlayerService {
                 continue;
             }
 
-            if (name == null) {
-                if (primaryLastName != null) {
-                    if (secondLastName != null) {
+            if (name.isEmpty()) {
+                if (!primaryLastName.isEmpty()) {
+                    if (!secondLastName.isEmpty()) {
                         if (player.getPrimaryLastName().equals(primaryLastName)
                                 && player.getSecondLastName().equals(secondLastName)) {
                             playersResult.add(player);
@@ -166,8 +166,8 @@ public class PlayerServiceImpl implements PlayerService {
                     }
                 }
             } else {
-                if (primaryLastName != null) {
-                    if (secondLastName != null) {
+                if (!primaryLastName.isEmpty()) {
+                    if (!secondLastName.isEmpty()) {
                         if (player.getPrimaryLastName().equals(primaryLastName)
                                 && player.getSecondLastName().equals(secondLastName)
                                 && player.getPlayerName().equals(name)) {
@@ -182,7 +182,7 @@ public class PlayerServiceImpl implements PlayerService {
                         }
                     }
                 } else {
-                    if (secondLastName != null) {
+                    if (!secondLastName.isEmpty()) {
                         if (player.getSecondLastName().equals(secondLastName) && player.getPlayerName().equals(name)) {
                             playersResult.add(player);
                             continue;
@@ -369,6 +369,7 @@ public class PlayerServiceImpl implements PlayerService {
         if (!playerDao.existsById(playerId)) {
             throw new InstanceNotFoundException("project.entities.player");
         }
+        System.out.println("PIIII --> " + position);
         System.out.println("HOLA --> " + position);
 
         if (position != null &&!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")

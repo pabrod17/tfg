@@ -27,7 +27,7 @@ const PlayersHome = () => {
                         <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}>Dni</button>
                     </div>
                     <div class="btn-group mr-5 mb-5 btn" role="group" aria-label="Third group">
-                        <button className="button dni">Name and Surnames</button>
+                        <button className="button dni"  onClick={() => history.push(`/players/completedName/${id}`)}>Name and Surnames</button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fourth group">
                         <button className="button lesion">With lesion</button>

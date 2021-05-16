@@ -25,6 +25,8 @@ import AddPlayer from '../../players/components/AddPlayer';
 import PlayerView from '../../players/components/PlayerView';
 import FindPlayerByDni from '../../players/components/FindPlayerByDni';
 import FindPlayerByDniResult from '../../players/components/FindPlayerByDniResult';
+import FindPlayersByCompletedName from '../../players/components/FindPlayersByCompletedName';
+import FindPlayersByCompletedNameResult from '../../players/components/FindPlayersByCompletedNameResult';
 
 const Body = () => {
 
@@ -58,7 +60,9 @@ const Body = () => {
                 {loggedIn && <Route exact path="/players/addPlayer/:id"><AddPlayer/></Route>}
                 {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}
                 {loggedIn && <Route exact path="/players/dni/:id"><FindPlayerByDni/></Route>}
+                {loggedIn && <Route exact path="/players/completedName/:id"><FindPlayersByCompletedName/></Route>}
                 {loggedIn && <Route exact path="/players/dni/result/:dni"><FindPlayerByDniResult/></Route>}
+                {loggedIn && <Route exact path="/players/completedName/result/:id:playerName:primaryLastName:secondLastName"><FindPlayersByCompletedNameResult/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

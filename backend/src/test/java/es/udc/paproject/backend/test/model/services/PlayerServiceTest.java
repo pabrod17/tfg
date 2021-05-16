@@ -196,7 +196,7 @@ public class PlayerServiceTest {
         Player player3 = playerService.addPlayer(team.getId(), "jugador2", "apellido11", "apellido22", "SmallForward", 
         "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065", "paco3@gmail.com", "27458552W");
 
-        List<Player> players = playerService.findPlayersByCompletedNameOfTeam(team.getId(), "jugador2", null, "apellido22");
+        List<Player> players = playerService.findPlayersByCompletedNameOfTeam(team.getId(), "jugador2", "", "apellido22");
 
         assertEquals(2, players.size());
         assertEquals(player2, players.get(0));

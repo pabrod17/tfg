@@ -116,7 +116,6 @@ public class PlayerController {
     @GetMapping("/{teamId}/name")
     public List<PlayerDto> findPlayersByCompletedNameOfTeam(@PathVariable Long teamId, @RequestParam(required=false) String name, @RequestParam(required=false) String primaryLastName, @RequestParam(required=false) String secondLastName)
             throws InstanceNotFoundException {
-                System.out.println("HOLA --> " + primaryLastName);
         return toPlayerDtos(playerService.findPlayersByCompletedNameOfTeam(teamId, name, primaryLastName, secondLastName));
     }
 
