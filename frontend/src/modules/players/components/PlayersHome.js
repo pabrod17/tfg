@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
+// import {useDispatch} from 'react-redux';
+// import {FormattedMessage} from 'react-intl';
 import {useHistory} from 'react-router-dom';
 
 import * as selectors from '../selectors';
@@ -11,7 +11,7 @@ import Players from './Players';
 const PlayersHome = () => {
     
     const players = useSelector(selectors.getAllPlayers);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const history = useHistory();
     const {id} = useParams();
 
@@ -24,7 +24,7 @@ const PlayersHome = () => {
                         <button className="btn addplayer" onClick={() => history.push(`/players/addPlayer/${id}`)}>Add New Player</button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Second group">
-                        <button className="button dni ">Dni</button>
+                        <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}>Dni</button>
                     </div>
                     <div class="btn-group mr-5 mb-5 btn" role="group" aria-label="Third group">
                         <button className="button dni">Name and Surnames</button>

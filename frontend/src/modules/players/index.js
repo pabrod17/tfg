@@ -7,5 +7,7 @@ export {default as PlayersHome} from './components/PlayersHome';
 export {default as UpdatePlayer} from './components/UpdatePlayer';
 export {default as AddPlayer} from './components/AddPlayer';
 export {default as PlayerView} from './components/PlayerView';
+export {default as FindPlayerByDni} from './components/FindPlayerByDni';
+export {default as FindPlayerByDniResult} from './components/FindPlayerByDniResult';
 
 export default {actions, actionsTypes, reducer, selectors};
