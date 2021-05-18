@@ -11,7 +11,10 @@ export const findPlayersByCompletedNameOfTeam = (teamId, playerName, primaryLast
 
 export const findAPlayersOfTeam = (teamId, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/team`, config('GET'), onSuccess, onErrors);
-    
+
+export const findPlayersByPositionAndTeam = (teamId, position, onSuccess, onErrors) =>
+    appFetch(`/players/${teamId}/position?position=${position}`, config('GET'), onSuccess, onErrors);
+
 export const findPlayersrWithLesionOfTeam = (teamId, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/lesion`, config('GET'), onSuccess, onErrors);
 

@@ -58,6 +58,20 @@ export const findAPlayersOfTeam = (teamId, onSuccess, onErrors) => dispatch => {
         onErrors);
 }
 
+const findPlayersByPositionAndTeamCompleted = players => ({
+    type: actionTypes.FIND_PLAYERS_BY_POSITION_AND_TEAM_COMPLETED,
+    players
+});
+
+export const findPlayersByPositionAndTeam = (teamId, position, onSuccess, onErrors) => dispatch => {
+    backend.playerService.findPlayersByPositionAndTeam(teamId, position,
+        players => {
+            dispatch(findPlayersByPositionAndTeamCompleted(players));
+            
+        },onSuccess,
+        onErrors);
+}
+
 const findPlayersrWithLesionOfTeamCompleted = players => ({
     type: actionTypes.FIND_PLAYERS_WITH_LESION_OF_TEAM_COMPLETED,
     players
