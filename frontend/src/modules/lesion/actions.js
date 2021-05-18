@@ -38,8 +38,7 @@ export const findLesionByType = (lesionType, onSuccess, onErrors) => dispatch =>
     backend.lesionService.findLesionByType(lesionType,
         lesions => {
             dispatch(findLesionByTypeCompleted(lesions));
-            onSuccess();
-        },
+        },onSuccess,
         onErrors);
 }
 

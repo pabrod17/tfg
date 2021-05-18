@@ -27,7 +27,7 @@ import FindPlayerByDni from '../../players/components/FindPlayerByDni';
 import FindPlayerByDniResult from '../../players/components/FindPlayerByDniResult';
 import FindPlayersByCompletedName from '../../players/components/FindPlayersByCompletedName';
 import FindPlayersByCompletedNameResult from '../../players/components/FindPlayersByCompletedNameResult';
-
+import LesionHome from '../../lesion/components/LesionHome';
 const Body = () => {
 
     const loggedIn = useSelector(users.selectors.isLoggedIn);
@@ -63,6 +63,8 @@ const Body = () => {
                 {loggedIn && <Route exact path="/players/completedName/:id"><FindPlayersByCompletedName/></Route>}
                 {loggedIn && <Route exact path="/players/dni/result/:dni"><FindPlayerByDniResult/></Route>}
                 {loggedIn && <Route exact path="/players/completedName/result/:id:playerName:primaryLastName:secondLastName"><FindPlayersByCompletedNameResult/></Route>}
+                {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
+                {loggedIn && <Route exact path="/lesion/home"><LesionHome/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

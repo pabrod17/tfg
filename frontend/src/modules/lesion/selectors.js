@@ -1,4 +1,4 @@
-const getModuleState = state => state.players;
+const getModuleState = state => state.lesion;
 
 export const getOneLesion = state =>
     getModuleState(state).lesion;

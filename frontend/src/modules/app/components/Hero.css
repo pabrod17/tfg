@@ -8,7 +8,9 @@
     align-items: center;
     object-fit: contain;
   }
-
+.grande{
+  background-size: cover;
+}
   .profile-card-6 {
     max-width: 300px;
     background-color: #FFF;
