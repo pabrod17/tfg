@@ -57,7 +57,7 @@ const AddPlayer = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Update Team
+                        Add Player
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 

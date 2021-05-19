@@ -24,8 +24,7 @@ export const findAllLesion = (onSuccess, onErrors) => dispatch => {
     backend.lesionService.findAllLesion(
         lesions => {
             dispatch(findAllLesionCompleted(lesions));
-            onSuccess();
-        },
+        },onSuccess,
         onErrors);
 }
 
@@ -71,7 +70,7 @@ export const addLesion = (lesionName, description, medication, lesionType, onSuc
 }
 
 export const addLesionToPlayer = (playerId, lesionId, onSuccess, onErrors) => {
-    backend.lesionService(playerId, lesionId, onSuccess, onErrors);
+    backend.lesionService.addLesionToPlayer(playerId, lesionId, onSuccess, onErrors);
     return {type: actionTypes.ADD_LESION_TO_PLAYER_COMPLETED};
 }
 

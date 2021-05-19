@@ -9,6 +9,20 @@ import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
+const handleRemoveLesion = (id, dispatch, history) => {
+    dispatch(actions.removeLesion(id, () => history.push(`/lesion/home`)));
+    window.location.reload('true');
+}
+
+const handleUpdateLesion = (id, dispatch, history) => {
+  dispatch(actions.findLesionById(id, () => history.push(`/lesion/update/${id}`)));
+}
+
+const handleViewLesion = (id, dispatch, history) => {
+  dispatch(actions.findLesionById(id, () => history.push(`/lesion/view/${id}`)));
+}
+
+
 function LesionsList({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAllLesion(() => history.push('/lesion/home')));
@@ -24,20 +38,18 @@ function LesionsList({ items, fallback, dispatch, history}) {
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                  <li><a type="button" >
+                <li><a type="button" onClick={() => handleRemoveLesion(item.id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
-                  <li><a type="button" >
+                  <li><a type="button" onClick={() => handleViewLesion(item.id, dispatch, history)}>
                     <i class="fa fa-address-book"></i></a></li>
-                  <li><a type="button">
+                    <li><a type="button" onClick={() => handleUpdateLesion(item.id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border">Notes</button>
-                <button class="btn-player draw-border">Lesion</button>
+                <button class="btn-player draw-border">{item.lesionType}</button>
               </div>
             </div>
-
           </div>;
         });
       }

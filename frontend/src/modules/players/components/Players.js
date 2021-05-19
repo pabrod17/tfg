@@ -9,6 +9,8 @@ import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
+import * as actionsLesion from '../../lesion/actions';
+import * as selectorsLesion from '../../lesion/selectors';
 //https://freefrontend.com/css-cards/
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
@@ -29,7 +31,11 @@ const handleChangeTeam = (playerId, id, dispatch, history) => {
   window.location.reload('true');
 }
 
-function PlayersList({ items, teamsList, id, fallback, dispatch, history}) {
+const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
+  dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+}
+
+function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
     
@@ -55,7 +61,16 @@ function PlayersList({ items, teamsList, id, fallback, dispatch, history}) {
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
                 <button class="btn-player draw-border">Notes</button>
+                <div class="dropdown">
                 <button class="btn-player draw-border">Lesion</button>
+                  <div class="dropdown-content">
+                              {lesionList.map(lesion => 
+                                          <a type="button" onClick={() => handleAddLesionToPlayer(item.id, lesion.id, id, dispatch, history)}> 
+                                              {lesion.id} : {"  "}{lesion.lesionName}
+                                          </a>)}
+                    </div>
+                    </div>
+
                 <div class="dropdown">
                 <button class="btn-player draw-border">Team</button>
                             <div class="dropdown-content">
@@ -79,16 +94,24 @@ const Players = ({players, id}) => {
     const history = useHistory();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
+    const lesions = useSelector(selectorsLesion.getAllLesion);
+
     const teamsList = teams.teams;
 
     if(!teamsList) {
         dispatch(actionsTeams.findAllTeams());
         return "Loading...";
     }
+    const lesionList = lesions.lesions;
+
+    if(!lesionList) {
+        dispatch(actionsLesion.findAllLesion());
+        return "Loading...";
+    }
 
     return(
         <div className="card-group">
-          <PlayersList items={players} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };

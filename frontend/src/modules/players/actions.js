@@ -81,8 +81,7 @@ export const findPlayersrWithLesionOfTeam = (teamId, onSuccess, onErrors) => dis
     backend.playerService.findPlayersrWithLesionOfTeam(teamId,
         players => {
             dispatch(findPlayersrWithLesionOfTeamCompleted(players));
-            onSuccess();
-        },
+        },onSuccess,
         onErrors);
 }
 
@@ -95,8 +94,7 @@ export const findPlayersWithOneTypeLesion = (teamId, typeLesion, onSuccess, onEr
     backend.playerService.findPlayersWithOneTypeLesion(teamId, typeLesion,
         players => {
             dispatch(findPlayersWithOneTypeLesionCompleted(players));
-            onSuccess();
-        },
+        },onSuccess,
         onErrors);
 }
 

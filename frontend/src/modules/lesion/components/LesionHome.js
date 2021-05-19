@@ -17,11 +17,17 @@ const LesionHome = () => {
     const tendon = "Tendon";
     const joint = "Joint";
     const spine = "Spine";
-    const psychological  = "Psychological ";
+    const psychological  = "Psychological";
 
     const handleSetTypeLesion = (lesionType, dispatch) => {
         dispatch(actions.findLesionByType(lesionType));
     }
+
+
+
+
+
+
 
     return(
         <div>
