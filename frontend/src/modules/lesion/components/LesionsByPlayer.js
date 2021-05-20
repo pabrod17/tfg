@@ -9,9 +9,8 @@ import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
-const handleRemoveLesion = (id, dispatch, history) => {
-    dispatch(actions.removeLesion(id, () => history.push(`/lesion/home`)));
-    window.location.reload('true');
+const handleRemoveLesionToPlayer = (id, playerId, dispatch, history) => {
+    dispatch(actions.removeLesionToPlayer(playerId, id, () => history.push(`/lesion/home/player/${playerId}`)));
 }
 
 const handleUpdateLesion = (id, dispatch, history) => {
@@ -23,9 +22,9 @@ const handleViewLesion = (id, dispatch, history) => {
 }
 
 
-function LesionsList({ items, fallback, dispatch, history}) {
+function LesionsList({ items, playerId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findAllLesion(() => history.push('/lesion/home')));
+        dispatch(actions.findLesionByPlayer(playerId, () => history.push('/lesion/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -38,7 +37,7 @@ function LesionsList({ items, fallback, dispatch, history}) {
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                <li><a type="button" onClick={() => handleRemoveLesion(item.id, dispatch, history)}>
+                <li><a type="button" onClick={() => handleRemoveLesionToPlayer(item.id, playerId, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
                   <li><a type="button" onClick={() => handleViewLesion(item.id, dispatch, history)}>
@@ -55,19 +54,19 @@ function LesionsList({ items, fallback, dispatch, history}) {
       }
 }
 
-const Lesions = ({lesions}) => {
+const LesionsByPlayer = ({lesions, playerId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     
     return(
         <div className="card-group">
-          <LesionsList items={lesions} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <LesionsList items={lesions} playerId={playerId} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };
 
-Lesions.propTypes = {
+LesionsByPlayer.propTypes = {
     lesions: PropTypes.array
 };
 
-export default Lesions;
+export default LesionsByPlayer;

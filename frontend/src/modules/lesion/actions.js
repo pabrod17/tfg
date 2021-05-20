@@ -94,6 +94,6 @@ export const removeLesion = (lesionId, onSuccess, onErrors) => {
 }
 
 export const removeLesionToPlayer = (playerId, lesionId, onSuccess, onErrors) => {
-    backend.lesionService.removeLesionToPlayer(playerId, lesionId, onSuccess, onErrors);
+    backend.lesionService.removeLesionToPlayer(playerId, lesionId, onSuccess(), onErrors);
     return {type: actionTypes.REMOVE_LESION_TO_PLAYER_COMPLETED};
 }

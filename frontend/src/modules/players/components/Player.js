@@ -7,7 +7,8 @@ import avatar from '../../players/components/avatar.jpg';
 import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 import {FormattedMessage} from 'react-intl';
-
+import * as actionsLesion from '../../lesion/actions';
+import * as selectorsLesion from '../../lesion/selectors';
 
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
@@ -20,7 +21,7 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
   }
   
   const handleViewPlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}`)));
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
   }
   
   const handleChangeTeam = (playerId, id, dispatch, history) => {
@@ -28,7 +29,11 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
     window.location.reload('true');
   }
 
-function PlayerByDni({player, dni, teamsList, fallback, dispatch, history}) {
+  const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
+    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+  }
+
+function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, history}) {
     if (!player) {
         dispatch(actions.findPlayerByDniOfTeam(player.teamId, dni,
             () => history.push(`/players/dni/result/${dni.trim()}`)
@@ -54,18 +59,27 @@ function PlayerByDni({player, dni, teamsList, fallback, dispatch, history}) {
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border">Notes</button>
-                <button class="btn-player draw-border">Lesion</button>
+                <button class="btn-player draw-border">Add Note</button>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Team</button>
+                <button class="btn-player draw-border">Add Lesion</button>
+                  <div class="dropdown-content">
+                              {lesionList.map(lesion => 
+                                          <a type="button" onClick={() => handleAddLesionToPlayer(player.id, lesion.id, player.teamId, dispatch, history)}> 
+                                              {lesion.id} : {"  "}{lesion.lesionName}
+                                          </a>)}
+                    </div>
+                    </div>                
+                <div class="dropdown">
+                <button class="btn-player draw-border">Change Team</button>
                             <div class="dropdown-content">
                             {teamsList.map(team => 
                                         <a type="button" onClick={() => handleChangeTeam(player.id, team.id, dispatch, history)}> 
                                             {team.id} : {"  "}{team.teamName}
                                         </a>)}
                             </div>
-                        </div>
-
+                </div>
+                <button class="btn-player draw-border">My Notes</button>
+                <button class="btn-player draw-border">My Lesion</button>
               </div>
             </div>
             </div>
@@ -80,6 +94,8 @@ const Player = ({player, dni}) => {
     const history = useHistory();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
+    const lesions = useSelector(selectorsLesion.getAllLesion);
+
     const teamsList = teams.teams;
 
     if(!teamsList) {
@@ -87,11 +103,17 @@ const Player = ({player, dni}) => {
         return "Loading...";
     }
 
+    const lesionList = lesions.lesions;
+
+    if(!lesionList) {
+        dispatch(actionsLesion.findAllLesion());
+        return "Loading...";
+    }
 
 
     return(
         <div className="card-group">
-          <PlayerByDni player={player} dni={dni} teamsList={teamsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayerByDni player={player} lesionList={lesionList} dni={dni} teamsList={teamsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 }

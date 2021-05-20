@@ -23,16 +23,21 @@ const handleUpdatePlayer = (playerId, id, dispatch, history) => {
 }
 
 const handleViewPlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}`)));
+  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
 }
 
 const handleChangeTeam = (playerId, id, dispatch, history) => {
   dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
+  dispatch(actionsTeams.findTeamById(id));
   window.location.reload('true');
 }
 
 const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
   dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+}
+
+const handleFindLesionByPlayer = (playerId, dispatch, history) => {
+  dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
 }
 
 function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, history}) {
@@ -60,9 +65,9 @@ function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, his
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border">Notes</button>
+                <button class="btn-player draw-border">Add Note</button>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Lesion</button>
+                <button class="btn-player draw-border">Add Lesion</button>
                   <div class="dropdown-content">
                               {lesionList.map(lesion => 
                                           <a type="button" onClick={() => handleAddLesionToPlayer(item.id, lesion.id, id, dispatch, history)}> 
@@ -72,14 +77,16 @@ function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, his
                     </div>
 
                 <div class="dropdown">
-                <button class="btn-player draw-border">Team</button>
+                <button class="btn-player draw-border">Change Team</button>
                             <div class="dropdown-content">
                             {teamsList.map(team => 
                                         <a type="button" onClick={() => handleChangeTeam(item.id, team.id, dispatch, history)}> 
                                             {team.id} : {"  "}{team.teamName}
                                         </a>)}
                             </div>
-                        </div>
+                </div>
+                <button class="btn-player draw-border">My Notes</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
 
               </div>
             </div>

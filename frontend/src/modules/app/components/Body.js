@@ -31,12 +31,13 @@ import LesionHome from '../../lesion/components/LesionHome';
 import AddLesion from '../../lesion/components/AddLesion';
 import UpdateLesion from '../../lesion/components/UpdateLesion';
 import LesionView from '../../lesion/components/LesionView';
+import LesionHomeByPlayer from '../../lesion/components/LesionHomeByPlayer';
 
 const Body = () => {
 
     const loggedIn = useSelector(users.selectors.isLoggedIn);
     
-   return (
+    return (
 
         <div className="hero-container">
             {/* <video src={video} autoPlay loop muted /> */}
@@ -68,7 +69,9 @@ const Body = () => {
                 {loggedIn && <Route exact path="/players/dni/result/:dni"><FindPlayerByDniResult/></Route>}
                 {loggedIn && <Route exact path="/players/completedName/result/:id:playerName:primaryLastName:secondLastName"><FindPlayersByCompletedNameResult/></Route>}
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
+                {loggedIn && <Route exact path="/players/view/:id:playerId"><PlayerView/></Route>}
                 {loggedIn && <Route exact path="/lesion/home"><LesionHome/></Route>}
+                {loggedIn && <Route exact path="/lesion/home/player/:playerId"><LesionHomeByPlayer/></Route>}
                 {loggedIn && <Route exact path="/lesion/addLesion"><AddLesion/></Route>}
                 {loggedIn && <Route exact path="/lesion/update/:id"><UpdateLesion/></Route>}
                 {loggedIn && <Route exact path="/lesion/view/:id"><LesionView/></Route>}
