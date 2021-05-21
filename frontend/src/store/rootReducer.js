@@ -6,6 +6,7 @@ import teams from '../modules/teams';
 import seasons from '../modules/seasons';
 import players from '../modules/players';
 import lesion from '../modules/lesion';
+import notes from '../modules/notes';
 
 const rootReducer = combineReducers({
     app: app.reducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     teams: teams.reducer,
     seasons: seasons.reducer,
     players: players.reducer,
-    lesion: lesion.reducer
+    lesion: lesion.reducer,
+    notes: notes.reducer
 });
 
 export default rootReducer;

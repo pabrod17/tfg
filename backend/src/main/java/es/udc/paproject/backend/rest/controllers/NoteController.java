@@ -69,8 +69,8 @@ public class NoteController {
         return toNoteDtos(noteService.findNotesByPlayerAndDates(playerId, toLocalDateTime(startDate), toLocalDateTime(endDate)));
     } 
 
-    @PostMapping("")
-    public NoteDto addNoteToPlayer(@RequestParam Long playerId, @RequestParam String title, @RequestParam String description)
+    @PostMapping("/{playerId}/addNoteToPlayer")
+    public NoteDto addNoteToPlayer(@PathVariable Long playerId, @RequestParam String title, @RequestParam String description)
             throws InstanceNotFoundException {
         return toNoteDto(noteService.addNoteToPlayer(playerId, title, description));
     }

@@ -11,6 +11,7 @@ import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 import * as actionsLesion from '../../lesion/actions';
 import * as selectorsLesion from '../../lesion/selectors';
+import * as actionsNotes from '../../notes/actions';
 //https://freefrontend.com/css-cards/
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
@@ -40,6 +41,14 @@ const handleFindLesionByPlayer = (playerId, dispatch, history) => {
   dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
 }
 
+const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
+  console.log("player(12) --> " + playerId);
+  console.log("team(1) --> " + id);
+  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+}
+
+
+
 function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
@@ -65,7 +74,7 @@ function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, his
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border">Add Note</button>
+                <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}>Add Note</button>
                 <div class="dropdown">
                 <button class="btn-player draw-border">Add Lesion</button>
                   <div class="dropdown-content">
@@ -85,7 +94,7 @@ function PlayersList({ items, lesionList, teamsList, id, fallback, dispatch, his
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border">My Notes</button>
+                <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}>My Notes</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
 
               </div>
