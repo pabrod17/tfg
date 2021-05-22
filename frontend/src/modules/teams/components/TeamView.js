@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 import basketball from './basketball.jpg';
 import * as actionSeasons from '../../seasons/actions';
 import * as actionPlayers from '../../players/actions';
+import * as actionPlays from '../../plays/actions';
 
 import {Grid} from '@material-ui/core';
 import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
@@ -44,6 +45,10 @@ const TeamView = () => {
 
     const handlePlayersHome = (id, dispatch, history) => {
         dispatch(actionPlayers.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
+    }
+
+    const handlePlaysHome = (id, dispatch, history) => {
+        dispatch(actionPlays.findPlaysByTeamId(id, () => history.push(`/plays/home/${id}`)));
     }
 
     function TeamView({team, dispatch}){
@@ -81,7 +86,7 @@ const TeamView = () => {
                                 <div class="card-view">
                                 <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
                                 <div class="card_inner">
-                                    <p class="text-primary-p">Plays</p>
+                                    <p class="text-primary-p" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}>Plays</p>
                                     <span class="font-bold text-title">340</span>
                                 </div>
                                 </div>

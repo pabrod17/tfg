@@ -61,7 +61,7 @@ const NotesHome = () => {
                                 className="needs-validation" noValidate 
                                 onSubmit={e => handleSubmit(e)}>
                                 <div>
-                                    <div className="col-md-3">
+                                    <div className="col-md-6">
                                         <input type="date" id="startDate" className="form-control"
                                             value={startDate}
                                             onChange={e => setStartDate(e.target.value)}

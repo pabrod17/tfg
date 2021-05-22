@@ -9,6 +9,8 @@ import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import * as actionsPlayers from '../../players/actions';
+import {FormattedDate} from 'react-intl';
+//https://formatjs.io/docs/react-intl/components/
 
 const handleViewPlayer = (playerId, id, dispatch, history) => {
 
@@ -16,8 +18,8 @@ const handleViewPlayer = (playerId, id, dispatch, history) => {
     dispatch(actionsPlayers.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
 }
 
-const handleRemoveNote = (noteId, playerId, dispatch, history) => {
-    dispatch(actions.removeNote(noteId, () => history.push(`/notes/home/${playerId}`)));
+const handleRemoveNote = (noteId, id, playerId, dispatch, history) => {
+    dispatch(actions.removeNote(noteId, () => history.push(`/notes/home/${id}${playerId}`)));
     window.location.reload('true');
 }
 
@@ -31,7 +33,7 @@ const handleViewNote = (noteId, dispatch, history) => {
 
 function NotesList({ items, playerId, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findNotesByPlayer(playerId, () => history.push(`/notes/home/${playerId}`)));
+        dispatch(actions.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -41,10 +43,18 @@ function NotesList({ items, playerId, id, fallback, dispatch, history}) {
               <div class="card hola pruebo">
                 <img src={notaLapiz} alt="Person" class="card__image"></img>
                 <p class="card__name">{item.title}</p>
+                <p class="card__name">                <FormattedDate
+                    value={ item.endDate }
+                    year="numeric"
+                    month="long"
+                    day="numeric"
+                /> 
+                </p>
+
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                <li><a type="button" onClick={() => handleRemoveNote(item.id, playerId, dispatch, history)}>
+                <li><a type="button" onClick={() => handleRemoveNote(item.id, id, playerId, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
                   <li><a type="button" onClick={() => handleViewNote(item.id, dispatch, history)}>
