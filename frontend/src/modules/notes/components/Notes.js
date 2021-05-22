@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
-import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import * as actionsPlayers from '../../players/actions';
 
 const handleViewPlayer = (playerId, id, dispatch, history) => {
@@ -39,7 +39,7 @@ function NotesList({ items, playerId, id, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={lesionPierna} alt="Person" class="card__image"></img>
+                <img src={notaLapiz} alt="Person" class="card__image"></img>
                 <p class="card__name">{item.title}</p>
                 <div class="grid-container">
                 </div>
