@@ -16,6 +16,18 @@ const handleViewPlayer = (playerId, id, dispatch, history) => {
     dispatch(actionsPlayers.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
 }
 
+const handleRemoveNote = (noteId, playerId, dispatch, history) => {
+    dispatch(actions.removeNote(noteId, () => history.push(`/notes/home/${playerId}`)));
+    window.location.reload('true');
+}
+
+const handleUpdateNote = (noteId, id, dispatch, history) => {
+    dispatch(actions.findNoteById(noteId, () => history.push(`/notes/update/${id}${noteId}`)));
+}
+
+const handleViewNote = (noteId, dispatch, history) => {
+    dispatch(actions.findNoteById(noteId, () => history.push(`/notes/view/${noteId}`)));
+  }
 
 function NotesList({ items, playerId, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
@@ -32,12 +44,12 @@ function NotesList({ items, playerId, id, fallback, dispatch, history}) {
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                <li><a type="button" >
+                <li><a type="button" onClick={() => handleRemoveNote(item.id, playerId, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
-                  <li><a type="button" >
+                  <li><a type="button" onClick={() => handleViewNote(item.id, dispatch, history)}>
                     <i class="fa fa-address-book"></i></a></li>
-                    <li><a type="button" >
+                    <li><a type="button" onClick={() => handleUpdateNote(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>

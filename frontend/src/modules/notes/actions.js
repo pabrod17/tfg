@@ -27,7 +27,7 @@ export const findNoteById = (noteId, onSuccess, onErrors) => dispatch => {
             onSuccess();
         },
         onErrors)
-};
+}
 
 const findNotesByPlayerAndDatesCompleted = notes => ({
     type: actionTypes.FIND_NOTES_BY_PLAYER_AND_DATES_COMPLETED,

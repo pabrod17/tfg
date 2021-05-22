@@ -14,10 +14,10 @@ export const findAPlayersOfTeam = (teamId, onSuccess, onErrors) =>
 
 export const findPlayersByPositionAndTeam = (teamId, position, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/position?position=${position}`, config('GET'), onSuccess, onErrors);
-//SIN HACER
+
 export const findPlayersrWithLesionOfTeam = (teamId, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/lesion`, config('GET'), onSuccess, onErrors);
-//SIN HACER
+
 export const findPlayersWithOneTypeLesion = (teamId, typeLesion, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/typeLesion?typeLesion=${typeLesion}`, config('GET'), onSuccess, onErrors);
 
