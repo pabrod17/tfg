@@ -38,9 +38,8 @@ export const findPlaysByTypeAndTeam = (teamId, playType, onSuccess, onErrors) =>
     backend.playService.findPlaysByTypeAndTeam(teamId, playType,
         plays => {
             dispatch(findPlaysByTypeAndTeamCompleted(plays));
-            onSuccess();
-        },
-        onErrors)
+        },onSuccess,
+        onErrors);
 };
 
 const addPlayCompleted = play => ({

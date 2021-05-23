@@ -10,13 +10,29 @@ import {FormattedMessage} from 'react-intl';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import * as actionsPlayers from '../../players/actions';
 import {FormattedDate} from 'react-intl';
+import * as actionsTeams from '../../teams/actions';
+import * as selectorsTeams from '../../teams/selectors';
 
+const handleRemovePlay = (playId, id, dispatch, history) => {
+    dispatch(actions.removePlayToTeam(playId, id, () => history.push(`/plays/home/${id}`)));
+    window.location.reload('true');
+}
 
+const handleUpdatePlay = (playId, id, dispatch, history) => {
+    dispatch(actions.findPlayById(playId, () => history.push(`/plays/update/${id}`)));
+  }
 
+  const handleAddPlayToTeam = (playId, teamId, id, dispatch, history) => {
+      if(id != teamId){
+        dispatch(actions.addPlayToTeam(teamId, playId, () => history.push(`/plays/home/${id}`)));
+      }
+  }
 
+  const handleViewPlay = (playId, dispatch, history) => {
+    dispatch(actions.findPlayById(playId, () => history.push(`/plays/view/${playId}`)));
+  }
 
-
-function PlaysList({ items, id, fallback, dispatch, history}) {
+function PlaysList({ items, id, teamsList, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findPlaysByTeamId(id, () => history.push(`/plays/home/${id}`)));
         return fallback;
@@ -26,21 +42,29 @@ function PlaysList({ items, id, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={notaLapiz} alt="Person" class="card__image"></img>
+                <img src={notaLapiz} alt="Person" class="card__image jugando"></img>
                 <p class="card__name">{item.title}</p>
                 <div class="grid-container">
                 </div>
-                <ul class="social-icons">
-                <li><a type="button">
+                <ul class="social-icons jugadagrande">
+                <li><a type="button" onClick={() => handleRemovePlay(item.id, id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
-                  <li><a type="button">
+                  <li><a type="button" onClick={() => handleViewPlay(item.id, dispatch, history)}>
                     <i class="fa fa-address-book"></i></a></li>
-                    <li><a type="button">
+                    <li><a type="button" onClick={() => handleUpdatePlay(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border">Player</button>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Change Team</button>
+                            <div class="dropdown-content">
+                            {teamsList.map(team => 
+                                        <a type="button" onClick={() => handleAddPlayToTeam(item.id, team.id, id, dispatch, history)}> 
+                                            {team.id} : {"  "}{team.teamName}
+                                        </a>)}
+                            </div>
+                </div>
               </div>
             </div>
           </div>;
@@ -56,9 +80,18 @@ const Plays = ({plays, id}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const teams = useSelector(selectorsTeams.getAllTeams);
+
+    const teamsList = teams.teams;
+
+    if(!teamsList) {
+        dispatch(actionsTeams.findAllTeams());
+        return "Loading...";
+    }
+
     return(
         <div className="card-group">
-          <PlaysList items={plays} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlaysList items={plays} id={id} teamsList={teamsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 }

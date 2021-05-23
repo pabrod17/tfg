@@ -38,6 +38,8 @@ import UpdateNote from '../../notes/components/UpdateNote';
 import NoteView from '../../notes/components/NoteView';
 import PlaysHome from '../../plays/components/PlaysHome';
 import AddPlay from '../../plays/components/AddPlay';
+import UpdatePlay from '../../plays/components/UpdatePlay';
+import PlayView from '../../plays/components/PlayView';
 
 const Body = () => {
 
@@ -86,7 +88,9 @@ const Body = () => {
                 {loggedIn && <Route exact path="/notes/update/:id:noteId"><UpdateNote/></Route>}
                 {loggedIn && <Route exact path="/notes/view/:noteId"><NoteView/></Route>}
                 {loggedIn && <Route exact path="/plays/home/:id"><PlaysHome/></Route>}
+                {loggedIn && <Route exact path="/plays/update/:id"><UpdatePlay/></Route>}
                 {loggedIn && <Route exact path="/plays/addPlay/:id"><AddPlay/></Route>}
+                {loggedIn && <Route exact path="/plays/view/:playId"><PlayView/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

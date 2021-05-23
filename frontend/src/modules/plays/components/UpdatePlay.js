@@ -1,28 +1,31 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
+import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
 
-const AddPlay = () => {
+
+const UpdatePlay = () => {
+
+    const play = useSelector(selectors.getPlay);
     const {id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const [title, setTitle] = useState("");
-    const [playType, setPlayType] = useState("");
-    const [gesture, setGesture] = useState("");
-    const [pointGuardText, setPointGuardText] = useState("");
-    const [shootingGuardText, setShootingGuardText] = useState("");
-    const [smallForwardText, setSmallForwardText] = useState("");
-    const [powerForwardText, setPowerForwardText] = useState("");
-    const [centerText, setCenterText] = useState("");
+    const [title, setTitle] = useState(play.title);
+    const [playType, setPlayType] = useState(play.playType);
+    const [gesture, setGesture] = useState(play.gesture);
+    const [pointGuardText, setPointGuardText] = useState(play.pointGuardText);
+    const [shootingGuardText, setShootingGuardText] = useState(play.shootingGuardText);
+    const [smallForwardText, setSmallForwardText] = useState(play.smallForwardText);
+    const [powerForwardText, setPowerForwardText] = useState(play.powerForwardText);
+    const [centerText, setCenterText] = useState(play.centerText);
     const [backendErrors, setBackendErrors] = useState(null);
     let form;
 
-    
     const attack = "Attack";
     const defense = "Defense";
 
@@ -32,7 +35,7 @@ const AddPlay = () => {
     
         if (form.checkValidity()) {
             
-            dispatch(actions.addPlay(id, title.trim(), playType,
+            dispatch(actions.updatePlay(play.id, title.trim(), playType,
             gesture.trim(), pointGuardText.trim(), shootingGuardText.trim(), smallForwardText.trim(), powerForwardText.trim(), centerText.trim(),
             () => reloadWindow(id),
             errors => setBackendErrors(errors),
@@ -44,7 +47,7 @@ const AddPlay = () => {
         }
 
         const reloadWindow = (id) =>{
-            history.push(`/plays/addPlay/${id}`);
+            history.push(`/plays/home/${id}`);
             window.location.reload('true');
         }
 
@@ -54,7 +57,7 @@ const AddPlay = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-dark text-light border-dark">
                     <h5 className="">
-                        Add Play
+                        Update Play
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
@@ -190,12 +193,6 @@ const AddPlay = () => {
                 </div>
             </div>
         );
-
-
-
-
-
-
 }
 
-export default AddPlay;
+export default UpdatePlay;

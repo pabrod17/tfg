@@ -21,6 +21,7 @@ const PlaysHome = () => {
     const defense = "Defense";
 
     const handleSetTypePlay = (id, playType, dispatch) => {
+        console.log(playType);
         dispatch(actions.findPlaysByTypeAndTeam(id, playType));
     }
 
@@ -37,8 +38,8 @@ const PlaysHome = () => {
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetTypePlay(attack, dispatch)}>Attack</a>
-                            <a type="button" onClick={() => handleSetTypePlay(defense, dispatch)}>Defense</a>
+                            <a type="button" onClick={() => handleSetTypePlay(id, attack, dispatch)}>Attack</a>
+                            <a type="button" onClick={() => handleSetTypePlay(id, defense, dispatch)}>Defense</a>
                             </div>
                         </div>
                     </div>

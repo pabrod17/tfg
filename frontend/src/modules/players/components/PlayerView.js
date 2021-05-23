@@ -127,8 +127,12 @@ const PlayerView = () => {
 
 
 
-                    <div class="card bg-dark text-white " >
-                        <img className="holas " src={avatar}/>
+                    <div class="card bg-dark text-white p-3" >
+                        <div className="jijoneca">
+                        <img className="holas  " src={avatar}/>
+
+                        </div>
+
                         <div class="card-header text-center">Name: {player.playerName}</div>
                         <div class="card-body">
                             <p class="card-text">PrimaryLastName: </p>

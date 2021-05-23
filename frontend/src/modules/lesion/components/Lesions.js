@@ -33,11 +33,11 @@ function LesionsList({ items, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={lesionPierna} alt="Person" class="card__image"></img>
+                <img src={lesionPierna} alt="Person" class="card__image lesionando"></img>
                 <p class="card__name">{item.lesionName}</p>
                 <div class="grid-container">
                 </div>
-                <ul class="social-icons">
+                <ul class="social-icons lesiongrande">
                 <li><a type="button" onClick={() => handleRemoveLesion(item.id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
