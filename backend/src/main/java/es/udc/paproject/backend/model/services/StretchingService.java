@@ -4,36 +4,37 @@ import java.util.List;
 
 import es.udc.paproject.backend.model.entities.Stretching;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.UsedStretchingException;
 
 public interface StretchingService {
     
     Stretching addStretching(String stretchingName, String description, String stretchingType) throws InstanceNotFoundException;
 
-    void addStretchingToPlayer(Long playerId, Long stretchingId);
+    void addStretchingToPlayer(Long playerId, Long stretchingId) throws InstanceNotFoundException;
 
-    void addStretchingToTraining(Long trainingId, Long stretchingId);
+    void addStretchingToTraining(Long trainingId, Long stretchingId) throws InstanceNotFoundException;
 
-    void addStretchingToMatch(Long matchId, Long stretchingId);
+    void addStretchingToGame(Long gameiId, Long stretchingId) throws InstanceNotFoundException;
 
-    Stretching findStretchingById(Long stretchingId);
+    Stretching findStretchingById(Long stretchingId) throws InstanceNotFoundException;
 
-    List<Stretching> findAllStretchings();
+    List<Stretching> findAllStretchings() throws InstanceNotFoundException;
 
-    List<Stretching> findStretchingsByType(String Stretching);
+    List<Stretching> findStretchingsByType(String stretchingType) throws InstanceNotFoundException;
 
-    List<Stretching> findStretchingsByPlayerId(Long playerId);
+    List<Stretching> findStretchingsByPlayerId(Long playerId) throws InstanceNotFoundException;
 
-    List<Stretching> findStretchingsByTrainingId(Long trainingId);
+    List<Stretching> findStretchingsByTrainingId(Long trainingId) throws InstanceNotFoundException;
 
-    List<Stretching> findStretchingsByMatchId(Long matchId);
+    List<Stretching> findStretchingsByGameId(Long gameId) throws InstanceNotFoundException;
 
-    void removeStretching(Long stretchingId);
+    void removeStretching(Long stretchingId) throws InstanceNotFoundException, UsedStretchingException;
 
-    void removeStretchingToPlayer(Long stretchingId, Long playerId);
+    void removeStretchingToPlayer(Long stretchingId, Long playerId) throws InstanceNotFoundException;
 
-    void removeStretchingToTraining(Long stretchingId, Long trainingId);
+    void removeStretchingToTraining(Long stretchingId, Long trainingId) throws InstanceNotFoundException;
 
-    void removeStretchingToMatch(Long stretchingId, Long matchId);
+    void removeStretchingToGame(Long stretchingId, Long gameId) throws InstanceNotFoundException;
 
-    Stretching updatStretching(Long trainingId, String stretchingName, String description, String stretchingType);
+    Stretching updatStretching(Long stretchingId, String stretchingName, String description, String stretchingType) throws InstanceNotFoundException;
 }
