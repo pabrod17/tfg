@@ -9,18 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class MatchExercise {
+public class GameStretching {
     
     private Long id;
-    private Match match;
-    private Exercise exercise;
+    private Game game;
+    private Stretching stretching;
 
-    public MatchExercise() {
+    public GameStretching() {
     }
 
-    public MatchExercise(Match match, Exercise exercise) {
-        this.match = match;
-        this.exercise = exercise;
+    public GameStretching(Game game, Stretching stretching) {
+        this.game = game;
+        this.stretching = stretching;
     }
 
     @Id
@@ -34,23 +34,23 @@ public class MatchExercise {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "matchId", nullable = true)
-    public Match getMatch() {
-        return match;
+    @JoinColumn(name = "gameId", nullable = true)
+    public Game getGame() {
+        return game;
     }
 
-    public void setMatch(Match match) {
-        this.match = match;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exerciseId", nullable = true)
-    public Exercise getExercise() {
-        return exercise;
+    @JoinColumn(name = "stretchingId", nullable = true)
+    public Stretching getStretching() {
+        return stretching;
     }
 
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
+    public void setStretching(Stretching stretching) {
+        this.stretching = stretching;
     }
 
     

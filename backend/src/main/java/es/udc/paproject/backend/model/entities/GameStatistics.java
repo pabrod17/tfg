@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class MatchStatistics {
+public class GameStatistics {
 
     private Long id;
     private Integer totalPoints;
-    private Float duration;
+    private Integer durationMinutes;
     private Integer totalThreePointShots;
     private Integer totalSetShots;
     private Integer totalFreeShots;
@@ -32,10 +32,10 @@ public class MatchStatistics {
     private Integer totalTechnicalFoulsRival;
     private Integer totalUnsportsmanlikeFoulsRival;
 
-    public MatchStatistics() {
+    public GameStatistics() {
     }
 
-    public MatchStatistics(Integer totalPoints, Float duration, Integer totalThreePointShots, Integer totalSetShots,
+    public GameStatistics(Integer totalPoints, Integer durationMinutes, Integer totalThreePointShots, Integer totalSetShots,
             Integer totalFreeShots, Integer totalRebounds, Integer totalBlockedShot, Integer totalAssists,
             Integer totalPersonalFouls, Integer totalTechnicalFouls, Integer totalUnsportsmanlikeFouls,
             Integer totalPointsRival, Integer totalThreePointShotsRival, Integer totalSetShotsRival,
@@ -43,7 +43,7 @@ public class MatchStatistics {
             Integer totalAssistsRival, Integer totalPersonalFoulsRival, Integer totalTechnicalFoulsRival,
             Integer totalUnsportsmanlikeFoulsRival) {
         this.totalPoints = totalPoints;
-        this.duration = duration;
+        this.durationMinutes = durationMinutes;
         this.totalThreePointShots = totalThreePointShots;
         this.totalSetShots = totalSetShots;
         this.totalFreeShots = totalFreeShots;
@@ -83,12 +83,12 @@ public class MatchStatistics {
         this.totalPoints = totalPoints;
     }
 
-    public Float getDuration() {
-        return duration;
+    public Integer getDurationMinutes() {
+        return durationMinutes;
     }
 
-    public void setDuration(Float duration) {
-        this.duration = duration;
+    public void setDurationMinutes(Integer durationMinutes) {
+        this.durationMinutes = durationMinutes;
     }
 
     public Integer getTotalThreePointShots() {

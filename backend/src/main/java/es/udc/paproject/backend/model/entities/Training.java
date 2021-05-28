@@ -15,7 +15,7 @@ public class Training {
     
     private Long id;
     private LocalDateTime trainingDate;
-    private Float duration;
+    private Integer durationMinutes;
     private String description;
     private String objective;
     private SeasonTeam seasonTeam;
@@ -23,10 +23,10 @@ public class Training {
     public Training() {
     }
 
-    public Training(LocalDateTime trainingDate, Float duration, String description, String objective,
+    public Training(LocalDateTime trainingDate, Integer durationMinutes, String description, String objective,
             SeasonTeam seasonTeam) {
         this.trainingDate = trainingDate;
-        this.duration = duration;
+        this.durationMinutes = durationMinutes;
         this.description = description;
         this.objective = objective;
         this.seasonTeam = seasonTeam;
@@ -50,12 +50,12 @@ public class Training {
         this.trainingDate = trainingDate;
     }
 
-    public Float getDuration() {
-        return duration;
+    public Integer getDurationMinutes() {
+        return durationMinutes;
     }
 
-    public void setDuration(Float duration) {
-        this.duration = duration;
+    public void setDurationMinutes(Integer durationMinutes) {
+        this.durationMinutes = durationMinutes;
     }
 
     public String getDescription() {

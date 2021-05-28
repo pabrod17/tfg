@@ -12,20 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Match {
+public class Game {
     
     private Long id;
-    private LocalDateTime matchDate;
+    private LocalDateTime gameDate;
     private String rival;
     private SeasonTeam seasonTeam;
-    private MatchStatistics statistics;
+    private GameStatistics gameStatistics;
     
 
-    public Match() {
+    public Game() {
     }
 
-    public Match(LocalDateTime matchDate, String rival, SeasonTeam seasonTeam) {
-        this.matchDate = matchDate;
+    public Game(LocalDateTime gameDate, String rival, SeasonTeam seasonTeam) {
+        this.gameDate = gameDate;
         this.rival = rival;
         this.seasonTeam = seasonTeam;
     }
@@ -40,12 +40,12 @@ public class Match {
         this.id = id;
     }
 
-    public LocalDateTime getMatchDate() {
-        return matchDate;
+    public LocalDateTime getGameDate() {
+        return gameDate;
     }
 
-    public void setMatchDate(LocalDateTime matchDate) {
-        this.matchDate = matchDate;
+    public void setGameDate(LocalDateTime gameDate) {
+        this.gameDate = gameDate;
     }
 
     public String getRival() {
@@ -67,12 +67,12 @@ public class Match {
     }
 
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name= "matchStatisticsId", nullable = true)
-    public MatchStatistics getStatistics() {
-        return statistics;
+	@JoinColumn(name= "gameStatisticsId", nullable = true)
+    public GameStatistics getGameStatistics() {
+        return gameStatistics;
     }
 
-    public void setStatistics(MatchStatistics statistics) {
-        this.statistics = statistics;
+    public void setGameStatistics(GameStatistics gameStatistics) {
+        this.gameStatistics = gameStatistics;
     }
 }

@@ -9,14 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class PlayerMatchStatistics {
+public class PlayerGameStatistics {
     
     private Long id;
     private Player player;
-    private Match match;
+    private Game game;
     
     private Integer totalPoints;
-    private Float minutes;
+    private Integer minutes;
     private Integer threePointShots;
     private Integer setShots;
     private Integer freeShots;
@@ -32,15 +32,15 @@ public class PlayerMatchStatistics {
     private Integer technicalFouls;
     private Integer unsportsmanlikeFouls;
 
-    public PlayerMatchStatistics() {
+    public PlayerGameStatistics() {
     }
 
-    public PlayerMatchStatistics(Player player, Match match, Integer totalPoints, Float minutes,
+    public PlayerGameStatistics(Player player, Game game, Integer totalPoints, Integer minutes,
             Integer threePointShots, Integer setShots, Integer freeShots, Integer failThreePointShots,
             Integer failSetShots, Integer failFreeShots, Integer rebounds, Integer blockedShot, Integer assists,
             Integer personalFouls, Integer technicalFouls, Integer unsportsmanlikeFouls) {
         this.player = player;
-        this.match = match;
+        this.game = game;
         this.totalPoints = totalPoints;
         this.minutes = minutes;
         this.threePointShots = threePointShots;
@@ -78,13 +78,13 @@ public class PlayerMatchStatistics {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "matchId", nullable = true)
-    public Match getMatch() {
-        return match;
+    @JoinColumn(name = "gameId", nullable = true)
+    public Game getGame() {
+        return game;
     }
 
-    public void setMatch(Match match) {
-        this.match = match;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public Integer getTotalPoints() {
@@ -95,11 +95,11 @@ public class PlayerMatchStatistics {
         this.totalPoints = totalPoints;
     }
 
-    public Float getMinutes() {
+    public Integer getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(Float minutes) {
+    public void setMinutes(Integer minutes) {
         this.minutes = minutes;
     }
 
