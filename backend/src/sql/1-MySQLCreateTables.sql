@@ -223,7 +223,7 @@ CREATE TABLE Stretching (
     id BIGINT NOT NULL AUTO_INCREMENT,
     stretchingName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     description VARCHAR(500) NOT NULL,
-    stretchingType    ENUM('Hamstrings','Buttocks', 'Adductors', 'Shoulder', 'Quadriceps', 'Back') NOT NULL,
+    stretchingType    ENUM('Hamstrings','Buttocks', 'Calf', 'Adductors', 'Shoulder', 'Quadriceps', 'Back', 'Pectoral', 'Crotch', 'Triceps') NOT NULL,
     CONSTRAINT StretchingPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
