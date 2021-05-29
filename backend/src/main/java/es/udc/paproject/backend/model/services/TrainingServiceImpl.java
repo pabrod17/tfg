@@ -5,11 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.paproject.backend.model.entities.Player;
+import es.udc.paproject.backend.model.entities.PlayerDao;
+import es.udc.paproject.backend.model.entities.PlayerTraining;
+import es.udc.paproject.backend.model.entities.PlayerTrainingDao;
 import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
@@ -28,6 +34,12 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private TrainingDao trainingDao;
+
+    @Autowired
+    private PlayerDao playerDao;
+
+    @Autowired
+    private PlayerTrainingDao playerTrainingDao;
 
     @Autowired
     private SeasonDao seasonDao;
@@ -64,6 +76,24 @@ public class TrainingServiceImpl implements TrainingService {
                 Training training = new Training(trainingDate, durationMinutes, description, objective, seasonTeams.get(0));
                 trainingDao.save(training);
         return training;
+    }
+
+    @Override
+    public void addPlayerToTraining(Long trainingId, Long playerId) throws InstanceNotFoundException {
+
+        if (!trainingDao.existsById(trainingId)) {
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        
+        Training training = trainingDao.findById(trainingId).get();
+        Player player = playerDao.findById(playerId).get();
+
+        PlayerTraining playerTraining =  new PlayerTraining(player, training);
+
+        playerTrainingDao.save(playerTraining);
     }
 
     @Override

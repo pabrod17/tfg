@@ -12,6 +12,8 @@ public interface TrainingService {
     //Busco un SeasonTeam con el teamId y cojo ese
     Training addTraining(Long teamId, Long seasonId, LocalDateTime trainingDate, Integer durationMinutes, String description, String objective) throws InstanceNotFoundException;
 
+    void addPlayerToTraining(Long trainingId, Long playerId) throws InstanceNotFoundException;
+
     Training findTrainingById(Long trainingId) throws InstanceNotFoundException;
 
     List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
