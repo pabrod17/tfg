@@ -9,13 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.paproject.backend.model.entities.GameDao;
 import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.PlayerDao;
+import es.udc.paproject.backend.model.entities.PlayerGameStatistics;
+import es.udc.paproject.backend.model.entities.PlayerGameStatisticsDao;
 import es.udc.paproject.backend.model.entities.PlayerLesion;
 import es.udc.paproject.backend.model.entities.PlayerLesionDao;
+import es.udc.paproject.backend.model.entities.PlayerTraining;
+import es.udc.paproject.backend.model.entities.PlayerTrainingDao;
 import es.udc.paproject.backend.model.entities.Position;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.TeamDao;
+import es.udc.paproject.backend.model.entities.TrainingDao;
 import es.udc.paproject.backend.model.exceptions.IncorrectDniException;
 import es.udc.paproject.backend.model.exceptions.IncorrectEmailException;
 import es.udc.paproject.backend.model.exceptions.IncorrectPhoneNumberException;
@@ -31,6 +37,18 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     private PlayerDao playerDao;
+
+    @Autowired
+    private TrainingDao trainingDao;
+
+    @Autowired
+    private PlayerTrainingDao playerTrainingDao;
+
+    @Autowired
+    private GameDao gameDao;
+
+    @Autowired
+    private PlayerGameStatisticsDao playerGameStatisticsDao;
 
     @Autowired
     private PlayerLesionDao playerLesionDao;
@@ -229,6 +247,48 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         return playerFound;
+    }
+
+    @Override
+    public List<Player> findPlayersByTraining(Long trainingId) throws InstanceNotFoundException {
+
+        if (!trainingDao.existsById(trainingId)) {
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+        List<Player> players = new ArrayList<>();
+
+        List<PlayerTraining> playerTrainings =playerTrainingDao.findByTrainingId(trainingId);
+        for (PlayerTraining playerTraining : playerTrainings) {
+            if (playerTraining.getPlayer() != null) {
+                players.add(playerTraining.getPlayer());
+            }
+        }
+
+        if (players.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        return players;
+    }
+
+    @Override
+    public List<Player> findPlayersByGame(Long gameId) throws InstanceNotFoundException {
+
+        if (!gameDao.existsById(gameId)) {
+            throw new InstanceNotFoundException("project.entities.game");
+        }
+
+        List<Player> players = new ArrayList<>();
+        List<PlayerGameStatistics> playerGameStatistics =playerGameStatisticsDao.findByGameId(gameId);
+        for (PlayerGameStatistics playerGameStatistic : playerGameStatistics) {
+            if (playerGameStatistic.getPlayer() != null) {
+                players.add(playerGameStatistic.getPlayer());
+            }
+        }
+
+        if (players.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        return players;
     }
 
     @Override

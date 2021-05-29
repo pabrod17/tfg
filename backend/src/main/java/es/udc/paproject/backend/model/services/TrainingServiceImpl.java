@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -105,6 +103,27 @@ public class TrainingServiceImpl implements TrainingService {
         Training training = trainingDao.findById(trainingId).get();
 
         return training;
+    }
+
+    @Override
+    public List<Training> findTrainingsByPlayerId(Long playerId) throws InstanceNotFoundException {
+
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+
+        List<Training> trainings = new ArrayList<>();
+        List<PlayerTraining> playerTrainings =playerTrainingDao.findByPlayerId(playerId);
+        for (PlayerTraining playerTraining : playerTrainings) {
+            if (playerTraining.getTraining() != null) {
+                trainings.add(playerTraining.getTraining());
+            }
+        }
+
+        if (trainings.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+        return trainings;
     }
 
     @Override

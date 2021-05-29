@@ -16,12 +16,14 @@ public interface TrainingService {
 
     Training findTrainingById(Long trainingId) throws InstanceNotFoundException;
 
+    List<Training> findTrainingsByPlayerId(Long playerId) throws InstanceNotFoundException;
+
     List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
 
     List<Training> findTrainingsByTeamId(Long teamId) throws InstanceNotFoundException;
 
     List<Training> findTrainingsBySeasonId(Long seasonId) throws InstanceNotFoundException;
-
+    //no pasar al front. Usar las dos anteriores
     List<Training> findTrainingsByTeamIdAndSeasonId(Long teamId, Long seasonId) throws InstanceNotFoundException;
 
     void removeTraining(Long trainingId) throws InstanceNotFoundException;
