@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Exercise;
 import es.udc.paproject.backend.model.entities.ExerciseDao;
@@ -13,18 +15,14 @@ import es.udc.paproject.backend.model.entities.Game;
 import es.udc.paproject.backend.model.entities.GameDao;
 import es.udc.paproject.backend.model.entities.GameExercise;
 import es.udc.paproject.backend.model.entities.GameExerciseDao;
-import es.udc.paproject.backend.model.entities.GameStretchingDao;
-import es.udc.paproject.backend.model.entities.Player;
-import es.udc.paproject.backend.model.entities.PlayerDao;
-import es.udc.paproject.backend.model.entities.PlayerStretchingDao;
 import es.udc.paproject.backend.model.entities.Training;
 import es.udc.paproject.backend.model.entities.TrainingDao;
 import es.udc.paproject.backend.model.entities.TrainingExercise;
 import es.udc.paproject.backend.model.entities.TrainingExerciseDao;
-import es.udc.paproject.backend.model.entities.TrainingStretchingDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.UsedExerciseException;
-
+@Service
+@Transactional
 public class ExerciseServiceImpl implements ExerciseService {
 
 

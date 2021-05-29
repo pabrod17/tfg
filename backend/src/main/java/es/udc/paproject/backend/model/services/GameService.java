@@ -9,12 +9,12 @@ import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
 public interface GameService {
     
-    Game addGame(Long teamId, Long seasonId, LocalDateTime gameDate, String rival);
+    Game addGame(Long teamId, Long seasonId, LocalDateTime gameDate, String rival) throws InstanceNotFoundException;
 
     //solo añado el obj jugador y el partido a la tabla playerGame
     void addPlayerToGame(Long gameId, Long playerId) throws InstanceNotFoundException;
 
-    Game findGameById(Long gameId);
+    Game findGameById(Long gameId) throws InstanceNotFoundException;
 
     List<Game> findGamesByPlayerId(Long playerId) throws InstanceNotFoundException;
 
@@ -29,5 +29,5 @@ public interface GameService {
 
     void removeGame(Long gameId) throws InstanceNotFoundException;
 
-    Game updateGame(Long gameId, LocalDateTime gameDate, Integer rival) throws InstanceNotFoundException;
+    Game updateGame(Long gameId, LocalDateTime gameDate, String rival) throws InstanceNotFoundException;
 }

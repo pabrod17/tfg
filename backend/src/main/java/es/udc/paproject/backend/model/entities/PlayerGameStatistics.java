@@ -35,6 +35,11 @@ public class PlayerGameStatistics {
     public PlayerGameStatistics() {
     }
 
+    public PlayerGameStatistics(Player player, Game game) {
+        this.player = player;
+        this.game = game;
+    }
+
     public PlayerGameStatistics(Player player, Game game, Integer totalPoints, Integer minutes,
             Integer threePointShots, Integer setShots, Integer freeShots, Integer failThreePointShots,
             Integer failSetShots, Integer failFreeShots, Integer rebounds, Integer blockedShot, Integer assists,
@@ -56,6 +61,8 @@ public class PlayerGameStatistics {
         this.technicalFouls = technicalFouls;
         this.unsportsmanlikeFouls = unsportsmanlikeFouls;
     }
+
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
