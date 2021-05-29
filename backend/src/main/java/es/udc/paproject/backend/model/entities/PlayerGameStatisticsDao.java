@@ -9,4 +9,6 @@ public interface PlayerGameStatisticsDao extends PagingAndSortingRepository<Play
     List<PlayerGameStatistics> findByGameId(Long gameId);
 
     List<PlayerGameStatistics> findByPlayerId(Long playerId);
+
+    List<PlayerGameStatistics> findByPlayerIdAndGameId(Long playerId, Long gameId);
 }

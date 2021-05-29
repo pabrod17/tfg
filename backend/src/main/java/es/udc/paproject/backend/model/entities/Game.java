@@ -2,6 +2,7 @@ package es.udc.paproject.backend.model.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -66,7 +67,7 @@ public class Game {
         this.seasonTeam = seasonTeam;
     }
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name= "gameStatisticsId", nullable = true)
     public GameStatistics getGameStatistics() {
         return gameStatistics;
