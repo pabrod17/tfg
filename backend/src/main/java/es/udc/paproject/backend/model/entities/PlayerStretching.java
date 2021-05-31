@@ -49,7 +49,7 @@ public class PlayerStretching {
         return stretching;
     }
 
-    public void setStretchin(Stretching stretching) {
+    public void setStretching(Stretching stretching) {
         this.stretching = stretching;
     }
 }

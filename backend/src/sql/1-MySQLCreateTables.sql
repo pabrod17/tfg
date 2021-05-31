@@ -315,7 +315,7 @@ CREATE TABLE PlayerStretching (
     CONSTRAINT PlayerStretchingPK PRIMARY KEY (id),
     CONSTRAINT PlayerStretchingPlayerIdFK FOREIGN KEY(playerId)
         REFERENCES Player (id),
-    CONSTRAINT PlayerStretchingStretchingIdFK FOREIGN KEY(stretchingId)
+    CONSTRAINT PlayerStretchingcccStretchingIdFK FOREIGN KEY(stretchingId)
         REFERENCES Stretching (id)    
 ) ENGINE = InnoDB;
 

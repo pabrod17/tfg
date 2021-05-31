@@ -20,6 +20,7 @@ import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.TeamDao;
 import es.udc.paproject.backend.model.entities.Training;
 import es.udc.paproject.backend.model.entities.TrainingDao;
+import es.udc.paproject.backend.model.entities.UserDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
@@ -41,6 +42,10 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private SeasonDao seasonDao;
+
+    
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private SeasonTeamDao seasonTeamDao;
@@ -184,6 +189,32 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
+    public List<Training> findTrainingsByUserId(Long userId) throws InstanceNotFoundException {
+        
+        if (!userDao.existsById(userId)) {
+            throw new InstanceNotFoundException("project.entities.user");
+        }
+
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(userId);
+        List<Training> trainings = new ArrayList<>();
+        List<Training> trainings2 = new ArrayList<>();
+
+        for(SeasonTeam seasonTeam : seasonTeams){
+            trainings2 = trainingDao.findBySeasonTeamId(seasonTeam.getId());
+            for(Training training : trainings2){
+                trainings.add(training);
+            }
+        }
+
+        if (trainings.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+
+        trainings = trainings.stream().distinct().collect(Collectors.toList());
+        return trainings;
+    }
+
+    @Override
     public List<Training> findTrainingsByTeamId(Long teamId) throws InstanceNotFoundException {
 
             if (!teamDao.existsById(teamId)) {
@@ -301,4 +332,6 @@ public class TrainingServiceImpl implements TrainingService {
 
         return training;
     }
+
+
 }
