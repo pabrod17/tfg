@@ -19,6 +19,7 @@ import es.udc.paproject.backend.model.entities.SeasonDao;
 import es.udc.paproject.backend.model.entities.SeasonTeam;
 import es.udc.paproject.backend.model.entities.SeasonTeamDao;
 import es.udc.paproject.backend.model.entities.TeamDao;
+import es.udc.paproject.backend.model.entities.UserDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
 
@@ -43,6 +44,9 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     private PlayerGameStatisticsDao playerGameStatisticsDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Game addGame(Long teamId, Long seasonId, LocalDateTime gameDate, String rival)
@@ -184,6 +188,33 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public List<Game> findGamesByUserId(Long userId) throws InstanceNotFoundException {
+
+        if (!userDao.existsById(userId)) {
+            throw new InstanceNotFoundException("project.entities.user");
+        }
+
+        List<SeasonTeam> seasonTeams = seasonTeamDao.findByUserId(userId);
+
+        List<Game> games = new ArrayList<>();
+        List<Game> games2 = new ArrayList<>();
+
+        for(SeasonTeam seasonTeam : seasonTeams){
+            games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
+            for(Game game : games2){
+                games.add(game);
+            }
+        }
+
+        if (games.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.game");
+        }
+
+        games = games.stream().distinct().collect(Collectors.toList());
+        return games;
+    }
+
+    @Override
     public List<Game> findGamesByTeamId(Long teamId) throws InstanceNotFoundException {
 
         if (!teamDao.existsById(teamId)) {
@@ -290,7 +321,9 @@ public class GameServiceImpl implements GameService {
         if(rival != null)
             game.setRival(rival);
         gameDao.save(game);
-        return null;
+        return game;
     }
+
+
     
 }
