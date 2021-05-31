@@ -12,10 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.paproject.backend.model.entities.Game;
-import es.udc.paproject.backend.model.entities.Lesion;
 import es.udc.paproject.backend.model.entities.Player;
-import es.udc.paproject.backend.model.entities.PlayerLesion;
-import es.udc.paproject.backend.model.entities.PlayerLesionDao;
 import es.udc.paproject.backend.model.entities.Stretching;
 import es.udc.paproject.backend.model.entities.Team;
 import es.udc.paproject.backend.model.entities.Training;
@@ -25,9 +22,7 @@ import es.udc.paproject.backend.model.exceptions.IncorrectDniException;
 import es.udc.paproject.backend.model.exceptions.IncorrectEmailException;
 import es.udc.paproject.backend.model.exceptions.IncorrectPhoneNumberException;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
-import es.udc.paproject.backend.model.exceptions.UsedLesionException;
 import es.udc.paproject.backend.model.exceptions.UsedStretchingException;
-import es.udc.paproject.backend.model.services.LesionService;
 import es.udc.paproject.backend.model.services.PlayerService;
 import es.udc.paproject.backend.model.services.StretchingService;
 import es.udc.paproject.backend.model.services.TeamService;
@@ -344,8 +339,4 @@ public class StretchingServiceTest {
         
         assertThrows(UsedStretchingException.class, () -> stretchingService.removeStretching(stretching.getId()));
     }
-
-
-
-    
 }
