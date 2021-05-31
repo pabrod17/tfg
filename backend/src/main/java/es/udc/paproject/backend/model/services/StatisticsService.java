@@ -6,7 +6,7 @@ import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 
 public interface StatisticsService {
     
-    void addStatisticsToGame(Long gameId, Integer totalPoints, Integer durationMinutes, Integer totalThreePointShots, Integer totalSetShots,
+    GameStatistics addStatisticsToGame(Long gameId, Integer totalPoints, Integer durationMinutes, Integer totalThreePointShots, Integer totalSetShots,
     Integer totalFreeShots, Integer totalRebounds, Integer totalBlockedShot, Integer totalAssists,
     Integer totalPersonalFouls, Integer totalTechnicalFouls, Integer totalUnsportsmanlikeFouls,
     Integer totalPointsRival, Integer totalThreePointShotsRival, Integer totalSetShotsRival,
@@ -15,7 +15,7 @@ public interface StatisticsService {
     Integer totalUnsportsmanlikeFoulsRival) throws InstanceNotFoundException;
 
     //Aqui meto las estadisticas en la fila que cree en addPlayerToGame
-    void addStatisticsToPlayer(Long gameId, Long playerId, Integer totalPoints, Integer minutes,
+    PlayerGameStatistics addStatisticsToPlayerAndGame(Long gameId, Long playerId, Integer totalPoints, Integer minutes,
     Integer threePointShots, Integer setShots, Integer freeShots, Integer failThreePointShots,
     Integer failSetShots, Integer failFreeShots, Integer rebounds, Integer blockedShot, Integer assists,
     Integer personalFouls, Integer technicalFouls, Integer unsportsmanlikeFouls) throws InstanceNotFoundException;
@@ -25,12 +25,12 @@ public interface StatisticsService {
     GameStatistics findStatisticsByGame(Long gameId) throws InstanceNotFoundException;
 
     //se pone a nulo el objeto statisticas de game y luego se borra el obj gameStatistics
-    void removeStatisticsToGame(Long gameId, Long statisticsId) throws InstanceNotFoundException;
+    void removeStatisticsToGame(Long gameId) throws InstanceNotFoundException;
 
     //no se borra la relacion solo las estadisticas o se ponen a cero
     void removeStatisticsToPlayerOfGame(Long playerId, Long gameId) throws InstanceNotFoundException;
 
-    GameStatistics updateGameStatistics(Long gameId, Integer totalPoints, Integer durationMinutes, Integer totalThreePointShots, Integer totalSetShots,
+    GameStatistics updateGameStatistics(Long gameId, Long gameStatisticsId, Integer totalPoints, Integer durationMinutes, Integer totalThreePointShots, Integer totalSetShots,
     Integer totalFreeShots, Integer totalRebounds, Integer totalBlockedShot, Integer totalAssists,
     Integer totalPersonalFouls, Integer totalTechnicalFouls, Integer totalUnsportsmanlikeFouls,
     Integer totalPointsRival, Integer totalThreePointShotsRival, Integer totalSetShotsRival,

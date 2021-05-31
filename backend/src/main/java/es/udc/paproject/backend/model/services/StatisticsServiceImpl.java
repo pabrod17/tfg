@@ -32,7 +32,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     private GameStatisticsDao gameStatisticsDao;
 
     @Override
-    public void addStatisticsToGame(Long gameId, Integer totalPoints, Integer durationMinutes,
+    public GameStatistics addStatisticsToGame(Long gameId, Integer totalPoints, Integer durationMinutes,
             Integer totalThreePointShots, Integer totalSetShots, Integer totalFreeShots, Integer totalRebounds,
             Integer totalBlockedShot, Integer totalAssists, Integer totalPersonalFouls, Integer totalTechnicalFouls,
             Integer totalUnsportsmanlikeFouls, Integer totalPointsRival, Integer totalThreePointShotsRival,
@@ -48,11 +48,14 @@ public class StatisticsServiceImpl implements StatisticsService {
         Game game = gameDao.findById(gameId).get();
         //al tener cascade ALL lo creo statistics en game y ya se pasa a gameStatistics
         game.setGameStatistics(gameStatistics);
+        gameStatisticsDao.save(gameStatistics);
         gameDao.save(game);
+
+        return gameStatistics;
     }
 
     @Override
-    public void addStatisticsToPlayer(Long gameId, Long playerId, Integer totalPoints, Integer minutes,
+    public PlayerGameStatistics addStatisticsToPlayerAndGame(Long gameId, Long playerId, Integer totalPoints, Integer minutes,
             Integer threePointShots, Integer setShots, Integer freeShots, Integer failThreePointShots,
             Integer failSetShots, Integer failFreeShots, Integer rebounds, Integer blockedShot, Integer assists,
             Integer personalFouls, Integer technicalFouls, Integer unsportsmanlikeFouls)
@@ -111,6 +114,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         }
         
         playerGameStatisticsDao.save(playerGameStatistics.get(0));
+        return playerGameStatistics.get(0);
     }
 
     @Override
@@ -142,7 +146,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public void removeStatisticsToGame(Long gameId, Long statisticsId) throws InstanceNotFoundException {
+    public void removeStatisticsToGame(Long gameId) throws InstanceNotFoundException {
 
         if (!gameDao.existsById(gameId)) {
             throw new InstanceNotFoundException("project.entities.game");
@@ -185,7 +189,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public GameStatistics updateGameStatistics(Long gameId, Integer totalPoints, Integer durationMinutes,
+    public GameStatistics updateGameStatistics(Long gameId, Long gameStatisticsId, Integer totalPoints, Integer durationMinutes,
             Integer totalThreePointShots, Integer totalSetShots, Integer totalFreeShots, Integer totalRebounds,
             Integer totalBlockedShot, Integer totalAssists, Integer totalPersonalFouls, Integer totalTechnicalFouls,
             Integer totalUnsportsmanlikeFouls, Integer totalPointsRival, Integer totalThreePointShotsRival,
@@ -198,8 +202,82 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (!gameDao.existsById(gameId)) {
             throw new InstanceNotFoundException("project.entities.game");
         }
+        if (!gameStatisticsDao.existsById(gameStatisticsId)) {
+            throw new InstanceNotFoundException("project.entities.statistics");
+        }
+
+
+        GameStatistics gameStatistics = gameStatisticsDao.findById(gameStatisticsId).get();
+
+        if(totalPoints != null) {
+            gameStatistics.setTotalPoints(totalPoints);
+        }
+        if(durationMinutes != null) {
+            gameStatistics.setDurationMinutes(durationMinutes);
+        }
+        if(totalThreePointShots != null) {
+            gameStatistics.setTotalThreePointShots(totalThreePointShots);
+        }
+        if(totalSetShots != null) {
+            gameStatistics.setTotalSetShots(totalSetShots);
+        }
+        if(totalFreeShots != null) {
+            gameStatistics.setTotalFreeShots(totalFreeShots);
+        }
+        if(totalRebounds != null) {
+            gameStatistics.setTotalRebounds(totalRebounds);
+        }
+        if(totalBlockedShot != null) {
+            gameStatistics.setTotalBlockedShot(totalBlockedShot);
+        }
+        if(totalAssists != null) {
+            gameStatistics.setTotalAssists(totalAssists);
+        }
+        if(totalPersonalFouls != null) {
+            gameStatistics.setTotalPersonalFouls(totalPersonalFouls);
+        }
+        if(totalTechnicalFouls != null) {
+            gameStatistics.setTotalTechnicalFouls(totalTechnicalFouls);
+        }
+        if(totalUnsportsmanlikeFouls != null) {
+            gameStatistics.setTotalUnsportsmanlikeFouls(totalUnsportsmanlikeFouls);
+        }
+
+
+        if(totalPointsRival != null) {
+            gameStatistics.setTotalPointsRival(totalPointsRival);
+        }
+        if(totalThreePointShotsRival != null) {
+            gameStatistics.setTotalThreePointShotsRival(totalThreePointShotsRival);
+        }
+        if(totalSetShotsRival != null) {
+            gameStatistics.setTotalSetShotsRival(totalSetShotsRival);
+        }
+        if(totalFreeShotsRival != null) {
+            gameStatistics.setTotalFreeShotsRival(totalFreeShotsRival);
+        }
+        if(totalReboundsRival != null) {
+            gameStatistics.setTotalReboundsRival(totalReboundsRival);
+        }
+        if(totalBlockedShotsRival != null) {
+            gameStatistics.setTotalBlockedShotsRival(totalBlockedShotsRival);
+        }
+        if(totalAssistsRival != null) {
+            gameStatistics.setTotalAssistsRival(totalAssistsRival);
+        }
+        if(totalPersonalFoulsRival != null) {
+            gameStatistics.setTotalPersonalFoulsRival(totalPersonalFoulsRival);
+        }
+        if(totalTechnicalFoulsRival != null) {
+            gameStatistics.setTotalTechnicalFoulsRival(totalTechnicalFoulsRival);
+        }
+        if(totalUnsportsmanlikeFoulsRival != null) {
+            gameStatistics.setTotalUnsportsmanlikeFoulsRival(totalUnsportsmanlikeFoulsRival);
+        }
+
+        gameStatisticsDao.save(gameStatistics);
+        
         Game game = gameDao.findById(gameId).get();
-        GameStatistics gameStatistics = new GameStatistics(totalPoints, durationMinutes, totalThreePointShots, totalSetShots, totalFreeShots, totalRebounds, totalBlockedShot, totalAssists, totalPersonalFouls, totalTechnicalFouls, totalUnsportsmanlikeFouls, totalPointsRival, totalThreePointShotsRival, totalSetShotsRival, totalFreeShotsRival, totalReboundsRival, totalBlockedShotsRival, totalAssistsRival, totalPersonalFoulsRival, totalTechnicalFoulsRival, totalUnsportsmanlikeFoulsRival);
 
         game.setGameStatistics(gameStatistics);
         gameDao.save(game);
