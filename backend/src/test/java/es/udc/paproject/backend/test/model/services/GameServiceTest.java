@@ -15,7 +15,6 @@ import es.udc.paproject.backend.model.entities.Game;
 import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.Season;
 import es.udc.paproject.backend.model.entities.Team;
-import es.udc.paproject.backend.model.entities.Training;
 import es.udc.paproject.backend.model.entities.User;
 import es.udc.paproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.paproject.backend.model.exceptions.IncorrectDniException;
@@ -27,16 +26,12 @@ import es.udc.paproject.backend.model.services.GameService;
 import es.udc.paproject.backend.model.services.PlayerService;
 import es.udc.paproject.backend.model.services.SeasonService;
 import es.udc.paproject.backend.model.services.TeamService;
-import es.udc.paproject.backend.model.services.TrainingService;
 import es.udc.paproject.backend.model.services.UserService;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
 public class GameServiceTest {
-
-    @Autowired
-    private TrainingService trainingService;
 
     @Autowired
     private PlayerService playerService;
@@ -162,9 +157,9 @@ public class GameServiceTest {
 
         User user = createUser("paco");
         Team team = createTeam(user.getId(), "team");
-        Game game = gameService.addGame(team.getId(), null, gameDate, "rival");
-        Game game2 = gameService.addGame(team.getId(), null, gameDate2, "rival");
-        Game game3 = gameService.addGame(team.getId(), null, gameDate3, "rival");
+        gameService.addGame(team.getId(), null, gameDate, "rival");
+        gameService.addGame(team.getId(), null, gameDate2, "rival");
+        gameService.addGame(team.getId(), null, gameDate3, "rival");
 
 
         List<Game> games = gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(team.getId(), null, startDate, endDate);
@@ -179,9 +174,9 @@ public class GameServiceTest {
         User user = createUser("paco");
         Team team = createTeam(user.getId(), "team");
         Team team2 = createTeam(user.getId(), "team2");
-        Game game = gameService.addGame(team.getId(), null, gameDate, "rival");
-        Game game2 = gameService.addGame(team2.getId(), null, gameDate2, "rival");
-        Game game3 = gameService.addGame(team.getId(), null, gameDate3, "rival");
+        gameService.addGame(team.getId(), null, gameDate, "rival");
+        gameService.addGame(team2.getId(), null, gameDate2, "rival");
+        gameService.addGame(team.getId(), null, gameDate3, "rival");
 
 
         List<Game> games = gameService.findGamesByTeamId(team.getId());
@@ -198,9 +193,9 @@ public class GameServiceTest {
         User user = createUser("paco");
         Season season = createSeason(user.getId(), "seasonssss");
         Season season2 = createSeason(user.getId(), "seasonssss25222 sdcs");
-        Game game = gameService.addGame(null, season.getId(), gameDate, "rival");
-        Game game2 = gameService.addGame(null, season2.getId(), gameDate2, "rival");
-        Game game3 = gameService.addGame(null, season.getId(), gameDate3, "rival");
+        gameService.addGame(null, season.getId(), gameDate, "rival");
+        gameService.addGame(null, season2.getId(), gameDate2, "rival");
+        gameService.addGame(null, season.getId(), gameDate3, "rival");
 
 
         List<Game> games = gameService.findGamesBySeasonId(season.getId());
@@ -218,10 +213,10 @@ public class GameServiceTest {
         Season season = createSeason(user.getId(), "seasonssss");
         Season season2 = createSeason(user.getId(), "seasonssss25222 sdcs");
         Team team2 = createTeam(user.getId(), "team2");
-        Game game1 = gameService.addGame(team2.getId(), null, gameDate, "rival");
-        Game game = gameService.addGame(null, season.getId(), gameDate, "rival");
-        Game game2 = gameService.addGame(null, season2.getId(), gameDate2, "rival");
-        Game game3 = gameService.addGame(null, season.getId(), gameDate3, "rival");
+        gameService.addGame(team2.getId(), null, gameDate, "rival");
+        gameService.addGame(null, season.getId(), gameDate, "rival");
+        gameService.addGame(null, season2.getId(), gameDate2, "rival");
+        gameService.addGame(null, season.getId(), gameDate3, "rival");
 
 
         List<Game> games = gameService.findGamesByUserId(user.getId());
@@ -236,10 +231,10 @@ public class GameServiceTest {
         Season season = createSeason(user.getId(), "seasonssss");
         Season season2 = createSeason(user.getId(), "seasonssss25222 sdcs");
         Team team2 = createTeam(user.getId(), "team2");
-        Game game1 = gameService.addGame(team2.getId(), null, gameDate, "rival");
+        gameService.addGame(team2.getId(), null, gameDate, "rival");
         Game game = gameService.addGame(null, season.getId(), gameDate, "rival");
         Game game2 = gameService.addGame(null, season2.getId(), gameDate2, "rival");
-        Game game3 = gameService.addGame(null, season.getId(), gameDate3, "rival");
+        gameService.addGame(null, season.getId(), gameDate3, "rival");
 
         gameService.removeGame(game.getId());
         gameService.removeGame(game2.getId());
@@ -257,10 +252,10 @@ public class GameServiceTest {
         Season season = createSeason(user.getId(), "seasonssss");
         Season season2 = createSeason(user.getId(), "seasonssss25222 sdcs");
         Team team2 = createTeam(user.getId(), "team2");
-        Game game1 = gameService.addGame(team2.getId(), null, gameDate, "rival");
-        Game game = gameService.addGame(null, season.getId(), gameDate, "rival");
+        gameService.addGame(team2.getId(), null, gameDate, "rival");
+        gameService.addGame(null, season.getId(), gameDate, "rival");
         Game game2 = gameService.addGame(null, season2.getId(), gameDate2, "rival");
-        Game game3 = gameService.addGame(null, season.getId(), gameDate3, "rival");
+        gameService.addGame(null, season.getId(), gameDate3, "rival");
 
         Game gameUpdated = gameService.updateGame(game2.getId(), gameDate3, "cambios lo");
 
