@@ -124,6 +124,16 @@ public class PlayerController {
         return toPlayerDtos(playerService.findAPlayersOfTeam(teamId));
     }
 
+    @GetMapping("/{trainingId}/training")
+    public List<PlayerDto> findPlayersByTraining(@PathVariable Long trainingId) throws InstanceNotFoundException {
+        return toPlayerDtos(playerService.findPlayersByTraining(trainingId));
+    }
+
+    @GetMapping("/{gameId}/game")
+    public List<PlayerDto> findPlayersByGame(@PathVariable Long gameId) throws InstanceNotFoundException {
+        return toPlayerDtos(playerService.findPlayersByGame(gameId));
+    }
+
     @GetMapping("/{teamId}/position")
     public List<PlayerDto> findPlayersByPositionAndTeam(@PathVariable Long teamId, @RequestParam String position) throws InstanceNotFoundException {
         return toPlayerDtos(playerService.findPlayersByPositionAndTeam(teamId, position));

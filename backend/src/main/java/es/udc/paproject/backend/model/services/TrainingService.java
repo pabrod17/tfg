@@ -6,6 +6,7 @@ import java.util.List;
 import es.udc.paproject.backend.model.entities.Training;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
+import es.udc.paproject.backend.model.exceptions.UsedTrainingException;
 
 public interface TrainingService {
     
@@ -28,7 +29,9 @@ public interface TrainingService {
     //no pasar al front. Usar las dos anteriores
     List<Training> findTrainingsByTeamIdAndSeasonId(Long teamId, Long seasonId) throws InstanceNotFoundException;
 
-    void removeTraining(Long trainingId) throws InstanceNotFoundException;
+    void removeTraining(Long trainingId) throws InstanceNotFoundException, UsedTrainingException;
+    
+    void removePlayerToTraining(Long playerId, Long trainingId) throws InstanceNotFoundException, UsedTrainingException;
 
     Training updateTraining(Long trainingId, LocalDateTime trainingDate, Integer durationMinutes, String description, String objective) throws InstanceNotFoundException;
 }

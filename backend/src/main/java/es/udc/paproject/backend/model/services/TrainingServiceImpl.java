@@ -23,6 +23,7 @@ import es.udc.paproject.backend.model.entities.TrainingDao;
 import es.udc.paproject.backend.model.entities.UserDao;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.StartDateAfterEndDateException;
+import es.udc.paproject.backend.model.exceptions.UsedTrainingException;
 
 @Service
 @Transactional
@@ -299,14 +300,42 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public void removeTraining(Long trainingId) throws InstanceNotFoundException {
+    public void removeTraining(Long trainingId) throws InstanceNotFoundException, UsedTrainingException {
         
         if (!trainingDao.existsById(trainingId)) {
-            throw new InstanceNotFoundException("project.entities.season");
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+
+        List<PlayerTraining> playerTrainings = (List<PlayerTraining>) playerTrainingDao.findAll();
+
+        for (PlayerTraining playerTraining : playerTrainings) {
+            if(playerTraining.getTraining() != null && playerTraining.getTraining().getId() == trainingId){
+                throw new UsedTrainingException();
+            }
         }
 
         Training training = trainingDao.findById(trainingId).get();
         trainingDao.delete(training);
+    }
+    
+    @Override
+    public void removePlayerToTraining(Long playerId, Long trainingId)
+            throws InstanceNotFoundException, UsedTrainingException {
+
+        if (!trainingDao.existsById(trainingId)) {
+            throw new InstanceNotFoundException("project.entities.training");
+        }
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+
+        List<PlayerTraining> playerTrainings = (List<PlayerTraining>) playerTrainingDao.findAll();
+
+        for (PlayerTraining playerTraining : playerTrainings) {
+            if(playerTraining.getTraining() != null && playerTraining.getTraining().getId() == trainingId && playerTraining.getPlayer().getId() == playerId){
+                playerTrainingDao.delete(playerTraining);
+            }
+        }
     }
 
     @Override
@@ -332,6 +361,4 @@ public class TrainingServiceImpl implements TrainingService {
 
         return training;
     }
-
-
 }

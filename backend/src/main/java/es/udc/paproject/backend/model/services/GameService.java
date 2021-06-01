@@ -31,5 +31,7 @@ public interface GameService {
 
     void removeGame(Long gameId) throws InstanceNotFoundException;
 
+    void removePlayerToGame(Long playerId, Long gameId) throws InstanceNotFoundException;
+
     Game updateGame(Long gameId, LocalDateTime gameDate, String rival) throws InstanceNotFoundException;
 }

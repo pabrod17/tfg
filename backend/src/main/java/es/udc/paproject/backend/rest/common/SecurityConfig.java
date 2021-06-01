@@ -49,6 +49,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/plays*").permitAll()
 			.antMatchers("/plays/*").permitAll()
 
+			.antMatchers("/trainings*").permitAll()
+			.antMatchers("/trainings/*").permitAll()
+
+			.antMatchers("/games*").permitAll()
+			.antMatchers("/games/*").permitAll()
+
+			.antMatchers("/statistics*").permitAll()
+			.antMatchers("/statistics/*").permitAll()
+
+			.antMatchers("/stretchings*").permitAll()
+			.antMatchers("/stretchings/*").permitAll()
+
+			.antMatchers("/exercises*").permitAll()
+			.antMatchers("/exercises/*").permitAll()
+
 			.antMatchers("/users/login").permitAll()
 			.antMatchers("/users/loginFromServiceToken").permitAll()
 			.anyRequest().hasRole("USER");

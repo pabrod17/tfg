@@ -308,6 +308,25 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public void removePlayerToGame(Long playerId, Long gameId) throws InstanceNotFoundException {
+
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+        if (!gameDao.existsById(gameId)) {
+            throw new InstanceNotFoundException("project.entities.game");
+        }
+
+        List<PlayerGameStatistics> playerGameStatistics = (List<PlayerGameStatistics>) playerGameStatisticsDao.findAll();
+
+        for (PlayerGameStatistics playerGameStatistic : playerGameStatistics) {
+            if(playerGameStatistic.getGame() != null && playerGameStatistic.getGame().getId() == gameId && playerGameStatistic.getPlayer().getId() == playerId){
+                playerGameStatisticsDao.delete(playerGameStatistic);
+            }
+        }
+    }
+
+    @Override
     public Game updateGame(Long gameId, LocalDateTime gameDate, String rival) throws InstanceNotFoundException {
         
         if (!gameDao.existsById(gameId)) {
@@ -323,7 +342,4 @@ public class GameServiceImpl implements GameService {
         gameDao.save(game);
         return game;
     }
-
-
-    
 }
