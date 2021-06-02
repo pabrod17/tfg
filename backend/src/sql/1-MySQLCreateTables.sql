@@ -211,7 +211,7 @@ CREATE TABLE Training (
     durationMinutes BIGINT,   
     description VARCHAR(500),
     objective VARCHAR(500),
-    seasonTeamId BIGINT NOT NULL,
+    seasonTeamId BIGINT,
     CONSTRAINT TrainingPK PRIMARY KEY (id),
     CONSTRAINT TrainingSeasonTeamIdFK FOREIGN KEY(seasonTeamId)
         REFERENCES SeasonTeam (id)

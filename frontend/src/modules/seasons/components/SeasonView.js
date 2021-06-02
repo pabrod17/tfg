@@ -8,6 +8,8 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import {FormattedDate} from 'react-intl';
 import * as actionsTeams from '../../teams/actions';
+import avatar from '../../players/components/avatar.jpg';
+import notaLapiz from '../../notes/components/notaLapiz.jpg';
 
 const SeasonView = () => {
     const user = useSelector(selectorsUsers.getUser);
@@ -26,101 +28,151 @@ const SeasonView = () => {
             if(season){
 
                 return (
-                    <div className="">
-                            <main className="">
-                                <div class="main__container">
+
+
+
+                    <div className="card-columns hola">
+                        
+                        <div class="">
     
-                                <div class="main__title">
-                                    <img src="assets/hello.svg" alt="" />
-                                    <div class="main__greeting">
-                                    <h1>Season</h1>
-                                    <p>{season.calendario}</p>
-                                    </div>
+                            <div class="card hola pequeño text-center">
+                                <img src={notaLapiz} alt="Person" class="card__image tempora"></img>
+                                <p class="card__name" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}>Teams</p>
+                                <div class="grid-container">
                                 </div>
-                                <div class="main__cards">
-                                    <div class="card-view">
-                                    <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
-                                    <div class="card_inner">
-                                        <p class="text-primary-p">Players</p>
-                                        <span class="font-bold text-title">578</span>
-                                    </div>
-                                    </div>
-    
-                                    <div class="card-view">
-                                    <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
-                                    <div class="card_inner">
-                                        <p class="text-primary-p" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}>Teams</p>
-                                        <span class="font-bold text-title">2467</span>
-                                    </div>
-                                    </div>
-    
-                                    <div class="card-view">
-                                    <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
-                                    <div class="card_inner">
-                                        <p class="text-primary-p">Games</p>
-                                        <span class="font-bold text-title">340</span>
-                                    </div>
-                                    </div>
-    
-                                    <div class="card-view">
-                                    <i
-                                    class="fa fa-user fa-2x text-green"
-                                    aria-hidden="true"
-                                    ></i>
-                                    <div class="card_inner">
-                                        <p class="text-primary-p">User</p>
-                                        <span class="font-bold text-title">{user.firstName}</span>
-                                    </div>
-                                    </div>
+                            </div>
+        
+        
+                            <div class="card hola pequeño text-center">
+                                <img src={notaLapiz} alt="Person" class="card__image entreno"></img>
+                                <p class="card__name">Trainings</p>
+                                <div class="grid-container">
                                 </div>
-                                <div class="charts">
-                                    <div class="charts__left">
-                                    <div class="charts__left__title">
-                                        <div>
-                                        <h1>Calendar</h1>
-                                        <p>Spain</p>
-                                        </div>
-                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                    </div>
-                                    <div id="apex1"></div>
-                                    </div>
-    
-                                    <div class="charts__right">
-                                    <div class="charts__right__title">
-                                        <div>
-                                        <h1>Stats Reports</h1>
-                                        <p>Cupertino, California, USA</p>
-                                        </div>
-                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                    </div>
-    
-                                    <div class="charts__right__cards">
-                                        <div class="card1">
-                                        <h1>Income</h1>
-                                        <p>$75,300</p>
-                                        </div>
-    
-                                        <div class="card2">
-                                        <h1>Sales</h1>
-                                        <p>$124,200</p>
-                                        </div>
-    
-                                        <div class="card3">
-                                        <h1>Users</h1>
-                                        <p>3900</p>
-                                        </div>
-    
-                                        <div class="card4">
-                                        <h1>Orders</h1>
-                                        <p>1881</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </main>
+                            </div>
+        
+                        </div>
                     </div>
+    
                 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // return (
+                //     <div className="">
+                //             <main className="">
+                //                 <div class="main__container">
+    
+                //                 <div class="main__title">
+                //                     <img src="assets/hello.svg" alt="" />
+                //                     <div class="main__greeting">
+                //                     <h1>Season</h1>
+                //                     <p>{season.calendario}</p>
+                //                     </div>
+                //                 </div>
+                //                 <div class="main__cards">
+                //                     <div class="card-view">
+                //                     <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
+                //                     <div class="card_inner">
+                //                         <p class="text-primary-p">Players</p>
+                //                         <span class="font-bold text-title">578</span>
+                //                     </div>
+                //                     </div>
+    
+                //                     <div class="card-view">
+                //                     <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
+                //                     <div class="card_inner">
+                //                         <p class="text-primary-p" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}>Teams</p>
+                //                         <span class="font-bold text-title">2467</span>
+                //                     </div>
+                //                     </div>
+    
+                //                     <div class="card-view">
+                //                     <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
+                //                     <div class="card_inner">
+                //                         <p class="text-primary-p">Games</p>
+                //                         <span class="font-bold text-title">340</span>
+                //                     </div>
+                //                     </div>
+    
+                //                     <div class="card-view">
+                //                     <i
+                //                     class="fa fa-user fa-2x text-green"
+                //                     aria-hidden="true"
+                //                     ></i>
+                //                     <div class="card_inner">
+                //                         <p class="text-primary-p">User</p>
+                //                         <span class="font-bold text-title">{user.firstName}</span>
+                //                     </div>
+                //                     </div>
+                //                 </div>
+                //                 <div class="charts">
+                //                     <div class="charts__left">
+                //                     <div class="charts__left__title">
+                //                         <div>
+                //                         <h1>Calendar</h1>
+                //                         <p>Spain</p>
+                //                         </div>
+                //                         <i class="fa fa-usd" aria-hidden="true"></i>
+                //                     </div>
+                //                     <div id="apex1"></div>
+                //                     </div>
+    
+                //                     <div class="charts__right">
+                //                     <div class="charts__right__title">
+                //                         <div>
+                //                         <h1>Stats Reports</h1>
+                //                         <p>Cupertino, California, USA</p>
+                //                         </div>
+                //                         <i class="fa fa-usd" aria-hidden="true"></i>
+                //                     </div>
+    
+                //                     <div class="charts__right__cards">
+                //                         <div class="card1">
+                //                         <h1>Income</h1>
+                //                         <p>$75,300</p>
+                //                         </div>
+    
+                //                         <div class="card2">
+                //                         <h1>Sales</h1>
+                //                         <p>$124,200</p>
+                //                         </div>
+    
+                //                         <div class="card3">
+                //                         <h1>Users</h1>
+                //                         <p>3900</p>
+                //                         </div>
+    
+                //                         <div class="card4">
+                //                         <h1>Orders</h1>
+                //                         <p>1881</p>
+                //                         </div>
+                //                     </div>
+                //                     </div>
+                //                 </div>
+                //                 </div>
+                //             </main>
+                //     </div>
+                // );
 
 
 

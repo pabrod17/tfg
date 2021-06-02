@@ -7,9 +7,14 @@ import basketRed2 from './basketRed2.jpg';
 import canastaSimple from './canastaSimple.jpg';
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import * as actionLesion from '../..//lesion/actions';
+import * as actionTraining from '../..//trainings/actions';
 
 const handleFindAllLesions = (dispatch, history) => {
     dispatch(actionLesion.findAllLesion(() => history.push('/lesion/home')));
+}
+
+const handleFindAllTrainings = (dispatch, history) => {
+    dispatch(actionTraining.findTrainingsByUserId(() => history.push('/trainings/home')));
 }
 
 const Home = () => {
@@ -24,6 +29,7 @@ const Home = () => {
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -38,7 +44,7 @@ const Home = () => {
             </div>
             <div class="carousel-item">
             <img class="d-block w-100" src={canastaRed} alt="Second slide"/>
-                <a href="/seasons/all" class="btn-neon" onClick={() => handleFindAllLesions(dispatch, history)}>
+                <a href="/seasons/all" class="btn-neon">
                     <span id="span1"></span>
                     <span id="span2"></span>
                     <span id="span3"></span>
@@ -48,12 +54,22 @@ const Home = () => {
             </div>
             <div class="carousel-item">
             <img class="d-block w-100 grande" src={blackCanasta} alt="Third slide"/>
-                <a href="/lesion/home" class="btn-neon">
+                <a href="/lesion/home" class="btn-neon" onClick={() => handleFindAllLesions(dispatch, history)}>
                     <span id="span1"></span>
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
                     Lesion
+                </a>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100 grande" src={blackCanasta} alt="Fourth slide"/>
+                <a href="/trainings/home" class="btn-neon">
+                    <span id="span1"></span>
+                    <span id="span2"></span>
+                    <span id="span3"></span>
+                    <span id="span4"></span>
+                    Trainings
                 </a>
             </div>
         </div>

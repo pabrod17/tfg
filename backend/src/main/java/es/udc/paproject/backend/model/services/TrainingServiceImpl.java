@@ -55,30 +55,40 @@ public class TrainingServiceImpl implements TrainingService {
     public Training addTraining(Long teamId, Long seasonId, LocalDateTime trainingDate, Integer durationMinutes,
             String description, String objective) throws InstanceNotFoundException {
 
-                if(teamId != null){
-                    if (!teamDao.existsById(teamId)) {
-                        throw new InstanceNotFoundException("project.entities.team");
+                Training training = null;
+
+                if(teamId == null && seasonId == null){
+                    training = new Training(trainingDate, durationMinutes, description, objective, null);
+                    trainingDao.save(training);
+                }else{
+
+                    if(teamId != null){
+                        if (!teamDao.existsById(teamId)) {
+                            throw new InstanceNotFoundException("project.entities.team");
+                        }
                     }
-                }
-                if(seasonId != null){
-                    if (!seasonDao.existsById(seasonId)) {
-                        throw new InstanceNotFoundException("project.entities.season");
-                    }
-                }
-                List<SeasonTeam> seasonTeams = new ArrayList<>();
-                if(teamId != null){
                     if(seasonId != null){
-                        seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonIdAndTeamId(seasonId, teamId);
-                    } else{
-                        seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+                        if (!seasonDao.existsById(seasonId)) {
+                            throw new InstanceNotFoundException("project.entities.season");
+                        }
                     }
-                } else{
-                    seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
+                    List<SeasonTeam> seasonTeams = new ArrayList<>();
+                    if(teamId != null){
+                        if(seasonId != null){
+                            seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonIdAndTeamId(seasonId, teamId);
+                        } else{
+                            seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+                        }
+                    } else{
+                        seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
 
+                    }
+
+                    
+                        training = new Training(trainingDate, durationMinutes, description, objective, seasonTeams.get(0));
+                        trainingDao.save(training);
                 }
-
-                Training training = new Training(trainingDate, durationMinutes, description, objective, seasonTeams.get(0));
-                trainingDao.save(training);
+                    
         return training;
     }
 

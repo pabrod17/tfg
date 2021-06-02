@@ -71,7 +71,7 @@ public class TrainingController {
         return toTrainingDto(trainingService.findTrainingById(trainingId));
     }
 
-    @GetMapping("/{userId}/user")
+    @GetMapping("/user")
     public List<TrainingDto> findTrainingsByUserId(@RequestAttribute Long userId) throws InstanceNotFoundException {
         return toTrainingDtos(trainingService.findTrainingsByUserId(userId));
     }
@@ -101,7 +101,7 @@ public class TrainingController {
     }
 
     @PostMapping("")
-    public TrainingDto addTraining(@RequestParam Long teamId, @RequestParam Long seasonId,
+    public TrainingDto addTraining(@RequestParam(required=false) Long teamId, @RequestParam(required=false) Long seasonId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date trainingDate,
             @RequestParam Integer durationMinutes, @RequestParam String description, @RequestParam String objective)
             throws InstanceNotFoundException {
@@ -110,7 +110,7 @@ public class TrainingController {
     }
 
     @PostMapping("/{playerId}/addPlayerToTraining")
-    public void addLesionToPlayer(@PathVariable Long playerId, @RequestParam Long trainingId)
+    public void addPlayerToTraining(@PathVariable Long playerId, @RequestParam Long trainingId)
             throws InstanceNotFoundException {
         trainingService.addPlayerToTraining(trainingId, playerId);
     }

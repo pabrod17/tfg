@@ -19,7 +19,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import PublicIcon from '@material-ui/icons/Public';
 import VideocamIcon from '@material-ui/icons/Videocam';
-
+import avatar from '../../players/components/avatar.jpg';
+import notaLapiz from '../../notes/components/notaLapiz.jpg';
 
 //http://envato.jayasankarkr.in/code/profile/assets/img/profile-6.jpg
 
@@ -45,111 +46,161 @@ const TeamView = () => {
 
     const handlePlayersHome = (id, dispatch, history) => {
         dispatch(actionPlayers.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
+        history.push(`/players/home/${id}`);
     }
 
     const handlePlaysHome = (id, dispatch, history) => {
         dispatch(actionPlays.findPlaysByTeamId(id, () => history.push(`/plays/home/${id}`)));
+        history.push(`/plays/home/${id}`);
     }
 
     function TeamView({team, dispatch}){
         if(team){
 
             return (
-                <div className="">
-                        <main className="">
-                            <div class="main__container">
 
-                            <div class="main__title">
-                                <img src="assets/hello.svg" alt="" />
-                                <div class="main__greeting">
-                                <h1>Team</h1>
-                                <p>{team.teamName}</p>
-                                </div>
-                            </div>
-                            <div class="main__cards">
-                                <div class="card-view">
-                                <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
-                                <div class="card_inner">
-                                    <p class="text-primary-p" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}>Players</p>
-                                    <span class="font-bold text-title">578</span>
-                                </div>
-                                </div>
-                                
-                                <div class="card-view">
-                                <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
-                                <div class="card_inner">
-                                    <p class="text-primary-p" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</p>
-                                    <span class="font-bold text-title">2467</span>
-                                </div>
-                                </div>
 
-                                <div class="card-view">
-                                <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
-                                <div class="card_inner">
-                                    <p class="text-primary-p" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}>Plays</p>
-                                    <span class="font-bold text-title">340</span>
-                                </div>
-                                </div>
 
-                                <div class="card-view">
-                                <i
-                                    class="fa fa-user fa-2x text-green"
-                                    aria-hidden="true"
-                                ></i>
-                                <div class="card_inner">
-                                    <p class="text-primary-p">User</p>
-                                    <span class="font-bold text-title">{user.firstName}</span>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="charts">
-                                <div class="charts__left">
-                                <div class="charts__left__title">
-                                    <div>
-                                    <h1>Calendar</h1>
-                                    <p>Spain</p>
-                                    </div>
-                                    <i class="fa fa-usd" aria-hidden="true"></i>
-                                </div>
-                                <div id="apex1"></div>
-                                </div>
+                <div className="card-columns hola">
+                    
+                    <div class="">
+                    <div class="card hola pequeño text-center">
+                        <img src={notaLapiz} alt="Person" class="card__image jugando"></img>
+                        <p class="card__name" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}>Plays</p>
+                        <div class="grid-container">
+                        </div>
+                    </div>
 
-                                <div class="charts__right">
-                                <div class="charts__right__title">
-                                    <div>
-                                    <h1>Stats Reports</h1>
-                                    <p>Cupertino, California, USA</p>
-                                    </div>
-                                    <i class="fa fa-usd" aria-hidden="true"></i>
-                                </div>
 
-                                <div class="charts__right__cards">
-                                    <div class="card1">
-                                    <h1>Income</h1>
-                                    <p>$75,300</p>
-                                    </div>
 
-                                    <div class="card2">
-                                    <h1>Sales</h1>
-                                    <p>$124,200</p>
-                                    </div>
+                    <div class="card hola pequeño text-center">
+                        <img src={avatar} alt="Person" class="card__image"></img>
+                        <p class="card__name" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}>Players</p>
+                        <div class="grid-container">
+                        </div>
+                    </div>
 
-                                    <div class="card3">
-                                    <h1>Users</h1>
-                                    <p>3900</p>
-                                    </div>
 
-                                    <div class="card4">
-                                    <h1>Orders</h1>
-                                    <p>1881</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </main>
+                    <div class="card hola pequeño text-center">
+                        <img src={notaLapiz} alt="Person" class="card__image tempora"></img>
+                        <p class="card__name" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</p>
+                        <div class="grid-container">
+                        </div>
+                    </div>
+
+
+                    <div class="card hola pequeño text-center">
+                        <img src={notaLapiz} alt="Person" class="card__image entreno"></img>
+                        <p class="card__name">Trainings</p>
+                        <div class="grid-container">
+                        </div>
+                    </div>
+
+                    </div>
                 </div>
+
             );
+
+
+
+
+
+
+
+                // <div className="">
+                //         <main className="">
+                //             <div class="main__container">
+
+                //             <div class="main__title">
+                //                 <img src="assets/hello.svg" alt="" />
+                //                 <div class="main__greeting">
+                //                 <h1>Team</h1>
+                //                 <p>{team.teamName}</p>
+                //                 </div>
+                //             </div>
+                //             <div class="main__cards">
+                //                 <div class="card-view">
+                //                 <i class="fa fa-users fa-2x text-yellow" aria-hidden="true"></i>
+                //                 <div class="card_inner">
+                //                     <p class="text-primary-p" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}>Players</p>
+                //                     <span class="font-bold text-title">578</span>
+                //                 </div>
+                //                 </div>
+                                
+                //                 <div class="card-view">
+                //                 <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
+                //                 <div class="card_inner">
+                //                     <p class="text-primary-p" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</p>
+                //                     <span class="font-bold text-title">2467</span>
+                //                 </div>
+                //                 </div>
+
+                //                 <div class="card-view">
+                //                 <i class="fa fa-file-image fa-2x text-white" aria-hidden="true"></i>
+                //                 <div class="card_inner">
+                //                     <p class="text-primary-p" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}>Plays</p>
+                //                     <span class="font-bold text-title">340</span>
+                //                 </div>
+                //                 </div>
+
+                //                 <div class="card-view">
+                //                 <i
+                //                     class="fa fa-user fa-2x text-green"
+                //                     aria-hidden="true"
+                //                 ></i>
+                //                 <div class="card_inner">
+                //                     <p class="text-primary-p">User</p>
+                //                     <span class="font-bold text-title">{user.firstName}</span>
+                //                 </div>
+                //                 </div>
+                //             </div>
+                //             <div class="charts">
+                //                 <div class="charts__left">
+                //                 <div class="charts__left__title">
+                //                     <div>
+                //                     <h1>Calendar</h1>
+                //                     <p>Spain</p>
+                //                     </div>
+                //                     <i class="fa fa-usd" aria-hidden="true"></i>
+                //                 </div>
+                //                 <div id="apex1"></div>
+                //                 </div>
+
+                //                 <div class="charts__right">
+                //                 <div class="charts__right__title">
+                //                     <div>
+                //                     <h1>Stats Reports</h1>
+                //                     <p>Cupertino, California, USA</p>
+                //                     </div>
+                //                     <i class="fa fa-usd" aria-hidden="true"></i>
+                //                 </div>
+
+                //                 <div class="charts__right__cards">
+                //                     <div class="card1">
+                //                     <h1>Income</h1>
+                //                     <p>$75,300</p>
+                //                     </div>
+
+                //                     <div class="card2">
+                //                     <h1>Sales</h1>
+                //                     <p>$124,200</p>
+                //                     </div>
+
+                //                     <div class="card3">
+                //                     <h1>Users</h1>
+                //                     <p>3900</p>
+                //                     </div>
+
+                //                     <div class="card4">
+                //                     <h1>Orders</h1>
+                //                     <p>1881</p>
+                //                     </div>
+                //                 </div>
+                //                 </div>
+                //             </div>
+                //             </div>
+                //         </main>
+                // </div>
 
 
 

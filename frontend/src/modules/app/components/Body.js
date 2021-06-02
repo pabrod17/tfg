@@ -40,6 +40,10 @@ import PlaysHome from '../../plays/components/PlaysHome';
 import AddPlay from '../../plays/components/AddPlay';
 import UpdatePlay from '../../plays/components/UpdatePlay';
 import PlayView from '../../plays/components/PlayView';
+import TrainingHome from '../../trainings/components/TrainingHome';
+import AddTraining from '../../trainings/components/AddTraining';
+import TrainingView from '../../trainings/components/TrainingView';
+import UpdateTraining from '../../trainings/components/UpdateTraining';
 
 const Body = () => {
 
@@ -91,6 +95,10 @@ const Body = () => {
                 {loggedIn && <Route exact path="/plays/update/:id"><UpdatePlay/></Route>}
                 {loggedIn && <Route exact path="/plays/addPlay/:id"><AddPlay/></Route>}
                 {loggedIn && <Route exact path="/plays/view/:playId"><PlayView/></Route>}
+                {loggedIn && <Route exact path="/trainings/home"><TrainingHome/></Route>}
+                {loggedIn && <Route exact path="/trainings/addTraining"><AddTraining/></Route>}
+                {loggedIn && <Route exact path="/trainings/view/:id"><TrainingView/></Route>}
+                {loggedIn && <Route exact path="/trainings/update/:id"><UpdateTraining/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}
