@@ -8,6 +8,8 @@ import canastaSimple from './canastaSimple.jpg';
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
+import * as actionGames from '../..//games/actions';
+
 import back from './back.jpg'; //1920x1200
 
 const handleFindAllLesions = (dispatch, history) => {
@@ -16,6 +18,10 @@ const handleFindAllLesions = (dispatch, history) => {
 
 const handleFindAllTrainings = (dispatch, history) => {
     dispatch(actionTraining.findTrainingsByUserId(() => history.push('/trainings/home')));
+}
+
+const handleFindAllGames = (dispatch, history) => {
+    dispatch(actionGames.findGamesByUserId(() => history.push('/games/home')));
 }
 
 const Home = () => {
@@ -31,6 +37,7 @@ const Home = () => {
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -71,6 +78,16 @@ const Home = () => {
                     <span id="span3"></span>
                     <span id="span4"></span>
                     Trainings
+                </a>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100 grande" src={back} alt="Fourth slide"/>
+                <a href="/games/home" class="btn-neon"onClick={() => handleFindAllGames(dispatch, history)}>
+                    <span id="span1"></span>
+                    <span id="span2"></span>
+                    <span id="span3"></span>
+                    <span id="span4"></span>
+                    Games
                 </a>
             </div>
         </div>

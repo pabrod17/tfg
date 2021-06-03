@@ -11,15 +11,13 @@ import * as actionsTeams from '../../teams/actions';
 import * as selectorsSeasons from '../../seasons/selectors';
 import * as actionsSeasons from '../../seasons/actions';
 
-const AddTraining = () => {
+const AddGame = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [teamId , setTeamId ] = useState(null);
     const [seasonId , setSeasonId ] = useState(null);
-    const [trainingDate , setTrainingDate ] = useState(null);
-    const [durationMinutes, setDurationMinutes] = useState(0);
-    const [description , setDescription ] = useState("");
-    const [objective , setObjective] = useState("");
+    const [gameDate , setGameDate ] = useState(null);
+    const [rival , setRival ] = useState("");
     const [backendErrors, setBackendErrors] = useState(null);
     let form;
 
@@ -46,8 +44,7 @@ const AddTraining = () => {
     
         if (form.checkValidity()) {
             
-            dispatch(actions.addTraining(teamId, seasonId,trainingDate, durationMinutes,
-            description.trim(), objective.trim(),
+            dispatch(actions.addGame(teamId, seasonId,gameDate, rival.trim(),
             () => reloadWindow(),
             errors => setBackendErrors(errors),
             ));
@@ -57,7 +54,7 @@ const AddTraining = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/trainings/addTraining');
+            history.push('/games/addGame');
             window.location.reload('true');
         }
 
@@ -67,19 +64,19 @@ const AddTraining = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Add Training
+                        Add Game
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
-                            <label htmlFor="trainingDate" className="col-md-4 col-form-label">
+                            <label htmlFor="gameDate" className="col-md-4 col-form-label">
                                 Date
                             </label>
                             <div className="col-md-8">
-                                <input type="date" id="trainingDate" className="form-control"
-                                    value={trainingDate}
-                                    onChange={e => setTrainingDate(e.target.value)}
+                                <input type="date" id="gameDate" className="form-control"
+                                    value={gameDate}
+                                    onChange={e => setGameDate(e.target.value)}
                                     autoFocus
                                     required/>
                                 <div className="invalid-feedback">
@@ -88,43 +85,13 @@ const AddTraining = () => {
                             </div>
                         </div>
                             <div className="form-group row">
-                                <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Duration Minutes
+                                <label htmlFor="rival" className="col-md-12 col-form-label">
+                                Rival
                                 </label>
                                 <div className="col-md-12">
-                                    <textarea  type="text" id="durationMinutes" className="form-control"
-                                        value={durationMinutes}
-                                        onChange={e => setDurationMinutes(e.target.value)}
-                                        autoFocus
-                                        required/>
-                                    <div className="invalid-feedback">
-                                        <FormattedMessage id='project.global.validator.required'/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
-                                </label>
-                                <div className="col-md-12">
-                                    <textarea  type="text" id="description" className="form-control"
-                                        value={description}
-                                        onChange={e => setDescription(e.target.value)}
-                                        autoFocus
-                                        required/>
-                                    <div className="invalid-feedback">
-                                        <FormattedMessage id='project.global.validator.required'/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Objective
-                                </label>
-                                <div className="col-md-12">
-                                    <textarea type="text" id="objective" className="form-control"
-                                        value={objective}
-                                        onChange={e => setObjective(e.target.value)}
+                                    <textarea  type="text" id="rival" className="form-control"
+                                        value={rival}
+                                        onChange={e => setRival(e.target.value)}
                                         autoFocus
                                         required/>
                                     <div className="invalid-feedback">
@@ -164,4 +131,4 @@ const AddTraining = () => {
         );
 }
 
-export default AddTraining;
+export default AddGame;

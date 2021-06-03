@@ -155,15 +155,12 @@ const Trainings = ({trainings}) => {
         </div>
     );
   } else {
-      
-
-
-    return(
-        <div className="card-group">
-        <TrainingsList items={trainings}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
-        </div>
-    );
-};
+      return(
+          <div className="card-group">
+          <TrainingsList items={trainings}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          </div>
+      );
+  };
 }
 Trainings.propTypes = {
     trainings: PropTypes.array

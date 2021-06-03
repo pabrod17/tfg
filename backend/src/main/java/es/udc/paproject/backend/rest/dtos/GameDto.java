@@ -13,12 +13,11 @@ public class GameDto {
     public GameDto() {
     }
 
-    public GameDto(Long id, Date gameDate, String rival, Long seasonTeam, Long gameStatistics) {
+    public GameDto(Long id, Date gameDate, String rival, Long seasonTeam) {
         this.id = id;
         this.gameDate = gameDate;
         this.rival = rival;
         this.seasonTeam = seasonTeam;
-        this.gameStatistics = gameStatistics;
     }
 
     public Long getId() {

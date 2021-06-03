@@ -45,6 +45,10 @@ import AddTraining from '../../trainings/components/AddTraining';
 import TrainingView from '../../trainings/components/TrainingView';
 import UpdateTraining from '../../trainings/components/UpdateTraining';
 import FindPlayersByTraining from '../../players/components/FindPlayersByTraining';
+import GamesHome from '../../games/components/GamesHome';
+import AddGame from '../../games/components/AddGame';
+import GameView from '../../games/components/GameView';
+import UpdateGame from '../../games/components/UpdateGame';
 
 const Body = () => {
 
@@ -101,6 +105,10 @@ const Body = () => {
                 {loggedIn && <Route exact path="/trainings/addTraining"><AddTraining/></Route>}
                 {loggedIn && <Route exact path="/trainings/view/:id"><TrainingView/></Route>}
                 {loggedIn && <Route exact path="/trainings/update/:id"><UpdateTraining/></Route>}
+                {loggedIn && <Route exact path="/games/home"><GamesHome/></Route>}
+                {loggedIn && <Route exact path="/games/addGame"><AddGame/></Route>}
+                {loggedIn && <Route exact path="/games/view/:id"><GameView/></Route>}
+                {loggedIn && <Route exact path="/games/update/:id"><UpdateGame/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

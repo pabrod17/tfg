@@ -9,6 +9,7 @@ import lesion from '../modules/lesion';
 import notes from '../modules/notes';
 import plays from '../modules/plays';
 import trainings from '../modules/trainings';
+import games from '../modules/games';
 
 const rootReducer = combineReducers({
     app: app.reducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     lesion: lesion.reducer,
     notes: notes.reducer,
     plays: plays.reducer,
-    trainings: trainings.reducer
+    trainings: trainings.reducer,
+    games: games.reducer
 });
 
 export default rootReducer;

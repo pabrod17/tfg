@@ -63,7 +63,7 @@ public class GameController {
         return toGameDtos(gameService.findGamesByPlayerId(playerId));
     }
 
-    @GetMapping("/{userId}/user")
+    @GetMapping("/user")
     public List<GameDto> findGamesByUserId(@RequestAttribute Long userId) throws InstanceNotFoundException {
         return toGameDtos(gameService.findGamesByUserId(userId));
     }
@@ -88,7 +88,7 @@ public class GameController {
     }
 
     @PostMapping("")
-    public GameDto addGame(@RequestParam Long teamId, @RequestParam Long seasonId,
+    public GameDto addGame(@RequestParam(required=false) Long teamId, @RequestParam(required=false) Long seasonId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date gameDate,
             @RequestParam String rival)
             throws InstanceNotFoundException {

@@ -52,30 +52,36 @@ public class GameServiceImpl implements GameService {
     public Game addGame(Long teamId, Long seasonId, LocalDateTime gameDate, String rival)
             throws InstanceNotFoundException {
 
-        if(teamId != null){
-            if (!teamDao.existsById(teamId)) {
-                throw new InstanceNotFoundException("project.entities.team");
+        Game game = null;
+        if(teamId == null && seasonId == null){
+            game = new Game(gameDate, rival,null);
+            gameDao.save(game);
+        }else{
+
+            if(teamId != null){
+                if (!teamDao.existsById(teamId)) {
+                    throw new InstanceNotFoundException("project.entities.team");
+                }
             }
-        }
-        if(seasonId != null){
-            if (!seasonDao.existsById(seasonId)) {
-                throw new InstanceNotFoundException("project.entities.season");
-            }
-        }
-        List<SeasonTeam> seasonTeams = new ArrayList<>();
-        if(teamId != null){
             if(seasonId != null){
-                seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonIdAndTeamId(seasonId, teamId);
-            } else{
-                seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+                if (!seasonDao.existsById(seasonId)) {
+                    throw new InstanceNotFoundException("project.entities.season");
+                }
             }
-        } else{
-            seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
+            List<SeasonTeam> seasonTeams = new ArrayList<>();
+            if(teamId != null){
+                if(seasonId != null){
+                    seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonIdAndTeamId(seasonId, teamId);
+                } else{
+                    seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+                }
+            } else{
+                seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
 
+            }
+            game = new Game(gameDate, rival,seasonTeams.get(0));
+            gameDao.save(game);
         }
-        Game game = new Game(gameDate, rival,seasonTeams.get(0));
-        gameDao.save(game);
-
         return game;
     }
 
