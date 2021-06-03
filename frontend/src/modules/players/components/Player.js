@@ -9,7 +9,13 @@ import * as selectorsTeams from '../../teams/selectors';
 import {FormattedMessage} from 'react-intl';
 import * as actionsLesion from '../../lesion/actions';
 import * as selectorsLesion from '../../lesion/selectors';
+import * as actionTrainings from '../../trainings/actions';
+import * as actionsNotes from '../../notes/actions';
 
+const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
+  dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
+  // history.push('/trainings/home');
+}
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
     dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
@@ -32,6 +38,17 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
   const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
     dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
   }
+
+  const handleFindLesionByPlayer = (playerId, dispatch, history) => {
+    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
+  }
+  
+
+const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
+  console.log("player(12) --> " + playerId);
+  console.log("team(1) --> " + id);
+  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+}
 
 function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, history}) {
     if (!player) {
@@ -78,8 +95,9 @@ function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, hi
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border">My Notes</button>
-                <button class="btn-player draw-border">My Lesion</button>
+                <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(player.id, player.teamId, dispatch, history)}>My Notes</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(player.id, dispatch, history)}>My Lesion</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(player.id, dispatch, history)}>My Trainings</button>
               </div>
             </div>
             </div>

@@ -58,6 +58,34 @@ export const findAPlayersOfTeam = (teamId, onSuccess, onErrors) => dispatch => {
         onErrors);
 }
 
+const findPlayersByTrainingCompleted = players => ({
+    type: actionTypes.FIND_PLAYERS_BY_TRAINING_COMPLETED,
+    players
+});
+
+export const findPlayersByTraining = (trainingId, onSuccess, onErrors) => dispatch => {
+    backend.playerService.findPlayersByTraining(trainingId,
+        players => {
+            dispatch(findPlayersByTrainingCompleted(players));
+            onSuccess();
+        },
+        onErrors);
+}
+
+const findPlayersByGameCompleted = players => ({
+    type: actionTypes.FIND_PLAYERS_BY_GAME_COMPLETED,
+    players
+});
+
+export const findPlayersByGame = (gameId, onSuccess, onErrors) => dispatch => {
+    backend.playerService.findPlayersByGame(gameId,
+        players => {
+            dispatch(findPlayersByGameCompleted(players));
+            onSuccess();
+        },
+        onErrors);
+}
+
 const findPlayersByPositionAndTeamCompleted = players => ({
     type: actionTypes.FIND_PLAYERS_BY_POSITION_AND_TEAM_COMPLETED,
     players

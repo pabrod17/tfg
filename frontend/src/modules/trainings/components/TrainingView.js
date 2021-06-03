@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import bigBall from '../../trainings/components/bigBall.jpg';
 
 const TrainingView = () => {
 
@@ -23,7 +24,7 @@ const TrainingView = () => {
                     
 
                     <div class="card hola  text-center" >
-                        <img className="holas" src={lesionPierna}/>
+                        <img className="holas entreno" src={bigBall}/>
                         <div class="card-body">
                             <h5 class="card__name">Training</h5>
                             <h5 class="card-title">Duration: {training.setDurationMinutes}</h5>

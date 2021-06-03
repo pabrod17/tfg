@@ -44,6 +44,7 @@ import TrainingHome from '../../trainings/components/TrainingHome';
 import AddTraining from '../../trainings/components/AddTraining';
 import TrainingView from '../../trainings/components/TrainingView';
 import UpdateTraining from '../../trainings/components/UpdateTraining';
+import FindPlayersByTraining from '../../players/components/FindPlayersByTraining';
 
 const Body = () => {
 
@@ -73,6 +74,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/betweenDates"><FindSeasonsBetweenTwoDates/></Route>}
                 {loggedIn && <Route exact path="/seasons/betweenDates/result/:startDate/:endDate"><FindSeasonsBetweenTwoDatesResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
+                {loggedIn && <Route exact path="/players/home/training/:id:trainingId"><FindPlayersByTraining/></Route>}
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
                 {loggedIn && <Route exact path="/players/addPlayer/:id"><AddPlayer/></Route>}
                 {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}

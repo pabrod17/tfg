@@ -43,6 +43,10 @@ const players = (state = initialState.players, action) => {
             return action.players;
         case actionTypes.FIND_PLAYERS_WITH_ONE_TYPE_LESION_COMPLETED:
             return action.players;
+        case actionTypes.FIND_PLAYERS_BY_GAME_COMPLETED:
+            return action.players;
+        case actionTypes.FIND_PLAYERS_BY_TRAINING_COMPLETED:
+            return action.players;
         default:
             return state;
     }

@@ -10,6 +10,7 @@ import {FormattedDate} from 'react-intl';
 import * as actionsTeams from '../../teams/actions';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
+import * as actionTrainings from '../../trainings/actions';
 
 const SeasonView = () => {
     const user = useSelector(selectorsUsers.getUser);
@@ -18,6 +19,11 @@ const SeasonView = () => {
     const season = useSelector(selectors.getSeason);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const handleFindTrainingsToSeason = (id, dispatch, history) => {
+        dispatch(actionTrainings.findTrainingsBySeasonId(id, () => history.push('/trainings/home')));
+        history.push('/trainings/home');
+    }
 
     const handleFindTeamsToSeason = (id, dispatch, history) => {
         dispatch(actionsTeams.findTeamsToSeason(id, () => history.push('/teams/all/result')));
@@ -45,7 +51,7 @@ const SeasonView = () => {
         
                             <div class="card hola pequeño text-center">
                                 <img src={notaLapiz} alt="Person" class="card__image entreno"></img>
-                                <p class="card__name">Trainings</p>
+                                <p class="card__name" type="button" onClick={() => handleFindTrainingsToSeason(season.id, dispatch, history)}>Trainings</p>
                                 <div class="grid-container">
                                 </div>
                             </div>

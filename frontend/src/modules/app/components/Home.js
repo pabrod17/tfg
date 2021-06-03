@@ -8,6 +8,7 @@ import canastaSimple from './canastaSimple.jpg';
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
+import back from './back.jpg'; //1920x1200
 
 const handleFindAllLesions = (dispatch, history) => {
     dispatch(actionLesion.findAllLesion(() => history.push('/lesion/home')));
@@ -63,8 +64,8 @@ const Home = () => {
                 </a>
             </div>
             <div class="carousel-item">
-            <img class="d-block w-100 grande" src={blackCanasta} alt="Fourth slide"/>
-                <a href="/trainings/home" class="btn-neon">
+            <img class="d-block w-100 grande" src={back} alt="Fourth slide"/>
+                <a href="/trainings/home" class="btn-neon"onClick={() => handleFindAllTrainings(dispatch, history)}>
                     <span id="span1"></span>
                     <span id="span2"></span>
                     <span id="span3"></span>

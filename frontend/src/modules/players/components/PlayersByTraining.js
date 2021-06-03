@@ -15,55 +15,56 @@ import * as actionsNotes from '../../notes/actions';
 import * as actionTrainings from '../../trainings/actions';
 import * as selectorsTrainings from '../../trainings/selectors';
 
-//https://freefrontend.com/css-cards/
-
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
-  dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
-  // history.push('/trainings/home');
-}
+    dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
+    // history.push('/trainings/home');
+  }
+  
+  const handleRemovePlayer = (playerId, trainingId, id, dispatch, history) => {
+    dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    window.location.reload('true');
+  }
 
-const handleRemovePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
-  window.location.reload('true');
-}
+  const handleRemovePlayerToTraining = (playerId, trainingId, id, dispatch, history) => {
+    dispatch(actionTrainings.removePlayerToTraining(playerId, trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    window.location.reload('true');
+  }
+  
+  const handleUpdatePlayer = (playerId, id, dispatch, history) => {
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
+  }
+  
+  const handleViewPlayer = (playerId, id, dispatch, history) => {
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
+  }
+  
+  const handleChangeTeam = (playerId, id, dispatch, history) => {
+    dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
+    dispatch(actionsTeams.findTeamById(id));
+    window.location.reload('true');
+  }
+  
+  const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
+    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+  }
+  
+  const handleFindLesionByPlayer = (playerId, dispatch, history) => {
+    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
+  }
+  
+  const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
+    console.log("player(12) --> " + playerId);
+    console.log("team(1) --> " + id);
+    dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+  }
+  
+  const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
+    dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
+  }
 
-const handleUpdatePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
-}
-
-const handleViewPlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
-}
-
-const handleChangeTeam = (playerId, id, dispatch, history) => {
-  dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
-  dispatch(actionsTeams.findTeamById(id));
-  window.location.reload('true');
-}
-
-const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
-  dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
-}
-
-const handleFindLesionByPlayer = (playerId, dispatch, history) => {
-  dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
-}
-
-const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
-  console.log("player(12) --> " + playerId);
-  console.log("team(1) --> " + id);
-  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
-}
-
-const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
-  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
-}
-
-
-
-function PlayersList({ items, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
+  function PlayersList({ items, trainingId, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actions.findPlayersByTraining(trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
     
         return fallback;
     } else {
@@ -77,14 +78,14 @@ function PlayersList({ items, trainingsList, lesionList, teamsList, id, fallback
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                  <li><a type="button" onClick={() => handleRemovePlayer(item.id, id, dispatch, history)}>
+                  <li><a type="button" onClick={() => handleRemovePlayer(item.id, trainingId, id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
                   <li><a type="button" onClick={() => handleViewPlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-address-book"></i></a></li>
                   <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
-                  <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+                  {/* <li><a href="#"><i class="fa fa-codepen"></i></a></li> */}
                 </ul>
                 <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}>Add Note</button>
                 <div class="dropdown">
@@ -119,6 +120,7 @@ function PlayersList({ items, trainingsList, lesionList, teamsList, id, fallback
                 <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}>My Notes</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleRemovePlayerToTraining(item.id, trainingId, id, dispatch, history)}>Remove Training</button>
 
               </div>
             </div>
@@ -128,7 +130,7 @@ function PlayersList({ items, trainingsList, lesionList, teamsList, id, fallback
       }
 }
 
-const Players = ({players, id}) => {
+const PlayersByTraining = ({players, id, trainingId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -139,7 +141,7 @@ const Players = ({players, id}) => {
     const trainingsList = trainings.trainings;
 
     if(!trainingsList) {
-        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/training/${id}${trainingId}`)));
         return "Loading...";
     }
     
@@ -160,17 +162,16 @@ const Players = ({players, id}) => {
 
     return(
         <div className="card-group">
-          <PlayersList items={players} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} trainingId={trainingId} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };
 
-Players.propTypes = {
-    players: PropTypes.array
+PlayersByTraining.propTypes = {
+    playersByTraining: PropTypes.array
 };
 
 
-export default Players;
-
+export default PlayersByTraining;
 
 

@@ -11,6 +11,7 @@ import basketball from './basketball.jpg';
 import * as actionSeasons from '../../seasons/actions';
 import * as actionPlayers from '../../players/actions';
 import * as actionPlays from '../../plays/actions';
+import * as actionTrainings from '../../trainings/actions';
 
 import {Grid} from '@material-ui/core';
 import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
@@ -21,6 +22,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
+import bigBall from '../../trainings/components/bigBall.jpg';
 
 //http://envato.jayasankarkr.in/code/profile/assets/img/profile-6.jpg
 
@@ -42,6 +44,11 @@ const TeamView = () => {
 
     const handleFindSeasonsToTeam = (id, dispatch, history) => {
         dispatch(actionSeasons.findSeasonsToTeam(id, () => history.push('/seasons/all/result')));
+    }
+
+    const handleFindTrainingsToTeam = (id, dispatch, history) => {
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push('/trainings/home')));
+        history.push('/trainings/home');
     }
 
     const handlePlayersHome = (id, dispatch, history) => {
@@ -90,8 +97,8 @@ const TeamView = () => {
 
 
                     <div class="card hola pequeño text-center">
-                        <img src={notaLapiz} alt="Person" class="card__image entreno"></img>
-                        <p class="card__name">Trainings</p>
+                        <img src={bigBall} alt="Person" class="card__image entreno"></img>
+                        <p class="card__name" type="button" onClick={() => handleFindTrainingsToTeam(team.id, dispatch, history)}>Trainings</p>
                         <div class="grid-container">
                         </div>
                     </div>
