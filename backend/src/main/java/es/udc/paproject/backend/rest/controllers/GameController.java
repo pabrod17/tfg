@@ -92,6 +92,9 @@ public class GameController {
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date gameDate,
             @RequestParam String rival)
             throws InstanceNotFoundException {
+                if(seasonId == null) {
+                    System.out.println("HOLAAAAA");
+                }
         return toGameDto(gameService.addGame(teamId, seasonId, toLocalDateTime(gameDate), rival));
     }
 

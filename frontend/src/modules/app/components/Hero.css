@@ -1141,7 +1141,7 @@ main {
 
 .hola {
   background-color: #222831;
-  height: 61rem;
+  height: 73rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -1213,6 +1213,15 @@ main {
   border: 5px solid #272133;
   margin-top: 20px;
   box-shadow: 0 10px 50px rgb(238, 255, 0);
+}
+
+.partidito {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  border: 5px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgb(255, 94, 0);
 }
 
 .tempora {

@@ -14,6 +14,7 @@ import * as selectorsPlayers from '../../players/selectors';
 import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 import bigBall from '../../trainings/components/bigBall.jpg';
+import naranja from '../../games/components/naranja.jpg';
 
 
 const handleViewGame = (id, dispatch, history) => {
@@ -29,10 +30,10 @@ const handleUpdateGame = (id, dispatch, history) => {
     dispatch(actions.findGameById(id, () => history.push(`/games/update/${id}`)));
 }
 
-// const handleFindPlayersByTraining = (trainingId, id, dispatch, history) => {
-//   dispatch(actions.findTrainingById(trainingId, () => console.log(trainingId)));
-//   dispatch(actionsPlayers.findPlayersByTraining(trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
-// }
+const handleFindPlayersByGame = (gameId, id, dispatch, history) => {
+  dispatch(actions.findGameById(gameId, () => console.log(gameId)));
+  dispatch(actionsPlayers.findPlayersByGame(gameId, () => history.push(`/players/home/game/${id}${gameId}`)));
+}
 
 
 
@@ -49,7 +50,7 @@ function GamesList({ items, teamId, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={bigBall} alt="Person" class="card__image entreno"></img>
+                <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
                 <FormattedDate
@@ -90,7 +91,7 @@ function GamesList({ items, teamId, fallback, dispatch, history}) {
                             </div>
                 </div> */}
 
-                {/* <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByTraining(item.id, teamId,dispatch, history)}>Players</button> */}
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByGame(item.id, teamId,dispatch, history)}>Players</button>
               </div>
             </div>
           </div>;
@@ -109,7 +110,7 @@ function GamesListUser({ items, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={bigBall} alt="Person" class="card__image entreno"></img>
+                <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
                 <FormattedDate

@@ -21,6 +21,12 @@ export const findTrainingsBySeasonId = (seasonId, onSuccess, onErrors) =>
 export const addTraining = (teamId, seasonId, trainingDate, durationMinutes, description, objective, onSuccess, onErrors) =>
     appFetch(`/trainings?teamId=${teamId}&seasonId=${seasonId}&trainingDate=${trainingDate}&durationMinutes=${durationMinutes}&description=${description}&objective=${objective}`, config('POST'), onSuccess, onErrors);
 
+export const addTrainingWithTeam = (teamId, trainingDate, durationMinutes, description, objective, onSuccess, onErrors) =>
+    appFetch(`/trainings?teamId=${teamId}&trainingDate=${trainingDate}&durationMinutes=${durationMinutes}&description=${description}&objective=${objective}`, config('POST'), onSuccess, onErrors);
+
+export const addTrainingWithSeason = (seasonId, trainingDate, durationMinutes, description, objective, onSuccess, onErrors) =>
+    appFetch(`/trainings?seasonId=${seasonId}&trainingDate=${trainingDate}&durationMinutes=${durationMinutes}&description=${description}&objective=${objective}`, config('POST'), onSuccess, onErrors);
+
 export const addPlayerToTraining = (playerId, trainingId, onSuccess, onErrors) =>
     appFetch(`/trainings/${playerId}/addPlayerToTraining?trainingId=${trainingId}`, config('POST'), onSuccess, onErrors);
 

@@ -17,64 +17,66 @@ import * as selectorsTrainings from '../../trainings/selectors';
 import * as actionGames from '../../games/actions';
 import * as selectorsGames from '../../games/selectors';
 
-//https://freefrontend.com/css-cards/
-
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
-  dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
-  // history.push('/trainings/home');
-}
+    dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
+    // history.push('/trainings/home');
+  }
+  
+  const handleFindGamesToPlayer = (playerId, dispatch, history) => {
+    dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
+    // history.push('/trainings/home');
+  }
+  
+  const handleRemovePlayer = (playerId, gameId, id, dispatch, history) => {
+    dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/game/${id}${gameId}`)));
+    window.location.reload('true');
+  }
 
-const handleFindGamesToPlayer = (playerId, dispatch, history) => {
-  dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
-  // history.push('/trainings/home');
-}
+  const handleRemovePlayerToGame = (playerId, gameId, id, dispatch, history) => {
+    dispatch(actionGames.removePlayerToGame(playerId, gameId, () => history.push(`/players/home/game/${id}${gameId}`)));
+    window.location.reload('true');
+  }
+  
+  const handleUpdatePlayer = (playerId, id, dispatch, history) => {
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
+  }
+  
+  const handleViewPlayer = (playerId, id, dispatch, history) => {
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
+  }
+  
+  const handleChangeTeam = (playerId, id, dispatch, history) => {
+    dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
+    dispatch(actionsTeams.findTeamById(id));
+    window.location.reload('true');
+  }
+  
+  const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
+    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+  }
+  
+  const handleFindLesionByPlayer = (playerId, dispatch, history) => {
+    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
+  }
+  
+  const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
+    console.log("player(12) --> " + playerId);
+    console.log("team(1) --> " + id);
+    dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+  }
 
-const handleRemovePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
-  window.location.reload('true');
-}
-
-const handleUpdatePlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
-}
-
-const handleViewPlayer = (playerId, id, dispatch, history) => {
-  dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
-}
-
-const handleChangeTeam = (playerId, id, dispatch, history) => {
-  dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
-  dispatch(actionsTeams.findTeamById(id));
-  window.location.reload('true');
-}
-
-const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
-  dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
-}
-
-const handleFindLesionByPlayer = (playerId, dispatch, history) => {
-  dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
-}
-
-const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
-  console.log("player(12) --> " + playerId);
-  console.log("team(1) --> " + id);
-  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
-}
-
-const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
-  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
-}
-
-const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
-  dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
-}
+  const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
+    dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
+  }
 
 
+  const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
+    dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
+  }
 
-function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
+  function PlayersList({ items, gameId, gamesList, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actions.findPlayersByGame(gameId, () => history.push(`/players/home/game/${id}${gameId}`)));
     
         return fallback;
     } else {
@@ -88,14 +90,14 @@ function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, i
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons">
-                  <li><a type="button" onClick={() => handleRemovePlayer(item.id, id, dispatch, history)}>
+                  <li><a type="button" onClick={() => handleRemovePlayer(item.id, gameId, id, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
                   <li><a type="button" onClick={() => handleViewPlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-address-book"></i></a></li>
                   <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
-                  <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+                  {/* <li><a href="#"><i class="fa fa-codepen"></i></a></li> */}
                 </ul>
                 <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}>Add Note</button>
                 <div class="dropdown">
@@ -140,6 +142,7 @@ function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, i
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, dispatch, history)}>My Games</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleRemovePlayerToGame(item.id, gameId, id, dispatch, history)}>Remove Game</button>
 
               </div>
             </div>
@@ -149,7 +152,7 @@ function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, i
       }
 }
 
-const Players = ({players, id}) => {
+const PlayersByGame = ({players, id, gameId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -161,15 +164,14 @@ const Players = ({players, id}) => {
     const gamesList = games.games;
 
     if(!gamesList) {
-        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/game/${id}${gameId}`)));
         return "Loading...";
     }
-    
 
     const trainingsList = trainings.trainings;
 
     if(!trainingsList) {
-        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/game/${id}${gameId}`)));
         return "Loading...";
     }
     
@@ -190,17 +192,13 @@ const Players = ({players, id}) => {
 
     return(
         <div className="card-group">
-          <PlayersList items={players} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} gameId={gameId} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };
 
-Players.propTypes = {
-    players: PropTypes.array
+PlayersByGame.propTypes = {
+    playersByGame: PropTypes.array
 };
 
-
-export default Players;
-
-
-
+export default PlayersByGame;

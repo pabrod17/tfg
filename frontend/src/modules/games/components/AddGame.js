@@ -43,11 +43,22 @@ const AddGame = () => {
         event.preventDefault();
     
         if (form.checkValidity()) {
-            
-            dispatch(actions.addGame(teamId, seasonId,gameDate, rival.trim(),
-            () => reloadWindow(),
-            errors => setBackendErrors(errors),
-            ));
+            if(teamId == null) {
+                dispatch(actions.addGameWithSeason(seasonId, gameDate, rival.trim(),
+                () => reloadWindow(),
+                errors => setBackendErrors(errors),
+                ));
+            } else if(seasonId==null){
+                dispatch(actions.addGameWithTeam(teamId, gameDate, rival.trim(),
+                () => reloadWindow(),
+                errors => setBackendErrors(errors),
+                ));
+            } else {
+                dispatch(actions.addGame(teamId, seasonId,gameDate, rival.trim(),
+                () => reloadWindow(),
+                errors => setBackendErrors(errors),
+                ));
+            }
         } else {
             setBackendErrors(null);
             form.classList.add('was-validated');

@@ -49,6 +49,7 @@ import GamesHome from '../../games/components/GamesHome';
 import AddGame from '../../games/components/AddGame';
 import GameView from '../../games/components/GameView';
 import UpdateGame from '../../games/components/UpdateGame';
+import FindPlayersByGame from '../../players/components/FindPlayersByGame';
 
 const Body = () => {
 
@@ -79,6 +80,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/seasons/betweenDates/result/:startDate/:endDate"><FindSeasonsBetweenTwoDatesResult/></Route>}
                 {loggedIn && <Route exact path="/seasons/view/:id"><SeasonView/></Route>}
                 {loggedIn && <Route exact path="/players/home/training/:id:trainingId"><FindPlayersByTraining/></Route>}
+                {loggedIn && <Route exact path="/players/home/game/:id:gameId"><FindPlayersByGame/></Route>}
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
                 {loggedIn && <Route exact path="/players/addPlayer/:id"><AddPlayer/></Route>}
                 {loggedIn && <Route exact path="/players/update/:id"><UpdatePlayer/></Route>}

@@ -9,6 +9,7 @@ import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import bigBall from '../../trainings/components/bigBall.jpg';
 import {FormattedDate} from 'react-intl';
+import naranja from '../../games/components/naranja.jpg';
 
 const GameView = () => {
     const game = useSelector(selectors.getOneGame);
@@ -24,7 +25,7 @@ const GameView = () => {
                     
 
                     <div class="card hola  text-center" >
-                        <img className="holas entreno" src={bigBall}/>
+                        <img className="holas partidito" src={naranja}/>
                         <div class="card-body">
                             <h5 class="card__name">Game</h5>
                             <h5 class="card-title">Rival: {game.rival}</h5>

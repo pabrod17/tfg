@@ -21,6 +21,13 @@ export const findGamesBySeasonId = (seasonId, onSuccess, onErrors) =>
 export const addGame = (teamId, seasonId, gameDate, rival, onSuccess, onErrors) =>
     appFetch(`/games?teamId=${teamId}&seasonId=${seasonId}&gameDate=${gameDate}&rival=${rival}`, config('POST'), onSuccess, onErrors);
 
+export const addGameWithTeam = (teamId, gameDate, rival, onSuccess, onErrors) =>
+    appFetch(`/games?teamId=${teamId}&gameDate=${gameDate}&rival=${rival}`, config('POST'), onSuccess, onErrors);
+
+export const addGameWithSeason = (seasonId, gameDate, rival, onSuccess, onErrors) =>
+    appFetch(`/games?seasonId=${seasonId}&gameDate=${gameDate}&rival=${rival}`, config('POST'), onSuccess, onErrors);
+
+
 export const addPlayerToGame = (playerId, gameId, onSuccess, onErrors) =>
     appFetch(`/games/${playerId}/addPlayerToGame?gameId=${gameId}`, config('POST'), onSuccess, onErrors);
 

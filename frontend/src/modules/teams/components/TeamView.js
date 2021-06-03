@@ -12,6 +12,7 @@ import * as actionSeasons from '../../seasons/actions';
 import * as actionPlayers from '../../players/actions';
 import * as actionPlays from '../../plays/actions';
 import * as actionTrainings from '../../trainings/actions';
+import * as actionGames from '../../games/actions';
 
 import {Grid} from '@material-ui/core';
 import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
@@ -23,6 +24,7 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import bigBall from '../../trainings/components/bigBall.jpg';
+import redAzul from '../../games/components/naranja.jpg';
 
 //http://envato.jayasankarkr.in/code/profile/assets/img/profile-6.jpg
 
@@ -49,6 +51,10 @@ const TeamView = () => {
     const handleFindTrainingsToTeam = (id, dispatch, history) => {
         dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push('/trainings/home')));
         history.push('/trainings/home');
+    }
+
+    const handleFindGamesToTeam = (id, dispatch, history) => {
+        dispatch(actionGames.findGamesByTeamId(id, () => history.push('/games/home')));
     }
 
     const handlePlayersHome = (id, dispatch, history) => {
@@ -99,6 +105,13 @@ const TeamView = () => {
                     <div class="card hola pequeño text-center">
                         <img src={bigBall} alt="Person" class="card__image entreno"></img>
                         <p class="card__name" type="button" onClick={() => handleFindTrainingsToTeam(team.id, dispatch, history)}>Trainings</p>
+                        <div class="grid-container">
+                        </div>
+                    </div>
+
+                    <div class="card hola pequeño text-center">
+                        <img src={redAzul} alt="Person" class="card__image partidito"></img>
+                        <p class="card__name" type="button" onClick={() => handleFindGamesToTeam(team.id, dispatch, history)}>Games</p>
                         <div class="grid-container">
                         </div>
                     </div>

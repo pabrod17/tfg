@@ -45,12 +45,25 @@ const AddTraining = () => {
         event.preventDefault();
     
         if (form.checkValidity()) {
-            
-            dispatch(actions.addTraining(teamId, seasonId,trainingDate, durationMinutes,
-            description.trim(), objective.trim(),
-            () => reloadWindow(),
-            errors => setBackendErrors(errors),
-            ));
+            if(teamId==null) {
+                dispatch(actions.addTrainingWithSeason(seasonId,trainingDate, durationMinutes,
+                    description.trim(), objective.trim(),
+                    () => reloadWindow(),
+                    errors => setBackendErrors(errors),
+                    ));
+            } else if(seasonId==null){
+                dispatch(actions.addTrainingWithTeam(teamId,trainingDate, durationMinutes,
+                    description.trim(), objective.trim(),
+                    () => reloadWindow(),
+                    errors => setBackendErrors(errors),
+                    ));
+                } else{
+                    dispatch(actions.addTraining(teamId, seasonId,trainingDate, durationMinutes,
+                        description.trim(), objective.trim(),
+                        () => reloadWindow(),
+                        errors => setBackendErrors(errors),
+                        ));
+                }
         } else {
             setBackendErrors(null);
             form.classList.add('was-validated');

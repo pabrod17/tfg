@@ -11,6 +11,9 @@ import * as actionsTeams from '../../teams/actions';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import * as actionTrainings from '../../trainings/actions';
+import * as actionGames from '../../games/actions';
+import bigBall from '../../trainings/components/bigBall.jpg';
+import redAzul from '../../games/components/naranja.jpg';
 
 const SeasonView = () => {
     const user = useSelector(selectorsUsers.getUser);
@@ -22,8 +25,12 @@ const SeasonView = () => {
 
     const handleFindTrainingsToSeason = (id, dispatch, history) => {
         dispatch(actionTrainings.findTrainingsBySeasonId(id, () => history.push('/trainings/home')));
-        history.push('/trainings/home');
     }
+
+    const handleFindGamesToSeason = (id, dispatch, history) => {
+        dispatch(actionGames.findGamesBySeasonId(id, () => history.push('/games/home')));
+    }
+
 
     const handleFindTeamsToSeason = (id, dispatch, history) => {
         dispatch(actionsTeams.findTeamsToSeason(id, () => history.push('/teams/all/result')));
@@ -50,12 +57,19 @@ const SeasonView = () => {
         
         
                             <div class="card hola pequeño text-center">
-                                <img src={notaLapiz} alt="Person" class="card__image entreno"></img>
+                                <img src={bigBall} alt="Person" class="card__image entreno"></img>
                                 <p class="card__name" type="button" onClick={() => handleFindTrainingsToSeason(season.id, dispatch, history)}>Trainings</p>
                                 <div class="grid-container">
                                 </div>
                             </div>
         
+                            <div class="card hola pequeño text-center">
+                                <img src={redAzul} alt="Person" class="card__image partidito"></img>
+                                <p class="card__name" type="button" onClick={() => handleFindGamesToSeason(season.id, dispatch, history)}>Games</p>
+                                <div class="grid-container">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
     

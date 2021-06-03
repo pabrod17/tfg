@@ -99,6 +99,24 @@ export const addGame = (teamId, seasonId, gameDate, rival, onSuccess, onErrors) 
         onErrors);
 }
 
+export const addGameWithTeam = (teamId, gameDate, rival, onSuccess, onErrors) => dispatch => {
+    backend.gameService.addGameWithTeam(teamId, gameDate, rival,
+        game => {
+            dispatch(addGameCompleted(game));
+            onSuccess();
+        },
+        onErrors);
+}
+
+export const addGameWithSeason = (seasonId, gameDate, rival, onSuccess, onErrors) => dispatch => {
+    backend.gameService.addGameWithSeason(seasonId, gameDate, rival,
+        game => {
+            dispatch(addGameCompleted(game));
+            onSuccess();
+        },
+        onErrors);
+}
+
 export const addPlayerToGame = (playerId, gameId, onSuccess, onErrors) => {
     backend.gameService.addPlayerToGame(playerId, gameId, onSuccess, onErrors);
     return {type: actionTypes.ADD_PLAYER_TO_GAME_COMPLETED};

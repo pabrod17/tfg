@@ -99,6 +99,24 @@ export const addTraining = (teamId, seasonId, trainingDate, durationMinutes, des
         onErrors);
 }
 
+export const addTrainingWithTeam = (teamId, trainingDate, durationMinutes, description, objective, onSuccess, onErrors) => dispatch => {
+    backend.trainingService.addTrainingWithTeam(teamId, trainingDate, durationMinutes, description, objective,
+        training => {
+            dispatch(addTrainingCompleted(training));
+            onSuccess();
+        },
+        onErrors);
+}
+
+export const addTrainingWithSeason = (seasonId, trainingDate, durationMinutes, description, objective, onSuccess, onErrors) => dispatch => {
+    backend.trainingService.addTrainingWithSeason(seasonId, trainingDate, durationMinutes, description, objective,
+        training => {
+            dispatch(addTrainingCompleted(training));
+            onSuccess();
+        },
+        onErrors);
+}
+
 export const addPlayerToTraining = (playerId, trainingId, onSuccess, onErrors) => {
     backend.trainingService.addPlayerToTraining(playerId, trainingId, onSuccess, onErrors);
     return {type: actionTypes.ADD_PLAYER_TO_TRAINING_COMPLETED};

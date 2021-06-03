@@ -5,6 +5,8 @@ import canastaRed from './canastaRed.jpg';
 import basketball from './basketball.jpg';
 import basketRed2 from './basketRed2.jpg';
 import canastaSimple from './canastaSimple.jpg';
+import gameMatch from './gameMatch.jpg';
+
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
@@ -81,7 +83,7 @@ const Home = () => {
                 </a>
             </div>
             <div class="carousel-item">
-            <img class="d-block w-100 grande" src={back} alt="Fourth slide"/>
+            <img class="d-block w-100 grande" src={gameMatch} alt="Fourth slide"/>
                 <a href="/games/home" class="btn-neon"onClick={() => handleFindAllGames(dispatch, history)}>
                     <span id="span1"></span>
                     <span id="span2"></span>
