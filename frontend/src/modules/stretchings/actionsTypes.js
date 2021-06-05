@@ -1,0 +1,15 @@
+export const FIND_STRETCHING_BY_ID_COMPLETED = "project/stretchings/findStretchingByIdCompleted";
+export const FIND_ALL_STRETCHINGS_COMPLETED = "project/stretchings/findAllStretchingsCompleted";
+export const FIND_STRETCHINGS_BY_TYPE_COMPLETED = "project/stretchings/findAllStretchingsCompleted";
+export const FIND_STRETCHINGS_BY_PLAYER_ID_COMPLETED = "project/stretchings/findStretchingsByPlayerIdCompleted";
+export const FIND_STRETCHINGS_BY_TRAINING_ID_COMPLETED = "project/stretchings/findStretchingsByTrainingIdCompleted";
+export const FIND_STRETCHINGS_BY_GAME_ID_COMPLETED = "project/stretchings/findStretchingsByGameIdCompleted";
+export const ADD_STRETCHING_COMPLETED = "project/stretchings/addStretchingCompleted";
+export const ADD_STRETCHING_TO_PLAYER_COMPLETED = "project/stretchings/addStretchingToPlayerCompleted";
+export const ADD_STRETCHING_TO_TRAINING_COMPLETED = "project/stretchings/addStretchingToTrainingCompleted";
+export const ADD_STRETCHING_TO_GAME_COMPLETED = "project/stretchings/addStretchingToGameCompleted";
+export const UPDATE_STRETCHING_COMPLETED = "project/stretchings/updatStretchingCompleted";
+export const REMOVE_STRETCHING_COMPLETED = "project/stretchings/removeStretchingCompleted";
+export const REMOVE_STRETCHING_TO_PLAYER_COMPLETED = "project/stretchings/removeStretchingToPlayerCompleted";
+export const REMOVE_STRETCHING_TO_TRAINING_COMPLETED = "project/stretchings/removeStretchingToTrainingCompleted";
+export const REMOVE_STRETCHING_TO_GAME_COMPLETED = "project/stretchings/removeStretchingToGameCompleted";

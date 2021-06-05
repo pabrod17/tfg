@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
+import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
 
-
-const AddLesion = () => {
+const UpdateStretching = () => {
+    const stretching = useSelector(selectors.getOneStretching);
+    const {id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const [lesionName, setLesionName] = useState("");
-    const [description, setDescription] = useState("");
-    const [medication, setMedication] = useState("");
-    const [lesionType, setLesionType] = useState("");
+    const [stretchingName, setStretchingName] = useState(stretching.stretchingName);
+    const [description, setDescription] = useState(stretching.description);
+    const [stretchingType, setStretchingType] = useState(stretching.stretchingType);
     const [backendErrors, setBackendErrors] = useState(null);
     let form;
 
@@ -24,8 +25,8 @@ const AddLesion = () => {
     
         if (form.checkValidity()) {
             
-            dispatch(actions.addLesion(lesionName.trim(), 
-            description.trim(), medication.trim(), lesionType,
+            dispatch(actions.updatStretching(stretching.id, stretchingName.trim(), 
+            description.trim(), stretchingType,
             () => reloadWindow(),
             errors => setBackendErrors(errors),
             ));
@@ -34,17 +35,22 @@ const AddLesion = () => {
             form.classList.add('was-validated');
             }
         }
+
         const reloadWindow = () =>{
-            history.push('/lesion/addLesion');
+            history.push(`/stretchings/home`);
             window.location.reload('true');
         }
 
-        const muscle = "Muscle";
-        const tendon = "Tendon";
-        const joint = "Joint";
-        const spine = "Spine";
-        const psychological  = "Psychological";
-
+        const hamstrings = "Hamstrings";
+        const buttocks = "Buttocks";
+        const calf = "Calf";
+        const adductors = "Adductors";
+        const shoulder  = "Shoulder";
+        const quadriceps = "Quadriceps";
+        const back = "Back";
+        const pectoral = "Pectoral";
+        const crotch = "Crotch";
+        const triceps  = "Triceps";
 
         return(
 
@@ -52,19 +58,19 @@ const AddLesion = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Add Lesion
+                        Update Stretching
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                    Lesion Name
+                                    Stretching Name
                                 </label>
                                 <div className="col-md-9">
-                                    <input type="text" id="lesionName" className="form-control"
-                                        value={lesionName}
-                                        onChange={e => setLesionName(e.target.value)}
+                                    <input type="text" id="stretchingName" className="form-control"
+                                        value={stretchingName}
+                                        onChange={e => setStretchingName(e.target.value)}
                                         autoFocus
                                         required/>
                                     <div className="invalid-feedback">
@@ -87,35 +93,25 @@ const AddLesion = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="form-group row">
-                                <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Medication
-                                </label>
-                                <div className="col-md-12">
-                                    <textarea type="text" id="medication" className="form-control"
-                                        value={medication}
-                                        onChange={e => setMedication(e.target.value)}
-                                        autoFocus
-                                        required/>
-                                    <div className="invalid-feedback">
-                                        <FormattedMessage id='project.global.validator.required'/>
-                                    </div>
-                                </div>
-                            </div>
                             <div className=" row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                    Lesion Type
+                                    Stretching Type
                                 </label>
                             <div class="dropdown col-md-6">
-                                <button class="dropbtn">{lesionType} 
+                                <button class="dropbtn">{stretchingType} 
                                 <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                <a type="button" onClick={() => setLesionType(muscle)} >Muscle</a>
-                                <a type="button" onClick={() => setLesionType(tendon)} >Tendon</a>
-                                <a type="button" onClick={() => setLesionType(joint)} >Joint</a>
-                                <a type="button" onClick={() => setLesionType(spine)} >Spine</a>
-                                <a type="button" onClick={() => setLesionType(psychological)} >Psychological</a>
+                                <a type="button" onClick={() => setStretchingType(hamstrings)} >Hamstrings</a>
+                                <a type="button" onClick={() => setStretchingType(buttocks)} >Buttocks</a>
+                                <a type="button" onClick={() => setStretchingType(calf)} >Calf</a>
+                                <a type="button" onClick={() => setStretchingType(adductors)} >Adductors</a>
+                                <a type="button" onClick={() => setStretchingType(shoulder)} >Shoulder</a>
+                                <a type="button" onClick={() => setStretchingType(quadriceps)} >Quadriceps</a>
+                                <a type="button" onClick={() => setStretchingType(back)} >Back</a>
+                                <a type="button" onClick={() => setStretchingType(pectoral)} >Pectoral</a>
+                                <a type="button" onClick={() => setStretchingType(crotch)} >Crotch</a>
+                                <a type="button" onClick={() => setStretchingType(triceps)} >Triceps</a>
                                 </div>
                             </div>
                             </div>
@@ -133,4 +129,4 @@ const AddLesion = () => {
         );
 }
 
-export default AddLesion;
+export default UpdateStretching;

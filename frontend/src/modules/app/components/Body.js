@@ -56,6 +56,10 @@ import UpdateGameStatistics from '../../statistics/components/UpdateGameStatisti
 import AddPlayerGameStatistics from '../../statistics/components/AddPlayerGameStatistics';
 import FindPlayerGameStatistics from '../../statistics/components/FindPlayerGameStatistics';
 import UpdatePlayerGameStatistics from '../../statistics/components/UpdatePlayerGameStatistics';
+import StretchingsHome from '../../stretchings/components/StretchingsHome';
+import StretchingView from '../../stretchings/components/StretchingView';
+import AddStretching from '../../stretchings/components/AddStretching';
+import UpdateStretching from '../../stretchings/components/UpdateStretching';
 
 const Body = () => {
 
@@ -123,6 +127,10 @@ const Body = () => {
                 {loggedIn && <Route exact path="/statistics/playerGame/:playerId:gameId"><FindPlayerGameStatistics/></Route>}
                 {loggedIn && <Route exact path="/statistics/game/update/:gameId"><UpdateGameStatistics/></Route>}
                 {loggedIn && <Route exact path="/statistics/playerGame/update/:playerId:gameId"><UpdatePlayerGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/stretchings/home"><StretchingsHome/></Route>}
+                {loggedIn && <Route exact path="/stretchings/view/:id"><StretchingView/></Route>}
+                {loggedIn && <Route exact path="/stretchings/addStretching"><AddStretching/></Route>}
+                {loggedIn && <Route exact path="/stretchings/update/:id"><UpdateStretching/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

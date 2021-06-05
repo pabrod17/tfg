@@ -11,6 +11,7 @@ import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
 import * as actionGames from '../..//games/actions';
+import * as actionStretchings from '../..//stretchings/actions';
 
 import back from './back.jpg'; //1920x1200
 
@@ -24,6 +25,10 @@ const handleFindAllTrainings = (dispatch, history) => {
 
 const handleFindAllGames = (dispatch, history) => {
     dispatch(actionGames.findGamesByUserId(() => history.push('/games/home')));
+}
+
+const handleFindAllStretchings = (dispatch, history) => {
+    dispatch(actionStretchings.findAllStretchings(() => history.push('/stretchings/home')));
 }
 
 const Home = () => {
@@ -90,6 +95,16 @@ const Home = () => {
                     <span id="span3"></span>
                     <span id="span4"></span>
                     Games
+                </a>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100 grande" src={gameMatch} alt="Fourth slide"/>
+                <a href="/stretchings/home" class="btn-neon"onClick={() => handleFindAllStretchings(dispatch, history)}>
+                    <span id="span1"></span>
+                    <span id="span2"></span>
+                    <span id="span3"></span>
+                    <span id="span4"></span>
+                    Stretchings
                 </a>
             </div>
         </div>
