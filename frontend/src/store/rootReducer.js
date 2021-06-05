@@ -10,6 +10,7 @@ import notes from '../modules/notes';
 import plays from '../modules/plays';
 import trainings from '../modules/trainings';
 import games from '../modules/games';
+import statistics from '../modules/statistics';
 
 const rootReducer = combineReducers({
     app: app.reducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     notes: notes.reducer,
     plays: plays.reducer,
     trainings: trainings.reducer,
-    games: games.reducer
+    games: games.reducer,
+    statistics: statistics.reducer
 });
 
 export default rootReducer;

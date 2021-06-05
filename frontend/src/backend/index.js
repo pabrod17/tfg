@@ -8,7 +8,8 @@ import * as noteService from './noteService';
 import * as playService from './playService';
 import * as trainingService from './trainingService';
 import * as gameService from './gameService';
+import * as statisticsService from './statisticsService';
 
 export {default as NetworkError} from "./NetworkError";
 
-export default {init, userService, teamService, seasonService, playerService, lesionService, noteService, playService, trainingService, gameService};
+export default {init, userService, teamService, seasonService, playerService, lesionService, noteService, playService, trainingService, gameService, statisticsService};

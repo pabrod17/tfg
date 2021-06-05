@@ -50,6 +50,12 @@ import AddGame from '../../games/components/AddGame';
 import GameView from '../../games/components/GameView';
 import UpdateGame from '../../games/components/UpdateGame';
 import FindPlayersByGame from '../../players/components/FindPlayersByGame';
+import AddGameStatistics from '../../statistics/components/AddGameStatistics';
+import FindGameStatistics from '../../statistics/components/FindGameStatistics';
+import UpdateGameStatistics from '../../statistics/components/UpdateGameStatistics';
+import AddPlayerGameStatistics from '../../statistics/components/AddPlayerGameStatistics';
+import FindPlayerGameStatistics from '../../statistics/components/FindPlayerGameStatistics';
+import UpdatePlayerGameStatistics from '../../statistics/components/UpdatePlayerGameStatistics';
 
 const Body = () => {
 
@@ -111,6 +117,12 @@ const Body = () => {
                 {loggedIn && <Route exact path="/games/addGame"><AddGame/></Route>}
                 {loggedIn && <Route exact path="/games/view/:id"><GameView/></Route>}
                 {loggedIn && <Route exact path="/games/update/:id"><UpdateGame/></Route>}
+                {loggedIn && <Route exact path="/statistics/addGameStatistics/:gameId"><AddGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/statistics/addPlayerGameStatistics/:playerId:gameId"><AddPlayerGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/statistics/game/:gameId"><FindGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/statistics/playerGame/:playerId:gameId"><FindPlayerGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/statistics/game/update/:gameId"><UpdateGameStatistics/></Route>}
+                {loggedIn && <Route exact path="/statistics/playerGame/update/:playerId:gameId"><UpdatePlayerGameStatistics/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

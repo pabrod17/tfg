@@ -137,7 +137,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         }
         Game game = gameDao.findById(gameId).get();
 
-        if (!gameStatisticsDao.existsById(game.getGameStatistics().getId())) {
+        if (game.getGameStatistics() == null) {
             throw new InstanceNotFoundException("project.entities.statistics");
         }
 

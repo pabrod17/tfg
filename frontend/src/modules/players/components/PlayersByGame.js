@@ -16,6 +16,7 @@ import * as actionTrainings from '../../trainings/actions';
 import * as selectorsTrainings from '../../trainings/selectors';
 import * as actionGames from '../../games/actions';
 import * as selectorsGames from '../../games/selectors';
+import * as actionStatistics from '../../statistics/actions';
 
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
     dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
@@ -72,6 +73,14 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
 
   const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
     dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
+  }
+
+  const handleAddPlayerGameStatistics = (playerId, gameId, dispatch, history) => {
+    history.push(`/statistics/addPlayerGameStatistics/${playerId}${gameId}`);
+  }
+  
+  const handleFindPlayerGameStatistics = (playerId, gameId, dispatch, history) => {
+    dispatch(actionStatistics.findStatisticsByPlayerAndGame(playerId, gameId, () => history.push(`/statistics/playerGame/${playerId}${gameId}`)));
   }
 
   function PlayersList({ items, gameId, gamesList, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
@@ -143,6 +152,8 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, dispatch, history)}>My Games</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleRemovePlayerToGame(item.id, gameId, id, dispatch, history)}>Remove Game</button>
+                <button className="btn-player draw-border" onClick={() => handleFindPlayerGameStatistics(item.id, gameId, dispatch, history)}>Player Game Statistics</button>
+                <button className="btn-player draw-border" onClick={() => handleAddPlayerGameStatistics(item.id, gameId, dispatch, history)}>Add Game Statistics</button>
 
               </div>
             </div>

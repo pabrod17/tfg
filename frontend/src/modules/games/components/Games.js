@@ -15,6 +15,7 @@ import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 import bigBall from '../../trainings/components/bigBall.jpg';
 import naranja from '../../games/components/naranja.jpg';
+import * as actionsStatistics from '../../statistics/actions';
 
 
 const handleViewGame = (id, dispatch, history) => {
@@ -35,9 +36,13 @@ const handleFindPlayersByGame = (gameId, id, dispatch, history) => {
   dispatch(actionsPlayers.findPlayersByGame(gameId, () => history.push(`/players/home/game/${id}${gameId}`)));
 }
 
+const handleAddGameStatistics = (gameId, dispatch, history) => {
+  history.push(`/statistics/addGameStatistics/${gameId}`);
+}
 
-
-
+const handleFindGameStatisticsByGame = (gameId, dispatch, history) => {
+  dispatch(actionsStatistics.findStatisticsByGame(gameId, () => history.push(`/statistics/game/${gameId}`)));
+}
 
 
 function GamesList({ items, teamId, fallback, dispatch, history}) {
@@ -49,7 +54,7 @@ function GamesList({ items, teamId, fallback, dispatch, history}) {
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola pruebo">
+              <div class="card hola partijeje">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
@@ -92,6 +97,8 @@ function GamesList({ items, teamId, fallback, dispatch, history}) {
                 </div> */}
 
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByGame(item.id, teamId,dispatch, history)}>Players</button>
+                <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
+                <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
               </div>
             </div>
           </div>;
@@ -109,7 +116,7 @@ function GamesListUser({ items, fallback, dispatch, history}) {
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola pruebo">
+              <div class="card hola partijeje">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
@@ -142,7 +149,8 @@ function GamesListUser({ items, fallback, dispatch, history}) {
                                         </a>)}
                             </div>
                 </div> */}
-  
+                  <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
+                  <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
               </div>
             </div>
           </div>;
