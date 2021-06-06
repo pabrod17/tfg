@@ -10,22 +10,22 @@ import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import estiramientos from './estiramientos.jpg'; //1920x1200
 
-const handleRemoveStretching = (id, dispatch, history) => {
-    dispatch(actions.removeStretching(id, () => history.push(`/stretchings/home`)));
+const handleRemoveStretchingToTraining = (id, trainingId, dispatch, history) => {
+    dispatch(actions.removeStretchingToTraining(trainingId, id, () => history.push(`/stretchings/home/training/${trainingId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateStretching = (id, dispatch, history) => {
-  dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/update/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/update/${id}`)));
 }
 
 const handleViewStretching = (id, dispatch, history) => {
     dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/view/${id}`)));
 }
 
-function StretchingsList({ items, fallback, dispatch, history}) {
+function StretchingsList({ items, trainingId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findAllStretchings(() => history.push('/stretchings/home')));
+        dispatch(actions.findStretchingsByTrainingId(trainingId, () => history.push(`/stretchings/home/training/${trainingId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -38,7 +38,7 @@ function StretchingsList({ items, fallback, dispatch, history}) {
                 <div class="grid-container">
                 </div>
                 <ul class="social-icons lesiongrande">
-                <li><a type="button" onClick={() => handleRemoveStretching(item.id, dispatch, history)}>
+                <li><a type="button" onClick={() => handleRemoveStretchingToTraining(item.id, trainingId, dispatch, history)}>
                   <i class="fa fa-trash"></i></a></li>
                   
                   <li><a type="button" onClick={() => handleViewStretching(item.id, dispatch, history)}>
@@ -55,19 +55,15 @@ function StretchingsList({ items, fallback, dispatch, history}) {
       }
 }
 
-const Stretchings = ({stretchings}) => {
+const StretchingsByTraining = ({stretchings, trainingId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     return(
         <div className="card-group">
-          <StretchingsList items={stretchings} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <StretchingsList items={stretchings} trainingId={trainingId} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };
 
-Stretchings.propTypes = {
-    stretchings: PropTypes.array
-};
-
-export default Stretchings;
+export default StretchingsByTraining;

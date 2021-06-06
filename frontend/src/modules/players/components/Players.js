@@ -16,6 +16,8 @@ import * as actionTrainings from '../../trainings/actions';
 import * as selectorsTrainings from '../../trainings/selectors';
 import * as actionGames from '../../games/actions';
 import * as selectorsGames from '../../games/selectors';
+import * as actionStretchings from '../../stretchings/actions';
+import * as selectorsStretchings from '../../stretchings/selectors';
 
 //https://freefrontend.com/css-cards/
 
@@ -24,7 +26,8 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
   // history.push('/trainings/home');
 }
 
-const handleFindGamesToPlayer = (playerId, dispatch, history) => {
+const handleFindGamesToPlayer = (playerId, id, dispatch, history) => {
+  dispatch(actions.findPlayerByIdOfTeam(playerId,id, () => console.log(playerId)));
   dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
   // history.push('/trainings/home');
 }
@@ -72,7 +75,22 @@ const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
 
 
 
-function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
+
+
+
+const handleFindStretchingsByPlayer = (playerId, dispatch, history) => {
+  dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+}
+
+
+
+const handleAddStretchingToPlayer = (playerId, stretchingId, id, dispatch, history) => {
+  dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history.push(`/players/home/${id}`)));
+}
+
+
+
+function PlayersList({ items, stretchingsList, gamesList, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
     
@@ -136,10 +154,20 @@ function PlayersList({ items, gamesList, trainingsList, lesionList, teamsList, i
                                         </a>)}
                             </div>
                 </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Stretching</button>
+                            <div class="dropdown-content">
+                            {stretchingsList.map(stretching => 
+                                        <a type="button" onClick={() => handleAddStretchingToPlayer(item.id, stretching.id, id, dispatch, history)}> 
+                                            {stretching.id} : {" Rival: "}{stretching.stretchingName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}>My Notes</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, dispatch, history)}>My Games</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, id, dispatch, history)}>My Games</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByPlayer(item.id, dispatch, history)}>My Stretchings</button>
 
               </div>
             </div>
@@ -157,7 +185,15 @@ const Players = ({players, id}) => {
     const lesions = useSelector(selectorsLesion.getAllLesion);
     const trainings = useSelector(selectorsTrainings.getAllTrainings);
     const games = useSelector(selectorsGames.getAllGames);
+    const stretchings = useSelector(selectorsStretchings.getAllStretchings);
 
+    const stretchingsList = stretchings.stretchings;
+
+    if(!stretchingsList) {
+        dispatch(actionStretchings.findAllStretchings(() => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
+    
     const gamesList = games.games;
 
     if(!gamesList) {
@@ -190,7 +226,7 @@ const Players = ({players, id}) => {
 
     return(
         <div className="card-group">
-          <PlayersList items={players} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} stretchingsList={stretchingsList} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 };

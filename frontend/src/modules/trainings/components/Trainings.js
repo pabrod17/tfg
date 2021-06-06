@@ -14,6 +14,8 @@ import * as selectorsPlayers from '../../players/selectors';
 import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 import bigBall from '../../trainings/components/bigBall.jpg';
+import * as actionStretchings from '../../stretchings/actions';
+import * as selectorsStretchings from '../../stretchings/selectors';
 
 const handleViewTraining = (id, dispatch, history) => {
     dispatch(actions.findTrainingById(id, () => history.push(`/trainings/view/${id}`)));
@@ -33,7 +35,16 @@ const handleFindPlayersByTraining = (trainingId, id, dispatch, history) => {
   dispatch(actionsPlayers.findPlayersByTraining(trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
 }
 
-function TrainingsList({ items, teamId, fallback, dispatch, history}) {
+const handleFindStretchingsByTraining = (trainingId, dispatch, history) => {
+  dispatch(actionStretchings.findStretchingsByTrainingId(trainingId, () => history.push(`/stretchings/home/training/${trainingId}`)));
+}
+
+const handleAddStretchingToTraining = (trainingId, stretchingId, dispatch, history) => {
+  dispatch(actionStretchings.addStretchingToTraining(trainingId, stretchingId, () => history.push('/games/home')));
+}
+
+
+function TrainingsList({ items, stretchingsList, teamId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
         return fallback;
@@ -75,8 +86,17 @@ function TrainingsList({ items, teamId, fallback, dispatch, history}) {
                                         </a>)}
                             </div>
                 </div> */}
-
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Stretching</button>
+                            <div class="dropdown-content">
+                            {stretchingsList.map(stretching => 
+                                        <a type="button" onClick={() => handleAddStretchingToTraining(item.id, stretching.id, dispatch, history)}> 
+                                            {stretching.id} : {" Rival: "}{stretching.stretchingName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByTraining(item.id, teamId,dispatch, history)}>Players</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
               </div>
             </div>
           </div>;
@@ -84,7 +104,7 @@ function TrainingsList({ items, teamId, fallback, dispatch, history}) {
       }
 }
 
-function TrainingsListUser({ items, fallback, dispatch, history}) {
+function TrainingsListUser({ items, stretchingsList, fallback, dispatch, history}) {
   if (!items || items.length === 0) {
       dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
       return fallback;
@@ -126,7 +146,16 @@ function TrainingsListUser({ items, fallback, dispatch, history}) {
                                       </a>)}
                           </div>
               </div> */}
-
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Stretching</button>
+                            <div class="dropdown-content">
+                            {stretchingsList.map(stretching => 
+                                        <a type="button" onClick={() => handleAddStretchingToTraining(item.id, stretching.id, dispatch, history)}> 
+                                            {stretching.id} : {" Rival: "}{stretching.stretchingName}
+                                        </a>)}
+                            </div>
+                </div>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
             </div>
           </div>
         </div>;
@@ -140,24 +169,26 @@ const Trainings = ({trainings}) => {
     const history = useHistory();
     
     const team = useSelector(selectorsTeams.getTeam);
-    // const players = useSelector(selectorsPlayers.getAllPlayers);
-    // const id = teams.team.id;
-    // const playersList = players.players;
+    const stretchings = useSelector(selectorsStretchings.getAllStretchings);
 
-    // if(!playersList) {
-    //     dispatch(actionsPlayers.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
-    //     return "Loading...";
-    // }
+    const stretchingsList = stretchings.stretchings;
+
+    if(!stretchingsList) {
+        dispatch(actionStretchings.findAllStretchings(() => history.push('/games/home')));
+        return "Loading...";
+    }
+
+
     if (!team) {
       return(
         <div className="card-group">
-        <TrainingsListUser items={trainings} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+        <TrainingsListUser items={trainings} stretchingsList={stretchingsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     );
   } else {
       return(
           <div className="card-group">
-          <TrainingsList items={trainings}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <TrainingsList items={trainings} stretchingsList={stretchingsList}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
           </div>
       );
   };

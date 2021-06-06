@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import estiramientos from './estiramientos.jpg'; //1920x1200
 
 const StretchingView = () => {
 
@@ -20,7 +21,7 @@ const StretchingView = () => {
         if(stretching){
             return (
                     <div class="card hola  text-center" >
-                        <img className="holas" src={lesionPierna}/>
+                        <img className="holas" src={estiramientos}/>
                         <div class="card-body">
                             <h5 class="card__name">{stretching.stretchingName}</h5>
                             <h5 class="card-title">Type: {stretching.stretchingType}</h5>

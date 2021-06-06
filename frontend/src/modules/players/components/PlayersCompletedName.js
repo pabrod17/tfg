@@ -13,9 +13,20 @@ import * as actionsNotes from '../../notes/actions';
 import * as actionTrainings from '../../trainings/actions';
 import * as actionsLesion from '../../lesion/actions';
 import * as selectorsLesion from '../../lesion/selectors';
+import * as selectorsTrainings from '../../trainings/selectors';
+import * as actionGames from '../../games/actions';
+import * as selectorsGames from '../../games/selectors';
+import * as actionStretchings from '../../stretchings/actions';
+import * as selectorsStretchings from '../../stretchings/selectors';
 
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
   dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
+  // history.push('/trainings/home');
+}
+
+const handleFindGamesToPlayer = (playerId, id, dispatch, history) => {
+  dispatch(actions.findPlayerByIdOfTeam(playerId,id, () => console.log(playerId)));
+  dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
   // history.push('/trainings/home');
 }
 
@@ -52,7 +63,25 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
     dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
   }
 
-  function PlayersList({ items, lesionList, teamsList, id, playerName, primaryLastName, secondLastName, fallback, dispatch, history}) {
+  const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
+  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
+}
+
+const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
+  dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
+}
+
+const handleFindStretchingsByPlayer = (playerId, dispatch, history) => {
+  dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+}
+
+
+const handleAddStretchingToPlayer = (playerId, stretchingId, id, dispatch, history) => {
+  dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history.push(`/players/home/${id}`)));
+}
+
+
+  function PlayersList({ items, stretchingsList, gamesList, trainingsList, lesionList, teamsList, id, playerName, primaryLastName, secondLastName, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findPlayersByCompletedNameOfTeam(id, playerName, primaryLastName, secondLastName, () => history.push(`/players/completedName/result/${id}/${playerName.trim()}/${primaryLastName.trim()}/${secondLastName.trim()}`)));
     
@@ -97,9 +126,38 @@ const handleRemovePlayer = (playerId, id, dispatch, history) => {
                                       </a>)}
                           </div>
               </div>
+              <div class="dropdown">
+                <button class="btn-player draw-border">Add Training</button>
+                            <div class="dropdown-content">
+                            {trainingsList.map(training => 
+                                        <a type="button" onClick={() => handleAddNewTrainingToPlayer(item.id, training.id, id, dispatch, history)}> 
+                                            {training.id} : {"  "}{training.objective}
+                                        </a>)}
+                            </div>
+                </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Game</button>
+                            <div class="dropdown-content">
+                            {gamesList.map(game => 
+                                        <a type="button" onClick={() => handleAddNewGameToPlayer(item.id, game.id, id, dispatch, history)}> 
+                                            {game.id} : {" Rival: "}{game.rival}
+                                        </a>)}
+                            </div>
+                </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Stretching</button>
+                            <div class="dropdown-content">
+                            {stretchingsList.map(stretching => 
+                                        <a type="button" onClick={() => handleAddStretchingToPlayer(item.id, stretching.id, id, dispatch, history)}> 
+                                            {stretching.id} : {" Rival: "}{stretching.stretchingName}
+                                        </a>)}
+                            </div>
+                </div>
               <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}>My Notes</button>
               <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
               <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
+              <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, id, dispatch, history)}>My Games</button>
+              <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByPlayer(item.id, dispatch, history)}>My Stretchings</button>
 
             </div>
           </div>
@@ -118,6 +176,31 @@ const PlayersCompletedName =({players, id, playerName, primaryLastName, secondLa
 
     const teams = useSelector(selectorsTeams.getAllTeams);
     const lesions = useSelector(selectorsLesion.getAllLesion);
+    const trainings = useSelector(selectorsTrainings.getAllTrainings);
+    const games = useSelector(selectorsGames.getAllGames);
+    const stretchings = useSelector(selectorsStretchings.getAllStretchings);
+
+    const stretchingsList = stretchings.stretchings;
+
+    if(!stretchingsList) {
+        dispatch(actionStretchings.findAllStretchings(() => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
+    
+    const gamesList = games.games;
+
+    if(!gamesList) {
+        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
+    
+
+    const trainingsList = trainings.trainings;
+
+    if(!trainingsList) {
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
 
     const teamsList = teams.teams;
 
@@ -135,7 +218,7 @@ const PlayersCompletedName =({players, id, playerName, primaryLastName, secondLa
 
     return(
         <div className="card-group">
-          <PlayersList items={players} lesionList={lesionList} teamsList={teamsList} id={id} playerName={playerName} primaryLastName={primaryLastName} secondLastName={secondLastName} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayersList items={players} stretchingsList={stretchingsList} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} teamsList={teamsList} id={id} playerName={playerName} primaryLastName={primaryLastName} secondLastName={secondLastName} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 

@@ -8,6 +8,8 @@ import canastaSimple from './canastaSimple.jpg';
 import gameMatch from './gameMatch.jpg';
 
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
+import estiramientos from './estiramientos.jpg'; //1920x1200
+
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
 import * as actionGames from '../..//games/actions';
@@ -98,7 +100,7 @@ const Home = () => {
                 </a>
             </div>
             <div class="carousel-item">
-            <img class="d-block w-100 grande" src={gameMatch} alt="Fourth slide"/>
+            <img class="d-block w-100 grande" src={estiramientos} alt="Fourth slide"/>
                 <a href="/stretchings/home" class="btn-neon"onClick={() => handleFindAllStretchings(dispatch, history)}>
                     <span id="span1"></span>
                     <span id="span2"></span>

@@ -11,6 +11,7 @@ import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
 const handleRemoveLesionToPlayer = (id, playerId, dispatch, history) => {
     dispatch(actions.removeLesionToPlayer(playerId, id, () => history.push(`/lesion/home/player/${playerId}`)));
+    window.location.reload('true');
 }
 
 const handleUpdateLesion = (id, dispatch, history) => {
