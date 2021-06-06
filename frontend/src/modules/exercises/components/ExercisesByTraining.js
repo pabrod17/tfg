@@ -8,6 +8,7 @@ import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import exercise from '../../app/components/exercise.jpg';
 
 const handleRemoveExerciseToTraining = (id, trainingId, dispatch, history) => {
     dispatch(actions.removeExerciseToTraining(trainingId, id, () => history.push(`/exercises/home/training/${trainingId}`)));
@@ -32,7 +33,7 @@ function ExercisesList({ items, trainingId, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={lesionPierna} alt="Person" class="card__image lesionando"></img>
+                <img src={exercise} alt="Person" class="card__image lesionando"></img>
                 <p class="card__name">{item.exerciseName}</p>
                 <div class="grid-container">
                 </div>

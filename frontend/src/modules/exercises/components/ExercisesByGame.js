@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
-import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import exercise from '../../app/components/exercise.jpg';
 
 const handleRemoveExerciseToGame = (id, gameId, dispatch, history) => {
     dispatch(actions.removeExerciseToGame(gameId, id, () => history.push(`/exercises/home/game/${gameId}`)));
@@ -32,7 +32,7 @@ function ExercisesList({ items, gameId, fallback, dispatch, history}) {
             
             <div class="">
               <div class="card hola pruebo">
-                <img src={lesionPierna} alt="Person" class="card__image lesionando"></img>
+                <img src={exercise} alt="Person" class="card__image lesionando"></img>
                 <p class="card__name">{item.exerciseName}</p>
                 <div class="grid-container">
                 </div>

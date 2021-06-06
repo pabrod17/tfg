@@ -35,7 +35,7 @@ const ExercisesHome = () => {
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Type Stretching 
+                            <button class="dropbtn lesion">Type Exercise 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">

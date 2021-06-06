@@ -9,6 +9,7 @@ import gameMatch from './gameMatch.jpg';
 
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import estiramientos from './estiramientos.jpg'; //1920x1200
+import exercise from './exercise.jpg'; //1920x1200
 
 import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
@@ -116,7 +117,7 @@ const Home = () => {
                 </a>
             </div>
             <div class="carousel-item">
-            <img class="d-block w-100 grande" src={estiramientos} alt="Fourth slide"/>
+            <img class="d-block w-100 grande" src={exercise} alt="Fourth slide"/>
                 <a href="/exercises/home" class="btn-neon"onClick={() => handleFindAllExercises(dispatch, history)}>
                     <span id="span1"></span>
                     <span id="span2"></span>
