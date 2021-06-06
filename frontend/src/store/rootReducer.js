@@ -12,6 +12,7 @@ import trainings from '../modules/trainings';
 import games from '../modules/games';
 import statistics from '../modules/statistics';
 import stretchings from '../modules/stretchings';
+import exercises from '../modules/exercises';
 
 const rootReducer = combineReducers({
     app: app.reducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
     trainings: trainings.reducer,
     games: games.reducer,
     statistics: statistics.reducer,
-    stretchings: stretchings.reducer
+    stretchings: stretchings.reducer,
+    exercises: exercises.reducer
 });
 
 export default rootReducer;

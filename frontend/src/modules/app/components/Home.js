@@ -14,6 +14,7 @@ import * as actionLesion from '../..//lesion/actions';
 import * as actionTraining from '../..//trainings/actions';
 import * as actionGames from '../..//games/actions';
 import * as actionStretchings from '../..//stretchings/actions';
+import * as actionExercises from '../..//exercises/actions';
 
 import back from './back.jpg'; //1920x1200
 
@@ -32,6 +33,11 @@ const handleFindAllGames = (dispatch, history) => {
 const handleFindAllStretchings = (dispatch, history) => {
     dispatch(actionStretchings.findAllStretchings(() => history.push('/stretchings/home')));
 }
+
+const handleFindAllExercises = (dispatch, history) => {
+    dispatch(actionExercises.findAllExercises(() => history.push('/exercises/home')));
+}
+
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -107,6 +113,16 @@ const Home = () => {
                     <span id="span3"></span>
                     <span id="span4"></span>
                     Stretchings
+                </a>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100 grande" src={estiramientos} alt="Fourth slide"/>
+                <a href="/exercises/home" class="btn-neon"onClick={() => handleFindAllExercises(dispatch, history)}>
+                    <span id="span1"></span>
+                    <span id="span2"></span>
+                    <span id="span3"></span>
+                    <span id="span4"></span>
+                    Exercises
                 </a>
             </div>
         </div>

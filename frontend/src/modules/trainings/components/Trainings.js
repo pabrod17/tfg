@@ -16,6 +16,8 @@ import * as selectorsTeams from '../../teams/selectors';
 import bigBall from '../../trainings/components/bigBall.jpg';
 import * as actionStretchings from '../../stretchings/actions';
 import * as selectorsStretchings from '../../stretchings/selectors';
+import * as actionExercises from '../../exercises/actions';
+import * as selectorsExercises from '../../exercises/selectors';
 
 const handleViewTraining = (id, dispatch, history) => {
     dispatch(actions.findTrainingById(id, () => history.push(`/trainings/view/${id}`)));
@@ -40,11 +42,19 @@ const handleFindStretchingsByTraining = (trainingId, dispatch, history) => {
 }
 
 const handleAddStretchingToTraining = (trainingId, stretchingId, dispatch, history) => {
-  dispatch(actionStretchings.addStretchingToTraining(trainingId, stretchingId, () => history.push('/games/home')));
+  dispatch(actionStretchings.addStretchingToTraining(trainingId, stretchingId, () => history.push('/trainings/home')));
+}
+
+const handleFindExercisesByTraining = (trainingId, dispatch, history) => {
+  dispatch(actionExercises.findExercisesByTrainingId(trainingId, () => history.push(`/exercises/home/training/${trainingId}`)));
+}
+
+const handleAddExerciseToTraining = (trainingId, exerciseId, dispatch, history) => {
+  dispatch(actionExercises.addExerciseToTraining(trainingId, exerciseId, () => history.push('/trainings/home')));
 }
 
 
-function TrainingsList({ items, stretchingsList, teamId, fallback, dispatch, history}) {
+function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
         return fallback;
@@ -95,8 +105,18 @@ function TrainingsList({ items, stretchingsList, teamId, fallback, dispatch, his
                                         </a>)}
                             </div>
                 </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Exercise</button>
+                            <div class="dropdown-content">
+                            {exercisesList.map(exercise => 
+                                        <a type="button" onClick={() => handleAddExerciseToTraining(item.id, exercise.id, dispatch, history)}> 
+                                            {exercise.id} : {exercise.exerciseName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByTraining(item.id, teamId,dispatch, history)}>Players</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}>My Exercises</button>
               </div>
             </div>
           </div>;
@@ -104,7 +124,7 @@ function TrainingsList({ items, stretchingsList, teamId, fallback, dispatch, his
       }
 }
 
-function TrainingsListUser({ items, stretchingsList, fallback, dispatch, history}) {
+function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, dispatch, history}) {
   if (!items || items.length === 0) {
       dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
       return fallback;
@@ -155,7 +175,17 @@ function TrainingsListUser({ items, stretchingsList, fallback, dispatch, history
                                         </a>)}
                             </div>
                 </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Exercise</button>
+                            <div class="dropdown-content">
+                            {exercisesList.map(exercise => 
+                                        <a type="button" onClick={() => handleAddExerciseToTraining(item.id, exercise.id, dispatch, history)}> 
+                                            {exercise.id} : {exercise.exerciseName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}>My Exercises</button>
             </div>
           </div>
         </div>;
@@ -170,11 +200,19 @@ const Trainings = ({trainings}) => {
     
     const team = useSelector(selectorsTeams.getTeam);
     const stretchings = useSelector(selectorsStretchings.getAllStretchings);
+    const exercises = useSelector(selectorsExercises.getAllExercises);
 
+    const exercisesList = exercises.exercises;
+
+    if(!exercisesList) {
+        dispatch(actionExercises.findAllExercises(() => history.push('/trainings/home')));
+        return "Loading...";
+    }
+    
     const stretchingsList = stretchings.stretchings;
 
     if(!stretchingsList) {
-        dispatch(actionStretchings.findAllStretchings(() => history.push('/games/home')));
+        dispatch(actionStretchings.findAllStretchings(() => history.push('/trainings/home')));
         return "Loading...";
     }
 
@@ -182,13 +220,13 @@ const Trainings = ({trainings}) => {
     if (!team) {
       return(
         <div className="card-group">
-        <TrainingsListUser items={trainings} stretchingsList={stretchingsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+        <TrainingsListUser items={trainings} exercisesList={exercisesList} stretchingsList={stretchingsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     );
   } else {
       return(
           <div className="card-group">
-          <TrainingsList items={trainings} stretchingsList={stretchingsList}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <TrainingsList items={trainings} exercisesList={exercisesList} stretchingsList={stretchingsList}  teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
           </div>
       );
   };

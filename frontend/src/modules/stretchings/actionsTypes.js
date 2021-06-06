@@ -1,6 +1,6 @@
 export const FIND_STRETCHING_BY_ID_COMPLETED = "project/stretchings/findStretchingByIdCompleted";
 export const FIND_ALL_STRETCHINGS_COMPLETED = "project/stretchings/findAllStretchingsCompleted";
-export const FIND_STRETCHINGS_BY_TYPE_COMPLETED = "project/stretchings/findAllStretchingsCompleted";
+export const FIND_STRETCHINGS_BY_TYPE_COMPLETED = "project/stretchings/findStretchingsByTypeCompleted";
 export const FIND_STRETCHINGS_BY_PLAYER_ID_COMPLETED = "project/stretchings/findStretchingsByPlayerIdCompleted";
 export const FIND_STRETCHINGS_BY_TRAINING_ID_COMPLETED = "project/stretchings/findStretchingsByTrainingIdCompleted";
 export const FIND_STRETCHINGS_BY_GAME_ID_COMPLETED = "project/stretchings/findStretchingsByGameIdCompleted";

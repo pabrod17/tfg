@@ -26,35 +26,9 @@ const StretchingsHomeByGame = () => {
     const crotch = "Crotch";
     const triceps  = "Triceps";
 
-    const handleSetTypeStretching = (stretchingType, dispatch) => {
-        dispatch(actions.findStretchingsByType(stretchingType));
-    }
 
     return(
         <div>
-            <div>
-                <div className="btn-group white-space mx-auto">
-                    <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
-                        <div class="dropdown">
-                            <button class="dropbtn lesion">Type Stretching 
-                            <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetTypeStretching(hamstrings, dispatch)}>Hamstrings</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(buttocks, dispatch)}>Buttocks</a>
-                            <a type="button"  onClick={() => handleSetTypeStretching(calf, dispatch)}>Calf</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(adductors, dispatch)}>Adductors</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(shoulder, dispatch)}>Shoulder</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(quadriceps, dispatch)}>Quadriceps</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(back, dispatch)}>Back</a>
-                            <a type="button"  onClick={() => handleSetTypeStretching(pectoral, dispatch)}>Pectoral</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(crotch, dispatch)}>Crotch</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(triceps, dispatch)}>Triceps</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div>
                 <StretchingsByGame stretchings={stretchings.stretchings} gameId={gameId}/>
             </div>

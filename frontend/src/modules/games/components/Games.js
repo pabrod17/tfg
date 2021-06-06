@@ -18,6 +18,8 @@ import naranja from '../../games/components/naranja.jpg';
 import * as actionsStatistics from '../../statistics/actions';
 import * as actionStretchings from '../../stretchings/actions';
 import * as selectorsStretchings from '../../stretchings/selectors';
+import * as actionExercises from '../../exercises/actions';
+import * as selectorsExercises from '../../exercises/selectors';
 
 const handleViewGame = (id, dispatch, history) => {
     dispatch(actions.findGameById(id, () => history.push(`/games/view/${id}`)));
@@ -55,14 +57,20 @@ const handleFindStretchingsByGame = (gameId, dispatch, history) => {
   dispatch(actionStretchings.findStretchingsByGameId(gameId, () => history.push(`/stretchings/home/game/${gameId}`)));
 }
 
-
-
 const handleAddStretchingToGame = (gameId, stretchingId, dispatch, history) => {
   dispatch(actionStretchings.addStretchingToGame(gameId, stretchingId, () => history.push('/games/home')));
 }
 
+const handleFindExercisesByGame = (gameId, dispatch, history) => {
+  dispatch(actionExercises.findExercisesByGameId(gameId, () => history.push(`/exercises/home/game/${gameId}`)));
+}
 
-function GamesList({ items, stretchingsList, player, teamId, fallback, dispatch, history}) {
+const handleAddExerciseToGame = (gameId, exerciseId, dispatch, history) => {
+  dispatch(actionExercises.addExerciseToGame(gameId, exerciseId, () => history.push('/games/home')));
+}
+
+
+function GamesList({ items, exercisesList, stretchingsList, player, teamId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findGamesByUserId(() => history.push('/games/home')));
         return fallback;
@@ -95,23 +103,6 @@ function GamesList({ items, stretchingsList, player, teamId, fallback, dispatch,
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
 
-
-
-
-
-
-
-
-
-                {/* <div class="dropdown">
-                <button class="btn-player draw-border">Change Team</button>
-                            <div class="dropdown-content">
-                            {playersList.map(team => 
-                                        <a type="button" onClick={() => handleFindPlayersByTraining(item.id, team.id, dispatch, history)}> 
-                                            {team.id} : {"  "}{team.teamName}
-                                        </a>)}
-                            </div>
-                </div> */}
                 <div class="dropdown">
                 <button class="btn-player draw-border">Add Stretching</button>
                             <div class="dropdown-content">
@@ -121,11 +112,20 @@ function GamesList({ items, stretchingsList, player, teamId, fallback, dispatch,
                                         </a>)}
                             </div>
                 </div>
-
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Exercise</button>
+                            <div class="dropdown-content">
+                            {exercisesList.map(exercise => 
+                                        <a type="button" onClick={() => handleAddExerciseToGame(item.id, exercise.id, dispatch, history)}> 
+                                            {exercise.id} : {exercise.exerciseName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByGame(item.id, teamId,dispatch, history)}>Players</button>
                 <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
                 <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}>My Stretchings</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}>My Exercises</button>
               </div>
             </div>
           </div>;
@@ -134,7 +134,7 @@ function GamesList({ items, stretchingsList, player, teamId, fallback, dispatch,
 }
 
 
-function GamesListUser({ items, stretchingsList, fallback, dispatch, history}) {
+function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
         dispatch(actions.findGamesByUserId(() => history.push('/games/home')));
         return fallback;
@@ -185,9 +185,19 @@ function GamesListUser({ items, stretchingsList, fallback, dispatch, history}) {
                                         </a>)}
                             </div>
                 </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Exercise</button>
+                            <div class="dropdown-content">
+                            {exercisesList.map(exercise => 
+                                        <a type="button" onClick={() => handleAddExerciseToGame(item.id, exercise.id, dispatch, history)}> 
+                                            {exercise.id} : {exercise.exerciseName}
+                                        </a>)}
+                            </div>
+                </div>
                   <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
                   <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
                   <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}>My Stretchings</button>
+                  <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}>My Exercises</button>
               </div>
             </div>
           </div>;
@@ -217,6 +227,14 @@ const Games = ({games}) => {
     const team = useSelector(selectorsTeams.getTeam);
     const player = useSelector(selectorsPlayers.getPlayer);
     const stretchings = useSelector(selectorsStretchings.getAllStretchings);
+    const exercises = useSelector(selectorsExercises.getAllExercises);
+
+    const exercisesList = exercises.exercises;
+
+    if(!exercisesList) {
+        dispatch(actionExercises.findAllExercises(() => history.push('/trainings/home')));
+        return "Loading...";
+    }
 
     const stretchingsList = stretchings.stretchings;
 
@@ -228,13 +246,13 @@ const Games = ({games}) => {
     if (!team) {
         return(
           <div className="card-group">
-          <GamesListUser items={games} stretchingsList={stretchingsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <GamesListUser items={games} exercisesList={exercisesList} stretchingsList={stretchingsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
           </div>
       );
     } else {
         return(
             <div className="card-group">
-            <GamesList items={games} stretchingsList={stretchingsList} player={player} teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+            <GamesList items={games} exercisesList={exercisesList} stretchingsList={stretchingsList} player={player} teamId={team.id} fallback={"Loading..."} dispatch = {dispatch} history={history} />
             </div>
         );
     };

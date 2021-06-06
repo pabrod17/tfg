@@ -63,6 +63,12 @@ import UpdateStretching from '../../stretchings/components/UpdateStretching';
 import StretchingsHomeByPlayer from '../../stretchings/components/StretchingsHomeByPlayer';
 import StretchingsHomeByGame from '../../stretchings/components/StretchingsHomeByGame';
 import StretchingsHomeByTraining from '../../stretchings/components/StretchingsHomeByTraining';
+import ExercisesHome from '../../exercises/components/ExercisesHome';
+import AddExercise from '../../exercises/components/AddExercise';
+import UpdateExercise from '../../exercises/components/UpdateExercise';
+import ExerciseView from '../../exercises/components/ExerciseView';
+import ExercisesHomeByTraining from '../../exercises/components/ExercisesHomeByTraining';
+import ExercisesHomeByGame from '../../exercises/components/ExercisesHomeByGame';
 
 const Body = () => {
 
@@ -137,6 +143,12 @@ const Body = () => {
                 {loggedIn && <Route exact path="/stretchings/home/player/:playerId"><StretchingsHomeByPlayer/></Route>}
                 {loggedIn && <Route exact path="/stretchings/home/game/:gameId"><StretchingsHomeByGame/></Route>}
                 {loggedIn && <Route exact path="/stretchings/home/training/:trainingId"><StretchingsHomeByTraining/></Route>}
+                {loggedIn && <Route exact path="/exercises/home"><ExercisesHome/></Route>}
+                {loggedIn && <Route exact path="/exercises/addExercise"><AddExercise/></Route>}
+                {loggedIn && <Route exact path="/exercises/update/:id"><UpdateExercise/></Route>}
+                {loggedIn && <Route exact path="/exercises/view/:id"><ExerciseView/></Route>}
+                {loggedIn && <Route exact path="/exercises/home/training/:trainingId"><ExercisesHomeByTraining/></Route>}
+                {loggedIn && <Route exact path="/exercises/home/game/:gameId"><ExercisesHomeByGame/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}
