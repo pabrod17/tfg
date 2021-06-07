@@ -6,10 +6,11 @@ import {useParams} from 'react-router-dom';
 
 const FindPlayerByDniResult = () => {
     const {dni} = useParams();
+    const {id} = useParams();
     const player = useSelector(selectors.getPlayer);
 
     return(
-        <Player player={player} dni={dni}/>
+        <Player player={player} dni={id} dni={id}/>
     );
 
 }

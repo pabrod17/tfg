@@ -63,7 +63,7 @@ function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola pruebo">
+              <div class="card hola trainjeje">
                 <img src={bigBall} alt="Person" class="card__image entreno"></img>
                 <p class="card__name">{item.objective}</p>
                 <p class="card__name">                
@@ -133,7 +133,7 @@ function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, di
         return <div className="images-teams" key={item.id}>
           
           <div class="">
-            <div class="card hola pruebo">
+            <div class="card hola trainjeje">
               <img src={bigBall} alt="Person" class="card__image entreno"></img>
               <p class="card__name">{item.objective}</p>
               <p class="card__name">                

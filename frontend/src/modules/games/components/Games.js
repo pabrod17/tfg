@@ -79,7 +79,7 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola partijeje">
+              <div class="card hola games">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
@@ -143,7 +143,7 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola partijeje">
+              <div class="card hola games">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                

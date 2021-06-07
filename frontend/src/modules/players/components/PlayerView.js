@@ -36,97 +36,6 @@ const PlayerView = () => {
             }
 
             return (
-                    
-                <div class="card-columns">
-
-
-                    <div class="card bg-dark text-white p-3" >
-                        <h2 class="card-header text-center">Statistics:</h2>
-                        <div class="card-body">
-                            <p class="card-text">Date: </p>
-                            <h5 class="card-title">{player.primaryLastName}</h5>
-
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Rebounds: </p>
-                            <h5 class="card-title"></h5>
-                            {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total Rebounds: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Minutes: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total Minutes: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Free Shots: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total Free Shots: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-tdext">2 Point Shot: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total 2 Point Shot: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">3 Point Shot: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total 3 Point Shot: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Assists: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Blocked Shot: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Technical Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total Technical Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Personal Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                            <div class="card-body">
-                            <p class="card-text">Total Personal Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Unsportsmanlike Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Total Unsportsmanlike Foul: </p>
-                            <h5 class="card-title"></h5>
-                        </div>
-                        <div class="card-footer bg-transparent border-success">Footer</div>
-                    </div>
-
-
-
-
-
                     <div class="card bg-dark text-white p-3" >
                         <div className="jijoneca">
                         <img className="holas  " src={avatar}/>
@@ -168,21 +77,8 @@ const PlayerView = () => {
                             <p class="card-text">Team: </p>
                             <h5 class="card-title">{team.teamName}</h5>
                         </div>
-                        <div class="card-footer bg-transparent border-success">Footer</div>
+                        <div class="card-footer bg-transparent border-success">Player</div>
                     </div>
-
-                    <div class="card bg-dark text-white " >
-                        <img className="second-hola" src={libre}/>
-                        <h5 class="texto-encima">Training</h5>
-
-                        <img className="second-hola" src={ballCancha}/>
-                        <h5 class="texto-encima">Matches</h5>
-
-                        <img className="second-hola" src={estira}/>
-                        <h5 class="texto-encima">Stretching</h5>
-                    </div>
-
-                </div>
             );
 
 

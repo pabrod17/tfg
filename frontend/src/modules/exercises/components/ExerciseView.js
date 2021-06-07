@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
+import exercisesss from '../../app/components/exercise.jpg';
 
 const ExerciseView = () => {
     const exercise = useSelector(selectors.getOneExercise);
@@ -18,7 +19,7 @@ const ExerciseView = () => {
         if(exercise){
             return (
                     <div class="card hola  text-center" >
-                        <img className="holas" src={lesionPierna}/>
+                        <img className="holas" src={exercisesss}/>
                         <div class="card-body">
                             <h5 class="card__name">{exercise.exerciseName}</h5>
                             <h5 class="card-title">Type: {exercise.exerciseType}</h5>

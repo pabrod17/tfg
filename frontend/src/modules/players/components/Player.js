@@ -11,11 +11,18 @@ import * as actionsLesion from '../../lesion/actions';
 import * as selectorsLesion from '../../lesion/selectors';
 import * as actionTrainings from '../../trainings/actions';
 import * as actionsNotes from '../../notes/actions';
+import * as selectorsTrainings from '../../trainings/selectors';
+import * as actionGames from '../../games/actions';
+import * as selectorsGames from '../../games/selectors';
+import * as actionStretchings from '../../stretchings/actions';
+import * as selectorsStretchings from '../../stretchings/selectors';
 
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
   dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
   // history.push('/trainings/home');
 }
+
+
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
     dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
@@ -50,7 +57,30 @@ const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
   dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
 }
 
-function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, history}) {
+const handleFindGamesToPlayer = (playerId, id, dispatch, history) => {
+  dispatch(actions.findPlayerByIdOfTeam(playerId,id, () => console.log(playerId)));
+  dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
+  // history.push('/trainings/home');
+}
+
+const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
+  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
+}
+
+const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
+  dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
+}
+
+const handleFindStretchingsByPlayer = (playerId, dispatch, history) => {
+  dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+}
+
+const handleAddStretchingToPlayer = (playerId, stretchingId, id, dispatch, history) => {
+  dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history.push(`/players/home/${id}`)));
+}
+
+
+function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, lesionList, dni, teamsList, fallback, dispatch, history}) {
     if (!player) {
         dispatch(actions.findPlayerByDniOfTeam(player.teamId, dni,
             () => history.push(`/players/dni/result/${dni.trim()}`)
@@ -61,7 +91,7 @@ function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, hi
         return( <div className="images-teams" key={player.id}>
 
             <div class="">
-              <div class="card hola">
+              <div class="card hola playerjojo">
                 <img src={avatar} alt="Person" class="card__image"></img>
                 <p class="card__name">{player.playerName}</p>
                 <div class="grid-container">
@@ -95,9 +125,39 @@ function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, hi
                                         </a>)}
                             </div>
                 </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Training</button>
+                            <div class="dropdown-content">
+                            {trainingsList.map(training => 
+                                        <a type="button" onClick={() => handleAddNewTrainingToPlayer(player.id, training.id, id, dispatch, history)}> 
+                                            {training.id} : {"  "}{training.objective}
+                                        </a>)}
+                            </div>
+                </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Game</button>
+                            <div class="dropdown-content">
+                            {gamesList.map(game => 
+                                        <a type="button" onClick={() => handleAddNewGameToPlayer(player.id, game.id, id, dispatch, history)}> 
+                                            {game.id} : {" Rival: "}{game.rival}
+                                        </a>)}
+                            </div>
+                </div>
+                <div class="dropdown">
+                <button class="btn-player draw-border">Add Stretching</button>
+                            <div class="dropdown-content">
+                            {stretchingsList.map(stretching => 
+                                        <a type="button" onClick={() => handleAddStretchingToPlayer(player.id, stretching.id, id, dispatch, history)}> 
+                                            {stretching.id} : {" Rival: "}{stretching.stretchingName}
+                                        </a>)}
+                            </div>
+                </div>
                 <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(player.id, player.teamId, dispatch, history)}>My Notes</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(player.id, dispatch, history)}>My Lesion</button>
                 <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(player.id, dispatch, history)}>My Trainings</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(player.id, id, dispatch, history)}>My Games</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByPlayer(player.id, dispatch, history)}>My Stretchings</button>
+
               </div>
             </div>
             </div>
@@ -107,12 +167,37 @@ function PlayerByDni({player, lesionList, dni, teamsList, fallback, dispatch, hi
 
 
 
-const Player = ({player, dni}) => {
+const Player = ({player, dni, id}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
     const lesions = useSelector(selectorsLesion.getAllLesion);
+    const trainings = useSelector(selectorsTrainings.getAllTrainings);
+    const games = useSelector(selectorsGames.getAllGames);
+    const stretchings = useSelector(selectorsStretchings.getAllStretchings);
+
+    const stretchingsList = stretchings.stretchings;
+
+    if(!stretchingsList) {
+        dispatch(actionStretchings.findAllStretchings(() => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
+    
+    const gamesList = games.games;
+
+    if(!gamesList) {
+        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
+    
+
+    const trainingsList = trainings.trainings;
+
+    if(!trainingsList) {
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/${id}`)));
+        return "Loading...";
+    }
 
     const teamsList = teams.teams;
 
@@ -131,7 +216,7 @@ const Player = ({player, dni}) => {
 
     return(
         <div className="card-group">
-          <PlayerByDni player={player} lesionList={lesionList} dni={dni} teamsList={teamsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
+          <PlayerByDni player={player} id={id} stretchingsList={stretchingsList} gamesList={gamesList} trainingsList={trainingsList} lesionList={lesionList} dni={dni} teamsList={teamsList} fallback={"Loading..."} dispatch = {dispatch} history={history} />
         </div>
     )
 }

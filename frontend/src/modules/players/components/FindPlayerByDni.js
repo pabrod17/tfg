@@ -19,7 +19,7 @@ const FindPlayerByDni = () => {
         event.preventDefault();
         if (form.checkValidity()) {
             dispatch(actions.findPlayerByDniOfTeam(id, dni,
-                () => history.push(`/players/dni/result/${dni.trim()}`)
+                () => history.push(`/players/dni/result/${dni.trim()}${id}`)
             ));
         } else {
             setBackendErrors(null);

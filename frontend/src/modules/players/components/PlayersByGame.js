@@ -104,7 +104,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola">
+              <div class="card hola gameplayer">
                 <img src={avatar} alt="Person" class="card__image"></img>
                 <p class="card__name">{item.playerName}</p>
                 <div class="grid-container">
