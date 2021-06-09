@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
 public class Lesion {
@@ -12,7 +13,9 @@ public class Lesion {
     private String description;
     private String medication;
     private LesionType lesionType;
-
+    @Version
+    private Integer version;
+    
     public Lesion() {
     }
 
@@ -63,5 +66,14 @@ public class Lesion {
 
     public void setLesionType(String lesionType) {
         this.lesionType = LesionType.valueOf(lesionType);
+    }
+    
+    @Version
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

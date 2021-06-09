@@ -57,6 +57,33 @@ export const findGamesByTwoDatesAndTeamIdOrSeasonId = (teamId, seasonId, startDa
         onErrors);
 }
 
+export const findGamesByTwoDates = (startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.gameService.findGamesByTwoDates(startDate, endDate,
+        games => {
+            dispatch(findGamesByTwoDatesAndTeamIdOrSeasonIdCompleted(games));
+            onSuccess();
+        },
+        onErrors);
+}
+
+export const findGamesByTwoDatesAndTeamId = (teamId, startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.gameService.findGamesByTwoDatesAndTeamId(teamId, startDate, endDate,
+        games => {
+            dispatch(findGamesByTwoDatesAndTeamIdOrSeasonIdCompleted(games));
+            onSuccess();
+        },
+        onErrors);
+}
+
+export const findGamesByTwoDatesAndSeasonId = (seasonId, startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.gameService.findGamesByTwoDatesAndSeasonId(seasonId, startDate, endDate,
+        games => {
+            dispatch(findGamesByTwoDatesAndTeamIdOrSeasonIdCompleted(games));
+            onSuccess();
+        },
+        onErrors);
+}
+
 const findGamesByTeamIdCompleted = games => ({
     type: actionTypes.FIND_GAMES_BY_TEAM_ID_COMPLETED,
     games

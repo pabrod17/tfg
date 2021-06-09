@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 
 @Entity
@@ -14,7 +15,9 @@ public class Exercise {
     private String description;
     private String objective;
     private ExerciseType exerciseType;
-
+    @Version
+    private Integer version;
+    
     public Exercise() {
     }
 
@@ -65,5 +68,14 @@ public class Exercise {
 
     public void setExerciseType(String exerciseType) {
         this.exerciseType = ExerciseType.valueOf(exerciseType);
+    }
+    
+    @Version
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

@@ -20,7 +20,7 @@ public interface GameService {
     
     List<Game> findGamesByUserId(Long userId) throws InstanceNotFoundException;
 
-    List<Game> findGamesByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
+    List<Game> findGamesByTwoDatesAndTeamIdOrSeasonId(Long userId, Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
 
     List<Game> findGamesByTeamId(Long teamId) throws InstanceNotFoundException;
 

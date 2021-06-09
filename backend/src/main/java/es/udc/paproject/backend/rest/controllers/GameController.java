@@ -69,11 +69,11 @@ public class GameController {
     }
 
     @GetMapping("/dates")
-    public List<GameDto> findGamesByTwoDatesAndTeamIdOrSeasonId(@RequestParam Long teamId,
-            @RequestParam Long seasonId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+    public List<GameDto> findGamesByTwoDatesAndTeamIdOrSeasonId(@RequestAttribute Long userId, @RequestParam(required=false) Long teamId,
+            @RequestParam(required=false) Long seasonId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
-        return toGameDtos(gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(teamId, seasonId,
+        return toGameDtos(gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(userId, teamId, seasonId,
                 toLocalDateTime(startDate), toLocalDateTime(endDate)));
     }
 

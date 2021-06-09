@@ -12,6 +12,15 @@ export const findTrainingsByPlayerId = (playerId, onSuccess, onErrors) =>
 export const findTrainingsByTwoDatesAndTeamIdOrSeasonId = (teamId, seasonId, startDate, endDate, onSuccess, onErrors) =>
     appFetch(`/trainings/dates?teamId=${teamId}&seasonId=${seasonId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
 
+export const findTrainingsByTwoDates = (startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/trainings/dates?startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
+export const findTrainingsByTwoDatesAndSeasonId = (seasonId, startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/trainings/dates?seasonId=${seasonId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
+export const findTrainingsByTwoDatesAndTeamId = (teamId, startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/trainings/dates?teamId=${teamId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
 export const findTrainingsByTeamId = (teamId, onSuccess, onErrors) =>
     appFetch(`/trainings/${teamId}/team`, config('GET'), onSuccess, onErrors);
 

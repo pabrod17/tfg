@@ -167,7 +167,7 @@ public class TrainingServiceTest {
         trainingService.addTraining(team.getId(), null, trainingDate2, 150, "describiendo", "objetivo");
         trainingService.addTraining(team.getId(), null, trainingDate3, 150, "describiendo", "objetivo");
 
-        List<Training> trainings = trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(team.getId(), null,
+        List<Training> trainings = trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(user.getId(), team.getId(), null,
                 startDate, endDate);
 
         assertEquals(trainings.size(), 2);
@@ -304,7 +304,7 @@ public class TrainingServiceTest {
         trainingService.addTraining(team.getId(), null, trainingDate2, 150, "describiendo", "objetivo"); 
         trainingService.addTraining(team.getId(), null, trainingDate3, 150, "describiendo", "objetivo"); 
     
-		assertThrows(StartDateAfterEndDateException.class, () -> trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(team.getId(),null, endDate, startDate));
+		assertThrows(StartDateAfterEndDateException.class, () -> trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(user.getId(),team.getId(),null, endDate, startDate));
     }
 
 

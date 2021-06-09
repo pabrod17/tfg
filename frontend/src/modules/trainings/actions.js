@@ -57,6 +57,35 @@ export const findTrainingsByTwoDatesAndTeamIdOrSeasonId = (teamId, seasonId, sta
         onErrors);
 }
 
+export const findTrainingsByTwoDates = (startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.trainingService.findTrainingsByTwoDates(startDate, endDate,
+        trainings => {
+            dispatch(findTrainingsByTwoDatesAndTeamIdOrSeasonIdCompleted(trainings));
+            onSuccess();
+        },
+        onErrors);
+}
+
+
+export const findTrainingsByTwoDatesAndTeamId = (teamId, startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.trainingService.findTrainingsByTwoDatesAndTeamId(teamId, startDate, endDate,
+        trainings => {
+            dispatch(findTrainingsByTwoDatesAndTeamIdOrSeasonIdCompleted(trainings));
+            onSuccess();
+        },
+        onErrors);
+}
+
+export const findTrainingsByTwoDatesAndSeasondId = (seasonId, startDate, endDate, onSuccess, onErrors) => dispatch => {
+    backend.trainingService.findTrainingsByTwoDatesAndSeasonId(seasonId, startDate, endDate,
+        trainings => {
+            dispatch(findTrainingsByTwoDatesAndTeamIdOrSeasonIdCompleted(trainings));
+            onSuccess();
+        },
+        onErrors);
+}
+
+
 const findTrainingsByTeamIdCompleted = trainings => ({
     type: actionTypes.FIND_TRAININGS_BY_TEAM_ID_COMPLETED,
     trainings

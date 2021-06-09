@@ -140,6 +140,7 @@ CREATE TABLE Lesion (
     description VARCHAR(500) NOT NULL,
     medication VARCHAR(500) NOT NULL,
     lesionType    ENUM('Muscle','Tendon', 'Joint', 'Spine', 'Psychological') NOT NULL,
+    version BIGINT NOT NULL,
     CONSTRAINT LesionPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
@@ -224,6 +225,7 @@ CREATE TABLE Stretching (
     stretchingName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     description VARCHAR(500) NOT NULL,
     stretchingType    ENUM('Hamstrings','Buttocks', 'Calf', 'Adductors', 'Shoulder', 'Quadriceps', 'Back', 'Pectoral', 'Crotch', 'Triceps') NOT NULL,
+    version BIGINT NOT NULL,
     CONSTRAINT StretchingPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
@@ -233,6 +235,7 @@ CREATE TABLE Exercise (
     description VARCHAR(500) NOT NULL,
     objective VARCHAR(500) NOT NULL,
     exerciseType    ENUM('Tactic','Technique', 'Physical', 'Globalized', 'Specific', 'Psychological', 'Strategy', 'PreMatch') NOT NULL,
+    version BIGINT NOT NULL,
     CONSTRAINT ExercisePK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 

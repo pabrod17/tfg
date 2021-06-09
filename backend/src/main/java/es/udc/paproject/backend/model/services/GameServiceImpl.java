@@ -137,7 +137,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> findGamesByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId, LocalDateTime startDate,
+    public List<Game> findGamesByTwoDatesAndTeamIdOrSeasonId(Long userId, Long teamId, Long seasonId, LocalDateTime startDate,
             LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException {
         
             if(startDate.isAfter(endDate)){
@@ -151,6 +151,15 @@ public class GameServiceImpl implements GameService {
 
             List<Game> gamesBySeasonTeamId = new ArrayList<>();
 
+            if(teamId == null && seasonId == null) {
+                seasonTeams = seasonTeamDao.findByUserId(userId);
+                    for(SeasonTeam seasonTeam : seasonTeams){
+                            games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
+                            for(Game game : games2){
+                                gamesBySeasonTeamId.add(game);
+                            }
+                    }
+            }
             if(teamId != null){
                 if(seasonId != null){
                     seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonIdAndTeamId(seasonId, teamId);
@@ -161,22 +170,25 @@ public class GameServiceImpl implements GameService {
                             }
                     }
                 } else{
-                    seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
-                    for(SeasonTeam seasonTeam : seasonTeams){
-                            games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
-                            for(Game game : games2){
-                                gamesBySeasonTeamId.add(game);
-                            }
-                    }
-                }
-            } else{
-                seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
-                for(SeasonTeam seasonTeam : seasonTeams){
-                        games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
-                        for(Game game : games2){
-                            gamesBySeasonTeamId.add(game);
+                        seasonTeams = seasonTeamDao.findSeasonTeamsByTeamId(teamId);
+                        for(SeasonTeam seasonTeam : seasonTeams){
+                                games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
+                                for(Game game : games2){
+                                    gamesBySeasonTeamId.add(game);
+                                }
                         }
                 }
+            } else{
+                    if(seasonId != null) {
+                        seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
+                        for(SeasonTeam seasonTeam : seasonTeams){
+                                games2 = gameDao.findBySeasonTeamId(seasonTeam.getId());
+                                for(Game game : games2){
+                                    gamesBySeasonTeamId.add(game);
+                                }
+                        }
+                    }
+
             }
 
             for (Game game : gamesBySeasonTeamId) {

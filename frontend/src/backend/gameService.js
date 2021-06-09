@@ -12,6 +12,15 @@ export const findGamesByPlayerId = (playerId, onSuccess, onErrors) =>
 export const findGamesByTwoDatesAndTeamIdOrSeasonId = (teamId, seasonId, startDate, endDate, onSuccess, onErrors) =>
     appFetch(`/games/dates?teamId=${teamId}&seasonId=${seasonId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
 
+export const findGamesByTwoDates= (startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/games/dates?startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
+export const findGamesByTwoDatesAndTeamId = (teamId, startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/games/dates?teamId=${teamId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
+export const findGamesByTwoDatesAndSeasonId = (seasonId, startDate, endDate, onSuccess, onErrors) =>
+    appFetch(`/games/dates?seasonId=${seasonId}&startDate=${startDate}&endDate=${endDate}`, config('GET'), onSuccess, onErrors);
+
 export const findGamesByTeamId = (teamId, onSuccess, onErrors) =>
     appFetch(`/games/${teamId}/team`, config('GET'), onSuccess, onErrors);
 

@@ -162,7 +162,7 @@ public class GameServiceTest {
         gameService.addGame(team.getId(), null, gameDate3, "rival");
 
 
-        List<Game> games = gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(team.getId(), null, startDate, endDate);
+        List<Game> games = gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(user.getId(), team.getId(), null, startDate, endDate);
         assertEquals(games.size(), 2);
     }
 
@@ -272,6 +272,6 @@ public class GameServiceTest {
 
     @Test
     public void testFindGameWithBadDates() throws InstanceNotFoundException, DuplicateInstanceException {
-		assertThrows(StartDateAfterEndDateException.class, () -> gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(null, null, endDate, startDate));
+		assertThrows(StartDateAfterEndDateException.class, () -> gameService.findGamesByTwoDatesAndTeamIdOrSeasonId(null, null, null, endDate, startDate));
     }
 }

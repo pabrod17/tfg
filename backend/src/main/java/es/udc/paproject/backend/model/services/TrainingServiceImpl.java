@@ -143,12 +143,17 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId,LocalDateTime startDate,
+    public List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long userId, Long teamId, Long seasonId,LocalDateTime startDate,
             LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException {
 
             if(startDate.isAfter(endDate)){
                 throw new StartDateAfterEndDateException(startDate, endDate);
             }
+
+            if (!userDao.existsById(userId)) {
+                throw new InstanceNotFoundException("project.entities.user");
+            }
+
             List<SeasonTeam> seasonTeams = new ArrayList<>();
 
             List<Training> trainings = new ArrayList<>();
@@ -156,6 +161,15 @@ public class TrainingServiceImpl implements TrainingService {
 
             List<Training> trainingsBySeasonTeamId = new ArrayList<>();
 
+            if(teamId == null && seasonId == null) {
+                seasonTeams = seasonTeamDao.findByUserId(userId);
+                    for(SeasonTeam seasonTeam : seasonTeams){
+                            trainings2 = trainingDao.findBySeasonTeamId(seasonTeam.getId());
+                            for(Training training : trainings2){
+                                trainingsBySeasonTeamId.add(training);
+                            }
+                    }
+            }
 
             if(teamId != null){
                 if(seasonId != null){
@@ -176,12 +190,14 @@ public class TrainingServiceImpl implements TrainingService {
                     }
                 }
             } else{
-                seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
-                for(SeasonTeam seasonTeam : seasonTeams){
-                        trainings2 = trainingDao.findBySeasonTeamId(seasonTeam.getId());
-                        for(Training training : trainings2){
-                            trainingsBySeasonTeamId.add(training);
-                        }
+                if(seasonId != null) {
+                    seasonTeams = seasonTeamDao.findSeasonTeamsBySeasonId(seasonId);
+                    for(SeasonTeam seasonTeam : seasonTeams){
+                            trainings2 = trainingDao.findBySeasonTeamId(seasonTeam.getId());
+                            for(Training training : trainings2){
+                                trainingsBySeasonTeamId.add(training);
+                            }
+                    }
                 }
             }
 

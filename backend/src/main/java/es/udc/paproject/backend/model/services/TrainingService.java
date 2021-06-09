@@ -21,7 +21,7 @@ public interface TrainingService {
 
     List<Training> findTrainingsByPlayerId(Long playerId) throws InstanceNotFoundException;
 
-    List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
+    List<Training> findTrainingsByTwoDatesAndTeamIdOrSeasonId(Long userId, Long teamId, Long seasonId, LocalDateTime startDate, LocalDateTime endDate) throws StartDateAfterEndDateException, InstanceNotFoundException;
 
     List<Training> findTrainingsByTeamId(Long teamId) throws InstanceNotFoundException;
 

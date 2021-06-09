@@ -82,11 +82,11 @@ public class TrainingController {
     }
 
     @GetMapping("/dates")
-    public List<TrainingDto> findTrainingsByTwoDatesAndTeamIdOrSeasonId(@RequestParam Long teamId,
-            @RequestParam Long seasonId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+    public List<TrainingDto> findTrainingsByTwoDatesAndTeamIdOrSeasonId(@RequestAttribute Long userId, @RequestParam(required=false) Long teamId,
+            @RequestParam(required=false) Long seasonId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
             throws InstanceNotFoundException, StartDateAfterEndDateException {
-        return toTrainingDtos(trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(teamId, seasonId,
+        return toTrainingDtos(trainingService.findTrainingsByTwoDatesAndTeamIdOrSeasonId(userId, teamId, seasonId,
                 toLocalDateTime(startDate), toLocalDateTime(endDate)));
     }
 

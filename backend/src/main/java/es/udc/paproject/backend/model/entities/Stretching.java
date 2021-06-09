@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 
 @Entity
@@ -13,7 +14,9 @@ public class Stretching {
     private String stretchingName;
     private String description;
     private StretchingType stretchingType;
-
+    @Version
+    private Integer version;
+    
     public Stretching() {
     }
 
@@ -55,5 +58,14 @@ public class Stretching {
 
     public void setStretchingType(String stretchingType) {
         this.stretchingType = StretchingType.valueOf(stretchingType);
+    }
+    
+    @Version
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
