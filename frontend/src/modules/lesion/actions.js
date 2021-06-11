@@ -15,18 +15,46 @@ export const findLesionById = (lesionId, onSuccess, onErrors) => dispatch => {
         onErrors);
 }
 
-const findAllLesionCompleted = lesions => ({
+
+
+
+
+
+
+
+const findAllLesionCompleted = lesionsSearch => ({
     type: actionTypes.FIND_ALL_LESION_COMPLETED,
-    lesions
+    lesionsSearch
 });
 
-export const findAllLesion = (onSuccess, onErrors) => dispatch => {
-    backend.lesionService.findAllLesion(
-        lesions => {
-            dispatch(findAllLesionCompleted(lesions));
+const clearLesionSearch = () => ({
+    type: actionTypes.CLEAR_LESION_SEARCH
+});
+
+
+export const findAllLesion = (criteria, onSuccess, onErrors) => dispatch => {
+    dispatch(clearLesionSearch());
+    backend.lesionService.findAllLesion(criteria,
+        result => {
+            dispatch(findAllLesionCompleted({criteria, result}));
         },onSuccess,
         onErrors);
 }
+
+
+export const previousFindAllLesionResultPage = page => 
+    findAllLesion({page: page});
+
+export const nextFindAllLesionResultPage = page => 
+    findAllLesion({page: page});
+
+
+
+
+
+
+
+
 
 const findLesionByTypeCompleted = lesions => ({
     type: actionTypes.FIND_LESION_BY_TYPE_COMPLETED,

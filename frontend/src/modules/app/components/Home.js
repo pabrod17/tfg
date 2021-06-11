@@ -20,7 +20,7 @@ import * as actionExercises from '../..//exercises/actions';
 import back from './back.jpg'; //1920x1200
 
 const handleFindAllLesions = (dispatch, history) => {
-    dispatch(actionLesion.findAllLesion(() => history.push('/lesion/home')));
+    dispatch(actionLesion.findAllLesion({page: 0}, () => history.push('/lesion/home')));
 }
 
 const handleFindAllTrainings = (dispatch, history) => {

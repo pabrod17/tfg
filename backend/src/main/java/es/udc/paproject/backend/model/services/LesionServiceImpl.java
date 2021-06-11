@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,16 +105,19 @@ public class LesionServiceImpl implements LesionService {
     }
 
     @Override
-    public List<Lesion> findAllLesion() throws InstanceNotFoundException {
+    public Block<Lesion> findAllLesion(int page, int size) throws InstanceNotFoundException {
 
-        List<Lesion> lesions = new ArrayList<>();
-        lesions = (List<Lesion>) lesionDao.findAll();
+        // List<Lesion> lesions = new ArrayList<>();
+        // lesions = (List<Lesion>) lesionDao.findAll();
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
 
-        if (lesions.isEmpty()) {
-            throw new InstanceNotFoundException("project.entities.lesion");
-        }
+        Slice<Lesion> slice = lesionDao.findAll(PageRequest.of(page, size, sort));
+        // lesions = slice.getContent();
+        // if (lesions.isEmpty()) {
+        //     throw new InstanceNotFoundException("project.entities.lesion");
+        // }
 
-        return lesions;
+        return new Block<>(slice.getContent(), slice.hasNext());
     }
 
     @Override

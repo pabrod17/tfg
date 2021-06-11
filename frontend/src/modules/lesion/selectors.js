@@ -5,3 +5,6 @@ export const getOneLesion = state =>
 
 export const getAllLesion = state =>
     getModuleState(state);
+
+export const getLesionsSearch = state =>
+    getModuleState(state).lesionsSearch;

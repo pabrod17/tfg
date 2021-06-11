@@ -14,7 +14,7 @@ public interface LesionService {
 
     Lesion findLesionById(Long lesionId) throws InstanceNotFoundException;
 
-    List<Lesion> findAllLesion() throws InstanceNotFoundException;
+    Block<Lesion> findAllLesion(int page, int size) throws InstanceNotFoundException;
 
     List<Lesion> findLesionByType(String lesionType) throws InstanceNotFoundException;
 

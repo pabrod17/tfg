@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.udc.paproject.backend.model.entities.Lesion;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.UsedLesionException;
+import es.udc.paproject.backend.model.services.Block;
 import es.udc.paproject.backend.model.services.LesionService;
 import es.udc.paproject.backend.rest.common.ErrorsDto;
+import es.udc.paproject.backend.rest.dtos.BlockDto;
 import es.udc.paproject.backend.rest.dtos.LesionDto;
 
 import org.springframework.http.HttpStatus;
@@ -68,8 +71,11 @@ public class LesionController {
     }
 
     @GetMapping("")
-    public List<LesionDto> findAllLesion() throws InstanceNotFoundException {
-        return toLesionDtos(lesionService.findAllLesion());
+    public BlockDto<LesionDto> findAllLesion(@RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
+
+        Block<Lesion> lesionBlock = lesionService.findAllLesion(page, 10);
+        System.out.println("HOLA --> " + lesionBlock.getItems().size());
+        return new BlockDto<>(toLesionDtos(lesionBlock.getItems()), lesionBlock.getExistMoreItems());
     }
 
     @GetMapping("/{lesionType}/typeLesion")

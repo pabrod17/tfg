@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
@@ -6,12 +6,14 @@ import {useDispatch} from 'react-redux';
 
 import * as selectors from '../selectors';
 import Lesions from './Lesions';
+import {Pager} from '../../common';
 
 const LesionHome = () => {
 
-    const lesions = useSelector(selectors.getAllLesion);
+    const lesionsSearch = useSelector(selectors.getLesionsSearch);
     const dispatch = useDispatch();
     const history = useHistory();
+    const [page, setPage] = useState(0);
 
     const muscle = "Muscle";
     const tendon = "Tendon";
@@ -19,15 +21,29 @@ const LesionHome = () => {
     const spine = "Spine";
     const psychological  = "Psychological";
 
-    const handleSetTypeLesion = (lesionType, dispatch) => {
-        dispatch(actions.findLesionByType(lesionType));
+    if(!lesionsSearch){
+        console.log("HOLA");
+        dispatch(actions.findAllLesion({page: page}, () => console.log("ADIOS")));
+        
+        return "Loading...";
+
+    } 
+
+    const previousFindAllLesionResultPage = (dispatch) => {
+        setPage(page-1);
+        dispatch(actions.previousFindAllLesionResultPage(page));
+    }
+
+    const nextFindAllLesionResultPage = (dispatch) => {
+        setPage(page+1);
+        dispatch(actions.nextFindAllLesionResultPage(page));
     }
 
 
-
-
-
-
+    const handleSetTypeLesion = (lesionType, dispatch) => {
+        dispatch(actions.findLesionByType(lesionType));
+    }
+    console.log("hola --> " +lesionsSearch.criteria.page );
 
     return(
         <div>
@@ -53,7 +69,15 @@ const LesionHome = () => {
                 </div>
             </div>
             <div>
-                <Lesions lesions={lesions.lesions}/>
+                <Lesions lesions={lesionsSearch.result.items}/>
+                <Pager 
+                back={{
+                    enabled: lesionsSearch.criteria.page >= 1,
+                    onClick: () => previousFindAllLesionResultPage(dispatch) }}
+                next={{
+                    enabled: lesionsSearch.result.existMoreItems,
+
+                    onClick: () => nextFindAllLesionResultPage(dispatch)}}/>
             </div>
         </div>
 
