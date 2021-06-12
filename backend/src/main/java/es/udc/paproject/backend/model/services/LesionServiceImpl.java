@@ -107,18 +107,46 @@ public class LesionServiceImpl implements LesionService {
     @Override
     public Block<Lesion> findAllLesion(int page, int size) throws InstanceNotFoundException {
 
-        // List<Lesion> lesions = new ArrayList<>();
-        // lesions = (List<Lesion>) lesionDao.findAll();
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
 
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Slice<Lesion> slice = lesionDao.findAll(PageRequest.of(page, size, sort));
-        // lesions = slice.getContent();
+
+        return new Block<>(slice.getContent(), slice.hasNext());
+    }
+
+    @Override
+    public List<Lesion> findAllLesion() throws InstanceNotFoundException {
+
+        List<Lesion> lesions = new ArrayList<>();
+        lesions = (List<Lesion>) lesionDao.findAll();
+
+        if (lesions.isEmpty()) {
+            throw new InstanceNotFoundException("project.entities.lesion");
+        }
+
+        return lesions;
+    }
+
+
+    @Override
+    public Block<Lesion> findLesionByType(String lesionType, int page, int size) throws InstanceNotFoundException {
+
+
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Slice<Lesion> slice = lesionDao.findByLesionTypeOrderById(lesionType, PageRequest.of(page, size));
+
+
+        // List<Lesion> lesions = new ArrayList<>();
+        // lesions = lesionDao.findByLesionType(lesionType);
+
         // if (lesions.isEmpty()) {
         //     throw new InstanceNotFoundException("project.entities.lesion");
         // }
 
         return new Block<>(slice.getContent(), slice.hasNext());
     }
+
 
     @Override
     public List<Lesion> findLesionByType(String lesionType) throws InstanceNotFoundException {
@@ -129,7 +157,7 @@ public class LesionServiceImpl implements LesionService {
         if (lesions.isEmpty()) {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
-
+        
         return lesions;
     }
 
@@ -230,6 +258,4 @@ public class LesionServiceImpl implements LesionService {
         }
         return existingLesion;
     }
-
-
 }

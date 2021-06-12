@@ -22,8 +22,8 @@ export const findLesionById = (lesionId, onSuccess, onErrors) => dispatch => {
 
 
 
-const findAllLesionCompleted = lesionsSearch => ({
-    type: actionTypes.FIND_ALL_LESION_COMPLETED,
+const findAllLesionPageCompleted = lesionsSearch => ({
+    type: actionTypes.FIND_ALL_LESION_PAGE_COMPLETED,
     lesionsSearch
 });
 
@@ -32,24 +32,61 @@ const clearLesionSearch = () => ({
 });
 
 
-export const findAllLesion = (criteria, onSuccess, onErrors) => dispatch => {
+export const findAllLesionPage = (criteria, onSuccess, onErrors) => dispatch => {
     dispatch(clearLesionSearch());
-    backend.lesionService.findAllLesion(criteria,
+    backend.lesionService.findAllLesionPage(criteria,
         result => {
-            dispatch(findAllLesionCompleted({criteria, result}));
+            dispatch(findAllLesionPageCompleted({criteria, result}));
         },onSuccess,
         onErrors);
 }
 
 
 export const previousFindAllLesionResultPage = page => 
-    findAllLesion({page: page});
+    findAllLesionPage({page: page});
 
 export const nextFindAllLesionResultPage = page => 
-    findAllLesion({page: page});
+    findAllLesionPage({page: page});
 
 
 
+
+    const findAllLesionCompleted = lesions => ({
+        type: actionTypes.FIND_ALL_LESION_COMPLETED,
+        lesions
+    });
+    
+    export const findAllLesion = (onSuccess, onErrors) => dispatch => {
+        backend.lesionService.findAllLesion(
+            lesions => {
+                dispatch(findAllLesionCompleted(lesions));
+            },onSuccess,
+            onErrors);
+    }
+
+
+
+
+const findLesionByTypePageCompleted = lesionsSearch => ({
+    type: actionTypes.FIND_LESION_BY_TYPE_PAGE_COMPLETED,
+    lesionsSearch
+});
+
+export const findLesionByTypePage = (criteria, onSuccess, onErrors) => dispatch => {
+    dispatch(clearLesionSearch());
+    backend.lesionService.findLesionByTypePage(criteria,
+        result => {
+            dispatch(findLesionByTypePageCompleted({criteria, result}));
+        },onSuccess,
+        onErrors);
+}
+
+
+export const previousFindLesionByTypeResultPage =(lesionType, page)  => 
+    findLesionByTypePage({page: page, lesionType: lesionType});
+
+export const nextFindLesionByTypeResultPage = (lesionType, page) => 
+    findLesionByTypePage({page: page, lesionType: lesionType});
 
 
 
@@ -68,6 +105,7 @@ export const findLesionByType = (lesionType, onSuccess, onErrors) => dispatch =>
         },onSuccess,
         onErrors);
 }
+
 
 const findLesionByPlayerCompleted = lesions => ({
     type: actionTypes.FIND_LESION_BY_PLAYER_COMPLETED,

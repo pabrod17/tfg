@@ -69,6 +69,7 @@ import UpdateExercise from '../../exercises/components/UpdateExercise';
 import ExerciseView from '../../exercises/components/ExerciseView';
 import ExercisesHomeByTraining from '../../exercises/components/ExercisesHomeByTraining';
 import ExercisesHomeByGame from '../../exercises/components/ExercisesHomeByGame';
+import LesionHomeByType from '../../lesion/components/LesionHomeByType';
 
 const Body = () => {
 
@@ -110,6 +111,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
                 {loggedIn && <Route exact path="/players/view/:id:playerId"><PlayerView/></Route>}
                 {loggedIn && <Route exact path="/lesion/home"><LesionHome/></Route>}
+                {loggedIn && <Route exact path="/lesion/home/type/:lesionType"><LesionHomeByType/></Route>}
                 {loggedIn && <Route exact path="/lesion/home/player/:playerId"><LesionHomeByPlayer/></Route>}
                 {loggedIn && <Route exact path="/lesion/addLesion"><AddLesion/></Route>}
                 {loggedIn && <Route exact path="/lesion/update/:id"><UpdateLesion/></Route>}

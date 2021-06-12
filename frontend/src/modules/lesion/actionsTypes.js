@@ -8,3 +8,5 @@ export const UPDATE_LESION_COMPLETED = "project/lesion/updateLesionCompleted";
 export const REMOVE_LESION_COMPLETED = "project/lesion/removeLesionCompleted";
 export const REMOVE_LESION_TO_PLAYER_COMPLETED = "project/lesion/removeLesionToPLayerCompleted";
 export const CLEAR_LESION_SEARCH = "project/lesion/clearLesionSearch";
+export const FIND_ALL_LESION_PAGE_COMPLETED = "project/lesion/findAllLesionPageCompleted";
+export const FIND_LESION_BY_TYPE_PAGE_COMPLETED = "project/lesion/findLesionByTypePageCompleted";

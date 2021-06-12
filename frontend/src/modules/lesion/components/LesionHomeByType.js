@@ -3,55 +3,46 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
 import * as selectors from '../selectors';
 import Lesions from './Lesions';
 import {Pager} from '../../common';
 
-const LesionHome = () => {
+const LesionHomeByType = () => {
 
     const lesionsSearch = useSelector(selectors.getLesionsSearch);
     const dispatch = useDispatch();
     const history = useHistory();
     const [page, setPage] = useState(0);
+    const {lesionType} = useParams();
 
     const muscle = "Muscle";
     const tendon = "Tendon";
     const joint = "Joint";
     const spine = "Spine";
     const psychological  = "Psychological";
-    console.log("subida " + page);
 
     if(!lesionsSearch){
         console.log("HOLA");
-        dispatch(actions.findAllLesionPage({page: page}, () => console.log("ADIOS")));
+        dispatch(actions.findLesionByTypePage({page: page, lesionType: lesionType}));
         
         return "Loading...";
 
     } 
 
-    const previousFindAllLesionResultPage = (dispatch) => {
-        console.log("bajo " + page);
-
+    const previousFindLesionByTypeResultPage = (lesionType, dispatch) => {
         setPage(page-1);
-        console.log("bajada " + page);
-
-        dispatch(actions.previousFindAllLesionResultPage(page));
+        dispatch(actions.previousFindLesionByTypeResultPage(lesionType, page));
     }
 
-    const nextFindAllLesionResultPage = (dispatch) => {
-        console.log("subo " + page);
-
+    const nextFindLesionByTypeResultPage = (lesionType, dispatch) => {
         setPage(page+1);
-
-        dispatch(actions.nextFindAllLesionResultPage(page));
-
+        dispatch(actions.nextFindLesionByTypeResultPage(lesionType, page));
     }
-
-
 
     const handleSetTypeLesion = (lesionType, dispatch) => {
-        dispatch(actions.findLesionByTypePage({page: 0, lesionType: lesionType}));
+        dispatch(actions.findLesionByTypePage({page: page, lesionType: lesionType}));
         history.push(`/lesion/home/type/${lesionType}`);
     }
     // console.log("hola --> " +lesionsSearch.criteria.page );
@@ -84,11 +75,11 @@ const LesionHome = () => {
                 <Pager 
                 back={{
                     enabled: lesionsSearch.criteria.page >= 1,
-                    onClick: () => previousFindAllLesionResultPage(dispatch) }}
+                    onClick: () => previousFindLesionByTypeResultPage(lesionType, dispatch) }}
                 next={{
                     enabled: lesionsSearch.result.existMoreItems,
 
-                    onClick: () => nextFindAllLesionResultPage(dispatch)}}/>
+                    onClick: () => nextFindLesionByTypeResultPage(lesionType, dispatch)}}/>
             </div>
         </div>
 
@@ -96,4 +87,4 @@ const LesionHome = () => {
 
 }
 
-export default LesionHome;
+export default LesionHomeByType;

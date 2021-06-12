@@ -70,17 +70,32 @@ public class LesionController {
         return toLesionDto(lesionService.findLesionById(lesionId));
     }
 
-    @GetMapping("")
-    public BlockDto<LesionDto> findAllLesion(@RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
+    @GetMapping("/page")
+    public BlockDto<LesionDto> findAllLesionPage(@RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
 
         Block<Lesion> lesionBlock = lesionService.findAllLesion(page, 10);
         System.out.println("HOLA --> " + lesionBlock.getItems().size());
         return new BlockDto<>(toLesionDtos(lesionBlock.getItems()), lesionBlock.getExistMoreItems());
     }
 
+    @GetMapping("")
+    public List<LesionDto> findAllLesion() throws InstanceNotFoundException {
+
+        return toLesionDtos(lesionService.findAllLesion());
+    }
+
     @GetMapping("/{lesionType}/typeLesion")
     public List<LesionDto> findLesionByType(@PathVariable String lesionType) throws InstanceNotFoundException {
+
         return toLesionDtos(lesionService.findLesionByType(lesionType));
+    }
+
+    @GetMapping("/{lesionType}/typeLesion/page")
+    public BlockDto<LesionDto> findLesionByTypePage(@PathVariable String lesionType, @RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
+
+        Block<Lesion> lesionBlock = lesionService.findLesionByType(lesionType, page, 10);
+
+        return new BlockDto<>(toLesionDtos(lesionBlock.getItems()), lesionBlock.getExistMoreItems());
     }
 
     @GetMapping("/{playerId}/player")

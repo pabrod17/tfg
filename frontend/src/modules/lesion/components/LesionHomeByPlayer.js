@@ -16,15 +16,15 @@ const LesionHomeByPlayer = () => {
     const {playerId} = useParams();
 
 
-    const muscle = "Muscle";
-    const tendon = "Tendon";
-    const joint = "Joint";
-    const spine = "Spine";
-    const psychological  = "Psychological";
+    // const muscle = "Muscle";
+    // const tendon = "Tendon";
+    // const joint = "Joint";
+    // const spine = "Spine";
+    // const psychological  = "Psychological";
 
-    const handleSetTypeLesion = (lesionType, dispatch) => {
-        dispatch(actions.findLesionByType(lesionType));
-    }
+    // const handleSetTypeLesion = (lesionType, dispatch) => {
+    //     dispatch(actions.findLesionByType(lesionType));
+    // }
 
 
 
@@ -33,7 +33,7 @@ const LesionHomeByPlayer = () => {
 
     return(
         <div>
-            <div>
+            {/* <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
@@ -50,7 +50,7 @@ const LesionHomeByPlayer = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div>
                 <LesionsByPlayer lesions={lesions.lesions} playerId={playerId}/>
             </div>

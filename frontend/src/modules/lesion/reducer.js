@@ -32,8 +32,8 @@ const lesions = (state = initialState.lesions, action) => {
 
     switch (action.type) {
         
-        // case actionTypes.FIND_ALL_LESION_COMPLETED:
-        //     return action.lesions;
+        case actionTypes.FIND_ALL_LESION_COMPLETED:
+            return action.lesions;
         case actionTypes.FIND_LESION_BY_PLAYER_COMPLETED:
             return action.lesions;
         case actionTypes.FIND_LESION_BY_TYPE_COMPLETED:
@@ -47,9 +47,10 @@ const lesionsSearch = (state = initialState.lesionsSearch, action) => {
 
     switch (action.type) {
 
-        case actionTypes.FIND_ALL_LESION_COMPLETED:
+        case actionTypes.FIND_ALL_LESION_PAGE_COMPLETED:
             return action.lesionsSearch;
-
+        case actionTypes.FIND_LESION_BY_TYPE_PAGE_COMPLETED:
+            return action.lesionsSearch;
         case actionTypes.CLEAR_LESION_SEARCH:
             return initialState.lesionsSearch;
 

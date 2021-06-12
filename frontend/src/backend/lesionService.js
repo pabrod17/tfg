@@ -3,8 +3,14 @@ import {config, appFetch} from './appFetch';
 export const findLesionById = (lesionId, onSuccess, onErrors) => 
     appFetch(`/lesion/${lesionId}`, config('GET'), onSuccess, onErrors);
 
-export const findAllLesion = ({page}, onSuccess, onErrors) => 
-    appFetch(`/lesion?page=${page}`, config('GET'), onSuccess, onErrors);
+export const findAllLesionPage = ({page}, onSuccess, onErrors) => 
+    appFetch(`/lesion/page?page=${page}`, config('GET'), onSuccess, onErrors);
+
+export const findAllLesion = (onSuccess, onErrors) => 
+    appFetch(`/lesion`, config('GET'), onSuccess, onErrors);
+
+export const findLesionByTypePage = ({lesionType, page}, onSuccess, onErrors) =>
+    appFetch(`/lesion/${lesionType}/typeLesion/page?page=${page}`, config('GET'), onSuccess, onErrors);
 
 export const findLesionByType = (lesionType, onSuccess, onErrors) =>
     appFetch(`/lesion/${lesionType}/typeLesion`, config('GET'), onSuccess, onErrors);
