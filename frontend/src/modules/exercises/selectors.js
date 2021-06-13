@@ -5,3 +5,6 @@ export const getOneExercise = state =>
 
 export const getAllExercises = state =>
     getModuleState(state);
+
+export const getExercisesSearch = state =>
+    getModuleState(state).exercisesSearch;

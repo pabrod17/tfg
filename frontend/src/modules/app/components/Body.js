@@ -70,6 +70,7 @@ import ExerciseView from '../../exercises/components/ExerciseView';
 import ExercisesHomeByTraining from '../../exercises/components/ExercisesHomeByTraining';
 import ExercisesHomeByGame from '../../exercises/components/ExercisesHomeByGame';
 import LesionHomeByType from '../../lesion/components/LesionHomeByType';
+import ExercisesHomeByType from '../../exercises/components/ExercisesHomeByType';
 
 const Body = () => {
 
@@ -151,6 +152,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/exercises/view/:id"><ExerciseView/></Route>}
                 {loggedIn && <Route exact path="/exercises/home/training/:trainingId"><ExercisesHomeByTraining/></Route>}
                 {loggedIn && <Route exact path="/exercises/home/game/:gameId"><ExercisesHomeByGame/></Route>}
+                {loggedIn && <Route exact path="/exercises/home/type/:exerciseType"><ExercisesHomeByType/></Route>}
                 {loggedIn && <Route exact path="/users/update-profile"><UpdateProfile/></Route>}
                 {loggedIn && <Route exact path="/users/change-password"><ChangePassword/></Route>}
                 {loggedIn && <Route exact path="/users/logout"><Logout/></Route>}

@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.udc.paproject.backend.model.entities.Exercise;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.UsedExerciseException;
+import es.udc.paproject.backend.model.services.Block;
 import es.udc.paproject.backend.model.services.ExerciseService;
 import es.udc.paproject.backend.rest.common.ErrorsDto;
+import es.udc.paproject.backend.rest.dtos.BlockDto;
 import es.udc.paproject.backend.rest.dtos.ExerciseDto;
 
 import org.springframework.http.HttpStatus;
@@ -69,6 +72,23 @@ public class ExerciseController {
     @GetMapping("")
     public List<ExerciseDto> findAllExercises() throws InstanceNotFoundException {
         return toExerciseDtos(exerciseService.findAllExercises());
+    }
+
+    @GetMapping("/page")
+    public BlockDto<ExerciseDto> findAllExercisesPage(@RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
+
+        Block<Exercise> exerciseBlock = exerciseService.findAllExercises(page, 10);
+
+        return new BlockDto<>(toExerciseDtos(exerciseBlock.getItems()), exerciseBlock.getExistMoreItems());
+    }
+
+    @GetMapping("/{exerciseType}/exerciseType/page")
+    public BlockDto<ExerciseDto> findExercisesByTypePage(@PathVariable String exerciseType, @RequestParam(defaultValue="0") int page)
+            throws InstanceNotFoundException {
+
+        Block<Exercise> exerciseBlock = exerciseService.findExercisesByType(exerciseType, page, 10);
+
+        return new BlockDto<>(toExerciseDtos(exerciseBlock.getItems()), exerciseBlock.getExistMoreItems());
     }
 
     @GetMapping("/{exerciseType}/exerciseType")

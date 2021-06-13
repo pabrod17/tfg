@@ -6,6 +6,12 @@ export const findExerciseById = (exerciseId, onSuccess, onErrors) =>
 export const findAllExercises = (onSuccess, onErrors) => 
     appFetch('/exercises', config('GET'), onSuccess, onErrors);
 
+export const findAllExercisesPage = ({page}, onSuccess, onErrors) => 
+    appFetch(`/exercises/page?page=${page}`, config('GET'), onSuccess, onErrors);
+
+export const findExercisesByTypePage = ({exerciseType, page}, onSuccess, onErrors) =>
+    appFetch(`/exercises/${exerciseType}/exerciseType/page?page=${page}`, config('GET'), onSuccess, onErrors);
+
 export const findExercisesByType = (exerciseType, onSuccess, onErrors) =>
     appFetch(`/exercises/${exerciseType}/exerciseType`, config('GET'), onSuccess, onErrors);
 

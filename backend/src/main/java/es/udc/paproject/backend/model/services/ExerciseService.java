@@ -18,6 +18,10 @@ public interface ExerciseService {
 
     List<Exercise> findAllExercises() throws InstanceNotFoundException;
 
+    Block<Exercise> findAllExercises(int page, int size) throws InstanceNotFoundException;
+
+    Block<Exercise> findExercisesByType(String exerciseType, int page, int size) throws InstanceNotFoundException;
+    
     List<Exercise> findExercisesByType(String exerciseType) throws InstanceNotFoundException;
 
     List<Exercise> findExercisesByTrainingId(Long trainingId) throws InstanceNotFoundException;

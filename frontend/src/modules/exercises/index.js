@@ -9,5 +9,6 @@ export {default as UpdateExercise} from './components/UpdateExercise';
 export {default as ExerciseView} from './components/ExerciseView';
 export {default as ExercisesHomeByTraining} from './components/ExercisesHomeByTraining';
 export {default as ExercisesHomeByGame} from './components/ExercisesHomeByGame';
+export {default as ExercisesHomeByType} from './components/ExercisesHomeByType';
 
 export default {actions, actionsTypes, reducer, selectors};

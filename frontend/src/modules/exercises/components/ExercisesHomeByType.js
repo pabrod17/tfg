@@ -3,16 +3,18 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
 import * as selectors from '../selectors';
 import Exercises from './Exercises';
 import {Pager} from '../../common';
 
-const ExercisesHome = () => {
+const ExercisesHomeByType = () => {
     const exercisesSearch = useSelector(selectors.getExercisesSearch);
     const dispatch = useDispatch();
     const history = useHistory();
     const [page, setPage] = useState(0);
+    const {exerciseType} = useParams();
 
     const tactic = "Tactic";
     const technique = "Technique";
@@ -22,29 +24,21 @@ const ExercisesHome = () => {
     const psychological = "Psychological";
     const strategy = "Strategy";
     const preMatch = "PreMatch";
-    console.log("subida " + page);
 
     if(!exercisesSearch){
         console.log("HOLA");
-        dispatch(actions.findAllExercisesPage({page: page}, () => console.log("ADIOS")));
-        
+        dispatch(actions.findExercisesByTypePage({page: page, exerciseType: exerciseType}));
         return "Loading...";
-
     } 
 
-    const previousFindAllExercisesResultPage = (dispatch) => {
-        console.log("bajo " + page);
+    const previousFindExercisesByTypeResultPage = (exerciseType, dispatch) => {
         setPage(page-1);
-        console.log("bajada " + page);
-
-        dispatch(actions.previousFindAllExercisesResultPage(page));
+        dispatch(actions.previousFindExercisesByTypeResultPage(exerciseType, page));
     }
 
-    const nextFindAllExercisesResultPage = (dispatch) => {
-        console.log("subo " + page);
+    const nextFindExercisesByTypeResultPage = (exerciseType, dispatch) => {
         setPage(page+1);
-
-        dispatch(actions.nextFindAllExercisesResultPage(page));
+        dispatch(actions.nextFindExercisesByTypeResultPage(exerciseType, page));
     }
 
 
@@ -84,15 +78,15 @@ const ExercisesHome = () => {
                 <Pager 
                 back={{
                     enabled: exercisesSearch.criteria.page >= 1,
-                    onClick: () => previousFindAllExercisesResultPage(dispatch) }}
+                    onClick: () => previousFindExercisesByTypeResultPage(exerciseType, dispatch) }}
                 next={{
                     enabled: exercisesSearch.result.existMoreItems,
 
-                    onClick: () => nextFindAllExercisesResultPage(dispatch)}}/>
+                    onClick: () => nextFindExercisesByTypeResultPage(exerciseType, dispatch)}}/>
             </div>
         </div>
 
     );
 }
 
-export default ExercisesHome;
+export default ExercisesHomeByType;

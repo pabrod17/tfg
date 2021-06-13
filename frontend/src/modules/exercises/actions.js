@@ -28,6 +28,58 @@ export const findAllExercises = (onSuccess, onErrors) => dispatch => {
         onErrors);
 }
 
+const clearExerciseSearch = () => ({
+    type: actionTypes.CLEAR_EXERCISE_SEARCH
+});
+
+const findAllExercisesPageCompleted = exercisesSearch => ({
+    type: actionTypes.FIND_ALL_EXERCISES_PAGE_COMPLETED,
+    exercisesSearch
+});
+
+export const findAllExercisesPage = (criteria, onSuccess, onErrors) => dispatch => {
+    dispatch(clearExerciseSearch());
+    backend.exerciseService.findAllExercisesPage(criteria,
+        result => {
+            dispatch(findAllExercisesPageCompleted({criteria, result}));
+        },onSuccess,
+        onErrors);
+}
+
+export const previousFindAllExercisesResultPage = page => 
+    findAllExercisesPage({page: page});
+
+export const nextFindAllExercisesResultPage = page => 
+    findAllExercisesPage({page: page});
+
+
+
+
+
+const findExercisesByTypePageCompleted = exercisesSearch => ({
+    type: actionTypes.FIND_EXERCISES_BY_TYPE_PAGE_COMPLETED,
+    exercisesSearch
+});
+
+export const findExercisesByTypePage = (criteria, onSuccess, onErrors) => dispatch => {
+    dispatch(clearExerciseSearch());
+    backend.exerciseService.findExercisesByTypePage(criteria,
+        result => {
+            dispatch(findExercisesByTypePageCompleted({criteria, result}));
+        },onSuccess,
+        onErrors);
+}
+
+export const previousFindExercisesByTypeResultPage =(exerciseType, page)  => 
+    findExercisesByTypePage({page: page, exerciseType: exerciseType});
+
+export const nextFindExercisesByTypeResultPage = (exerciseType, page) => 
+    findExercisesByTypePage({page: page, exerciseType: exerciseType});
+
+
+
+
+
 const findExercisesByTypeCompleted = exercises => ({
     type: actionTypes.FIND_EXERCISES_BY_TYPE_COMPLETED,
     exercises

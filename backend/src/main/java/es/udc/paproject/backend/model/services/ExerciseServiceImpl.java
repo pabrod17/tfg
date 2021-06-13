@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 
 import es.udc.paproject.backend.model.entities.Exercise;
 import es.udc.paproject.backend.model.entities.ExerciseDao;
@@ -119,6 +122,24 @@ public class ExerciseServiceImpl implements ExerciseService {
 
 		return exercises;
 	}
+
+    @Override
+    public Block<Exercise> findAllExercises(int page, int size) throws InstanceNotFoundException {
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Slice<Exercise> slice = exerciseDao.findAll(PageRequest.of(page, size, sort));
+
+        return new Block<>(slice.getContent(), slice.hasNext());
+    }
+
+    @Override
+    public Block<Exercise> findExercisesByType(String exerciseType, int page, int size)
+            throws InstanceNotFoundException {
+        
+        Slice<Exercise> slice = exerciseDao.findByExerciseTypeOrderById(exerciseType, PageRequest.of(page, size));
+
+        return new Block<>(slice.getContent(), slice.hasNext());
+    }
 
 	@Override
 	public List<Exercise> findExercisesByType(String exerciseType) throws InstanceNotFoundException {
@@ -337,5 +358,4 @@ public class ExerciseServiceImpl implements ExerciseService {
         }
 		return existingExercise;
 	}
-    
 }

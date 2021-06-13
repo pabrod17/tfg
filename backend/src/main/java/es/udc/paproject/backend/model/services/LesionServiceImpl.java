@@ -133,7 +133,6 @@ public class LesionServiceImpl implements LesionService {
 
 
 
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Slice<Lesion> slice = lesionDao.findByLesionTypeOrderById(lesionType, PageRequest.of(page, size));
 
 

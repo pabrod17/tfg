@@ -10,3 +10,6 @@ export const UPDATE_EXERCISE_COMPLETED = "project/exercises/updatExerciseComplet
 export const REMOVE_EXERCISE_COMPLETED = "project/exercises/removeExerciseCompleted";
 export const REMOVE_EXERCISE_TO_TRAINING_COMPLETED = "project/exercises/removeExerciseToTrainingCompleted";
 export const REMOVE_EXERCISE_TO_GAME_COMPLETED = "project/exercises/removeExerciseToGameCompleted";
+export const FIND_ALL_EXERCISES_PAGE_COMPLETED = "project/exercises/findAllExercisesPageCompleted";
+export const FIND_EXERCISES_BY_TYPE_PAGE_COMPLETED = "project/exercises/findExercisesByTypePageCompleted";
+export const CLEAR_EXERCISE_SEARCH = "project/lesion/clearExerciseSearch";
