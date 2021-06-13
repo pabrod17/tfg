@@ -32,7 +32,7 @@ const handleFindAllGames = (dispatch, history) => {
 }
 
 const handleFindAllStretchings = (dispatch, history) => {
-    dispatch(actionStretchings.findAllStretchings(() => history.push('/stretchings/home')));
+    dispatch(actionStretchings.findAllStretchingsPage({page: 0}, () => history.push('/stretchings/home')));
 }
 
 const handleFindAllExercises = (dispatch, history) => {

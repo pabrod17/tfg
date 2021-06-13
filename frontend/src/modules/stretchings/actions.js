@@ -28,6 +28,67 @@ export const findAllStretchings = (onSuccess, onErrors) => dispatch => {
         onErrors);
 }
 
+
+
+
+const clearStretchingSearch = () => ({
+    type: actionTypes.CLEAR_STRETCHING_SEARCH
+});
+
+
+const findAllStretchingsPageCompleted = stretchingsSearch => ({
+    type: actionTypes.FIND_ALL_STRETCHINGS_PAGE_COMPLETED,
+    stretchingsSearch
+});
+
+export const findAllStretchingsPage = (criteria, onSuccess, onErrors) => dispatch => {
+    dispatch(clearStretchingSearch());
+    backend.stretchingService.findAllStretchingsPage(criteria,
+        result => {
+            dispatch(findAllStretchingsPageCompleted({criteria, result}));
+        },onSuccess,
+        onErrors);
+}
+
+export const previousFindAllStretchingsResultPage = page => 
+    findAllStretchingsPage({page: page});
+
+export const nextFindAllStretchingsResultPage = page => 
+    findAllStretchingsPage({page: page});
+
+
+
+
+
+
+
+    const findStretchingsByTypePageCompleted = stretchingsSearch => ({
+        type: actionTypes.FIND_STRETCHINGS_BY_TYPE_PAGE_COMPLETED,
+        stretchingsSearch
+    });
+    
+    export const findStretchingsByTypePage = (criteria, onSuccess, onErrors) => dispatch => {
+        backend.stretchingService.findStretchingsByTypePage(criteria,
+            result => {
+                dispatch(findStretchingsByTypePageCompleted({criteria, result}));
+            },onSuccess,
+            onErrors);
+    }
+
+export const previousFindStretchingsByTypeResultPage =(stretchingType, page)  => 
+    findStretchingsByTypePage({page: page, stretchingType: stretchingType});
+
+export const nextFindStretchingsByTypeResultPage = (stretchingType, page) => 
+    findStretchingsByTypePage({page: page, stretchingType: stretchingType});
+
+
+
+
+
+
+
+
+
 const findStretchingsByTypeCompleted = stretchings => ({
     type: actionTypes.FIND_STRETCHINGS_BY_TYPE_COMPLETED,
     stretchings

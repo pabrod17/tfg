@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.udc.paproject.backend.model.entities.Stretching;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.paproject.backend.model.exceptions.UsedStretchingException;
+import es.udc.paproject.backend.model.services.Block;
 import es.udc.paproject.backend.model.services.StretchingService;
 import es.udc.paproject.backend.rest.common.ErrorsDto;
+import es.udc.paproject.backend.rest.dtos.BlockDto;
 import es.udc.paproject.backend.rest.dtos.StretchingDto;
 
 import org.springframework.http.HttpStatus;
@@ -69,6 +72,23 @@ public class StretchingController {
     @GetMapping("")
     public List<StretchingDto> findAllStretchings() throws InstanceNotFoundException {
         return toStretchingDtos(stretchingService.findAllStretchings());
+    }
+
+    @GetMapping("/page")
+    public BlockDto<StretchingDto> findAllStretchingsPage(@RequestParam(defaultValue="0") int page) throws InstanceNotFoundException {
+        
+        Block<Stretching> stretchingBlock = stretchingService.findAllStretchings(page, 10);
+
+        return new BlockDto<>(toStretchingDtos(stretchingBlock.getItems()), stretchingBlock.getExistMoreItems());
+    }
+
+    @GetMapping("/{stretchingType}/stretchingType/page")
+    public BlockDto<StretchingDto> findStretchingsByTypePage(@PathVariable String stretchingType, @RequestParam(defaultValue="0") int page)
+            throws InstanceNotFoundException {
+
+        Block<Stretching> stretchingBlock = stretchingService.findStretchingsByType(stretchingType, page, 10);
+
+        return new BlockDto<>(toStretchingDtos(stretchingBlock.getItems()), stretchingBlock.getExistMoreItems());
     }
 
     @GetMapping("/{stretchingType}/stretchingType")

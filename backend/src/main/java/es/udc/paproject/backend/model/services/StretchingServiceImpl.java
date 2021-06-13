@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 
 import es.udc.paproject.backend.model.entities.PlayerStretchingDao;
 import es.udc.paproject.backend.model.entities.Stretching;
@@ -140,6 +143,24 @@ public class StretchingServiceImpl implements StretchingService {
         }
 
         return stretchings;
+    }
+
+    @Override
+    public Block<Stretching> findAllStretchings(int page, int size) throws InstanceNotFoundException {
+        
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Slice<Stretching> slice = stretchingDao.findAll(PageRequest.of(page, size, sort));
+        
+        return new Block<>(slice.getContent(), slice.hasNext());
+    }
+
+    @Override
+    public Block<Stretching> findStretchingsByType(String stretchingType, int page, int size)
+            throws InstanceNotFoundException {
+        
+        Slice<Stretching> slice = stretchingDao.findByStretchingTypeOrderById(stretchingType, PageRequest.of(page, size));
+
+        return new Block<>(slice.getContent(), slice.hasNext());
     }
 
     @Override
@@ -427,5 +448,4 @@ public class StretchingServiceImpl implements StretchingService {
         }
         return existingStretching;
     }
-    
 }

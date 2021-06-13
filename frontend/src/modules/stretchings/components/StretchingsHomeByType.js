@@ -3,17 +3,19 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
 import * as selectors from '../selectors';
 import Stretchings from './Stretchings';
 import {Pager} from '../../common';
 
-const StretchingsHome = () => {
+const StretchingsHomeByType = () => {
 
     const stretchingsSearch = useSelector(selectors.getStretchingsSearch);
     const dispatch = useDispatch();
     const history = useHistory();
     const [page, setPage] = useState(0);
+    const {stretchingType} = useParams();
 
     const hamstrings = "Hamstrings";
     const buttocks = "Buttocks";
@@ -25,28 +27,25 @@ const StretchingsHome = () => {
     const pectoral = "Pectoral";
     const crotch = "Crotch";
     const triceps  = "Triceps";
-    console.log("subida " + page);
 
     if(!stretchingsSearch){
         console.log("HOLA");
-        dispatch(actions.findAllStretchingsPage({page: page}, () => console.log("ADIOS")));
+        dispatch(actions.findStretchingsByTypePage({page: page, stretchingType: stretchingType}));
         return "Loading...";
     } 
 
-    const previousFindAllStretchingsResultPage = (dispatch) => {
+    const previousFindStretchingsByTypeResultPage = (dispatch) => {
         console.log("bajo " + page);
         setPage(page-1);
         console.log("bajada " + page);
-        dispatch(actions.previousFindAllStretchingsResultPage(page));
+        dispatch(actions.previousFindStretchingsByTypeResultPage(page));
     }
 
-    const nextFindAllStretchingsResultPage = (dispatch) => {
+    const nextFindStretchingsByTypeResultPage = (dispatch) => {
         console.log("subo " + page);
         setPage(page+1);
-        dispatch(actions.nextFindAllStretchingsResultPage(page));
+        dispatch(actions.nextFindStretchingsByTypeResultPage(page));
     }
-
-
 
 
 
@@ -92,11 +91,11 @@ const StretchingsHome = () => {
                 <Pager 
                 back={{
                     enabled: stretchingsSearch.criteria.page >= 1,
-                    onClick: () => previousFindAllStretchingsResultPage(dispatch) }}
+                    onClick: () => previousFindStretchingsByTypeResultPage(stretchingType, dispatch) }}
                 next={{
                     enabled: stretchingsSearch.result.existMoreItems,
 
-                    onClick: () => nextFindAllStretchingsResultPage(dispatch)}}/>
+                    onClick: () => nextFindStretchingsByTypeResultPage(stretchingType, dispatch)}}/>
             </div>
         </div>
 
@@ -104,4 +103,4 @@ const StretchingsHome = () => {
 
 }
 
-export default StretchingsHome;
+export default StretchingsHomeByType;

@@ -4,7 +4,8 @@ import * as actionTypes from './actionsTypes';
 
 const initialState = {
     stretching: null,
-    stretchings:null
+    stretchings:null,
+    stretchingsSearch: null
 };
 
 const stretching = (state = initialState.stretching, action) => {
@@ -54,9 +55,28 @@ const stretchings = (state = initialState.stretchings, action) => {
     }
 }
 
+const stretchingsSearch = (state = initialState.stretchingsSearch, action) => {
+
+    switch (action.type) {
+
+        case actionTypes.FIND_ALL_STRETCHINGS_PAGE_COMPLETED:
+            return action.stretchingsSearch;
+        case actionTypes.FIND_STRETCHINGS_BY_TYPE_PAGE_COMPLETED:
+            return action.stretchingsSearch;
+        case actionTypes.CLEAR_STRETCHING_SEARCH:
+            return initialState.stretchingsSearch;
+
+        default:
+            return state;
+
+    }
+
+}
+
 const reducer = combineReducers({
     stretching,
-    stretchings
+    stretchings,
+    stretchingsSearch
 });
 
 export default reducer;

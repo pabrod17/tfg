@@ -20,6 +20,10 @@ public interface StretchingService {
 
     List<Stretching> findAllStretchings() throws InstanceNotFoundException;
 
+    Block<Stretching> findAllStretchings(int page, int size) throws InstanceNotFoundException;
+
+    Block<Stretching> findStretchingsByType(String stretchingType, int page, int size) throws InstanceNotFoundException;
+
     List<Stretching> findStretchingsByType(String stretchingType) throws InstanceNotFoundException;
 
     List<Stretching> findStretchingsByPlayerId(Long playerId) throws InstanceNotFoundException;

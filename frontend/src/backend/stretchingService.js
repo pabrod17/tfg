@@ -6,6 +6,12 @@ export const findStretchingById = (stretchingId, onSuccess, onErrors) =>
 export const findAllStretchings = (onSuccess, onErrors) => 
     appFetch('/stretchings', config('GET'), onSuccess, onErrors);
 
+export const findAllStretchingsPage = ({page}, onSuccess, onErrors) => 
+    appFetch(`/stretchings/page?page=${page}`, config('GET'), onSuccess, onErrors);
+
+export const findStretchingsByTypePage = ({stretchingType, page}, onSuccess, onErrors) =>
+    appFetch(`/stretchings/${stretchingType}/stretchingType/page?page=${page}`, config('GET'), onSuccess, onErrors);
+
 export const findStretchingsByType = (stretchingType, onSuccess, onErrors) =>
     appFetch(`/stretchings/${stretchingType}/stretchingType`, config('GET'), onSuccess, onErrors);
 

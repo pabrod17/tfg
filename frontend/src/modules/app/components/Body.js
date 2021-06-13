@@ -71,6 +71,7 @@ import ExercisesHomeByTraining from '../../exercises/components/ExercisesHomeByT
 import ExercisesHomeByGame from '../../exercises/components/ExercisesHomeByGame';
 import LesionHomeByType from '../../lesion/components/LesionHomeByType';
 import ExercisesHomeByType from '../../exercises/components/ExercisesHomeByType';
+import StretchingsHomeByType from '../../stretchings/components/StretchingsHomeByType';
 
 const Body = () => {
 
@@ -146,6 +147,7 @@ const Body = () => {
                 {loggedIn && <Route exact path="/stretchings/home/player/:playerId"><StretchingsHomeByPlayer/></Route>}
                 {loggedIn && <Route exact path="/stretchings/home/game/:gameId"><StretchingsHomeByGame/></Route>}
                 {loggedIn && <Route exact path="/stretchings/home/training/:trainingId"><StretchingsHomeByTraining/></Route>}
+                {loggedIn && <Route exact path="/stretchings/home/type/:stretchingType"><StretchingsHomeByType/></Route>}
                 {loggedIn && <Route exact path="/exercises/home"><ExercisesHome/></Route>}
                 {loggedIn && <Route exact path="/exercises/addExercise"><AddExercise/></Route>}
                 {loggedIn && <Route exact path="/exercises/update/:id"><UpdateExercise/></Route>}

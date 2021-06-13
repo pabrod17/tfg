@@ -5,3 +5,6 @@ export const getOneStretching = state =>
 
 export const getAllStretchings = state =>
     getModuleState(state);
+
+export const getStretchingsSearch = state =>
+    getModuleState(state).stretchingsSearch;
