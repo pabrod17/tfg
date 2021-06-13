@@ -162,6 +162,12 @@ public class PlayerController {
             throws InstanceNotFoundException {
         playerService.changePlayerToTeam(playerId, teamId);
     }
+
+    @PostMapping("/{playerId}/clearTotalStatistics")
+    public void clearTotalStatistics(@PathVariable Long playerId)
+            throws InstanceNotFoundException {
+        playerService.clearTotalStatistics(playerId);
+    }
     
     @PutMapping("/{playerId}")
     public PlayerDto updatePlayer(@RequestParam Long teamId, @PathVariable Long playerId, @RequestParam String playerName, @RequestParam String primaryLastName, @RequestParam String secondLastName,

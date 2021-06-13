@@ -104,7 +104,9 @@ function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, les
                     <i class="fa fa-address-book"></i></a></li>
                   <li><a type="button" onClick={() => handleUpdatePlayer(player.id, player.teamId, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
-                  <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+                    {player.injured ?   
+                      <i class="fa fa-wrench injured"></i>:  
+                      ''}
                 </ul>
                 <button class="btn-player draw-border">Add Note</button>
                 <div class="dropdown">

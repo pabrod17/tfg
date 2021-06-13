@@ -80,7 +80,7 @@ public class PlayerServiceImpl implements PlayerService {
         Position positionEnum = Position.valueOf(position); // paso string a enum
 
         Player player = new Player(playerName, primaryLastName, secondLastName, positionEnum, trends, phoneNumber,
-                email, dni, team.get());
+                email, dni, team.get(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
         playerDao.save(player);
         return player;
     }
@@ -101,6 +101,34 @@ public class PlayerServiceImpl implements PlayerService {
             player.setTeam(teamDao.findById(teamId).get());
         }
         playerDao.save(player);
+    }
+
+    @Override
+    public void clearTotalStatistics(Long playerId) throws InstanceNotFoundException {
+        
+        if (!playerDao.existsById(playerId)) {
+            throw new InstanceNotFoundException("project.entities.player");
+        }
+
+        Player player = playerDao.findById(playerId).get();
+        player.setTotalPoints(0);
+        player.setTotalThreePointShots(0);
+        player.setTotalSetShots(0);
+        player.setTotalFreeShots(0);
+
+        player.setTotalFailThreePointShots(0);
+        player.setTotalfailSetShots(0);
+        player.setTotalfailFreeShots(0);
+
+        player.setTotalRebounds(0);
+        player.setTotalBlockedShot(0);
+        player.setTotalAssists(0);
+        player.setTotalPersonalFouls(0);
+        player.setTotalTechnicalFouls(0);
+        player.setTotalUnsportsmanlikeFouls(0);
+
+        playerDao.save(player);
+        System.out.println("HOLA --> " + player.getTotalAssists());
     }
 
     @Override

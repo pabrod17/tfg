@@ -110,7 +110,6 @@ const Body = () => {
                 {loggedIn && <Route exact path="/players/completedName/:id"><FindPlayersByCompletedName/></Route>}
                 {loggedIn && <Route exact path="/players/dni/result/:dni:id"><FindPlayerByDniResult/></Route>}
                 {loggedIn && <Route exact path="/players/completedName/result/:id:playerName:primaryLastName:secondLastName"><FindPlayersByCompletedNameResult/></Route>}
-                {loggedIn && <Route exact path="/players/home/:id"><PlayersHome/></Route>}
                 {loggedIn && <Route exact path="/players/view/:id:playerId"><PlayerView/></Route>}
                 {loggedIn && <Route exact path="/lesion/home"><LesionHome/></Route>}
                 {loggedIn && <Route exact path="/lesion/home/type/:lesionType"><LesionHomeByType/></Route>}

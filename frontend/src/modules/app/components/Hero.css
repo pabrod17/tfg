@@ -1408,6 +1408,13 @@ main {
   transition: all 265ms ease-out;
 }
 
+.injured {
+  color: #ff0000;
+  background: linear-gradient(45deg, #ff0000, #ff0000);
+  background: -webkit-linear-gradient(45deg, #ff0000, #ff0000);
+
+}
+
 .lesiongrande a:before {
   transform: scale(1);
   -ms-transform: scale(1);

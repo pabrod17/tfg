@@ -109,6 +109,9 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                   <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                   {/* <li><a href="#"><i class="fa fa-codepen"></i></a></li> */}
+                  {item.injured ?   
+                      <i class="fa fa-wrench injured"></i>:  
+                      ''}
                 </ul>
                 <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}>Add Note</button>
                 <div class="dropdown">

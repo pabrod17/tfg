@@ -15,6 +15,8 @@ public interface PlayerService {
 
     void changePlayerToTeam(Long playerId, Long teamId) throws InstanceNotFoundException;
 
+    void clearTotalStatistics(Long playerId) throws InstanceNotFoundException;
+
     Player findPlayerByIdOfTeam(Long playerId, Long teamId) throws InstanceNotFoundException;
 
     Player findPlayerByDniOfTeam(Long teamId, String dni) throws InstanceNotFoundException, IncorrectDniException;

@@ -76,6 +76,30 @@ public class PlayerServiceTest {
     }
 
     @Test
+    public void testAddPlayerToTeamAndFindPlayerByIdOfTeamInjured() throws DuplicateInstanceException, InstanceNotFoundException,
+            IncorrectDniException, IncorrectEmailException, IncorrectPhoneNumberException {
+        User user = createUser("usuario");
+        Team team = createTeam(user.getId(), "team");
+        Lesion lesion2 = lesionService.addLesion("Nombre de la lesion2", "Aqui pongo una descripcion de la lesion2", "Aqui pongo los medicamentos", "Joint");
+        Player player = playerService.addPlayer(team.getId(), "jugador1", "apellido1", "apellido2", "PointGuard", 
+        "Este jugador tiene tendencia a defender bajo, y a salir demasiado rapido al contraataque", "638677065", "paco@gmail.com", "46095900J");
+
+        Player playerFound = playerService.findPlayerByIdOfTeam(player.getId(), team.getId());
+
+        assertEquals(player, playerFound);
+
+
+
+        assertEquals(false, player.isInjured());
+
+        lesionService.addLesionToPlayer(player.getId(), lesion2.getId());
+        assertEquals(true, player.isInjured());
+
+        lesionService.removeLesionToPlayer(player.getId(), lesion2.getId());
+        assertEquals(false, player.isInjured());
+    }
+
+    @Test
     public void testAddPlayerToTeamAndFindPlayerByIdOfTeamFromNonExistentId() throws DuplicateInstanceException, InstanceNotFoundException,
             IncorrectDniException, IncorrectEmailException, IncorrectPhoneNumberException {
         User user = createUser("usuario");

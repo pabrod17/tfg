@@ -6,6 +6,7 @@ import basketball from './basketball.jpg';
 import basketRed2 from './basketRed2.jpg';
 import canastaSimple from './canastaSimple.jpg';
 import gameMatch from './gameMatch.jpg';
+import {FormattedMessage} from 'react-intl';
 
 import blackCanasta from './blackCanasta.jpg'; //1920x1200
 import estiramientos from './estiramientos.jpg'; //1920x1200
@@ -63,7 +64,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Teams
+                    <FormattedMessage id="project.teams.fields.teams"/>
                 </a>
             </div>
             <div class="carousel-item">

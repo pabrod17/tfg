@@ -10,6 +10,7 @@ import es.udc.paproject.backend.model.entities.Game;
 import es.udc.paproject.backend.model.entities.GameDao;
 import es.udc.paproject.backend.model.entities.GameStatistics;
 import es.udc.paproject.backend.model.entities.GameStatisticsDao;
+import es.udc.paproject.backend.model.entities.Player;
 import es.udc.paproject.backend.model.entities.PlayerDao;
 import es.udc.paproject.backend.model.entities.PlayerGameStatistics;
 import es.udc.paproject.backend.model.entities.PlayerGameStatisticsDao;
@@ -68,49 +69,64 @@ public class StatisticsServiceImpl implements StatisticsService {
             throw new InstanceNotFoundException("project.entities.player");
         }
 
+        Player player = playerDao.findById(playerId).get();
+
         List<PlayerGameStatistics> playerGameStatistics = playerGameStatisticsDao.findByPlayerIdAndGameId(playerId, gameId);
 
         if(totalPoints != null) {
             playerGameStatistics.get(0).setTotalPoints(totalPoints);
+            player.setTotalPoints(player.getTotalPoints() + totalPoints);
         }
         if(minutes != null) {
             playerGameStatistics.get(0).setMinutes(minutes);
         }
         if(threePointShots != null) {
             playerGameStatistics.get(0).setThreePointShots(threePointShots);
+            player.setTotalThreePointShots(player.getTotalThreePointShots() + threePointShots);
         }
         if(setShots != null) {
             playerGameStatistics.get(0).setSetShots(setShots);
+            player.setTotalSetShots(player.getTotalSetShots() + setShots);
         }
         if(freeShots != null) {
             playerGameStatistics.get(0).setFreeShots(freeShots);
+            player.setTotalFreeShots(player.getTotalFreeShots() + freeShots);
         }
         if(failThreePointShots != null) {
             playerGameStatistics.get(0).setFailThreePointShots(failThreePointShots);
+            player.setTotalFailThreePointShots(player.getTotalFailThreePointShots() + failThreePointShots);
         }
         if(failSetShots != null) {
             playerGameStatistics.get(0).setFailSetShots(failSetShots);
+            player.setTotalfailSetShots(player.getTotalfailSetShots() + failSetShots);
         }
         if(failFreeShots != null) {
             playerGameStatistics.get(0).setFailFreeShots(failFreeShots);
+            player.setTotalfailFreeShots(player.getTotalfailFreeShots() + failFreeShots);
         }
         if(rebounds != null) {
             playerGameStatistics.get(0).setRebounds(rebounds);
+            player.setTotalRebounds(player.getTotalRebounds() + rebounds);
         }
         if(blockedShot != null) {
             playerGameStatistics.get(0).setBlockedShot(blockedShot);
+            player.setTotalBlockedShot(player.getTotalBlockedShot() + blockedShot);
         }
         if(assists != null) {
             playerGameStatistics.get(0).setAssists(assists);
+            player.setTotalAssists(player.getTotalAssists() + assists);
         }
         if(personalFouls != null) {
             playerGameStatistics.get(0).setPersonalFouls(personalFouls);
+            player.setTotalPersonalFouls(player.getTotalPersonalFouls() + personalFouls);
         }
         if(technicalFouls != null) {
             playerGameStatistics.get(0).setTechnicalFouls(technicalFouls);
+            player.setTotalTechnicalFouls(player.getTotalTechnicalFouls() + technicalFouls);
         }
         if(unsportsmanlikeFouls != null) {
             playerGameStatistics.get(0).setUnsportsmanlikeFouls(unsportsmanlikeFouls);
+            player.setTotalUnsportsmanlikeFouls(player.getTotalUnsportsmanlikeFouls() + unsportsmanlikeFouls);
         }
         
         playerGameStatisticsDao.save(playerGameStatistics.get(0));

@@ -12,7 +12,10 @@ public class PlayerConversor {
     
     public final static PlayerDto toPlayerDto(Player player) {
         return new PlayerDto(player.getId(), player.getPlayerName(), player.getPrimaryLastName(), player.getSecondLastName(), player.getPosition(),
-        player.getTrends(), player.getPhoneNumber(), player.getEmail(), player.getDni(), player.getTeam().getId());
+        player.getTrends(), player.getPhoneNumber(), player.getEmail(), player.getDni(), player.getTeam().getId(), 
+        player.getTotalPoints(), player.getTotalThreePointShots(), player.getTotalSetShots(), player.getTotalFreeShots(), player.getTotalFailThreePointShots(), player.getTotalfailSetShots(), 
+        player.getTotalfailFreeShots(), player.getTotalRebounds(), player.getTotalBlockedShot(), player.getTotalAssists(), player.getTotalPersonalFouls(), player.getTotalTechnicalFouls(), player.getTotalUnsportsmanlikeFouls(),
+        player.isInjured());
     }
 
     public final static List<PlayerDto> toPlayerDtos(List<Player> players) {

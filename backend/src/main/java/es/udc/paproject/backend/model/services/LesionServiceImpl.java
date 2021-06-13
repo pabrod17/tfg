@@ -60,10 +60,13 @@ public class LesionServiceImpl implements LesionService {
         }
 
         Player player = playerDao.findById(playerId).get();
+
         Lesion lesion = lesionDao.findById(lesionId).get();
         PlayerLesion playerLesion = new PlayerLesion(lesion, player);
 
         playerLesionDao.save(playerLesion);
+        player.setInjured(true);
+        playerDao.save(player);
     }
 
     @Override
@@ -195,6 +198,13 @@ public class LesionServiceImpl implements LesionService {
             if(playerLesion.getLesion() != null && playerLesion.getLesion().getId() == lesionId && playerLesion.getPlayer().getId() == playerId){
                 playerLesionDao.delete(playerLesion);
             }
+        }
+
+        List<PlayerLesion> playerLesions2 = playerLesionDao.findByPlayerId(playerId);
+        if (playerLesions2.isEmpty()) {
+            Player player = playerDao.findById(playerId).get();
+            player.setInjured(false);
+            playerDao.save(player);
         }
     }
 

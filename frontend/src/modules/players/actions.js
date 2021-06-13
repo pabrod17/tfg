@@ -145,6 +145,11 @@ export const changePlayerToTeam = (teamId, playerId, onSuccess, onErrors) => {
     return {type: actionTypes.CHANGE_PLAYER_TO_TEAM_COMPLETED};
 }
 
+export const clearTotalStatistics = (playerId, onSuccess, onErrors) => {
+    backend.playerService.clearTotalStatistics(playerId, onSuccess, onErrors);
+    return {type: actionTypes.CLEAR_TOTAL_STATISTICS_COMPLETED};
+}
+
 const updatePlayerCompleted = player => ({
     type: actionTypes.UPDATE_PLAYER_COMPLETED,
     player

@@ -37,7 +37,9 @@ export default {
     'project.users.UpdateProfile.title': 'Actualizar perfil',
     
     'project.teams.FindTeamByName.noTeam': 'No se encontraron equipos',
-    'project.seasons.FindSeason.noSeason': 'No se encontraron temporadas'
+    'project.seasons.FindSeason.noSeason': 'No se encontraron temporadas',
+
+    'project.teams.fields.teams' : 'Equipos'
 
 
 }

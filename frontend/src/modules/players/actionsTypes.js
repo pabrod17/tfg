@@ -13,3 +13,4 @@ export const ADD_PLAYER_COMPLETED = "project/players/addPlayerCompleted";
 export const CHANGE_PLAYER_TO_TEAM_COMPLETED = "project/players/changePlayerToTeamCompleted";
 export const UPDATE_PLAYER_COMPLETED = "project/players/updatePlayerCompleted";
 export const REMOVE_PLAYER_COMPLETED = "project/players/removePlayerCompleted";
+export const CLEAR_TOTAL_STATISTICS_COMPLETED = "project/players/clearTotalStatisticsCompleted";

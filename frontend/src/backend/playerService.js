@@ -33,6 +33,9 @@ export const addPlayer = (teamId, playerName, primaryLastName, secondLastName, p
 export const changePlayerToTeam = (teamId, playerId, onSuccess, onErrors) =>
     appFetch(`/players/${teamId}/changePlayerToTeam?playerId=${playerId}`, config('POST'), onSuccess, onErrors);
 
+export const clearTotalStatistics = (playerId, onSuccess, onErrors) =>
+    appFetch(`/players/${playerId}/clearTotalStatistics`, config('POST'), onSuccess, onErrors);
+
 export const updatePlayer = (playerId, teamId, playerName, primaryLastName, secondLastName, position, trends, phoneNumber, email, dni, onSuccess, onErrors) =>
     appFetch(`/players/${playerId}?teamId=${teamId}&playerName=${playerName}&primaryLastName=${primaryLastName}&secondLastName=${secondLastName}&position=${position}&trends=${trends}&phoneNumber=${phoneNumber}&email=${email}&dni=${dni}`, config('PUT'), onSuccess, onErrors);
 

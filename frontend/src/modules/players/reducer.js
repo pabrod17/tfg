@@ -23,6 +23,8 @@ const player = (state = initialState.player, action) => {
             return state;
         case actionTypes.CHANGE_PLAYER_TO_TEAM_COMPLETED:
             return state;
+        case actionTypes.CLEAR_TOTAL_STATISTICS_COMPLETED:
+            return state;
         default:
             return state;
     }
