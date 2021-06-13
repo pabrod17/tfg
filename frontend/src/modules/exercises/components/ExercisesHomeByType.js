@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
 
 import * as selectors from '../selectors';
 import Exercises from './Exercises';
@@ -52,22 +53,22 @@ const ExercisesHomeByType = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/exercises/addExercise`)}>Add New Exercise</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/exercises/addExercise`)}><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Type Exercise 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.exercises.fields.type"/> 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetTypeExercise(tactic, dispatch)}>Tactic</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(technique, dispatch)}>Technique</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(physical, dispatch)}>Physical</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(globalized, dispatch)}>Globalized</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(specific, dispatch)}>Specific</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(psychological, dispatch)}>Psychological</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(strategy, dispatch)}>Strategy</a>
-                            <a type="button" onClick={() => handleSetTypeExercise(preMatch, dispatch)}>PreMatch</a>
+                            <a type="button" onClick={() => handleSetTypeExercise(tactic, dispatch)}><FormattedMessage id="project.exercises.fields.tactic"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(technique, dispatch)}><FormattedMessage id="project.exercises.fields.technique"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(physical, dispatch)}><FormattedMessage id="project.exercises.fields.physical"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(globalized, dispatch)}><FormattedMessage id="project.exercises.fields.globalized"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(specific, dispatch)}><FormattedMessage id="project.exercises.fields.specific"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(psychological, dispatch)}><FormattedMessage id="project.exercises.fields.psychological"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(strategy, dispatch)}><FormattedMessage id="project.exercises.fields.strategy"/></a>
+                            <a type="button" onClick={() => handleSetTypeExercise(preMatch, dispatch)}><FormattedMessage id="project.exercises.fields.preMatch"/></a>
                             </div>
                         </div>
                     </div>

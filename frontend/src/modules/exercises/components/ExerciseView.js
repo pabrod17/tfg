@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import * as actions from '../actions';
 import * as selectors from '../selectors';
@@ -22,14 +23,14 @@ const ExerciseView = () => {
                         <img className="holas" src={exercisesss}/>
                         <div class="card-body">
                             <h5 class="card__name">{exercise.exerciseName}</h5>
-                            <h5 class="card-title">Type: {exercise.exerciseType}</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.typeOnly"/>: {exercise.exerciseType}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Objective</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.objective"/></h5>
                             <p class="card-text">{exercise.objective}</p>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Description</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>
                             <p class="card-text">{exercise.description}</p>
                         </div>
                         <div class="card-body">

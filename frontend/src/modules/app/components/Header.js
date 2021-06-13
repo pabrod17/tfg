@@ -18,7 +18,7 @@ const Header = () => {
             <Link className=" nav-link centrado" to="/">TeamHub</Link>
             {/* <Link className=" nav-link " to="/">Teams</Link>
             <Link className=" nav-link " to="/">Seasons</Link> */}
-            <div className="wrapper">
+            {/* <div className="wrapper">
                 <ul>
                     <li><Link className=" nav-link" to="/">Teams</Link>
                             <ul>
@@ -47,7 +47,7 @@ const Header = () => {
                             </ul>
                     </li>
                 </ul>
-            </div>
+            </div> */}
 
 
             <button className="navbar-toggler" type="button" 

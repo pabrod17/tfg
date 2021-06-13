@@ -40,9 +40,50 @@ export default {
     'project.seasons.FindSeason.noSeason': 'No seasons found',
 
 
-    'project.teams.fields.teams' : 'Teams'
+    'project.teams.fields.teams' : 'Teams',
+    'project.seasons.fields.seasons' : 'Seasons',
+    'project.lesion.fields.lesion' : 'Lesion',
+    'project.trainings.fields.trainings' : 'Trainings',
+    'project.games.fields.games' : 'Games',
+    'project.stretchings.fields.stretchings' : 'Stretchings',
+    'project.exercises.fields.exercises' : 'Exercises',
+
+    //exercises
+    'project.exercises.fields.addExercise' : 'Add Exercise',
+    'project.exercises.fields.updateExercise' : 'Update Exercise',
+    'project.exercises.fields.name' : 'Exercise Name',
+    'project.exercises.fields.description' : 'Description',
+    'project.exercises.fields.objective' : 'Objective',
+    'project.exercises.fields.type' : 'Exercise Type',
+    'project.exercises.fields.typeOnly' : 'Type',
+    'project.exercises.fields.tactic' : 'Tactic',
+    'project.exercises.fields.technique' : 'Technique',
+    'project.exercises.fields.physical' : 'Physical',
+    'project.exercises.fields.globalized' : 'Globalized',
+    'project.exercises.fields.specific' : 'Specific',
+    'project.exercises.fields.psychological' : 'Psychological',
+    'project.exercises.fields.strategy' : 'Strategy',
+    'project.exercises.fields.preMatch' : 'PreMatch',
 
 
+    //games
 
+    //lesion
+
+    //notes
+
+    //players
+
+    //plays
+
+    //seasons
+
+    //statistics
+
+    //stretchings
+
+    //teams
+
+    //trainings
 
 }

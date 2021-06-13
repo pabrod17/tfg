@@ -74,7 +74,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Seasons
+                    <FormattedMessage id="project.seasons.fields.seasons"/>
                 </a>
             </div>
             <div class="carousel-item">
@@ -84,7 +84,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Lesion
+                    <FormattedMessage id="project.lesion.fields.lesion"/>
                 </a>
             </div>
             <div class="carousel-item">
@@ -94,7 +94,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Trainings
+                    <FormattedMessage id="project.trainings.fields.trainings"/>
                 </a>
             </div>
             <div class="carousel-item">
@@ -104,7 +104,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Games
+                    <FormattedMessage id="project.games.fields.games"/>
                 </a>
             </div>
             <div class="carousel-item">
@@ -114,7 +114,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Stretchings
+                    <FormattedMessage id="project.stretchings.fields.stretchings"/>
                 </a>
             </div>
             <div class="carousel-item">
@@ -124,7 +124,7 @@ const Home = () => {
                     <span id="span2"></span>
                     <span id="span3"></span>
                     <span id="span4"></span>
-                    Exercises
+                    <FormattedMessage id="project.exercises.fields.exercises"/>
                 </a>
             </div>
         </div>

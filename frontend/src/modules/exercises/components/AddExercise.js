@@ -53,14 +53,14 @@ const AddExercise = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Add Exercise
+                    <FormattedMessage id="project.exercises.fields.addExercise"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Exercise Name
+                                <FormattedMessage id="project.exercises.fields.name"/>
                                 </label>
                                 <div className="col-md-9">
                                     <input type="text" id="exerciseName" className="form-control"
@@ -75,7 +75,7 @@ const AddExercise = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
+                                <FormattedMessage id="project.exercises.fields.description"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="description" className="form-control"
@@ -90,7 +90,7 @@ const AddExercise = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Objective
+                                <FormattedMessage id="project.exercises.fields.objective"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="objective" className="form-control"
@@ -105,21 +105,21 @@ const AddExercise = () => {
                             </div>
                             <div className=" row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Exercise Type
+                            <FormattedMessage id="project.exercises.fields.type"/>
                                 </label>
                             <div class="dropdown col-md-6">
                                 <button class="dropbtn">{exerciseType} 
                                 <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                    <a type="button" onClick={() => setExerciseType(tactic, dispatch)}>Tactic</a>
-                                    <a type="button" onClick={() => setExerciseType(technique, dispatch)}>Technique</a>
-                                    <a type="button" onClick={() => setExerciseType(physical, dispatch)}>Physical</a>
-                                    <a type="button" onClick={() => setExerciseType(globalized, dispatch)}>Globalized</a>
-                                    <a type="button" onClick={() => setExerciseType(specific, dispatch)}>Specific</a>
-                                    <a type="button" onClick={() => setExerciseType(psychological, dispatch)}>Psychological</a>
-                                    <a type="button" onClick={() => setExerciseType(strategy, dispatch)}>Strategy</a>
-                                    <a type="button" onClick={() => setExerciseType(preMatch, dispatch)}>PreMatch</a>
+                                    <a type="button" onClick={() => setExerciseType(tactic, dispatch)}><FormattedMessage id="project.exercises.fields.tactic"/></a>
+                                    <a type="button" onClick={() => setExerciseType(technique, dispatch)}><FormattedMessage id="project.exercises.fields.technique"/></a>
+                                    <a type="button" onClick={() => setExerciseType(physical, dispatch)}><FormattedMessage id="project.exercises.fields.physical"/></a>
+                                    <a type="button" onClick={() => setExerciseType(globalized, dispatch)}><FormattedMessage id="project.exercises.fields.globalized"/></a>
+                                    <a type="button" onClick={() => setExerciseType(specific, dispatch)}><FormattedMessage id="project.exercises.fields.specific"/></a>
+                                    <a type="button" onClick={() => setExerciseType(psychological, dispatch)}><FormattedMessage id="project.exercises.fields.psychological"/></a>
+                                    <a type="button" onClick={() => setExerciseType(strategy, dispatch)}><FormattedMessage id="project.exercises.fields.strategy"/></a>
+                                    <a type="button" onClick={() => setExerciseType(preMatch, dispatch)}><FormattedMessage id="project.exercises.fields.preMatch"/></a>
                                 </div>
                             </div>
                             </div>

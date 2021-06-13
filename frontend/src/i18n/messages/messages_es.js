@@ -39,7 +39,50 @@ export default {
     'project.teams.FindTeamByName.noTeam': 'No se encontraron equipos',
     'project.seasons.FindSeason.noSeason': 'No se encontraron temporadas',
 
-    'project.teams.fields.teams' : 'Equipos'
+    'project.teams.fields.teams' : 'Equipos',
+    'project.seasons.fields.seasons' : 'Temporadas',
+    'project.lesion.fields.lesion' : 'Lesiones',
+    'project.trainings.fields.trainings' : 'Entranamientos',
+    'project.games.fields.games' : 'Partidos',
+    'project.stretchings.fields.stretchings' : 'Estiramientos',
+    'project.exercises.fields.exercises' : 'Ejercicios',
 
+    //exercises
+    'project.exercises.fields.addExercise' : 'Añadir Ejercicio',
+    'project.exercises.fields.updateExercise' : 'Actualizar Ejercicio',
+    'project.exercises.fields.name' : 'Nombre Ejercicio',
+    'project.exercises.fields.description' : 'Descripción',
+    'project.exercises.fields.objective' : 'Objetivo',
+    'project.exercises.fields.type' : 'Tipo Ejercicio',
+    'project.exercises.fields.typeOnly' : 'Tipo',
+    'project.exercises.fields.tactic' : 'Táctico',
+    'project.exercises.fields.technique' : 'Técnico',
+    'project.exercises.fields.physical' : 'Físico',
+    'project.exercises.fields.globalized' : 'Globalizado',
+    'project.exercises.fields.specific' : 'Específico',
+    'project.exercises.fields.psychological' : 'Psicológico',
+    'project.exercises.fields.strategy' : 'Estrategia',
+    'project.exercises.fields.preMatch' : 'PrePartido',
+
+
+    //games
+
+    //lesion
+
+    //notes
+
+    //players
+
+    //plays
+
+    //seasons
+
+    //statistics
+
+    //stretchings
+
+    //teams
+
+    //trainings
 
 }
