@@ -14,6 +14,7 @@ import * as actionTrainings from '../../trainings/actions';
 import * as actionGames from '../../games/actions';
 import bigBall from '../../trainings/components/bigBall.jpg';
 import redAzul from '../../games/components/naranja.jpg';
+import {FormattedMessage} from 'react-intl';
 
 const SeasonView = () => {
     const user = useSelector(selectorsUsers.getUser);
@@ -50,7 +51,7 @@ const SeasonView = () => {
     
                             <div class="card hola pequeño text-center">
                                 <img src={notaLapiz} alt="Person" class="card__image tempora"></img>
-                                <p class="card__name" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}>Teams</p>
+                                <p class="card__name" type="button" onClick={() => handleFindTeamsToSeason(season.id, dispatch, history)}><FormattedMessage id='project.teams.fields.teams'/></p>
                                 <div class="grid-container">
                                 </div>
                             </div>
@@ -58,14 +59,14 @@ const SeasonView = () => {
         
                             <div class="card hola pequeño text-center">
                                 <img src={bigBall} alt="Person" class="card__image entreno"></img>
-                                <p class="card__name" type="button" onClick={() => handleFindTrainingsToSeason(season.id, dispatch, history)}>Trainings</p>
+                                <p class="card__name" type="button" onClick={() => handleFindTrainingsToSeason(season.id, dispatch, history)}><FormattedMessage id='project.trainings.fields.trainings'/></p>
                                 <div class="grid-container">
                                 </div>
                             </div>
         
                             <div class="card hola pequeño text-center">
                                 <img src={redAzul} alt="Person" class="card__image partidito"></img>
-                                <p class="card__name" type="button" onClick={() => handleFindGamesToSeason(season.id, dispatch, history)}>Games</p>
+                                <p class="card__name" type="button" onClick={() => handleFindGamesToSeason(season.id, dispatch, history)}><FormattedMessage id='project.games.fields.games'/></p>
                                 <div class="grid-container">
                                 </div>
                             </div>

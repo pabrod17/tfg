@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import * as selectors from '../selectors';
 import Stretchings from './Stretchings';
@@ -64,24 +65,24 @@ const StretchingsHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/stretchings/addStretching`)}>Add New Stretching</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/stretchings/addStretching`)}><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Type Stretching 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.stretchings.fields.stretchingType"/> 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetTypeStretching(hamstrings, dispatch)}>Hamstrings</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(buttocks, dispatch)}>Buttocks</a>
-                            <a type="button"  onClick={() => handleSetTypeStretching(calf, dispatch)}>Calf</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(adductors, dispatch)}>Adductors</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(shoulder, dispatch)}>Shoulder</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(quadriceps, dispatch)}>Quadriceps</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(back, dispatch)}>Back</a>
-                            <a type="button"  onClick={() => handleSetTypeStretching(pectoral, dispatch)}>Pectoral</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(crotch, dispatch)}>Crotch</a>
-                            <a type="button" onClick={() => handleSetTypeStretching(triceps, dispatch)}>Triceps</a>
+                            <a type="button" onClick={() => handleSetTypeStretching(hamstrings, dispatch)}><FormattedMessage id="project.stretchings.fields.hamstrings"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(buttocks, dispatch)}><FormattedMessage id="project.stretchings.fields.buttocks"/></a>
+                            <a type="button"  onClick={() => handleSetTypeStretching(calf, dispatch)}><FormattedMessage id="project.stretchings.fields.calf"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(adductors, dispatch)}><FormattedMessage id="project.stretchings.fields.adductors"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(shoulder, dispatch)}><FormattedMessage id="project.stretchings.fields.shoulder"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(quadriceps, dispatch)}><FormattedMessage id="project.stretchings.fields.quadriceps"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(back, dispatch)}><FormattedMessage id="project.stretchings.fields.back"/></a>
+                            <a type="button"  onClick={() => handleSetTypeStretching(pectoral, dispatch)}><FormattedMessage id="project.stretchings.fields.pectoral"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(crotch, dispatch)}><FormattedMessage id="project.stretchings.fields.crotch"/></a>
+                            <a type="button" onClick={() => handleSetTypeStretching(triceps, dispatch)}><FormattedMessage id="project.stretchings.fields.triceps"/></a>
                             </div>
                         </div>
                     </div>

@@ -49,14 +49,14 @@ const UpdateSeason = () => {
                     <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                     <div className="card bg-light border-dark centrado-update-add">
                         <h5 className="card-header">
-                            Update Season
+                        <FormattedMessage id='project.seasons.fields.updateSeason'/>
                         </h5>
                         <div className="card-body">
                             <form ref={node => form = node} 
                                 className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                                 <div className="form-group row">
                                     <label htmlFor="startDate" className="col-md-3 col-form-label">
-                                        Start Date
+                                    <FormattedMessage id='project.seasons.fields.startDate'/>
                                     </label>
                                     <div className="col-md-8">
                                         <input type="date" id="startDate" className="form-control"
@@ -71,7 +71,7 @@ const UpdateSeason = () => {
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor="endDate" className="col-md-3 col-form-label">
-                                        End Date
+                                    <FormattedMessage id='project.seasons.fields.endDate'/>
                                     </label>
                                     <div className="col-md-8">
                                         <input type="date" id="endDate" className="form-control"
@@ -86,7 +86,7 @@ const UpdateSeason = () => {
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor="calendario" className="col-md-3 col-form-label">
-                                        Calendario
+                                    <FormattedMessage id='project.seasons.fields.name'/>
                                     </label>
                                     <div className="col-md-8">
                                         <input type="text" id="calendario" className="form-control"

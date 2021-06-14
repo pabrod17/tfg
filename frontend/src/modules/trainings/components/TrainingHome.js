@@ -75,7 +75,7 @@ const TrainingHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/trainings/addTraining`)}>Add New Training</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/trainings/addTraining`)}><FormattedMessage id="project.trainings.fields.addTraining"/></button>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@ const TrainingHome = () => {
                                         </div>
                                         <div className="">
                                             <button type="submit" className="btn btn-primary">
-                                                Find
+                                            <FormattedMessage id="project.global.buttons.find"/>
                                             </button>
                                         </div>
                                     </div>

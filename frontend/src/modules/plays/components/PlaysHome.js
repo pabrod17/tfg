@@ -30,16 +30,16 @@ const PlaysHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/plays/addPlay/${id}`)}>Add New Play</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/plays/addPlay/${id}`)}><FormattedMessage id="project.plays.fields.addPlay"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Play Type
+                            <button class="dropbtn lesion"><FormattedMessage id="project.exercises.fields.typeOnly"/>
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetTypePlay(id, attack, dispatch)}>Attack</a>
-                            <a type="button" onClick={() => handleSetTypePlay(id, defense, dispatch)}>Defense</a>
+                            <a type="button" onClick={() => handleSetTypePlay(id, attack, dispatch)}><FormattedMessage id="project.plays.fields.attack"/></a>
+                            <a type="button" onClick={() => handleSetTypePlay(id, defense, dispatch)}><FormattedMessage id="project.plays.fields.defense"/></a>
                             </div>
                         </div>
                     </div>

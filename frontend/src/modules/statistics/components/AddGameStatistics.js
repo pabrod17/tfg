@@ -68,7 +68,7 @@ const AddGameStatistics = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark">
                     <h5 className="card-header">
-                        Add Game Statistics
+                    <FormattedMessage id="project.statistics.fields.addGameStatistics"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
@@ -76,7 +76,7 @@ const AddGameStatistics = () => {
 
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Points
+                                <FormattedMessage id="project.statistics.fields.totalPoints"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalPoints" className="form-control"
@@ -91,7 +91,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Duration Minutes
+                                <FormattedMessage id="project.statistics.fields.duration"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="durationMinutes" className="form-control"
@@ -106,7 +106,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Three Point Shots
+                                <FormattedMessage id="project.statistics.fields.totalThreePointShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalThreePointShots" className="form-control"
@@ -121,7 +121,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Set Shots
+                                <FormattedMessage id="project.statistics.fields.totalSetShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalSetShots" className="form-control"
@@ -136,7 +136,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Free Shots
+                                <FormattedMessage id="project.statistics.fields.totalFreeShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalFreeShots" className="form-control"
@@ -151,7 +151,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Rebounds
+                                <FormattedMessage id="project.statistics.fields.totalRebounds"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalRebounds" className="form-control"
@@ -166,7 +166,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Blocked Shot
+                                <FormattedMessage id="project.statistics.fields.totalBlockedShot"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalBlockedShot" className="form-control"
@@ -181,7 +181,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Assists
+                                <FormattedMessage id="project.statistics.fields.totalAssists"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalAssists" className="form-control"
@@ -196,7 +196,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Personal Fouls
+                                <FormattedMessage id="project.statistics.fields.totalPersonalFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalPersonalFouls" className="form-control"
@@ -211,7 +211,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Technical Fouls
+                                <FormattedMessage id="project.statistics.fields.totalTechnicalFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalTechnicalFouls" className="form-control"
@@ -226,7 +226,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Unsportsmanlike Fouls
+                                <FormattedMessage id="project.statistics.fields.totalUnsportsmanlikeFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalUnsportsmanlikeFouls" className="form-control"
@@ -250,7 +250,7 @@ const AddGameStatistics = () => {
 
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Points Rival
+                                <FormattedMessage id="project.statistics.fields.totalPointsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalPointsRival" className="form-control"
@@ -265,7 +265,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Three Point Shots Rival
+                                <FormattedMessage id="project.statistics.fields.totalThreePointShotsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalThreePointShotsRival" className="form-control"
@@ -280,7 +280,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Set Shots Rival
+                                <FormattedMessage id="project.statistics.fields.totalSetShotsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalSetShotsRival" className="form-control"
@@ -295,7 +295,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Free Shots Rival
+                                <FormattedMessage id="project.statistics.fields.totalFreeShotsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalFreeShotsRival" className="form-control"
@@ -310,7 +310,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Rebounds Rival
+                                <FormattedMessage id="project.statistics.fields.totalReboundsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalReboundsRival" className="form-control"
@@ -325,7 +325,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Blocked Shots Rival
+                                <FormattedMessage id="project.statistics.fields.totalBlockedShotRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalBlockedShotsRival" className="form-control"
@@ -340,7 +340,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Assists Rival
+                                <FormattedMessage id="project.statistics.fields.totalAssistsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalAssistsRival" className="form-control"
@@ -355,7 +355,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Personal Fouls Rival
+                                <FormattedMessage id="project.statistics.fields.totalPersonalFoulsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalPersonalFoulsRival" className="form-control"
@@ -370,7 +370,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Technical Fouls Rival
+                                <FormattedMessage id="project.statistics.fields.totalTechnicalFoulsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalTechnicalFoulsRival" className="form-control"
@@ -385,7 +385,7 @@ const AddGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Unsportsmanlike Fouls Rival
+                                <FormattedMessage id="project.statistics.fields.totalUnsportsmanlikeFoulsRival"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalUnsportsmanlikeFoulsRival" className="form-control"

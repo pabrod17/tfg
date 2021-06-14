@@ -97,7 +97,7 @@ function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback
                             </div>
                 </div> */}
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Stretching</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                             <div class="dropdown-content">
                             {stretchingsList.map(stretching => 
                                         <a type="button" onClick={() => handleAddStretchingToTraining(item.id, stretching.id, dispatch, history)}> 
@@ -106,7 +106,7 @@ function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Exercise</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                             <div class="dropdown-content">
                             {exercisesList.map(exercise => 
                                         <a type="button" onClick={() => handleAddExerciseToTraining(item.id, exercise.id, dispatch, history)}> 
@@ -114,9 +114,9 @@ function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByTraining(item.id, teamId,dispatch, history)}>Players</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}>My Exercises</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByTraining(item.id, teamId,dispatch, history)}><FormattedMessage id="project.players.fields.players"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}><FormattedMessage id="project.stretchings.fields.myStretchings"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}><FormattedMessage id="project.exercises.fields.myExercises"/></button>
               </div>
             </div>
           </div>;
@@ -167,7 +167,7 @@ function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, di
                           </div>
               </div> */}
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Stretching</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                             <div class="dropdown-content">
                             {stretchingsList.map(stretching => 
                                         <a type="button" onClick={() => handleAddStretchingToTraining(item.id, stretching.id, dispatch, history)}> 
@@ -176,7 +176,7 @@ function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, di
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Exercise</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                             <div class="dropdown-content">
                             {exercisesList.map(exercise => 
                                         <a type="button" onClick={() => handleAddExerciseToTraining(item.id, exercise.id, dispatch, history)}> 
@@ -184,8 +184,8 @@ function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, di
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}>My Stretchings</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}>My Exercises</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByTraining(item.id, dispatch, history)}><FormattedMessage id="project.stretchings.fields.myStretchings"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByTraining(item.id, dispatch, history)}><FormattedMessage id="project.exercises.fields.myExercises"/></button>
             </div>
           </div>
         </div>;

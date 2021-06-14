@@ -43,14 +43,14 @@ const UpdateTeam = () => {
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
-                    Update Team
+                <FormattedMessage id="project.teams.fields.updateTeam"/>
                 </h5>
                 <div className="card-body">
                     <form ref={node => form = node} 
                         className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-3 col-form-label">
-                                Team Name
+                            <FormattedMessage id="project.teams.fields.teamName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="teamName" className="form-control"

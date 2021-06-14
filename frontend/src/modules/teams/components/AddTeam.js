@@ -40,7 +40,7 @@ const AddTeam = () => {
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
-                    NEW TEAM
+                <FormattedMessage id="project.teams.fields.addTeam"/>
                 </h5>
                 <div className="card-body">
                     <form ref={node => form = node}
@@ -48,7 +48,7 @@ const AddTeam = () => {
                         onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="teamName" className="col-md-4 col-form-label">
-                                Team Name
+                            <FormattedMessage id="project.teams.fields.teamName"/>
                             </label>
                             <div className="col-md-5">
                                 <input type="text" id="teamName" className="form-control"
@@ -64,7 +64,7 @@ const AddTeam = () => {
                         <div className="form-group row">
                             <div className="offset-md-5 col-md-8">
                                 <button type="submit" className="btn btn-primary">
-                                    Add
+                                <FormattedMessage id="project.global.buttons.save"/>
                                 </button>
                             </div>
                         </div>

@@ -105,7 +105,7 @@ const PlayerView = () => {
                             <h5 class="card-title">{player.totalUnsportsmanlikeFouls}</h5>
                         </div>
                         <div class="card-footer bg-transparent border-success">
-                            <button type="button" onClick={() => handleClearTotalStatistics(player.id, dispatch, history)}>Clear</button>
+                            <button type="button" onClick={() => handleClearTotalStatistics(player.id, dispatch, history)}><FormattedMessage id="project.players.fields.clear"/></button>
                         </div>
                     </div>
 

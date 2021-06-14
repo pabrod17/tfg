@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import * as actions from '../actions';
 import * as selectors from '../selectors';
@@ -24,10 +25,10 @@ const StretchingView = () => {
                         <img className="holas" src={estiramientos}/>
                         <div class="card-body">
                             <h5 class="card__name">{stretching.stretchingName}</h5>
-                            <h5 class="card-title">Type: {stretching.stretchingType}</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.typeOnly"/>: {stretching.stretchingType}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Description</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>
                             <p class="card-text">{stretching.description}</p>
                         </div>
                         <div class="card-body">

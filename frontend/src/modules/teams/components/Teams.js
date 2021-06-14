@@ -19,7 +19,7 @@ function List({ items, fallback, dispatch, history}) {
             <Card className="images-teams" style={{ width: '20rem' }}>
             <img class="card-img-top" src={logo22} alt="Card image cap"/>
               <Card.Body>
-                <Card.Title className="link-color">Name: {item.teamName}</Card.Title>
+                <Card.Title className="link-color"><FormattedMessage id='project.seasons.fields.name'/>: {item.teamName}</Card.Title>
 
               </Card.Body>
               {/* <ListGroup className="list-group-flush">

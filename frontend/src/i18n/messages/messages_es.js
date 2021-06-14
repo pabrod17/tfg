@@ -126,9 +126,30 @@ export default {
     'project.players.fields.findPlayerByDni' : 'Buscar Jugador por Dni',
     'project.players.fields.findPlayerByNameAndSurnames' : 'Buscar Jugador por nombres y apellidos',
     'project.players.fields.nameAndSurnames' : 'Nombre y Apellidos',
+    'project.players.fields.clear' : 'Reiniciar',
+
     //plays
+    'project.plays.fields.addPlay' : 'Añadir Jugada',
+    'project.plays.fields.updatePlay' : 'Actualizar Jugada',
+    'project.plays.fields.play' : 'Jugada',
+    'project.plays.fields.attack' : 'Ataque',
+    'project.plays.fields.defense' : 'Defensa',
+    'project.plays.fields.gesture' : 'Gesto',
+    'project.plays.fields.pointGuardText' : 'Base Texto',
+    'project.plays.fields.shootingGuardText' : 'Escolta Texto',
+    'project.plays.fields.smallForwardText' : 'Alero Texto',
+    'project.plays.fields.powerForwardText' : 'Ala Pívot Texto',
+    'project.plays.fields.centerText' : 'Pívot Texto',
 
     //seasons
+    'project.seasons.fields.addSeason' : 'Añadir Temporada',
+    'project.plays.fields.updateSeason' : 'Actualizar Temporada',
+    'project.seasons.fields.startDate' : 'Fecha Inicio',
+    'project.seasons.fields.endDate' : 'Fecha Fin',
+    'project.seasons.fields.name' : 'Nombre',
+    'project.seasons.fields.allSeasons' : 'Temporadas',
+    'project.seasons.fields.seasonsBetweenTwoDates' : 'Temporadas por fechas',
+
 
     //statistics
     'project.statistics.fields.playerGameStatistics' : 'Estadísticas Jugador Partido',
@@ -152,15 +173,93 @@ export default {
     'project.statistics.fields.totalUnsportsmanlikeFouls' : 'Total Faltas Antideportivas',
 
 
+
+
+    'project.statistics.fields.addGameStatistics' : 'Añadir Estadísticas Partido',
+    'project.statistics.fields.addPlayerGameStatistics' : 'Añadir Estadísticas Jugador Partido',
+
+    'project.statistics.fields.duration' : 'Duración Minutos',
+    'project.statistics.fields.minutes' : 'Minutos',
+
+    'project.statistics.fields.totalPointsRival' : 'Total Puntos Rival',
+    'project.statistics.fields.totalThreePointShotsRival' : 'Total tiros de 3 Rival',
+    'project.statistics.fields.totalSetShotsRival' : 'Total tiros de campo Rival',
+    'project.statistics.fields.totalFreeShotsRival' : 'Total tiros libres Rival',
+
+    'project.statistics.fields.totalReboundsRival' : 'Total Rebotes Rival',
+    'project.statistics.fields.totalBlockedShotRival' : 'Total Tapones Rival',
+    'project.statistics.fields.totalAssistsRival' : 'Total Asistencias Rival',
+
+    'project.statistics.fields.totalPersonalFoulsRival' : 'Total Faltas Personales Rival',
+    'project.statistics.fields.totalTechnicalFoulsRival' : 'Total Faltas Técnicas Rival',
+    'project.statistics.fields.totalUnsportsmanlikeFoulsRival' : 'Total Faltas Antideportivas Rival',
+
+
+
+    'project.statistics.fields.threePointShots' : 'Tiros de 3',
+    'project.statistics.fields.setShots' : 'Tiros de campo',
+    'project.statistics.fields.freeShots' : 'Tiros libres',
+
+    'project.statistics.fields.failThreePointShots' : 'Tiros de 3 fallados',
+    'project.statistics.fields.failSetShots' : 'Tiros de campo fallados',
+    'project.statistics.fields.failFreeShots' : 'Tiros libres fallados',
+
+    'project.statistics.fields.rebounds' : 'Rebotes',
+    'project.statistics.fields.blockedShot' : 'Tapones',
+    'project.statistics.fields.assists' : 'Asistencias',
+
+    'project.statistics.fields.personalFouls' : 'Faltas Personales',
+    'project.statistics.fields.technicalFouls' : 'Faltas Técnicas',
+    'project.statistics.fields.unsportsmanlikeFouls' : 'Faltas Antideportivas',
+
+    'project.statistics.fields.update' : 'Actualizar',
+    'project.statistics.fields.updateGameStatistics' : 'Actualizar Estadísticas Partido',
+    'project.statistics.fields.updatePlayerGameStatistics' : 'Actualizar Estadísticas Jugador Partido',
+
+
     //stretchings
     'project.stretchings.fields.addStretching' : 'Añadir Estiramiento',
     'project.stretchings.fields.myStretchings' : 'Mis Estiramientos',
 
+    'project.stretchings.fields.stretchingName' : 'Nombre Estiramiento',
+    'project.stretchings.fields.stretchingType' : 'Tipo Estiramiento',
+    'project.stretchings.fields.hamstrings' : 'Isquiotibiales',
+    'project.stretchings.fields.buttocks' : 'Glúteos',
+    'project.stretchings.fields.calf' : 'Gemelos',
+    'project.stretchings.fields.adductors' : 'Adductores',
+    'project.stretchings.fields.shoulder' : 'Hombro',
+    'project.stretchings.fields.quadriceps' : 'Cuádriceps',
+    'project.stretchings.fields.back' : 'Espalda',
+    'project.stretchings.fields.pectoral' : 'Pectoral',
+    'project.stretchings.fields.crotch' : 'Ingle',
+    'project.stretchings.fields.triceps' : 'TrÍceps',
+    'project.stretchings.fields.updateStretching' : 'Actualizar Estiramientos',
+    
     //teams
     'project.teams.fields.changeTeam' : 'Cambiar Equipo',
+
+    'project.teams.fields.addTeamToSeason' : 'Añadir Equipo a Temporada',
+
+    'project.teams.fields.addTeam' : 'Añadir Equipo',
+    'project.teams.fields.updateTeam' : 'Actualizar Equipo',
+    'project.teams.fields.teamName' : 'Nombre Equipo',
+
+    'project.plays.fields.plays' : 'Jugadas',
+
+
+    'project.teams.fields.allTeams' : 'Equipos',
+    'project.teams.fields.teamName' : 'Por Nombre',
 
     //trainings
     'project.trainings.fields.addTraining' : 'Añadir Entrenamientos',
     'project.trainings.fields.myTrainings' : 'Mis Entrenamientos',
     'project.trainings.fields.removeTraining' : 'Eliminar Entrenamientos',
+
+    'project.trainings.fields.updateTraining' : 'Actualizar Entrenamientos',
+    
+    'project.trainings.fields.objective' : 'Objetivo',
+
+    'project.trainings.fields.training' : 'Entrenamiento',
+    'project.trainings.fields.durationOnly' : 'Duración',
+
 }

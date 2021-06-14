@@ -24,71 +24,67 @@ function PlayerGameStatisticsFunction({playerGameStatistics, playerId, gameId, d
                 
 
                 <div class="card bg-dark text-white p-3" >
-                    <h2 class="card-header text-center">Statistics:</h2>
+                    <h2 class="card-header text-center"><FormattedMessage id="project.statistics.fields.statistics"/>:</h2>
                     <div class="card-body">
-                        <h5 class="card-title">Total Points</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalPoints"/></h5>
                         <p class="card-text">{playerGameStatistics.totalPoints}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Minutes</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.minutes"/></h5>
                         <p class="card-text">{playerGameStatistics.minutes}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Three Point Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.threePointShots"/></h5>
                         <p class="card-text">{playerGameStatistics.threePointShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Set Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.setShots"/></h5>
                         <p class="card-text">{playerGameStatistics.setShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Free Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.freeShots"/></h5>
                         <p class="card-text">{playerGameStatistics.freeShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Fail Three Point Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.failThreePointShots"/></h5>
                         <p class="card-text">{playerGameStatistics.failThreePointShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Fail Set Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.failSetShots"/></h5>
                         <p class="card-text">{playerGameStatistics.failSetShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Fail Free Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.failFreeShots"/></h5>
                         <p class="card-text">{playerGameStatistics.failFreeShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Personal Fouls</h5>
-                        <p class="card-text">{playerGameStatistics.totalPersonalFouls}</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Rebounds</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.rebounds"/></h5>
                         <p class="card-text">{playerGameStatistics.rebounds}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Blocked Shot</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.blockedShot"/></h5>
                         <p class="card-text">{playerGameStatistics.blockedShot}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Assists</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.assists"/></h5>
                         <p class="card-text">{playerGameStatistics.assists}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Personal Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.personalFouls"/></h5>
                         <p class="card-text">{playerGameStatistics.personalFouls}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Technical Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.technicalFouls"/></h5>
                         <p class="card-text">{playerGameStatistics.technicalFouls}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Unsportsmanlike Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.unsportsmanlikeFouls"/></h5>
                         <p class="card-text">{playerGameStatistics.unsportsmanlikeFouls}</p>
                     </div>
                     
 
                     <div class="card-body">
-                    <button className="btn-player draw-border" onClick={() => handleUpdatePlayerGameStatistics(playerId, gameId, dispatch, history)}>Update</button>
+                    <button className="btn-player draw-border" onClick={() => handleUpdatePlayerGameStatistics(playerId, gameId, dispatch, history)}><FormattedMessage id="project.statistics.fields.update"/></button>
                     <a type="button" onClick={() => handleRemovePlayerGameStatistics(playerId, gameId, dispatch, history)}>
                   <i class="fa fa-trash"></i></a>
                     </div>

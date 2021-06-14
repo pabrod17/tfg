@@ -57,14 +57,14 @@ const UpdatePlay = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-dark text-light border-dark">
                     <h5 className="">
-                        Update Play
+                    <FormattedMessage id="project.plays.fields.updatePlay"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                    Title
+                                <FormattedMessage id="project.notes.fields.title"/>
                                 </label>
                                 <div className="col-md-9">
                                     <input type="text" id="title" className="form-control"
@@ -79,21 +79,21 @@ const UpdatePlay = () => {
                             </div>
                             <div className=" row">
                                 <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                    Type
+                                <FormattedMessage id="project.exercises.fields.typeOnly"/>
                                     </label>
                                 <div class="dropdown col-md-6">
                                     <button class="dropbtn">{playType} 
                                     <i class="fa fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-content">
-                                    <a type="button" onClick={() => setPlayType(attack)} >Attack</a>
-                                    <a type="button" onClick={() => setPlayType(defense)} >Defense</a>
+                                    <a type="button" onClick={() => setPlayType(attack)} ><FormattedMessage id="project.plays.fields.attack"/></a>
+                                    <a type="button" onClick={() => setPlayType(defense)} ><FormattedMessage id="project.plays.fields.defense"/></a>
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Gesture
+                                <FormattedMessage id="project.plays.fields.gesture"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea type="text" id="gesture" className="form-control"
@@ -108,7 +108,7 @@ const UpdatePlay = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                PointGuard Text
+                                <FormattedMessage id="project.plays.fields.pointGuardText"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="pointGuardText" className="form-control"
@@ -123,7 +123,7 @@ const UpdatePlay = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                ShootingGuard Text
+                                <FormattedMessage id="project.plays.fields.shootingGuardText"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="shootingGuardText" className="form-control"
@@ -138,7 +138,7 @@ const UpdatePlay = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                SmallForward Text
+                                <FormattedMessage id="project.plays.fields.smallForwardText"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="smallForwardText" className="form-control"
@@ -153,7 +153,7 @@ const UpdatePlay = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                PowerForwardText
+                                <FormattedMessage id="project.plays.fields.powerForwardText"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="powerForwardText" className="form-control"
@@ -168,7 +168,7 @@ const UpdatePlay = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                CenterText
+                                <FormattedMessage id="project.plays.fields.centerText"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="centerText" className="form-control"

@@ -28,19 +28,19 @@ const FindSeasons = () => {
                 <figure class="gallery__item gallery__item--1-seasons">
                     <img src={logoBalonOscuro} class="gallery__imgSeasons pixel" alt="Image 1"/>
                         <button type="submit" className="btn-neon2-seasons">
-                            <FormattedMessage id='ALL SEASONS'/>
+                            <FormattedMessage id='project.seasons.fields.allSeasons'/>
                         </button>
                 </figure>
                 <figure class="gallery__item gallery__item--2-seasons">
                     <img src={logoBalonOscuro} class="gallery__imgSeasons pixel" alt="Image 1"/>
                     <Link className="btn-neon3" to="/seasons/betweenDates">
-                        <FormattedMessage id='SEASONS BETWEEN TWO DATES'/>
+                    <FormattedMessage id='project.seasons.fields.seasonsBetweenTwoDates'/>
                     </Link>
                 </figure>
                 <figure class="gallery__item gallery__item--3-seasons">
                     <img src={moon} class="gallery__imgSeasons pixel" alt="Image 1"/>
                     <Link className="btn-neon5-seasons" to="/seasons/new">
-                        <FormattedMessage id='Add New Season'/>
+                    <FormattedMessage id='project.seasons.fields.addSeason'/>
                     </Link>
                 </figure>
             </div>

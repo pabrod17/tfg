@@ -57,7 +57,7 @@ function PlaysList({ items, id, teamsList, fallback, dispatch, history}) {
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Change Team</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.teams.fields.changeTeam"/></button>
                             <div class="dropdown-content">
                             {teamsList.map(team => 
                                         <a type="button" onClick={() => handleAddPlayToTeam(item.id, team.id, id, dispatch, history)}> 

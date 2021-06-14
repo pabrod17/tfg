@@ -80,14 +80,14 @@ const AddTraining = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Add Training
+                    <FormattedMessage id="project.trainings.fields.addTraining"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                             <label htmlFor="trainingDate" className="col-md-4 col-form-label">
-                                Date
+                            <FormattedMessage id="project.global.fields.date"/>
                             </label>
                             <div className="col-md-8">
                                 <input type="date" id="trainingDate" className="form-control"
@@ -102,7 +102,7 @@ const AddTraining = () => {
                         </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Duration Minutes
+                                <FormattedMessage id="project.statistics.fields.duration"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="durationMinutes" className="form-control"
@@ -117,7 +117,7 @@ const AddTraining = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
+                                <FormattedMessage id="project.exercises.fields.description"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="description" className="form-control"
@@ -132,7 +132,7 @@ const AddTraining = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Objective
+                                <FormattedMessage id="project.trainings.fields.objective"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea type="text" id="objective" className="form-control"
@@ -146,7 +146,7 @@ const AddTraining = () => {
                                 </div>
                             </div>
                             <div class="dropdown">
-                            <button class="btn-player draw-border">Team</button>
+                            <button class="btn-player draw-border"><FormattedMessage id="project.teams.fields.team"/></button>
                                         <div class="dropdown-content">
                                         {teamsList.map(team => 
                                                     <a type="button" onClick={() => setTeamId(team.id)}> 
@@ -155,7 +155,7 @@ const AddTraining = () => {
                                         </div>
                             </div>
                             <div class="dropdown">
-                            <button class="btn-player draw-border">Season</button>
+                            <button class="btn-player draw-border"><FormattedMessage id="project.seasons.fields.season"/></button>
                                         <div class="dropdown-content">
                                         {seasonsList.map(season => 
                                                     <a type="button" onClick={() => setSeasonId(season.id)}> 

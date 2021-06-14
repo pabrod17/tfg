@@ -39,26 +39,26 @@ const FindTeams = () => {
                 <figure class="gallery__item gallery__item--1">
                     <img src={logoBalonOscuro} class="gallery__img pixel" alt="Image 1"/>
                         <button type="submit" className="btn-neon2">
-                            <FormattedMessage id='ALL TEAMS'/>
+                        <FormattedMessage id="project.teams.fields.allTeams"/>
                         </button>
                 </figure>
                 <figure class="gallery__item gallery__item--2">
                     <img src={logoBalonOscuro} class="gallery__img pixel" alt="Image 1"/>
                     <Link className="btn-neon3" to="/teams/all/name">
-                        <FormattedMessage id='TEAM NAME'/>
+                    <FormattedMessage id="project.teams.fields.teamName"/>
                     </Link>
                 </figure>
                 <figure class="gallery__item gallery__item--3">
                     <img src={moon} class="gallery__img pixel" alt="Image 1"/>
                     <Link className="btn-neon4" to="/teams/new">
-                        <FormattedMessage id='Add New Team'/>
+                    <FormattedMessage id="project.teams.fields.addTeam"/>
                     </Link>
                 </figure>
                 <figure class="gallery__item gallery__item--4">
                     <img src={moon} class="gallery__img pixel" alt="Image 1"/>
                     <button className="btn-neon5" type="button" 
                         onClick={() => handleAddTeamToSeason(dispatch, history)}>
-                        <FormattedMessage id='Add Team To Season'/>
+                    <FormattedMessage id="project.teams.fields.addTeamToSeason"/>
                     </button>
                 </figure>
             </div>

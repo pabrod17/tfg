@@ -54,14 +54,14 @@ const AddStretching = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Add Stretching
+                    <FormattedMessage id="project.stretchings.fields.addStretching"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                    Stretching Name
+                                <FormattedMessage id="project.stretchings.fields.stretchingName"/>
                                 </label>
                                 <div className="col-md-9">
                                     <input type="text" id="stretchingName" className="form-control"
@@ -76,7 +76,7 @@ const AddStretching = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
+                                <FormattedMessage id="project.exercises.fields.description"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="description" className="form-control"
@@ -91,23 +91,23 @@ const AddStretching = () => {
                             </div>
                             <div className=" row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                    Stretching Type
+                            <FormattedMessage id="project.stretchings.fields.stretchingType"/>
                                 </label>
                             <div class="dropdown col-md-6">
                                 <button class="dropbtn">{stretchingType} 
                                 <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                <a type="button" onClick={() => setStretchingType(hamstrings)} >Hamstrings</a>
-                                <a type="button" onClick={() => setStretchingType(buttocks)} >Buttocks</a>
-                                <a type="button" onClick={() => setStretchingType(calf)} >Calf</a>
-                                <a type="button" onClick={() => setStretchingType(adductors)} >Adductors</a>
-                                <a type="button" onClick={() => setStretchingType(shoulder)} >Shoulder</a>
-                                <a type="button" onClick={() => setStretchingType(quadriceps)} >Quadriceps</a>
-                                <a type="button" onClick={() => setStretchingType(back)} >Back</a>
-                                <a type="button" onClick={() => setStretchingType(pectoral)} >Pectoral</a>
-                                <a type="button" onClick={() => setStretchingType(crotch)} >Crotch</a>
-                                <a type="button" onClick={() => setStretchingType(triceps)} >Triceps</a>
+                                <a type="button" onClick={() => setStretchingType(hamstrings)} ><FormattedMessage id="project.stretchings.fields.hamstrings"/></a>
+                                <a type="button" onClick={() => setStretchingType(buttocks)} ><FormattedMessage id="project.stretchings.fields.buttocks"/></a>
+                                <a type="button" onClick={() => setStretchingType(calf)} ><FormattedMessage id="project.stretchings.fields.calf"/></a>
+                                <a type="button" onClick={() => setStretchingType(adductors)} ><FormattedMessage id="project.stretchings.fields.adductors"/></a>
+                                <a type="button" onClick={() => setStretchingType(shoulder)} ><FormattedMessage id="project.stretchings.fields.shoulder"/></a>
+                                <a type="button" onClick={() => setStretchingType(quadriceps)} ><FormattedMessage id="project.stretchings.fields.quadriceps"/></a>
+                                <a type="button" onClick={() => setStretchingType(back)} ><FormattedMessage id="project.stretchings.fields.back"/></a>
+                                <a type="button" onClick={() => setStretchingType(pectoral)} ><FormattedMessage id="project.stretchings.fields.pectoral"/></a>
+                                <a type="button" onClick={() => setStretchingType(crotch)} ><FormattedMessage id="project.stretchings.fields.crotch"/></a>
+                                <a type="button" onClick={() => setStretchingType(triceps)} ><FormattedMessage id="project.stretchings.fields.triceps"/></a>
                                 </div>
                             </div>
                             </div>

@@ -17,7 +17,7 @@ function TeamName({team, teamName, dispatch, history}){
           <Card className="images-teams" style={{ width: '20rem' }}>
           <img class="card-img-top" src={logo22} alt="Card image cap"/>
             <Card.Body>
-              <Card.Title className="link-color">Name: {team.teamName}</Card.Title>
+              <Card.Title className="link-color"><FormattedMessage id='project.seasons.fields.name'/>: {team.teamName}</Card.Title>
                       <button className="btn btn-primary" type="button" 
                         onClick={() => handleRemoveItem(team.id, dispatch, history)}>
                         <span className="fas fa-trash-alt"></span>

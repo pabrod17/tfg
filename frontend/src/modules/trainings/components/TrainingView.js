@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import * as actions from '../actions';
 import * as selectors from '../selectors';
@@ -26,15 +27,15 @@ const TrainingView = () => {
                     <div class="card hola  text-center" >
                         <img className="holas entreno" src={bigBall}/>
                         <div class="card-body">
-                            <h5 class="card__name">Training</h5>
-                            <h5 class="card-title">Duration: {training.setDurationMinutes}</h5>
+                            <h5 class="card__name"><FormattedMessage id="project.trainings.fields.training"/></h5>
+                            <h5 class="card-title"><FormattedMessage id="project.trainings.fields.durationOnly"/>: {training.setDurationMinutes}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Description</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>
                             <p class="card-text">{training.description}</p>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Objective</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.objective"/></h5>
                             <p class="card-text">{training.objective}</p>
                             {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>

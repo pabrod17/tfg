@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import * as selectorsUsers from '../../users/selectors';
+import {FormattedMessage} from 'react-intl';
 
 import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -79,7 +80,7 @@ const TeamView = () => {
                     <div class="">
                     <div class="card hola pequeño text-center">
                         <img src={notaLapiz} alt="Person" class="card__image jugando"></img>
-                        <p class="card__name" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}>Plays</p>
+                        <p class="card__name" type="button" onClick={() => handlePlaysHome(team.id, dispatch, history)}><FormattedMessage id='project.plays.fields.plays'/></p>
                         <div class="grid-container">
                         </div>
                     </div>
@@ -88,7 +89,7 @@ const TeamView = () => {
 
                     <div class="card hola pequeño text-center">
                         <img src={avatar} alt="Person" class="card__image"></img>
-                        <p class="card__name" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}>Players</p>
+                        <p class="card__name" type="button" onClick={() => handlePlayersHome(team.id, dispatch, history)}><FormattedMessage id='project.players.fields.players'/></p>
                         <div class="grid-container">
                         </div>
                     </div>
@@ -96,7 +97,7 @@ const TeamView = () => {
 
                     <div class="card hola pequeño text-center">
                         <img src={notaLapiz} alt="Person" class="card__image tempora"></img>
-                        <p class="card__name" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}>Seasons</p>
+                        <p class="card__name" type="button" onClick={() => handleFindSeasonsToTeam(team.id, dispatch, history)}><FormattedMessage id='project.seasons.fields.seasons'/></p>
                         <div class="grid-container">
                         </div>
                     </div>
@@ -104,14 +105,14 @@ const TeamView = () => {
 
                     <div class="card hola pequeño text-center">
                         <img src={bigBall} alt="Person" class="card__image entreno"></img>
-                        <p class="card__name" type="button" onClick={() => handleFindTrainingsToTeam(team.id, dispatch, history)}>Trainings</p>
+                        <p class="card__name" type="button" onClick={() => handleFindTrainingsToTeam(team.id, dispatch, history)}><FormattedMessage id='project.trainings.fields.trainings'/></p>
                         <div class="grid-container">
                         </div>
                     </div>
 
                     <div class="card hola pequeño text-center">
                         <img src={redAzul} alt="Person" class="card__image partidito"></img>
-                        <p class="card__name" type="button" onClick={() => handleFindGamesToTeam(team.id, dispatch, history)}>Games</p>
+                        <p class="card__name" type="button" onClick={() => handleFindGamesToTeam(team.id, dispatch, history)}><FormattedMessage id='project.games.fields.games'/></p>
                         <div class="grid-container">
                         </div>
                     </div>

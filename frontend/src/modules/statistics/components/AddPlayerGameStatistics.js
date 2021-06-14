@@ -64,7 +64,7 @@ const AddPlayerGameStatistics = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark">
                     <h5 className="card-header">
-                        Add Player Game Statistics
+                    <FormattedMessage id="project.statistics.fields.addPlayerGameStatistics"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
@@ -72,7 +72,7 @@ const AddPlayerGameStatistics = () => {
 
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Total Points
+                                <FormattedMessage id="project.statistics.fields.totalPoints"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="totalPoints" className="form-control"
@@ -87,7 +87,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Minutes
+                                <FormattedMessage id="project.statistics.fields.minutes"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="minutes" className="form-control"
@@ -102,7 +102,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Three Point Shots
+                                <FormattedMessage id="project.statistics.fields.threePointShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="threePointShots" className="form-control"
@@ -117,7 +117,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Set Shots
+                                <FormattedMessage id="project.statistics.fields.setShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="setShots" className="form-control"
@@ -132,7 +132,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Free Shots
+                                <FormattedMessage id="project.statistics.fields.freeShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="freeShots" className="form-control"
@@ -147,7 +147,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Fail Three Point Shots
+                                <FormattedMessage id="project.statistics.fields.failThreePointShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="failThreePointShots" className="form-control"
@@ -162,7 +162,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Fail Set Shots
+                                <FormattedMessage id="project.statistics.fields.failSetShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="failSetShots" className="form-control"
@@ -177,7 +177,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Fail Free Shots
+                                <FormattedMessage id="project.statistics.fields.failFreeShots"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="failFreeShots" className="form-control"
@@ -192,7 +192,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Rebounds
+                                <FormattedMessage id="project.statistics.fields.rebounds"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="rebounds" className="form-control"
@@ -207,7 +207,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Blocked Shot
+                                <FormattedMessage id="project.statistics.fields.blockedShot"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="blockedShot" className="form-control"
@@ -231,7 +231,7 @@ const AddPlayerGameStatistics = () => {
 
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Assists
+                                <FormattedMessage id="project.statistics.fields.assists"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="assists" className="form-control"
@@ -246,7 +246,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Personal Fouls
+                                <FormattedMessage id="project.statistics.fields.personalFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="personalFouls" className="form-control"
@@ -261,7 +261,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Technical Fouls
+                                <FormattedMessage id="project.statistics.fields.technicalFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="technicalFouls" className="form-control"
@@ -276,7 +276,7 @@ const AddPlayerGameStatistics = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                Unsportsmanlike Fouls
+                                <FormattedMessage id="project.statistics.fields.unsportsmanlikeFouls"/>
                                 </label>
                                 <div className="col-md-6">
                                     <input  type="text" id="unsportsmanlikeFouls" className="form-control"

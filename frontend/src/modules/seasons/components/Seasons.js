@@ -19,7 +19,7 @@ function List({ items, fallback, dispatch, history}) {
             <Card className="images-teams" style={{ width: '20rem' }}>
             <img class="card-img-top" src={logo22} alt="Card image cap"/>
                 <Card.Body>
-            <Card.Title className="link-color">Season: {" "}
+            <Card.Title className="link-color"><FormattedMessage id='project.seasons.fields.season'/>: {" "}
                 <span> 
                 <FormattedDate
                     value={ item.startDate }
@@ -34,7 +34,7 @@ function List({ items, fallback, dispatch, history}) {
                 /> 
                 </span>
                 <div>
-                Calendario: {item.calendario}
+                <FormattedMessage id='project.seasons.fields.name'/>: {item.calendario}
                 </div>
             </Card.Title>
 

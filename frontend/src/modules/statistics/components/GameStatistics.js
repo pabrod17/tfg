@@ -23,49 +23,49 @@ function GameStatisticsFunction({gameStatistics, gameId, dispatch, history}){
                 
 
                 <div class="card bg-dark text-white p-3" >
-                    <h2 class="card-header text-center">Statistics:</h2>
+                    <h2 class="card-header text-center"><FormattedMessage id="project.statistics.fields.statistics"/>:</h2>
                     <div class="card-body">
-                        <h5 class="card-title">Total Points</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalPoints"/></h5>
                         <p class="card-text">{gameStatistics.totalPoints}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Duration Minutes</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.duration"/></h5>
                         <p class="card-text">{gameStatistics.durationMinutes}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Three Point Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalThreePointShots"/></h5>
                         <p class="card-text">{gameStatistics.totalThreePointShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Set Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalSetShots"/></h5>
                         <p class="card-text">{gameStatistics.totalSetShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Free Shots</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalFreeShots"/></h5>
                         <p class="card-text">{gameStatistics.totalFreeShots}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Rebounds</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalRebounds"/></h5>
                         <p class="card-text">{gameStatistics.totalRebounds}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Blocked Shot</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalBlockedShot"/></h5>
                         <p class="card-text">{gameStatistics.totalBlockedShot}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Assists</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalAssists"/></h5>
                         <p class="card-text">{gameStatistics.totalAssists}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Personal Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalPersonalFouls"/></h5>
                         <p class="card-text">{gameStatistics.totalPersonalFouls}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Technical Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalTechnicalFouls"/></h5>
                         <p class="card-text">{gameStatistics.totalTechnicalFouls}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Unsportsmanlike Fouls</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalUnsportsmanlikeFouls"/></h5>
                         <p class="card-text">{gameStatistics.totalUnsportsmanlikeFouls}</p>
                     </div>
 
@@ -75,43 +75,43 @@ function GameStatisticsFunction({gameStatistics, gameId, dispatch, history}){
 
 
                     <div class="card-body">
-                        <h5 class="card-title">Total Points Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalPointsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalPointsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Three Point Shots Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalThreePointShotsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalThreePointShotsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Set Shots Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalSetShotsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalSetShotsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Free Shots Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalFreeShotsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalFreeShotsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Rebounds Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalReboundsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalReboundsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Blocked Shots Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalBlockedShotRival"/></h5>
                         <p class="card-text">{gameStatistics.totalBlockedShotsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Assists Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalAssistsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalAssistsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Personal Fouls Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalPersonalFoulsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalPersonalFoulsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Technical Fouls Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalTechnicalFoulsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalTechnicalFoulsRival}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Total Unsportsmanlike Fouls Rival</h5>
+                        <h5 class="card-title"><FormattedMessage id="project.statistics.fields.totalUnsportsmanlikeFoulsRival"/></h5>
                         <p class="card-text">{gameStatistics.totalUnsportsmanlikeFoulsRival}</p>
                     </div>
 
