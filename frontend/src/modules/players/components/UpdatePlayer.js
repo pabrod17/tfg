@@ -72,14 +72,14 @@ const UpdatePlayer = () => {
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
-                    Update Team
+                <FormattedMessage id="project.players.fields.updatePlayer"/>
                 </h5>
                 <div className="card-body">
                     <form ref={node => form = node} 
                         className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Player Name
+                            <FormattedMessage id="project.players.fields.playerName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="playerName" className="form-control"
@@ -94,7 +94,7 @@ const UpdatePlayer = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                            Primary Last Name
+                            <FormattedMessage id="project.players.fields.primaryLastName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="primaryLastName" className="form-control"
@@ -109,7 +109,7 @@ const UpdatePlayer = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Second Last Name
+                            <FormattedMessage id="project.players.fields.secondLastName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="secondLastName" className="form-control"
@@ -126,18 +126,18 @@ const UpdatePlayer = () => {
 
                         <div className=" row">
                         <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Position
+                        <FormattedMessage id="project.players.fields.position"/>
                             </label>
                         <div class="dropdown">
                             <button class="dropbtn">{position} 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content">
-                            <a type="button" onClick={() => setPosition(pointGuard)} >PointGuard</a>
-                            <a type="button" onClick={() => setPosition(shootingGuard)} >ShootingGuard</a>
-                            <a type="button" onClick={() => setPosition(smallForward)} >SmallForward</a>
-                            <a type="button" onClick={() => setPosition(powerForward)} >PowerForward</a>
-                            <a type="button" onClick={() => setPosition(center)} >Center</a>
+                            <a type="button" onClick={() => setPosition(pointGuard)} ><FormattedMessage id="project.players.fields.pointGuard"/></a>
+                                <a type="button" onClick={() => setPosition(shootingGuard)} ><FormattedMessage id="project.players.fields.shootingGuard"/></a>
+                                <a type="button" onClick={() => setPosition(smallForward)} ><FormattedMessage id="project.players.fields.smallForward"/></a>
+                                <a type="button" onClick={() => setPosition(powerForward)} ><FormattedMessage id="project.players.fields.powerForward"/></a>
+                                <a type="button" onClick={() => setPosition(center)} ><FormattedMessage id="project.players.fields.center"/></a>
                             </div>
                         </div>
                         </div>
@@ -147,7 +147,7 @@ const UpdatePlayer = () => {
 
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Trends
+                            <FormattedMessage id="project.players.fields.trends"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="trends" className="form-control"
@@ -162,7 +162,7 @@ const UpdatePlayer = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Phone Number
+                            <FormattedMessage id="project.players.fields.phoneNumber"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="phoneNumber" className="form-control"
@@ -177,7 +177,7 @@ const UpdatePlayer = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Email
+                            <FormattedMessage id="project.players.fields.email"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="email" className="form-control"
@@ -192,7 +192,7 @@ const UpdatePlayer = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Dni
+                            <FormattedMessage id="project.players.fields.dni"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="dni" className="form-control"
@@ -209,10 +209,10 @@ const UpdatePlayer = () => {
 
                         <div className=" row">
                         <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Team
+                            <FormattedMessage id="project.teams.fields.team"/>
                             </label>
                         <div class="dropdown">
-                            <button class="dropbtn">Team: {teamId} 
+                            <button class="dropbtn"><FormattedMessage id="project.teams.fields.team"/>: {teamId} 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content">

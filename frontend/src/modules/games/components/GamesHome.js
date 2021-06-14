@@ -64,7 +64,7 @@ const GamesHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/games/addGame`)}>Add New Game</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/games/addGame`)}><FormattedMessage id="project.games.fields.addGame"/></button>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ const GamesHome = () => {
                                         </div>
                                         <div className="">
                                             <button type="submit" className="btn btn-primary">
-                                                Find
+                                            <FormattedMessage id='project.global.buttons.find'/>
                                             </button>
                                         </div>
                                     </div>

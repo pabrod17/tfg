@@ -10,6 +10,7 @@ import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import bigBall from '../../trainings/components/bigBall.jpg';
 import {FormattedDate} from 'react-intl';
 import naranja from '../../games/components/naranja.jpg';
+import {FormattedMessage} from 'react-intl';
 
 const GameView = () => {
     const game = useSelector(selectors.getOneGame);
@@ -27,11 +28,11 @@ const GameView = () => {
                     <div class="card hola  text-center" >
                         <img className="holas partidito" src={naranja}/>
                         <div class="card-body">
-                            <h5 class="card__name">Game</h5>
-                            <h5 class="card-title">Rival: {game.rival}</h5>
+                            <h5 class="card__name"><FormattedMessage id="project.games.fields.game"/></h5>
+                            <h5 class="card-title"><FormattedMessage id="project.games.fields.rival"/>: {game.rival}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Date</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.games.fields.date"/></h5>
                             <p class="card-text">
                                 <FormattedDate
                                 value={ game.gameDate }

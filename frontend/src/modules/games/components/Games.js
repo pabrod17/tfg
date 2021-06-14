@@ -81,7 +81,7 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
             <div class="">
               <div class="card hola games">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
-                <p class="card__name">Rival: {item.rival}</p>
+                <p class="card__name"><FormattedMessage id="project.games.fields.rival"/>: {item.rival}</p>
                 <p class="card__name">                
                 <FormattedDate
                     value={ item.gameDate }
@@ -104,7 +104,7 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
                 </ul>
 
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Stretching</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                             <div class="dropdown-content">
                             {stretchingsList.map(stretching => 
                                         <a type="button" onClick={() => handleAddStretchingToGame(item.id, stretching.id, dispatch, history)}> 
@@ -113,7 +113,7 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Exercise</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                             <div class="dropdown-content">
                             {exercisesList.map(exercise => 
                                         <a type="button" onClick={() => handleAddExerciseToGame(item.id, exercise.id, dispatch, history)}> 
@@ -121,11 +121,11 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByGame(item.id, teamId,dispatch, history)}>Players</button>
-                <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
-                <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}>My Stretchings</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}>My Exercises</button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindPlayersByGame(item.id, teamId,dispatch, history)}><FormattedMessage id="project.players.fields.players"/></button>
+                <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}><FormattedMessage id="project.statistics.fields.game"/></button>
+                <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}><FormattedMessage id="project.statistics.fields.addGameStatistics"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}><FormattedMessage id="project.stretchings.fields.myStretchings"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}><FormattedMessage id="project.exercises.fields.myExercises"/></button>
               </div>
             </div>
           </div>;
@@ -143,7 +143,7 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
           return <div className="images-teams" key={item.id}>
             
             <div class="">
-              <div class="card hola games">
+              <div class="card hola gamesuser">
                 <img src={naranja} alt="Person" class="card__image partidito"></img>
                 <p class="card__name">Rival: {item.rival}</p>
                 <p class="card__name">                
@@ -177,7 +177,7 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
                             </div>
                 </div> */}
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Stretching</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                             <div class="dropdown-content">
                             {stretchingsList.map(stretching => 
                                         <a type="button" onClick={() => handleAddStretchingToGame(item.id, stretching.id, dispatch, history)}> 
@@ -186,7 +186,7 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Exercise</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                             <div class="dropdown-content">
                             {exercisesList.map(exercise => 
                                         <a type="button" onClick={() => handleAddExerciseToGame(item.id, exercise.id, dispatch, history)}> 
@@ -194,10 +194,10 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
                                         </a>)}
                             </div>
                 </div>
-                  <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}>Game Statistics</button>
-                  <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}>Add Game Statistics</button>
-                  <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}>My Stretchings</button>
-                  <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}>My Exercises</button>
+                  <button className="btn-player draw-border" onClick={() => handleFindGameStatisticsByGame(item.id, dispatch, history)}><FormattedMessage id="project.statistics.fields.game"/></button>
+                  <button className="btn-player draw-border" onClick={() => handleAddGameStatistics(item.id, dispatch, history)}><FormattedMessage id="project.statistics.fields.addGameStatistics"/></button>
+                  <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByGame(item.id, dispatch, history)}><FormattedMessage id="project.stretchings.fields.myStretchings"/></button>
+                  <button class="btn-player draw-border" type="button" onClick={() => handleFindExercisesByGame(item.id, dispatch, history)}><FormattedMessage id="project.exercises.fields.myExercises"/></button>
               </div>
             </div>
           </div>;

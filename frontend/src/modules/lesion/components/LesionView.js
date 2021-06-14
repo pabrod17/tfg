@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import * as actions from '../actions';
 import * as selectors from '../selectors';
@@ -26,14 +27,14 @@ const LesionView = () => {
                         <img className="holas" src={lesionPierna}/>
                         <div class="card-body">
                             <h5 class="card__name">{lesion.lesionName}</h5>
-                            <h5 class="card-title">Type: {lesion.lesionType}</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.typeOnly"/>: {lesion.lesionType}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Description</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>
                             <p class="card-text">{lesion.description}</p>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Medication</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.lesion.fields.medication"/></h5>
                             <p class="card-text">{lesion.medication}</p>
                             {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>

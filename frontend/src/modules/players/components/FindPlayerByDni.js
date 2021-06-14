@@ -33,14 +33,14 @@ const FindPlayerByDni = () => {
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
-                    Find Player By Dni
+                <FormattedMessage id="project.players.fields.findPlayerByDni"/>
                 </h5>
                 <div className="card-body">
                     <form ref={node => form = node} 
                         className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Dni
+                            <FormattedMessage id="project.players.fields.dni"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="dni" className="form-control"

@@ -55,14 +55,14 @@ const UpdateLesion = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Update Lesion
+                    <FormattedMessage id="project.lesion.fields.updateLesion"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                    Lesion Name
+                                <FormattedMessage id="project.lesion.fields.lesionName"/>
                                 </label>
                                 <div className="col-md-9">
                                     <input type="text" id="lesionName" className="form-control"
@@ -77,7 +77,7 @@ const UpdateLesion = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
+                                <FormattedMessage id="project.exercises.fields.description"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="description" className="form-control"
@@ -92,7 +92,7 @@ const UpdateLesion = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Medication
+                                <FormattedMessage id="project.lesion.fields.medication"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea type="text" id="medication" className="form-control"
@@ -107,18 +107,18 @@ const UpdateLesion = () => {
                             </div>
                             <div className=" row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                    Lesion Type
+                            <FormattedMessage id="project.lesion.fields.lesionType"/>
                                 </label>
                             <div class="dropdown col-md-6">
                                 <button class="dropbtn">{lesionType} 
                                 <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                <a type="button" onClick={() => setLesionType(muscle)} >Muscle</a>
-                                <a type="button" onClick={() => setLesionType(tendon)} >Tendon</a>
-                                <a type="button" onClick={() => setLesionType(joint)} >Joint</a>
-                                <a type="button" onClick={() => setLesionType(spine)} >Spine</a>
-                                <a type="button" onClick={() => setLesionType(psychological)} >Psychological</a>
+                                <a type="button" onClick={() => setLesionType(muscle)} ><FormattedMessage id="project.lesion.fields.muscle"/></a>
+                                <a type="button" onClick={() => setLesionType(tendon)} ><FormattedMessage id="project.lesion.fields.tendon"/></a>
+                                <a type="button" onClick={() => setLesionType(joint)} ><FormattedMessage id="project.lesion.fields.joint"/></a>
+                                <a type="button" onClick={() => setLesionType(spine)} ><FormattedMessage id="project.lesion.fields.spine"/></a>
+                                <a type="button" onClick={() => setLesionType(psychological)} ><FormattedMessage id="project.lesion.fields.psychological"/></a>
                                 </div>
                             </div>
                             </div>

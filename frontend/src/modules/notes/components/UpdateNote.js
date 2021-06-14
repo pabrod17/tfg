@@ -47,14 +47,14 @@ const UpdateNote = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Update Note
+                    <FormattedMessage id="project.notes.fields.updateNote"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-6 col-form-label">
-                                    Title
+                                <FormattedMessage id="project.notes.fields.title"/>
                                 </label>
                                 <div className="col-md-9">
                                     <input type="text" id="title" className="form-control"
@@ -69,7 +69,7 @@ const UpdateNote = () => {
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-md-12 col-form-label">
-                                Description
+                                <FormattedMessage id="project.exercises.fields.description"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="description" className="form-control"

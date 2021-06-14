@@ -11,6 +11,7 @@ import {useParams} from 'react-router-dom';
 import Players from './Players';
 import * as actionsLesion from '../../lesion/actions';
 import * as selectorsLesion from '../../lesion/selectors';
+import {FormattedMessage} from 'react-intl';
 
 const PlayersHome = () => {
     
@@ -56,25 +57,25 @@ const PlayersHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/players/addPlayer/${id}`)}>Add New Player</button>
+                        <button className="btn addplayer" onClick={() => history.push(`/players/addPlayer/${id}`)}><FormattedMessage id="project.players.fields.addPlayer"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Second group">
-                        <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}>Dni</button>
+                        <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}><FormattedMessage id="project.players.fields.dni"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5 btn" role="group" aria-label="Third group">
-                        <button className="button dni"  onClick={() => history.push(`/players/completedName/${id}`)}>Name and Surnames</button>
+                        <button className="button dni"  onClick={() => history.push(`/players/completedName/${id}`)}><FormattedMessage id="project.players.fields.nameAndSurnames"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Position 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.players.fields.position"/> 
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetPosition(id, pointGuard, dispatch)}>PointGuard</a>
-                            <a type="button" onClick={() => handleSetPosition(id, shootingGuard, dispatch)}>ShootingGuard</a>
-                            <a type="button"  onClick={() => handleSetPosition(id, smallForward, dispatch)}>SmallForward</a>
-                            <a type="button" onClick={() => handleSetPosition(id, powerForward, dispatch)}>PowerForward</a>
-                            <a type="button" onClick={() => handleSetPosition(id, center, dispatch)}>Center </a>
+                            <a type="button" onClick={() => handleSetPosition(id, pointGuard, dispatch)}><FormattedMessage id="project.players.fields.pointGuard"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, shootingGuard, dispatch)}><FormattedMessage id="project.players.fields.shootingGuard"/></a>
+                            <a type="button"  onClick={() => handleSetPosition(id, smallForward, dispatch)}><FormattedMessage id="project.players.fields.smallForward"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, powerForward, dispatch)}><FormattedMessage id="project.players.fields.powerForward"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, center, dispatch)}><FormattedMessage id="project.players.fields.center"/></a>
                             </div>
                         </div>
                     </div>
@@ -83,15 +84,15 @@ const PlayersHome = () => {
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Lesion Type 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.lesion.fields.lesionType"/>
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetLesionType(id, muscle, dispatch)}>Muscle</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, tendon, dispatch)}>Tendon</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, joint, dispatch)}>Joint</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, spine, dispatch)}>Spine</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, psychological, dispatch)}>Psychological</a>
+                            <a type="button" onClick={() => handleSetLesionType(id, muscle, dispatch)}><FormattedMessage id="project.lesion.fields.muscle"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, tendon, dispatch)}><FormattedMessage id="project.lesion.fields.tendon"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, joint, dispatch)}><FormattedMessage id="project.lesion.fields.joint"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, spine, dispatch)}><FormattedMessage id="project.lesion.fields.spine"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, psychological, dispatch)}><FormattedMessage id="project.lesion.fields.psychological"/></a>
                             </div>
                         </div>
                     </div>

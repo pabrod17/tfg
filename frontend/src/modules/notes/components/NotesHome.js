@@ -80,7 +80,7 @@ const NotesHome = () => {
                                         </div>
                                         <div className="">
                                             <button type="submit" className="btn btn-primary">
-                                                Find
+                                            <FormattedMessage id='project.global.buttons.find'/>
                                             </button>
                                         </div>
                                     </div>

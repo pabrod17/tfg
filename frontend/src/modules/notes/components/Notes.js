@@ -63,7 +63,7 @@ function NotesList({ items, playerId, id, fallback, dispatch, history}) {
                     <i class="fa fa-wrench"></i></a></li>
                   <li><a href="#"><i class="fa fa-codepen"></i></a></li>
                 </ul>
-                <button class="btn-player draw-border" onClick={() => handleViewPlayer(playerId, id, dispatch, history)}>Player</button>
+                <button class="btn-player draw-border" onClick={() => handleViewPlayer(playerId, id, dispatch, history)}><FormattedMessage id="project.players.fields.player"/></button>
               </div>
             </div>
           </div>;

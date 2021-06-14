@@ -12,6 +12,7 @@ import ballCancha from '../../players/components/ballCancha.jpg';
 import libre from '../../players/components/libre.jpg';
 import estira from '../../players/components/estira.gif';
 import * as selectorsTeams from '../../teams/selectors';
+import {FormattedMessage} from 'react-intl';
 
 
 const PlayerView = () => {
@@ -47,60 +48,60 @@ const PlayerView = () => {
                     <div class="card bg-dark text-white p-3" >
 
                         <div class="card-header text-center font-weight-bold">
-                            <h1>Statistics</h1>
+                            <h1><FormattedMessage id="project.statistics.fields.statistics"/></h1>
                             </div>
                         <div class="card-body">
-                            <p class="card-text">Total Points: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalPoints"/>: </p>
                             <h5 class="card-title">{player.totalPoints}</h5>
 
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Three Point Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalThreePointShots"/>: </p>
                             <h5 class="card-title">{player.totalThreePointShots}</h5>
                             {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Set Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalSetShots"/>: </p>
                             <h5 class="card-title">{player.totalSetShots}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Free Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalFreeShots"/>: </p>
                             <h5 class="card-title">{player.totalFreeShots}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Fail Three Point Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalFailThreePointShots"/>: </p>
                             <h5 class="card-title">{player.totalFailThreePointShots}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total fail Set Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalfailSetShots"/>: </p>
                             <h5 class="card-title">{player.totalfailSetShots}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total fail Free Shots: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalfailFreeShots"/>: </p>
                             <h5 class="card-title">{player.totalfailFreeShots}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Rebounds: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalRebounds"/>: </p>
                             <h5 class="card-title">{player.totalRebounds}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Blocked Shot: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalBlockedShot"/>: </p>
                             <h5 class="card-title">{player.totalBlockedShot}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Assists: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalAssists"/>: </p>
                             <h5 class="card-title">{player.totalAssists}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Personal Fouls: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalPersonalFouls"/>: </p>
                             <h5 class="card-title">{player.totalPersonalFouls}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Technical Fouls: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalTechnicalFouls"/>: </p>
                             <h5 class="card-title">{player.totalTechnicalFouls}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Total Unsportsmanlike Fouls: </p>
+                            <p class="card-text"><FormattedMessage id="project.statistics.fields.totalUnsportsmanlikeFouls"/>: </p>
                             <h5 class="card-title">{player.totalUnsportsmanlikeFouls}</h5>
                         </div>
                         <div class="card-footer bg-transparent border-success">
@@ -116,42 +117,42 @@ const PlayerView = () => {
 
                         </div>
 
-                        <div class="card-header text-center">Name: {player.playerName}</div>
+                        <div class="card-header text-center"><FormattedMessage id="project.players.fields.name"/>: {player.playerName}</div>
                         <div class="card-body">
-                            <p class="card-text">PrimaryLastName: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.primaryLastName"/>: </p>
                             <h5 class="card-title">{player.primaryLastName}</h5>
 
                         </div>
                         <div class="card-body">
-                            <p class="card-text">SecondLastName: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.secondLastName"/>: </p>
                             <h5 class="card-title">{player.secondLastName}</h5>
                             {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Email: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.email"/>: </p>
                             <h5 class="card-title">{player.email}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">PhoneNumber: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.phoneNumber"/>: </p>
                             <h5 class="card-title">{player.phoneNumber}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Dni: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.dni"/>: </p>
                             <h5 class="card-title">{player.dni}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Position: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.position"/>: </p>
                             <h5 class="card-title">{player.position}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Trends: </p>
+                            <p class="card-text"><FormattedMessage id="project.players.fields.trends"/>: </p>
                             <h5 class="card-title">{player.trends}</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Team: </p>
+                            <p class="card-text"><FormattedMessage id="project.teams.fields.team"/>: </p>
                             <h5 class="card-title">{team.teamName}</h5>
                         </div>
-                        <div class="card-footer bg-transparent border-success">Player</div>
+                        <div class="card-footer bg-transparent border-success"><FormattedMessage id="project.players.fields.player"/></div>
                     </div>
             </div>
 

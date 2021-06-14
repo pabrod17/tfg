@@ -34,14 +34,14 @@ const FindPlayersByCompletedName = () => {
             <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
             <div className="card bg-light border-dark centrado-update-add">
                 <h5 className="card-header">
-                    Find Player By Name and Surnames
+                <FormattedMessage id="project.players.fields.findPlayerByNameAndSurnames"/>
                 </h5>
                 <div className="card-body">
                     <form ref={node => form = node} 
                         className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Player Name
+                            <FormattedMessage id="project.players.fields.playerName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="playerName" className="form-control"
@@ -56,7 +56,7 @@ const FindPlayersByCompletedName = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                            Primary Last Name
+                            <FormattedMessage id="project.players.fields.primaryLastName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="primaryLastName" className="form-control"
@@ -71,7 +71,7 @@ const FindPlayersByCompletedName = () => {
                         </div>
                         <div className="form-group row">
                             <label htmlFor="firstName" className="col-md-5 col-form-label">
-                                Second Last Name
+                            <FormattedMessage id="project.players.fields.secondLastName"/>
                             </label>
                             <div className="col-md-4">
                                 <input type="text" id="secondLastName" className="form-control"

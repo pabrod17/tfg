@@ -7,6 +7,7 @@ import {useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
 import * as actions from '../actions';
 import PlayersByTraining from './PlayersByTraining';
+import {FormattedMessage} from 'react-intl';
 
 const FindPlayersByTraining = () => {
     const {id} = useParams();//teamId
@@ -56,32 +57,32 @@ const FindPlayersByTraining = () => {
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Position 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.players.fields.position"/>  
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetPosition(id, pointGuard, dispatch)}>PointGuard</a>
-                            <a type="button" onClick={() => handleSetPosition(id, shootingGuard, dispatch)}>ShootingGuard</a>
-                            <a type="button"  onClick={() => handleSetPosition(id, smallForward, dispatch)}>SmallForward</a>
-                            <a type="button" onClick={() => handleSetPosition(id, powerForward, dispatch)}>PowerForward</a>
-                            <a type="button" onClick={() => handleSetPosition(id, center, dispatch)}>Center </a>
+                            <a type="button" onClick={() => handleSetPosition(id, pointGuard, dispatch)}><FormattedMessage id="project.players.fields.pointGuard"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, shootingGuard, dispatch)}><FormattedMessage id="project.players.fields.shootingGuard"/></a>
+                            <a type="button"  onClick={() => handleSetPosition(id, smallForward, dispatch)}><FormattedMessage id="project.players.fields.smallForward"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, powerForward, dispatch)}><FormattedMessage id="project.players.fields.powerForward"/></a>
+                            <a type="button" onClick={() => handleSetPosition(id, center, dispatch)}><FormattedMessage id="project.players.fields.center"/> </a>
                             </div>
                         </div>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fourth group">
-                        <button className="button lesion" onClick={() => handlePlayersWithLesion(id, pointGuard, dispatch)}>With lesion</button>
+                        <button className="button lesion" onClick={() => handlePlayersWithLesion(id, pointGuard, dispatch)}><FormattedMessage id="project.lesion.fields.withLesion"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion">Lesion Type 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.players.fields.lesionType"/>
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">
-                            <a type="button" onClick={() => handleSetLesionType(id, muscle, dispatch)}>Muscle</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, tendon, dispatch)}>Tendon</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, joint, dispatch)}>Joint</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, spine, dispatch)}>Spine</a>
-                            <a type="button" onClick={() => handleSetLesionType(id, psychological, dispatch)}>Psychological</a>
+                            <a type="button" onClick={() => handleSetLesionType(id, muscle, dispatch)}><FormattedMessage id="project.lesion.fields.muscle"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, tendon, dispatch)}><FormattedMessage id="project.lesion.fields.tendon"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, joint, dispatch)}><FormattedMessage id="project.lesion.fields.joint"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, spine, dispatch)}><FormattedMessage id="project.lesion.fields.spine"/></a>
+                            <a type="button" onClick={() => handleSetLesionType(id, psychological, dispatch)}><FormattedMessage id="project.lesion.fields.psychological"/></a>
                             </div>
                         </div>
                     </div>

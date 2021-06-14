@@ -113,9 +113,9 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                       <i class="fa fa-wrench injured"></i>:  
                       ''}
                 </ul>
-                <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}>Add Note</button>
+                <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Lesion</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.lesion.fields.addLesion"/></button>
                   <div class="dropdown-content">
                               {lesionList.map(lesion => 
                                           <a type="button" onClick={() => handleAddLesionToPlayer(item.id, lesion.id, id, trainingId, dispatch, history)}> 
@@ -125,7 +125,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                     </div>
 
                 <div class="dropdown">
-                <button class="btn-player draw-border">Change Team</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.teams.fields.changeTeam"/></button>
                             <div class="dropdown-content">
                             {teamsList.map(team => 
                                         <a type="button" onClick={() => handleChangeTeam(item.id, team.id, trainingId, dispatch, history)}> 
@@ -135,7 +135,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                 </div>
 
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Training</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.trainings.fields.addTraining"/></button>
                             <div class="dropdown-content">
                             {trainingsList.map(training => 
                                         <a type="button" onClick={() => handleAddNewTrainingToPlayer(item.id, training.id, id, dispatch, history)}> 
@@ -144,7 +144,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Game</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.games.fields.addGame"/></button>
                             <div class="dropdown-content">
                             {gamesList.map(game => 
                                         <a type="button" onClick={() => handleAddNewGameToPlayer(item.id, game.id, id, trainingId, dispatch, history)}> 
@@ -153,7 +153,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                             </div>
                 </div>
                 <div class="dropdown">
-                <button class="btn-player draw-border">Add Stretching</button>
+                <button class="btn-player draw-border"><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                             <div class="dropdown-content">
                             {stretchingsList.map(stretching => 
                                         <a type="button" onClick={() => handleAddStretchingToPlayer(item.id, stretching.id, id, trainingId, dispatch, history)}> 
@@ -161,12 +161,12 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                                         </a>)}
                             </div>
                 </div>
-                <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}>My Notes</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}>My Lesion</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}>My Trainings</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleRemovePlayerToTraining(item.id, trainingId, id, dispatch, history)}>Remove Training</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, id, dispatch, history)}>My Games</button>
-                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByPlayer(item.id, dispatch, history)}>My Stretchings</button>
+                <button class="btn-player draw-border" onClick={() => handleFindNotesByPlayer(item.id, id, dispatch, history)}><FormattedMessage id="project.notes.fields.myNotes"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindLesionByPlayer(item.id, dispatch, history)}><FormattedMessage id="project.lesion.fields.myLesion"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindTrainingsToPlayer(item.id, dispatch, history)}><FormattedMessage id="project.trainings.fields.myTrainings"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleRemovePlayerToTraining(item.id, trainingId, id, dispatch, history)}><FormattedMessage id="project.trainings.fields.removeTraining"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindGamesToPlayer(item.id, id, dispatch, history)}><FormattedMessage id="project.games.fields.myGames"/></button>
+                <button class="btn-player draw-border" type="button" onClick={() => handleFindStretchingsByPlayer(item.id, dispatch, history)}><FormattedMessage id="project.stretchings.fields.myStretchings"/></button>
 
               </div>
             </div>

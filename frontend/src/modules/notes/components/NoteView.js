@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
+import {FormattedMessage} from 'react-intl';
 
 const NoteView = () => {
 
@@ -27,7 +28,7 @@ const NoteView = () => {
                             <h5 class="card__name">{note.title}</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Description</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>
                             <p class="card-text">{note.description}</p>
                         </div>
                         <div class="card-body">

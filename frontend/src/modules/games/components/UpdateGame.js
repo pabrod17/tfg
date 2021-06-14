@@ -45,14 +45,14 @@ const UpdateGame = () => {
                 <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                 <div className="card bg-light border-dark centrado-update-add">
                     <h5 className="card-header">
-                        Update Game
+                    <FormattedMessage id="project.games.fields.updateGame"/>
                     </h5>
                     <div className="card-body">
                         <form ref={node => form = node} 
                             className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                             <div className="form-group row">
                             <label htmlFor="gameDate" className="col-md-4 col-form-label">
-                                Date
+                            <FormattedMessage id="project.games.fields.date"/>
                             </label>
                             <div className="col-md-8">
                                 <input type="date" id="gameDate" className="form-control"
@@ -67,7 +67,7 @@ const UpdateGame = () => {
                         </div>
                             <div className="form-group row">
                                 <label htmlFor="rival" className="col-md-12 col-form-label">
-                                Rival
+                                <FormattedMessage id="project.games.fields.rival"/>
                                 </label>
                                 <div className="col-md-12">
                                     <textarea  type="text" id="rival" className="form-control"
