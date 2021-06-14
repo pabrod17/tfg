@@ -105,7 +105,7 @@ const handleAddStretchingToPlayer = (playerId, stretchingId, id, dispatch, histo
                 <li><a type="button" onClick={() => handleUpdatePlayer(item.id, id, dispatch, history)}>
                   <i class="fa fa-wrench"></i></a></li>
                   {item.injured ?   
-                      <i class="fa fa-wrench injured"></i>:  
+                      <i class="fa fa-wheelchair injured"><FormattedMessage id="project.lesion.fields.injured"/></i>:  
                       ''}
               </ul>
               <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>

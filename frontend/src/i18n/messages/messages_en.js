@@ -103,6 +103,7 @@ export default {
     'project.lesion.fields.psychological' : 'Psychological',
     'project.lesion.fields.withLesion' : 'With Lesion',
     'project.lesion.fields.myLesion' : 'My Lesion',
+    'project.lesion.fields.injured' : 'Injured',
 
 
     //notes

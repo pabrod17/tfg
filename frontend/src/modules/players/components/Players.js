@@ -117,7 +117,7 @@ function PlayersList({ items, stretchingsList, gamesList, trainingsList, lesionL
 
 
                       {item.injured ?   
-                      <i class="fa fa-wrench injured"></i>:  
+                      <i class="fa fa-wheelchair injured"><FormattedMessage id="project.lesion.fields.injured"/></i>:  
                       ''}
 
 

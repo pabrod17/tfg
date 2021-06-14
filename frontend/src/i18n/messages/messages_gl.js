@@ -98,6 +98,7 @@ export default {
     'project.lesion.fields.psychological' : 'Psicoloxica',
     'project.lesion.fields.withLesion' : 'Lesionados',
     'project.lesion.fields.myLesion' : 'Miñas Lesións',
+    'project.lesion.fields.injured' : 'Ferido',
 
     //notes
     'project.notes.fields.addNote' : 'Engadir Nota',

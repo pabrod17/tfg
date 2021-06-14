@@ -105,7 +105,7 @@ function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, les
                   <li><a type="button" onClick={() => handleUpdatePlayer(player.id, player.teamId, dispatch, history)}>
                     <i class="fa fa-wrench"></i></a></li>
                     {player.injured ?   
-                      <i class="fa fa-wrench injured"></i>:  
+                      <i class="fa fa-wheelchair injured"><FormattedMessage id="project.lesion.fields.injured"/></i>:  
                       ''}
                 </ul>
                 <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${player.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
