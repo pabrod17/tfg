@@ -74,7 +74,7 @@ const FindPlayersByGame = () => {
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">
-                            <button class="dropbtn lesion"><FormattedMessage id="project.players.fields.lesionType"/> 
+                            <button class="dropbtn lesion"><FormattedMessage id="project.lesion.fields.lesionType"/>
                             <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content lesion">

@@ -49,7 +49,7 @@ const UpdateSeason = () => {
                     <Errors errors={backendErrors} onClose={() => setBackendErrors(null)}/>
                     <div className="card bg-light border-dark centrado-update-add">
                         <h5 className="card-header">
-                        <FormattedMessage id='project.seasons.fields.updateSeason'/>
+                        <FormattedMessage id='project.plays.fields.updateSeason'/>
                         </h5>
                         <div className="card-body">
                             <form ref={node => form = node} 

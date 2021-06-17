@@ -233,7 +233,7 @@ export default {
     'project.stretchings.fields.pectoral' : 'Pectoral',
     'project.stretchings.fields.crotch' : 'Ingle',
     'project.stretchings.fields.triceps' : 'TrÍceps',
-    'project.stretchings.fields.updateStretching' : 'Actualizar Estiramientos',
+    'project.stretchings.fields.updateStretching' : 'Actualizar Estiramiento',
     
     //teams
     'project.teams.fields.changeTeam' : 'Cambiar Equipo',
