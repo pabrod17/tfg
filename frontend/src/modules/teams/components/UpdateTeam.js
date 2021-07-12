@@ -49,10 +49,10 @@ const UpdateTeam = () => {
                     <form ref={node => form = node} 
                         className="needs-validation" noValidate onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
-                            <label htmlFor="firstName" className="col-md-3 col-form-label">
-                            <FormattedMessage id="project.teams.fields.teamName"/>
+                            <label htmlFor="firstName" className="col-md-4 col-form-label">
+                            Nombre
                             </label>
-                            <div className="col-md-4">
+                            <div className="col-md-7">
                                 <input type="text" id="teamName" className="form-control"
                                     value={teamName}
                                     onChange={e => setTeamName(e.target.value)}
@@ -64,7 +64,7 @@ const UpdateTeam = () => {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <div className="offset-md-3 col-md-1">
+                            <div className="offset-md-5 col-md-8">
                                 <button type="submit" className="btn btn-primary">
                                     <FormattedMessage id="project.global.buttons.save"/>
                                 </button>

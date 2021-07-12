@@ -1,7 +1,7 @@
 package es.udc.paproject.backend.model.entities;
 
 public enum LesionType {
-    Muscle, Tendon, Joint, Spine, Psychological 
+    Muscular, Tendinosa, Articular, ColumnaVertebral, Psicologica 
 }
 //https://www.sanitas.es/sanitas/seguros/es/particulares/biblioteca-de-salud/ejercicio-deporte/consejos-actividad-fisica/tipos-lesiones-deportivas.html
 //psicologica - Psychological

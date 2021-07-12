@@ -71,8 +71,8 @@ public class PlayerServiceImpl implements PlayerService {
         if (!Validations.isValidPhoneNumber(phoneNumber)) {
             throw new IncorrectPhoneNumberException(phoneNumber);
         }
-        if (!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
-                && !position.equals("PowerForward") && !position.equals("Center")) {
+        if (!position.equals("Base") && !position.equals("Escolta") && !position.equals("Alero")
+                && !position.equals("AlaPivot") && !position.equals("Pivot")) {
             throw new InstanceNotFoundException("project.entities.Position");
         }
 
@@ -325,8 +325,8 @@ public class PlayerServiceImpl implements PlayerService {
         if (!teamDao.existsById(teamId)) {
             throw new InstanceNotFoundException("project.entities.team");
         }
-        if (!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
-                && !position.equals("PowerForward") && !position.equals("Center")) {
+        if (!position.equals("Base") && !position.equals("Escolta") && !position.equals("Alero")
+                && !position.equals("AlaPivot") && !position.equals("Pivot")) {
             throw new InstanceNotFoundException("project.entities.Position");
         }
         //Position positionEnum = Position.valueOf(position); //paso string a enum
@@ -377,8 +377,8 @@ public class PlayerServiceImpl implements PlayerService {
             throw new InstanceNotFoundException("project.entities.team");
         }
 
-        if (!typeLesion.equals("Muscle") && !typeLesion.equals("Tendon") && !typeLesion.equals("Joint")
-        && !typeLesion.equals("Spine") && !typeLesion.equals("Psychological")) {
+        if (!typeLesion.equals("Muscular") && !typeLesion.equals("Tendinosa") && !typeLesion.equals("Articular")
+        && !typeLesion.equals("ColumnaVertebral") && !typeLesion.equals("Psicologica")) {
             throw new InstanceNotFoundException("project.entities.LesionType");
         }
         // LesionType typeLesionEnum = LesionType.valueOf(typeLesion);
@@ -460,8 +460,8 @@ public class PlayerServiceImpl implements PlayerService {
         System.out.println("PIIII --> " + position);
         System.out.println("HOLA --> " + position);
 
-        if (position != null &&!position.equals("PointGuard") && !position.equals("ShootingGuard") && !position.equals("SmallForward")
-                && !position.equals("PowerForward") && !position.equals("Center")) {
+        if (position != null &&!position.equals("Base") && !position.equals("Escolta") && !position.equals("Alero")
+                && !position.equals("AlaPivot") && !position.equals("Pivot")) {
             throw new InstanceNotFoundException("project.entities.Position");
         }
 

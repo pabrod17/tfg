@@ -28,7 +28,7 @@ const TrainingView = () => {
                         <img className="holas entreno" src={bigBall}/>
                         <div class="card-body">
                             <h5 class="card__name"><FormattedMessage id="project.trainings.fields.training"/></h5>
-                            <h5 class="card-title"><FormattedMessage id="project.trainings.fields.durationOnly"/>: {training.setDurationMinutes}</h5>
+                            <h5 class="card-title"><FormattedMessage id="project.trainings.fields.durationOnly"/>: {training.durationMinutes} minutos</h5>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><FormattedMessage id="project.exercises.fields.description"/></h5>

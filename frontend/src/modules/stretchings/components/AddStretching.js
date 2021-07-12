@@ -37,17 +37,16 @@ const AddStretching = () => {
             window.location.reload('true');
         }
 
-        const hamstrings = "Hamstrings";
-        const buttocks = "Buttocks";
-        const calf = "Calf";
-        const adductors = "Adductors";
-        const shoulder  = "Shoulder";
-        const quadriceps = "Quadriceps";
-        const back = "Back";
+        const hamstrings = "Isquiotibiales";
+        const buttocks = "Gluteos";
+        const calf = "Gemelos";
+        const adductors = "Adductores";
+        const shoulder  = "Hombro";
+        const quadriceps = "Cuadriceps";
+        const back = "Espalda";
         const pectoral = "Pectoral";
-        const crotch = "Crotch";
+        const crotch = "Ingle";
         const triceps  = "Triceps";
-
         return(
 
             <div>

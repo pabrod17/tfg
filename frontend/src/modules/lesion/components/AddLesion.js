@@ -39,11 +39,11 @@ const AddLesion = () => {
             window.location.reload('true');
         }
 
-        const muscle = "Muscle";
-        const tendon = "Tendon";
-        const joint = "Joint";
-        const spine = "Spine";
-        const psychological  = "Psychological";
+        const muscle = "Muscular";
+        const tendon = "Tendinosa";
+        const joint = "Articular";
+        const spine = "ColumnaVertebral";
+        const psychological  = "Psicologica";
 
 
         return(

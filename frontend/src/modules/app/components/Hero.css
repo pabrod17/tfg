@@ -1163,7 +1163,7 @@ main {
 
 .games {
   background-color: #222831;
-  height: 75rem;
+  height: 72rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -1174,7 +1174,7 @@ main {
 
 .gamesuser {
   background-color: #222831;
-  height: 70rem;
+  height: 65rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -1185,7 +1185,7 @@ main {
 
 .playerjojo {
   background-color: #222831;
-  height: 96rem;
+  height: 88rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -1374,7 +1374,7 @@ main {
   padding: 0.75em 2em;
   letter-spacing: 0.05rem;
   margin: 1em;
-  width: 13rem;
+  width: 15rem;
 }
 
 .btn-player:focus {

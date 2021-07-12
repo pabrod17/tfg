@@ -25,7 +25,6 @@ const handleViewTraining = (id, dispatch, history) => {
 
 const handleRemoveTraining = (id, dispatch, history) => {
     dispatch(actions.removeTraining(id, () => history.push(`/trainings/home`)));
-    window.location.reload('true');
 }
 
 const handleUpdateTraining = (id, dispatch, history) => {

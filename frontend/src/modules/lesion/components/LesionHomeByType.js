@@ -18,11 +18,12 @@ const LesionHomeByType = () => {
     const [page, setPage] = useState(0);
     const {lesionType} = useParams();
 
-    const muscle = "Muscle";
-    const tendon = "Tendon";
-    const joint = "Joint";
-    const spine = "Spine";
-    const psychological  = "Psychological";
+
+    const muscle = "Muscular";
+    const tendon = "Tendinosa";
+    const joint = "Articular";
+    const spine = "ColumnaVertebral";
+    const psychological  = "Psicologica";
 
     if(!lesionsSearch){
         console.log("HOLA");

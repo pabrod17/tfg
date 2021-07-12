@@ -50,10 +50,10 @@ public class ExerciseServiceImpl implements ExerciseService {
 	public Exercise addExercise(String exerciseName, String description, String objective, String exerciseType)
             throws InstanceNotFoundException {
 
-        if (!exerciseType.equals("Tactic") && !exerciseType.equals("Technique") 
-                && !exerciseType.equals("Physical") && !exerciseType.equals("Globalized")
-                && !exerciseType.equals("Specific") && !exerciseType.equals("Psychological") 
-                && !exerciseType.equals("Strategy") && !exerciseType.equals("PreMatch")) {
+        if (!exerciseType.equals("Tactico") && !exerciseType.equals("Tecnica") 
+                && !exerciseType.equals("Fisico") && !exerciseType.equals("Global")
+                && !exerciseType.equals("Especifico") && !exerciseType.equals("Psicologico") 
+                && !exerciseType.equals("Estrategia") && !exerciseType.equals("PrePartido")) {
             throw new InstanceNotFoundException("project.entities.exercise");
         }
 
@@ -279,10 +279,10 @@ public class ExerciseServiceImpl implements ExerciseService {
             throw new InstanceNotFoundException("project.entities.exercise");
         }
 
-        if (!exerciseType.equals("Tactic") && !exerciseType.equals("Technique") 
-                && !exerciseType.equals("Physical") && !exerciseType.equals("Globalized")
-                && !exerciseType.equals("Specific") && !exerciseType.equals("Psychological") 
-                && !exerciseType.equals("Strategy") && !exerciseType.equals("PreMatch")) {
+        if (!exerciseType.equals("Tactico") && !exerciseType.equals("Tecnica") 
+                && !exerciseType.equals("Fisico") && !exerciseType.equals("Global")
+                && !exerciseType.equals("Especifico") && !exerciseType.equals("Psicologico") 
+                && !exerciseType.equals("Estrategia") && !exerciseType.equals("PrePartido")) {
             throw new InstanceNotFoundException("project.entities.exercise");
         }
 

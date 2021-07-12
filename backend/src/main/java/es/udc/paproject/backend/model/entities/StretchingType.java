@@ -1,7 +1,7 @@
 package es.udc.paproject.backend.model.entities;
 
 public enum StretchingType {
-    Hamstrings, Buttocks, Calf, Adductors, Shoulder, Quadriceps, Back, Pectoral, Crotch, Triceps
+    Isquiotibiales, Gluteos, Gemelos, Adductores, Hombro, Cuadriceps, Espalda, Pectoral, Ingle, Triceps
 }
 //https://estiramientosdeporte.com/estiramientos-baloncesto/#%F0%9F%8F%80_Tabla_de_Estiramientos_para_Baloncesto
 

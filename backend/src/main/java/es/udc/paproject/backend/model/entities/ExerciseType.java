@@ -1,7 +1,7 @@
 package es.udc.paproject.backend.model.entities;
 
 public enum ExerciseType {
-    Tactic, Technique, Physical, Globalized, Specific, Psychological, Strategy, PreMatch
+    Tactico, Tecnica, Fisico, Global, Especifico, Psicologico, Estrategia, PrePartido
 }
 
 //http://entrenamientosdebaloncesto.es/categoria-tacticos/

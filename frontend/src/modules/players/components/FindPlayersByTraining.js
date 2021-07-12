@@ -18,17 +18,18 @@ const FindPlayersByTraining = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const pointGuard = "PointGuard";
-    const shootingGuard = "ShootingGuard";
-    const smallForward = "SmallForward";
-    const powerForward = "PowerForward";
-    const center = "Center";
+    const pointGuard = "Base";
+    const shootingGuard = "Escolta";
+    const smallForward = "Alero";
+    const powerForward = "AlaPivot";
+    const center = "Pivot";
 
-    const muscle = "Muscle";
-    const tendon = "Tendon";
-    const joint = "Joint";
-    const spine = "Spine";
-    const psychological  = "Psychological";
+
+    const muscle = "Muscular";
+    const tendon = "Tendinosa";
+    const joint = "Articular";
+    const spine = "ColumnaVertebral";
+    const psychological  = "Psicologica";
     
     const handleSetPosition = (id, position, dispatch) => {
         dispatch(actions.findPlayersByPositionAndTeam(id, position));

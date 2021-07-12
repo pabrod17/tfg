@@ -48,7 +48,7 @@ public class PlayServiceImpl implements PlayService {
 
         Team team = teamDao.findById(teamId).get();
 
-        if (!playType.equals("Attack") && !playType.equals("Defense")) {
+        if (!playType.equals("Ataque") && !playType.equals("Defensa")) {
             throw new IncorrectPlayTypeException(playType);
         }
 
@@ -156,7 +156,7 @@ public class PlayServiceImpl implements PlayService {
             throw new InstanceNotFoundException("project.entities.team");
         }
 
-        if (!playType.equals("Attack") && !playType.equals("Defense")) {
+        if (!playType.equals("Ataque") && !playType.equals("Defensa")) {
             throw new IncorrectPlayTypeException(playType);
         }
 
@@ -217,7 +217,7 @@ public class PlayServiceImpl implements PlayService {
             throw new InstanceNotFoundException("project.entities.play");
         }
 
-        if (!playType.equals("Attack") && !playType.equals("Defense")) {
+        if (!playType.equals("Ataque") && !playType.equals("Defensa")) {
             throw new IncorrectPlayTypeException(playType);
         }
 

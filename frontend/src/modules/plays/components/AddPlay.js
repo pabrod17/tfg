@@ -23,8 +23,9 @@ const AddPlay = () => {
     let form;
 
     
-    const attack = "Attack";
-    const defense = "Defense";
+    const attack = "Ataque";
+    const defense = "Defensa";
+
 
     const handleSubmit = event => {
 

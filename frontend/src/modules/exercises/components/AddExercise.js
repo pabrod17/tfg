@@ -38,14 +38,14 @@ const AddExercise = () => {
             window.location.reload('true');
         }
 
-        const tactic = "Tactic";
-        const technique = "Technique";
-        const physical = "Physical";
-        const globalized = "Globalized";
-        const specific  = "Specific";
-        const psychological = "Psychological";
-        const strategy = "Strategy";
-        const preMatch = "PreMatch";
+        const tactic = "Tactico";
+        const technique = "Tecnica";
+        const physical = "Fisico";
+        const globalized = "Global";
+        const specific  = "Especifico";
+        const psychological = "Psicologico";
+        const strategy = "Estrategia";
+        const preMatch = "PrePartido";
 
         return(
 

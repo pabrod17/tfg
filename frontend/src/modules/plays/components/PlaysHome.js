@@ -16,9 +16,10 @@ const PlaysHome = () => {
     const plays = useSelector(selectors.getPlays);
     const dispatch = useDispatch();
     const history = useHistory();
+    
+    const attack = "Ataque";
+    const defense = "Defensa";
 
-    const attack = "Attack";
-    const defense = "Defense";
 
     const handleSetTypePlay = (id, playType, dispatch) => {
         console.log(playType);

@@ -48,7 +48,7 @@ const AddTeam = () => {
                         onSubmit={e => handleSubmit(e)}>
                         <div className="form-group row">
                             <label htmlFor="teamName" className="col-md-4 col-form-label">
-                            <FormattedMessage id="project.teams.fields.teamName"/>
+                            Nombre
                             </label>
                             <div className="col-md-5">
                                 <input type="text" id="teamName" className="form-control"

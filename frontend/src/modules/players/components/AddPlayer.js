@@ -45,11 +45,11 @@ const AddPlayer = () => {
             window.location.reload('true');
         }
 
-        const pointGuard = "PointGuard";
-        const shootingGuard = "ShootingGuard";
-        const smallForward = "SmallForward";
-        const powerForward = "PowerForward";
-        const center = "Center";
+        const pointGuard = "Base";
+        const shootingGuard = "Escolta";
+        const smallForward = "Alero";
+        const powerForward = "AlaPivot";
+        const center = "Pivot";
 
         return(
 

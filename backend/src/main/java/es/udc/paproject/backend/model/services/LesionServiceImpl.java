@@ -38,8 +38,8 @@ public class LesionServiceImpl implements LesionService {
     public Lesion addLesion(String lesionName, String description, String medication, String lesionType)
             throws InstanceNotFoundException {
 
-        if (!lesionType.equals("Muscle") && !lesionType.equals("Tendon") && !lesionType.equals("Joint")
-                && !lesionType.equals("Spine") && !lesionType.equals("Psychological")) {
+        if (!lesionType.equals("Muscular") && !lesionType.equals("Tendinosa") && !lesionType.equals("Articular")
+                && !lesionType.equals("ColumnaVertebral") && !lesionType.equals("Psicologica")) {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
         LesionType lesionTypeEnum = LesionType.valueOf(lesionType);
@@ -216,8 +216,8 @@ public class LesionServiceImpl implements LesionService {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 
-        if (lesionType !=null && !lesionType.equals("Muscle") && !lesionType.equals("Tendon") && !lesionType.equals("Joint")
-                && !lesionType.equals("Spine") && !lesionType.equals("Psychological")) {
+        if (lesionType !=null && !lesionType.equals("Muscular") && !lesionType.equals("Tendinosa") && !lesionType.equals("Articular")
+                && !lesionType.equals("ColumnaVertebral") && !lesionType.equals("Psicologica")) {
             throw new InstanceNotFoundException("project.entities.lesion");
         }
 

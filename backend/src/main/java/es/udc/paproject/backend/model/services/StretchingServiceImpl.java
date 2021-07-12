@@ -57,10 +57,10 @@ public class StretchingServiceImpl implements StretchingService {
     public Stretching addStretching(String stretchingName, String description, String stretchingType)
             throws InstanceNotFoundException {
 
-        if (!stretchingType.equals("Hamstrings") && !stretchingType.equals("Buttocks") 
-                && !stretchingType.equals("Calf") && !stretchingType.equals("Adductors")
-                && !stretchingType.equals("Shoulder") && !stretchingType.equals("Quadriceps") 
-                && !stretchingType.equals("Back") && !stretchingType.equals("Pectoral") && !stretchingType.equals("Crotch") 
+        if (!stretchingType.equals("Isquiotibiales") && !stretchingType.equals("Gluteos") 
+                && !stretchingType.equals("Gemelos") && !stretchingType.equals("Adductores")
+                && !stretchingType.equals("Hombro") && !stretchingType.equals("Cuadriceps") 
+                && !stretchingType.equals("Espalda") && !stretchingType.equals("Pectoral") && !stretchingType.equals("Ingle") 
                 && !stretchingType.equals("Triceps")) {
             throw new InstanceNotFoundException("project.entities.stretching");
         }
@@ -354,10 +354,10 @@ public class StretchingServiceImpl implements StretchingService {
             throw new InstanceNotFoundException("project.entities.stretching");
         }
 
-        if (!stretchingType.equals("Hamstrings") && !stretchingType.equals("Buttocks") 
-                && !stretchingType.equals("Calf") && !stretchingType.equals("Adductors")
-                && !stretchingType.equals("Shoulder") && !stretchingType.equals("Quadriceps") 
-                && !stretchingType.equals("Back") && !stretchingType.equals("Pectoral") && !stretchingType.equals("Crotch") 
+        if (!stretchingType.equals("Isquiotibiales") && !stretchingType.equals("Gluteos") 
+                && !stretchingType.equals("Gemelos") && !stretchingType.equals("Adductores")
+                && !stretchingType.equals("Hombro") && !stretchingType.equals("Cuadriceps") 
+                && !stretchingType.equals("Espalda") && !stretchingType.equals("Pectoral") && !stretchingType.equals("Ingle") 
                 && !stretchingType.equals("Triceps")) {
             throw new InstanceNotFoundException("project.entities.stretching");
         }

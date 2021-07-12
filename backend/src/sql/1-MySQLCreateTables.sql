@@ -84,7 +84,7 @@ CREATE TABLE Player (
     playerName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     primaryLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     secondLastName VARCHAR(60) COLLATE latin1_bin NOT NULL,
-    position    ENUM('PointGuard','ShootingGuard', 'SmallForward', 'PowerForward', 'Center') NOT NULL,
+    position    ENUM('Base','Escolta', 'Alero', 'AlaPivot', 'Pivot') NOT NULL,
     trends VARCHAR(500),
     phoneNumber VARCHAR(60) NOT NULL, 
     email VARCHAR(60) NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE Note (
 CREATE TABLE Play (
     id BIGINT NOT NULL AUTO_INCREMENT,
     title VARCHAR(60) COLLATE latin1_bin NOT NULL,
-    playType    ENUM('Attack','Defense') NOT NULL,
+    playType    ENUM('Ataque','Defensa') NOT NULL,
     gesture VARCHAR(60),
     pointGuardText VARCHAR(500),
     shootingGuardText VARCHAR(500),
@@ -153,7 +153,7 @@ CREATE TABLE Lesion (
     lesionName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     description VARCHAR(500) NOT NULL,
     medication VARCHAR(500) NOT NULL,
-    lesionType    ENUM('Muscle','Tendon', 'Joint', 'Spine', 'Psychological') NOT NULL,
+    lesionType    ENUM('Muscular','Tendinosa', 'Articular', 'ColumnaVertebral', 'Psicologica') NOT NULL,
     version BIGINT NOT NULL,
     CONSTRAINT LesionPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
@@ -238,7 +238,7 @@ CREATE TABLE Stretching (
     id BIGINT NOT NULL AUTO_INCREMENT,
     stretchingName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     description VARCHAR(500) NOT NULL,
-    stretchingType    ENUM('Hamstrings','Buttocks', 'Calf', 'Adductors', 'Shoulder', 'Quadriceps', 'Back', 'Pectoral', 'Crotch', 'Triceps') NOT NULL,
+    stretchingType    ENUM('Isquiotibiales','Gluteos', 'Gemelos', 'Adductores', 'Hombro', 'Cuadriceps', 'Espalda', 'Pectoral', 'Ingle', 'Triceps') NOT NULL,
     version BIGINT NOT NULL,
     CONSTRAINT StretchingPK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
@@ -248,7 +248,7 @@ CREATE TABLE Exercise (
     exerciseName VARCHAR(60) COLLATE latin1_bin NOT NULL,
     description VARCHAR(500) NOT NULL,
     objective VARCHAR(500) NOT NULL,
-    exerciseType    ENUM('Tactic','Technique', 'Physical', 'Globalized', 'Specific', 'Psychological', 'Strategy', 'PreMatch') NOT NULL,
+    exerciseType    ENUM('Tactico','Tecnica', 'Fisico', 'Global', 'Especifico', 'Psicologico', 'Estrategia', 'PrePartido') NOT NULL,
     version BIGINT NOT NULL,
     CONSTRAINT ExercisePK PRIMARY KEY (id)
 ) ENGINE = InnoDB;
