@@ -1,7 +1,7 @@
 import React from 'react';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
 import {FormattedMessage} from 'react-intl';
@@ -23,11 +23,11 @@ function TeamName({team, teamName, dispatch, history}){
                         <span className="fas fa-trash-alt"></span>
                       </button>
                        <button className="btn btn-secondary" type="button" 
-                        onClick={() => history.push('/teams/update')}>
+                        onClick={() => history('/teams/update')}>
                         <span className="fas fa-pencil-alt"></span>
                       </button>
                       <button className="btn btn-info" type="button" 
-                        onClick={() => history.push(`/teams/view/${team.id}`)}>
+                        onClick={() => history(`/teams/view/${team.id}`)}>
                         {"View"}
                       </button>
             </Card.Body>
@@ -48,12 +48,12 @@ function TeamName({team, teamName, dispatch, history}){
 }
 
 const handleRemoveItem = (id, dispatch, history ) => {
-  dispatch(actions.removeTeam(id, () => history.push('/')));
+  dispatch(actions.removeTeam(id, () => history('/')));
 }
 
   const Team = ({team, teamName}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     if(!team){
       return (
         <div className="alert alert-info color-alert" role="alert">

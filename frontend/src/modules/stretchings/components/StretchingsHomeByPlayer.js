@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 
@@ -12,7 +12,7 @@ const StretchingsHomeByPlayer = () => {
 
     const stretchings = useSelector(selectors.getAllStretchings);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const {playerId} = useParams();
 
     const hamstrings = "Isquiotibiales";

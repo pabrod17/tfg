@@ -4,7 +4,7 @@ import * as selectors from '../selectors';
 import Player from './Player';
 import {useParams} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import * as actions from '../actions';
 import PlayersByTraining from './PlayersByTraining';
 import {FormattedMessage} from 'react-intl';
@@ -16,7 +16,7 @@ const FindPlayersByTraining = () => {
     const players = useSelector(selectors.getAllPlayers);
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const pointGuard = "Base";
     const shootingGuard = "Escolta";
@@ -48,13 +48,13 @@ const FindPlayersByTraining = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/players/addPlayer/${id}`)}>Add New Player</button>
+                        <button className="btn addplayer" onClick={() => history(`/players/addPlayer/${id}`)}>Add New Player</button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Second group">
-                        <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}>Dni</button>
+                        <button className="button dni"  onClick={() => history(`/players/dni/${id}`)}>Dni</button>
                     </div>
                     <div class="btn-group mr-5 mb-5 btn" role="group" aria-label="Third group">
-                        <button className="button dni"  onClick={() => history.push(`/players/completedName/${id}`)}>Name and Surnames</button>
+                        <button className="button dni"  onClick={() => history(`/players/completedName/${id}`)}>Name and Surnames</button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

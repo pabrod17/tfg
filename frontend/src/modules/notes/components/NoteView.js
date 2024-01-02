@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import notaLapiz from '../../notes/components/notaLapiz.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -14,7 +14,7 @@ const NoteView = () => {
     const note = useSelector(selectors.getNote);
     const {noteId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     function NoteViewFunction({note, dispatch}){
         if(note){
@@ -42,7 +42,7 @@ const NoteView = () => {
 
         }
         else{
-            dispatch(actions.findNoteById(noteId, () => history.push(`/notes/view/${noteId}`)));
+            dispatch(actions.findNoteById(noteId, () => history(`/notes/view/${noteId}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

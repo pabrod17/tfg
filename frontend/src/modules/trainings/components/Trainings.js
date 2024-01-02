@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -20,42 +20,42 @@ import * as actionExercises from '../../exercises/actions';
 import * as selectorsExercises from '../../exercises/selectors';
 
 const handleViewTraining = (id, dispatch, history) => {
-    dispatch(actions.findTrainingById(id, () => history.push(`/trainings/view/${id}`)));
+    dispatch(actions.findTrainingById(id, () => history(`/trainings/view/${id}`)));
 }
 
 const handleRemoveTraining = (id, dispatch, history) => {
-    dispatch(actions.removeTraining(id, () => history.push(`/trainings/home`)));
+    dispatch(actions.removeTraining(id, () => history(`/trainings/home`)));
 }
 
 const handleUpdateTraining = (id, dispatch, history) => {
-    dispatch(actions.findTrainingById(id, () => history.push(`/trainings/update/${id}`)));
+    dispatch(actions.findTrainingById(id, () => history(`/trainings/update/${id}`)));
 }
 
 const handleFindPlayersByTraining = (trainingId, id, dispatch, history) => {
   dispatch(actions.findTrainingById(trainingId, () => console.log(trainingId)));
-  dispatch(actionsPlayers.findPlayersByTraining(trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+  dispatch(actionsPlayers.findPlayersByTraining(trainingId, () => history(`/players/home/training/${id}${trainingId}`)));
 }
 
 const handleFindStretchingsByTraining = (trainingId, dispatch, history) => {
-  dispatch(actionStretchings.findStretchingsByTrainingId(trainingId, () => history.push(`/stretchings/home/training/${trainingId}`)));
+  dispatch(actionStretchings.findStretchingsByTrainingId(trainingId, () => history(`/stretchings/home/training/${trainingId}`)));
 }
 
 const handleAddStretchingToTraining = (trainingId, stretchingId, dispatch, history) => {
-  dispatch(actionStretchings.addStretchingToTraining(trainingId, stretchingId, () => history.push('/trainings/home')));
+  dispatch(actionStretchings.addStretchingToTraining(trainingId, stretchingId, () => history('/trainings/home')));
 }
 
 const handleFindExercisesByTraining = (trainingId, dispatch, history) => {
-  dispatch(actionExercises.findExercisesByTrainingId(trainingId, () => history.push(`/exercises/home/training/${trainingId}`)));
+  dispatch(actionExercises.findExercisesByTrainingId(trainingId, () => history(`/exercises/home/training/${trainingId}`)));
 }
 
 const handleAddExerciseToTraining = (trainingId, exerciseId, dispatch, history) => {
-  dispatch(actionExercises.addExerciseToTraining(trainingId, exerciseId, () => history.push('/trainings/home')));
+  dispatch(actionExercises.addExerciseToTraining(trainingId, exerciseId, () => history('/trainings/home')));
 }
 
 
 function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
+        dispatch(actions.findTrainingsByUserId(() => history('/trainings/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -125,7 +125,7 @@ function TrainingsList({ items, exercisesList, stretchingsList, teamId, fallback
 
 function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, dispatch, history}) {
   if (!items || items.length === 0) {
-      dispatch(actions.findTrainingsByUserId(() => history.push('/trainings/home')));
+      dispatch(actions.findTrainingsByUserId(() => history('/trainings/home')));
       return fallback;
   } else {
       return items.map(item => {
@@ -195,7 +195,7 @@ function TrainingsListUser({ items, exercisesList, stretchingsList, fallback, di
 
 const Trainings = ({trainings}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     
     const team = useSelector(selectorsTeams.getTeam);
     const stretchings = useSelector(selectorsStretchings.getAllStretchings);
@@ -204,14 +204,14 @@ const Trainings = ({trainings}) => {
     const exercisesList = exercises.exercises;
 
     if(!exercisesList) {
-        dispatch(actionExercises.findAllExercises(() => history.push('/trainings/home')));
+        dispatch(actionExercises.findAllExercises(() => history('/trainings/home')));
         return "Loading...";
     }
     
     const stretchingsList = stretchings.stretchings;
 
     if(!stretchingsList) {
-        dispatch(actionStretchings.findAllStretchings(() => history.push('/trainings/home')));
+        dispatch(actionStretchings.findAllStretchings(() => history('/trainings/home')));
         return "Loading...";
     }
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import {Errors} from '../../common';
 import {FormattedMessage} from 'react-intl';
@@ -9,7 +9,7 @@ import * as actions from '../actions';
 
 const FindPlayerByDni = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [dni, setDni] = useState('');
     const {id} = useParams();
     const [backendErrors, setBackendErrors] = useState(null);
@@ -19,7 +19,7 @@ const FindPlayerByDni = () => {
         event.preventDefault();
         if (form.checkValidity()) {
             dispatch(actions.findPlayerByDniOfTeam(id, dni,
-                () => history.push(`/players/dni/result/${dni.trim()}${id}`)
+                () => history(`/players/dni/result/${dni.trim()}${id}`)
             ));
         } else {
             setBackendErrors(null);

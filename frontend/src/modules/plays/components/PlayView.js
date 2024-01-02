@@ -7,7 +7,7 @@ import * as actions from '../actions';
 import * as actionsTeams from '../../teams/actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import ballCancha from '../../players/components/ballCancha.jpg';
 import libre from '../../players/components/libre.jpg';
@@ -17,7 +17,7 @@ const PlayView = () => {
     const play = useSelector(selectors.getPlay);
     const {playId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
 
     function PlayViewFunction({play, dispatch}){
@@ -67,7 +67,7 @@ const PlayView = () => {
 
         }
         else{
-            dispatch(actions.findPlayById(playId, () => history.push(`/plays/view/${playId}`)));
+            dispatch(actions.findPlayById(playId, () => history(`/plays/view/${playId}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

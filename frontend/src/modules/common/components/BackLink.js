@@ -1,10 +1,10 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 const BackLink = () => {
 
-    const history = useHistory();
+    const history = useNavigate();
 
     if (history.length <= 2) {
         return null;

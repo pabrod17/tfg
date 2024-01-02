@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -19,7 +19,7 @@ const NotesHome = () => {
     let form;
     const notes = useSelector(selectors.getNotes);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     // const handleFindNotesByPlayerAndDates = (startDate, endDate, dispatch, history) => {
     //     dispatch(actions.findNotesByPlayerAndDates(playerId, startDate, endDate));

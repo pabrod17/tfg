@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
@@ -18,72 +18,72 @@ import * as actionStretchings from '../../stretchings/actions';
 import * as selectorsStretchings from '../../stretchings/selectors';
 
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
-  dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
-  // history.push('/trainings/home');
+  dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history('/trainings/home')));
+  // history('/trainings/home');
 }
 
 
 
 const handleRemovePlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/${id}`)));
+    dispatch(actions.removePlayer(playerId, id, () => history(`/players/home/${id}`)));
     window.location.reload('true');
   }
   
   const handleUpdatePlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history(`/players/update/${id}`)));
   }
   
   const handleViewPlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history(`/players/view/${id}${playerId}`)));
   }
   
   const handleChangeTeam = (playerId, id, dispatch, history) => {
-    dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/${id}`)));
+    dispatch(actions.changePlayerToTeam(id, playerId, () => history(`/players/home/${id}`)));
     window.location.reload('true');
   }
 
   const handleAddLesionToPlayer = (playerId, lesionId, id, dispatch, history) => {
-    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/${id}`)));
+    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history(`/players/home/${id}`)));
   }
 
   const handleFindLesionByPlayer = (playerId, dispatch, history) => {
-    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
+    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history(`/lesion/home/player/${playerId}`)));
   }
   
 
 const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
   console.log("player(12) --> " + playerId);
   console.log("team(1) --> " + id);
-  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+  dispatch(actionsNotes.findNotesByPlayer(playerId, () => history(`/notes/home/${id}${playerId}`)));
 }
 
 const handleFindGamesToPlayer = (playerId, id, dispatch, history) => {
   dispatch(actions.findPlayerByIdOfTeam(playerId,id, () => console.log(playerId)));
-  dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
-  // history.push('/trainings/home');
+  dispatch(actionGames.findGamesByPlayerId(playerId, () => history('/games/home')));
+  // history('/trainings/home');
 }
 
 const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
-  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/${id}`)));
+  dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history(`/players/home/${id}`)));
 }
 
 const handleAddNewGameToPlayer = (playerId, gameId, id, dispatch, history) => {
-  dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/${id}`)));
+  dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history(`/players/home/${id}`)));
 }
 
 const handleFindStretchingsByPlayer = (playerId, dispatch, history) => {
-  dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+  dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history(`/stretchings/home/player/${playerId}`)));
 }
 
 const handleAddStretchingToPlayer = (playerId, stretchingId, id, dispatch, history) => {
-  dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history.push(`/players/home/${id}`)));
+  dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history(`/players/home/${id}`)));
 }
 
 
 function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, lesionList, dni, teamsList, fallback, dispatch, history}) {
     if (!player) {
         dispatch(actions.findPlayerByDniOfTeam(player.teamId, dni,
-            () => history.push(`/players/dni/result/${dni.trim()}`)
+            () => history(`/players/dni/result/${dni.trim()}`)
         ));
     
         return fallback;
@@ -108,7 +108,7 @@ function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, les
                       <i class="fa fa-wheelchair injured"><FormattedMessage id="project.lesion.fields.injured"/></i>:  
                       ''}
                 </ul>
-                <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${player.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
+                <button class="btn-player draw-border" onClick={() => history(`/notes/addNote/${player.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
                 <div class="dropdown">
                 <button class="btn-player draw-border"><FormattedMessage id="project.lesion.fields.addLesion"/></button>
                   <div class="dropdown-content">
@@ -171,7 +171,7 @@ function PlayerByDni({player, id, stretchingsList, gamesList, trainingsList, les
 
 const Player = ({player, dni, id}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
     const lesions = useSelector(selectorsLesion.getAllLesion);
@@ -182,14 +182,14 @@ const Player = ({player, dni, id}) => {
     const stretchingsList = stretchings.stretchings;
 
     if(!stretchingsList) {
-        dispatch(actionStretchings.findAllStretchings(() => history.push(`/players/home/${id}`)));
+        dispatch(actionStretchings.findAllStretchings(() => history(`/players/home/${id}`)));
         return "Loading...";
     }
     
     const gamesList = games.games;
 
     if(!gamesList) {
-        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionGames.findGamesByTeamId(id, () => history(`/players/home/${id}`)));
         return "Loading...";
     }
     
@@ -197,7 +197,7 @@ const Player = ({player, dni, id}) => {
     const trainingsList = trainings.trainings;
 
     if(!trainingsList) {
-        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history(`/players/home/${id}`)));
         return "Loading...";
     }
 

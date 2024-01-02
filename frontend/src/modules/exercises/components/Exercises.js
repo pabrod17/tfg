@@ -3,28 +3,28 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import exercise from '../../app/components/exercise.jpg';
 
 const handleRemoveExercise = (id, dispatch, history) => {
-    dispatch(actions.removeExercise(id, () => history.push(`/exercises/home`)));
+    dispatch(actions.removeExercise(id, () => history(`/exercises/home`)));
     window.location.reload('true');
 }
 
 const handleUpdateExercise = (id, dispatch, history) => {
-  dispatch(actions.findExerciseById(id, () => history.push(`/exercises/update/${id}`)));
+  dispatch(actions.findExerciseById(id, () => history(`/exercises/update/${id}`)));
 }
 
 const handleViewExercise = (id, dispatch, history) => {
-    dispatch(actions.findExerciseById(id, () => history.push(`/exercises/view/${id}`)));
+    dispatch(actions.findExerciseById(id, () => history(`/exercises/view/${id}`)));
 }
 
 function ExercisesList({ items, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findAllExercises(() => history.push('/exercises/home')));
+        dispatch(actions.findAllExercises(() => history('/exercises/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -58,7 +58,7 @@ function ExercisesList({ items, fallback, dispatch, history}) {
 
 const Exercises = ({exercises}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import * as actions from '../actions';
 
 const AddPlayerGameStatistics = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const {playerId} = useParams();
     const {gameId} = useParams();
     
@@ -54,7 +54,7 @@ const AddPlayerGameStatistics = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push(`/statistics/addPlayerGameStatistics/${playerId}${gameId}`);
+            history(`/statistics/addPlayerGameStatistics/${playerId}${gameId}`);
             window.location.reload('true');
         }
 

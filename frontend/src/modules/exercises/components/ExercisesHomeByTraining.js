@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 
@@ -11,7 +11,7 @@ import {useParams} from 'react-router-dom';
 const ExercisesHomeByTraining = () => {
     const exercises = useSelector(selectors.getAllExercises);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const {trainingId} = useParams();
 
     const tactic = "Tactic";

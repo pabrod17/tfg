@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import * as actionsTeams from '../../teams/actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import ballCancha from '../../players/components/ballCancha.jpg';
 import libre from '../../players/components/libre.jpg';
@@ -21,11 +21,11 @@ const PlayerView = () => {
 
     const {id, playerId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     
 
     const handleClearTotalStatistics = (playerId, dispatch, history) => {
-        dispatch(actions.clearTotalStatistics(playerId, () => history.push(`/players/view/${id}${playerId}`)));
+        dispatch(actions.clearTotalStatistics(playerId, () => history(`/players/view/${id}${playerId}`)));
         window.location.reload('true');
     }
 
@@ -34,7 +34,7 @@ const PlayerView = () => {
         if(player){
 
             if(!team) {
-                dispatch(actionsTeams.findTeamById(id, () => history.push(`/players/view/${id}${playerId}`)));
+                dispatch(actionsTeams.findTeamById(id, () => history(`/players/view/${id}${playerId}`)));
                 return(
                     <div className="spinner-border color-byTeamName" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -161,8 +161,8 @@ const PlayerView = () => {
 
         }
         else{
-            dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
-            dispatch(actionsTeams.findTeamById(id, () => history.push(`/players/view/${id}${playerId}`)));
+            dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history(`/players/view/${id}${playerId}`)));
+            dispatch(actionsTeams.findTeamById(id, () => history(`/players/view/${id}${playerId}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

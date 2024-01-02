@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
@@ -10,7 +10,7 @@ import {useParams} from 'react-router-dom';
 
 const AddLesion = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [lesionName, setLesionName] = useState("");
     const [description, setDescription] = useState("");
     const [medication, setMedication] = useState("");
@@ -35,7 +35,7 @@ const AddLesion = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/lesion/addLesion');
+            history('/lesion/addLesion');
             window.location.reload('true');
         }
 

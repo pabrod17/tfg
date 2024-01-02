@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -11,21 +11,21 @@ import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import exercise from '../../app/components/exercise.jpg';
 
 const handleRemoveExerciseToTraining = (id, trainingId, dispatch, history) => {
-    dispatch(actions.removeExerciseToTraining(trainingId, id, () => history.push(`/exercises/home/training/${trainingId}`)));
+    dispatch(actions.removeExerciseToTraining(trainingId, id, () => history(`/exercises/home/training/${trainingId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateExercise = (id, dispatch, history) => {
-    dispatch(actions.findExerciseById(id, () => history.push(`/exercises/update/${id}`)));
+    dispatch(actions.findExerciseById(id, () => history(`/exercises/update/${id}`)));
 }
 
 const handleViewExercise = (id, dispatch, history) => {
-    dispatch(actions.findExerciseById(id, () => history.push(`/exercises/view/${id}`)));
+    dispatch(actions.findExerciseById(id, () => history(`/exercises/view/${id}`)));
 }
 
 function ExercisesList({ items, trainingId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findExercisesByTrainingId(trainingId, () => history.push(`/exercises/home/training/${trainingId}`)));
+        dispatch(actions.findExercisesByTrainingId(trainingId, () => history(`/exercises/home/training/${trainingId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -57,7 +57,7 @@ function ExercisesList({ items, trainingId, fallback, dispatch, history}) {
 
 const ExercisesByTraining = ({exercises, trainingId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

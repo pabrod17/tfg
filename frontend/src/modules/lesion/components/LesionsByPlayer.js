@@ -3,29 +3,29 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
 const handleRemoveLesionToPlayer = (id, playerId, dispatch, history) => {
-    dispatch(actions.removeLesionToPlayer(playerId, id, () => history.push(`/lesion/home/player/${playerId}`)));
+    dispatch(actions.removeLesionToPlayer(playerId, id, () => history(`/lesion/home/player/${playerId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateLesion = (id, dispatch, history) => {
-  dispatch(actions.findLesionById(id, () => history.push(`/lesion/update/${id}`)));
+  dispatch(actions.findLesionById(id, () => history(`/lesion/update/${id}`)));
 }
 
 const handleViewLesion = (id, dispatch, history) => {
-  dispatch(actions.findLesionById(id, () => history.push(`/lesion/view/${id}`)));
+  dispatch(actions.findLesionById(id, () => history(`/lesion/view/${id}`)));
 }
 
 
 function LesionsList({ items, playerId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findLesionByPlayer(playerId, () => history.push('/lesion/home')));
+        dispatch(actions.findLesionByPlayer(playerId, () => history('/lesion/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -57,7 +57,7 @@ function LesionsList({ items, playerId, fallback, dispatch, history}) {
 
 const LesionsByPlayer = ({lesions, playerId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     
     return(
         <div className="card-group">

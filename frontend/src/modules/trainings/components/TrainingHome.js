@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 
@@ -14,7 +14,7 @@ import {FormattedMessage} from 'react-intl';
 const TrainingHome = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const trainings = useSelector(selectors.getAllTrainings);
     const team = useSelector(selectorsTeams.getTeam);
@@ -75,7 +75,7 @@ const TrainingHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/trainings/addTraining`)}><FormattedMessage id="project.trainings.fields.addTraining"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/trainings/addTraining`)}><FormattedMessage id="project.trainings.fields.addTraining"/></button>
                     </div>
                 </div>
 

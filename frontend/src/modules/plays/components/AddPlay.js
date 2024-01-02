@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
@@ -10,7 +10,7 @@ import {useParams} from 'react-router-dom';
 const AddPlay = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [title, setTitle] = useState("");
     const [playType, setPlayType] = useState("");
     const [gesture, setGesture] = useState("");
@@ -45,7 +45,7 @@ const AddPlay = () => {
         }
 
         const reloadWindow = (id) =>{
-            history.push(`/plays/addPlay/${id}`);
+            history(`/plays/addPlay/${id}`);
             window.location.reload('true');
         }
 

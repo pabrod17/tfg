@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -13,7 +13,7 @@ const UpdateNote = () => {
     const {id} = useParams();
     const {noteId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [title, setTitle] = useState(note.title);
     const [description, setDescription] = useState(note.description);
     const [backendErrors, setBackendErrors] = useState(null);
@@ -37,7 +37,7 @@ const UpdateNote = () => {
         }
 
         const reloadWindow = (id, playerId) =>{
-            history.push(`/notes/home/${id}${playerId}`);
+            history(`/notes/home/${id}${playerId}`);
             window.location.reload('true');
         }
 

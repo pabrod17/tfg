@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -12,7 +12,7 @@ const UpdateExercise = () => {
     const exercise = useSelector(selectors.getOneExercise);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [exerciseName, setExerciseName] = useState(exercise.exerciseName);
     const [description, setDescription] = useState(exercise.description);
     const [objective, setObjective] = useState(exercise.objective);
@@ -37,7 +37,7 @@ const UpdateExercise = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/exercises/home');
+            history('/exercises/home');
             window.location.reload('true');
         }
 

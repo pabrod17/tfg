@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -13,7 +13,7 @@ const UpdateTraining = () => {
     const {id} = useParams();
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [trainingDate , setTrainingDate ] = useState(training.trainingDate);
     const [durationMinutes, setDurationMinutes] = useState(training.durationMinutes);
     const [description , setDescription ] = useState(training.description);
@@ -38,7 +38,7 @@ const UpdateTraining = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/trainings/home');
+            history('/trainings/home');
             window.location.reload('true');
         }
 

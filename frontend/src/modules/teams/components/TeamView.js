@@ -7,7 +7,7 @@ import * as selectorsUsers from '../../users/selectors';
 import {FormattedMessage} from 'react-intl';
 
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import basketball from './basketball.jpg';
 import * as actionSeasons from '../../seasons/actions';
 import * as actionPlayers from '../../players/actions';
@@ -43,29 +43,29 @@ const TeamView = () => {
     const {id} = useParams();
     const team = useSelector(selectors.getTeam);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleFindSeasonsToTeam = (id, dispatch, history) => {
-        dispatch(actionSeasons.findSeasonsToTeam(id, () => history.push('/seasons/all/result')));
+        dispatch(actionSeasons.findSeasonsToTeam(id, () => history('/seasons/all/result')));
     }
 
     const handleFindTrainingsToTeam = (id, dispatch, history) => {
-        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push('/trainings/home')));
-        history.push('/trainings/home');
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history('/trainings/home')));
+        history('/trainings/home');
     }
 
     const handleFindGamesToTeam = (id, dispatch, history) => {
-        dispatch(actionGames.findGamesByTeamId(id, () => history.push('/games/home')));
+        dispatch(actionGames.findGamesByTeamId(id, () => history('/games/home')));
     }
 
     const handlePlayersHome = (id, dispatch, history) => {
-        dispatch(actionPlayers.findAPlayersOfTeam(id, () => history.push(`/players/home/${id}`)));
-        history.push(`/players/home/${id}`);
+        dispatch(actionPlayers.findAPlayersOfTeam(id, () => history(`/players/home/${id}`)));
+        history(`/players/home/${id}`);
     }
 
     const handlePlaysHome = (id, dispatch, history) => {
-        dispatch(actionPlays.findPlaysByTeamId(id, () => history.push(`/plays/home/${id}`)));
-        history.push(`/plays/home/${id}`);
+        dispatch(actionPlays.findPlaysByTeamId(id, () => history(`/plays/home/${id}`)));
+        history(`/plays/home/${id}`);
     }
 
     function TeamView({team, dispatch}){
@@ -279,7 +279,7 @@ const TeamView = () => {
 
         }
         else{
-            dispatch(actions.findTeamById(id, () => history.push(`/teams/view/${id}`)));
+            dispatch(actions.findTeamById(id, () => history(`/teams/view/${id}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

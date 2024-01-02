@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -15,25 +15,25 @@ import {FormattedDate} from 'react-intl';
 const handleViewPlayer = (playerId, id, dispatch, history) => {
 
 
-    dispatch(actionsPlayers.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
+    dispatch(actionsPlayers.findPlayerByIdOfTeam(playerId, id, () => history(`/players/view/${id}${playerId}`)));
 }
 
 const handleRemoveNote = (noteId, id, playerId, dispatch, history) => {
-    dispatch(actions.removeNote(noteId, () => history.push(`/notes/home/${id}${playerId}`)));
+    dispatch(actions.removeNote(noteId, () => history(`/notes/home/${id}${playerId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateNote = (noteId, id, dispatch, history) => {
-    dispatch(actions.findNoteById(noteId, () => history.push(`/notes/update/${id}${noteId}`)));
+    dispatch(actions.findNoteById(noteId, () => history(`/notes/update/${id}${noteId}`)));
 }
 
 const handleViewNote = (noteId, dispatch, history) => {
-    dispatch(actions.findNoteById(noteId, () => history.push(`/notes/view/${noteId}`)));
+    dispatch(actions.findNoteById(noteId, () => history(`/notes/view/${noteId}`)));
   }
 
 function NotesList({ items, playerId, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+        dispatch(actions.findNotesByPlayer(playerId, () => history(`/notes/home/${id}${playerId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -74,7 +74,7 @@ function NotesList({ items, playerId, id, fallback, dispatch, history}) {
 
 const Notes = ({notes, playerId, id}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
 
     return(

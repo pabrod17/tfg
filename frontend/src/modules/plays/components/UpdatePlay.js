@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -14,7 +14,7 @@ const UpdatePlay = () => {
     const play = useSelector(selectors.getPlay);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [title, setTitle] = useState(play.title);
     const [playType, setPlayType] = useState(play.playType);
     const [gesture, setGesture] = useState(play.gesture);
@@ -47,7 +47,7 @@ const UpdatePlay = () => {
         }
 
         const reloadWindow = (id) =>{
-            history.push(`/plays/home/${id}`);
+            history(`/plays/home/${id}`);
             window.location.reload('true');
         }
 

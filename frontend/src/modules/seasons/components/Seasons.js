@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
 import {FormattedDate} from 'react-intl';
@@ -65,16 +65,16 @@ function List({ items, fallback, dispatch, history}) {
   }
 
 const handleRemoveItem = (id, dispatch, history) => {
-  dispatch(actions.removeSeason(id, () => history.push('/seasons/all/result')));
+  dispatch(actions.removeSeason(id, () => history('/seasons/all/result')));
   window.location.reload('true');
 }
 
 const handleUpdateItem = (id, dispatch, history) => {
-    dispatch(actions.findSeasonById(id, () => history.push('/seasons/update')));
+    dispatch(actions.findSeasonById(id, () => history('/seasons/update')));
   }
 
 const handleViewSeason = (id, dispatch, history) => {
-    dispatch(actions.findSeasonById(id, () => history.push(`/seasons/view/${id}`)));
+    dispatch(actions.findSeasonById(id, () => history(`/seasons/view/${id}`)));
   }
 
 // const handleViewSeason = (id, dispatch, history) => {
@@ -82,12 +82,12 @@ const handleViewSeason = (id, dispatch, history) => {
 //   }
 
 // const handleFindTeamsToSeason = (id, dispatch, history) => {
-//   dispatch(actionsTeams.findTeamsToSeason(id, () => history.push(`/seasons/view/${id}`)));
+//   dispatch(actionsTeams.findTeamsToSeason(id, () => history(`/seasons/view/${id}`)));
 // }
 
 const Seasons = ({seasons}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div class="card-group">

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import {Errors} from '../../common';
@@ -13,7 +13,7 @@ import * as actionsSeasons from '../../seasons/actions';
 
 const AddTraining = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [teamId , setTeamId ] = useState(null);
     const [seasonId , setSeasonId ] = useState(null);
     const [trainingDate , setTrainingDate ] = useState(null);
@@ -70,7 +70,7 @@ const AddTraining = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/trainings/addTraining');
+            history('/trainings/addTraining');
             window.location.reload('true');
         }
 

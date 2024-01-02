@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import * as selectorsTeams from '../../teams/selectors';
 
 const UpdatePlayerGameStatistics = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const playerGameStatistics = useSelector(selectors.getPlayerGameStatistics);
     const team = useSelector(selectorsTeams.getTeam);
     const {playerId} = useParams();
@@ -57,7 +57,7 @@ const UpdatePlayerGameStatistics = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push(`/statistics/playerGame/${playerId}${gameId}`)
+            history(`/statistics/playerGame/${playerId}${gameId}`)
         }
 
 

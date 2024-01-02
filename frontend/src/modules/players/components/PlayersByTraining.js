@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -20,74 +20,74 @@ import * as actionStretchings from '../../stretchings/actions';
 import * as selectorsStretchings from '../../stretchings/selectors';
 
 const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
-    dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history.push('/trainings/home')));
-    // history.push('/trainings/home');
+    dispatch(actionTrainings.findTrainingsByPlayerId(playerId, () => history('/trainings/home')));
+    // history('/trainings/home');
   }
 
   const handleFindGamesToPlayer = (playerId, id, dispatch, history) => {
     dispatch(actions.findPlayerByIdOfTeam(playerId,id, () => console.log(playerId)));
-    dispatch(actionGames.findGamesByPlayerId(playerId, () => history.push('/games/home')));
-    // history.push('/trainings/home');
+    dispatch(actionGames.findGamesByPlayerId(playerId, () => history('/games/home')));
+    // history('/trainings/home');
   }
   
   const handleRemovePlayer = (playerId, trainingId, id, dispatch, history) => {
-    dispatch(actions.removePlayer(playerId, id, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actions.removePlayer(playerId, id, () => history(`/players/home/training/${id}${trainingId}`)));
     window.location.reload('true');
   }
 
   const handleRemovePlayerToTraining = (playerId, trainingId, id, dispatch, history) => {
-    dispatch(actionTrainings.removePlayerToTraining(playerId, trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actionTrainings.removePlayerToTraining(playerId, trainingId, () => history(`/players/home/training/${id}${trainingId}`)));
     window.location.reload('true');
   }
   
   const handleUpdatePlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/update/${id}`)));
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history(`/players/update/${id}`)));
   }
   
   const handleViewPlayer = (playerId, id, dispatch, history) => {
-    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history.push(`/players/view/${id}${playerId}`)));
+    dispatch(actions.findPlayerByIdOfTeam(playerId, id, () => history(`/players/view/${id}${playerId}`)));
   }
   
   const handleChangeTeam = (playerId, id, trainingId, dispatch, history) => {
-    dispatch(actions.changePlayerToTeam(id, playerId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actions.changePlayerToTeam(id, playerId, () => history(`/players/home/training/${id}${trainingId}`)));
     dispatch(actionsTeams.findTeamById(id));
     window.location.reload('true');
   }
   
   const handleAddLesionToPlayer = (playerId, lesionId, id, trainingId, dispatch, history) => {
-    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actionsLesion.addLesionToPlayer(playerId, lesionId, () => history(`/players/home/training/${id}${trainingId}`)));
   }
   
   const handleFindLesionByPlayer = (playerId, dispatch, history) => {
-    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history.push(`/lesion/home/player/${playerId}`)));
+    dispatch(actionsLesion.findLesionByPlayer(playerId, () => history(`/lesion/home/player/${playerId}`)));
   }
   
   const handleFindNotesByPlayer = (playerId, id, dispatch, history) => {
     console.log("player(12) --> " + playerId);
     console.log("team(1) --> " + id);
-    dispatch(actionsNotes.findNotesByPlayer(playerId, () => history.push(`/notes/home/${id}${playerId}`)));
+    dispatch(actionsNotes.findNotesByPlayer(playerId, () => history(`/notes/home/${id}${playerId}`)));
   }
   
   const handleAddNewTrainingToPlayer = (playerId, trainingId, id, dispatch, history) => {
-    dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actionTrainings.addPlayerToTraining(playerId, trainingId, () => history(`/players/home/training/${id}${trainingId}`)));
   }
 
   const handleAddNewGameToPlayer = (playerId, gameId, id, trainingId, dispatch, history) => {
-    dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actionGames.addPlayerToGame(playerId, gameId, () => history(`/players/home/training/${id}${trainingId}`)));
   }
   
   const handleFindStretchingsByPlayer = (playerId, dispatch, history) => {
-    dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+    dispatch(actionStretchings.findStretchingsByPlayerId(playerId, () => history(`/stretchings/home/player/${playerId}`)));
   }
   
   const handleAddStretchingToPlayer = (playerId, stretchingId, id, trainingId, dispatch, history) => {
-    dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+    dispatch(actionStretchings.addStretchingToPlayer(playerId, stretchingId, () => history(`/players/home/training/${id}${trainingId}`)));
   }
   
 
   function PlayersList({ items, stretchingsList, gamesList, trainingId, trainingsList, lesionList, teamsList, id, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findPlayersByTraining(trainingId, () => history.push(`/players/home/training/${id}${trainingId}`)));
+        dispatch(actions.findPlayersByTraining(trainingId, () => history(`/players/home/training/${id}${trainingId}`)));
     
         return fallback;
     } else {
@@ -113,7 +113,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
                       <i class="fa fa-wheelchair injured"><FormattedMessage id="project.lesion.fields.injured"/></i>:  
                       ''}
                 </ul>
-                <button class="btn-player draw-border" onClick={() => history.push(`/notes/addNote/${item.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
+                <button class="btn-player draw-border" onClick={() => history(`/notes/addNote/${item.id}`)}><FormattedMessage id="project.notes.fields.addNote"/></button>
                 <div class="dropdown">
                 <button class="btn-player draw-border"><FormattedMessage id="project.lesion.fields.addLesion"/></button>
                   <div class="dropdown-content">
@@ -178,7 +178,7 @@ const handleFindTrainingsToPlayer = (playerId, dispatch, history) => {
 
 const PlayersByTraining = ({players, id, trainingId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
     const lesions = useSelector(selectorsLesion.getAllLesion);
@@ -190,21 +190,21 @@ const PlayersByTraining = ({players, id, trainingId}) => {
     const stretchingsList = stretchings.stretchings;
 
     if(!stretchingsList) {
-        dispatch(actionStretchings.findAllStretchings(() => history.push(`/players/home/${id}`)));
+        dispatch(actionStretchings.findAllStretchings(() => history(`/players/home/${id}`)));
         return "Loading...";
     }
     
     const gamesList = games.games;
 
     if(!gamesList) {
-        dispatch(actionGames.findGamesByTeamId(id, () => history.push(`/players/home/${id}`)));
+        dispatch(actionGames.findGamesByTeamId(id, () => history(`/players/home/${id}`)));
         return "Loading...";
     }
 
     const trainingsList = trainings.trainings;
 
     if(!trainingsList) {
-        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history.push(`/players/home/training/${id}${trainingId}`)));
+        dispatch(actionTrainings.findTrainingsByTeamId(id, () => history(`/players/home/training/${id}${trainingId}`)));
         return "Loading...";
     }
     

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -9,7 +9,7 @@ import * as actions from '../actions';
 const FindSeasonsBetweenTwoDates = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [backendErrors, setBackendErrors] = useState(null);
@@ -22,7 +22,7 @@ const FindSeasonsBetweenTwoDates = () => {
             dispatch(actions.findSeasonsBetweenTwoDates(
                 startDate,
                 endDate
-            , () => history.push(`/seasons/betweenDates/result/${startDate.trim()}/${endDate.trim()}`),
+            , () => history(`/seasons/betweenDates/result/${startDate.trim()}/${endDate.trim()}`),
                 errors => setBackendErrors(errors),
             ));
 

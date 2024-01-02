@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import logoBalonOscuro from './logoBalonOscuro.jpg'
 import moon from './moon.jpg'
@@ -10,12 +10,12 @@ import * as actions from '../actions';
 const FindSeasons = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleSubmit = event => {
         event.preventDefault();
         dispatch(actions.findAllSeasons());
-        history.push('/seasons/all/result');
+        history('/seasons/all/result');
     }
 
     return(

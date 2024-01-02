@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -11,7 +11,7 @@ const UpdateSeason = () => {
 
     const season = useSelector(selectors.getSeason);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [calendario, setCalendario] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -39,7 +39,7 @@ const UpdateSeason = () => {
     }
 
     const reloadWindow = () =>{
-        history.push('/seasons/all/result');
+        history('/seasons/all/result');
         window.location.reload('true');
     }
 

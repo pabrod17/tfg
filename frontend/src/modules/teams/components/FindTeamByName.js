@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import * as actions from '../actions';
 
 const FindTeamByName = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [teamName, setTeamName] = useState('');
 
     const handleSubmit = event => {
         event.preventDefault();
         dispatch(actions.findTeamByName( teamName.trim()));
-        history.push(`/teams/all/name/result/${teamName.trim()}`);
+        history(`/teams/all/name/result/${teamName.trim()}`);
     }
 
     return (

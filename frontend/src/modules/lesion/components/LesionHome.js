@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -13,7 +13,7 @@ const LesionHome = () => {
 
     const lesionsSearch = useSelector(selectors.getLesionsSearch);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [page, setPage] = useState(0);
 
 
@@ -54,7 +54,7 @@ const LesionHome = () => {
 
     const handleSetTypeLesion = (lesionType, dispatch) => {
         dispatch(actions.findLesionByTypePage({page: 0, lesionType: lesionType}));
-        history.push(`/lesion/home/type/${lesionType}`);
+        history(`/lesion/home/type/${lesionType}`);
     }
     // console.log("hola --> " +lesionsSearch.criteria.page );
 
@@ -63,7 +63,7 @@ const LesionHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/lesion/addLesion`)}><FormattedMessage id="project.lesion.fields.addLesion"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/lesion/addLesion`)}><FormattedMessage id="project.lesion.fields.addLesion"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

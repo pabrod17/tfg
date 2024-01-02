@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -11,21 +11,21 @@ import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import estiramientos from './estiramientos.jpg'; //1920x1200
 
 const handleRemoveStretchingToPlayer = (id, playerId, dispatch, history) => {
-    dispatch(actions.removeStretchingToPlayer(playerId, id, () => history.push(`/stretchings/home/player/${playerId}`)));
+    dispatch(actions.removeStretchingToPlayer(playerId, id, () => history(`/stretchings/home/player/${playerId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/update/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/update/${id}`)));
 }
 
 const handleViewStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/view/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/view/${id}`)));
 }
 
 function StretchingsList({ items, playerId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findStretchingsByPlayerId(playerId, () => history.push(`/stretchings/home/player/${playerId}`)));
+        dispatch(actions.findStretchingsByPlayerId(playerId, () => history(`/stretchings/home/player/${playerId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -57,7 +57,7 @@ function StretchingsList({ items, playerId, fallback, dispatch, history}) {
 
 const StretchingsByPlayer = ({stretchings, playerId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

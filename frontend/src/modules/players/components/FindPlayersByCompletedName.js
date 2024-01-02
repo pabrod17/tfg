@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import {Errors} from '../../common';
 import {FormattedMessage} from 'react-intl';
@@ -9,7 +9,7 @@ import * as actions from '../actions';
 
 const FindPlayersByCompletedName = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [playerName, setPlayerName] = useState("");
     const [primaryLastName, setPrimaryLastName] = useState("");
     const [secondLastName, setSecondLastName] = useState("");
@@ -21,7 +21,7 @@ const FindPlayersByCompletedName = () => {
         event.preventDefault();
         if (form.checkValidity()) {
             dispatch(actions.findPlayersByCompletedNameOfTeam(id, playerName, primaryLastName, secondLastName,
-                () => history.push(`/players/completedName/result/${id}${playerName.trim()}${primaryLastName.trim()}${secondLastName.trim()}`)
+                () => history(`/players/completedName/result/${id}${playerName.trim()}${primaryLastName.trim()}${secondLastName.trim()}`)
             ));
         } else {
             setBackendErrors(null);

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -13,7 +13,7 @@ const UpdateLesion = () => {
     const lesion = useSelector(selectors.getOneLesion);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [lesionName, setLesionName] = useState(lesion.lesionName);
     const [description, setDescription] = useState(lesion.description);
     const [medication, setMedication] = useState(lesion.medication);
@@ -39,7 +39,7 @@ const UpdateLesion = () => {
         }
 
         const reloadWindow = () =>{
-            history.push(`/lesion/home`);
+            history(`/lesion/home`);
             window.location.reload('true');
         }
 

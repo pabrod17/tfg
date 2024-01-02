@@ -3,17 +3,17 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
 const handleUpdateGameStatistics = (gameId, dispatch, history) => {
-    dispatch(actions.findStatisticsByGame(gameId, () => history.push(`/statistics/game/update/${gameId}`)));
+    dispatch(actions.findStatisticsByGame(gameId, () => history(`/statistics/game/update/${gameId}`)));
   }
   const handleRemoveGameStatistics = (gameId, dispatch, history) => {
-    dispatch(actions.removeStatisticsToGame(gameId, () => history.push(`/games/home`)));
+    dispatch(actions.removeStatisticsToGame(gameId, () => history(`/games/home`)));
 }
 
 function GameStatisticsFunction({gameStatistics, gameId, dispatch, history}){
@@ -124,7 +124,7 @@ function GameStatisticsFunction({gameStatistics, gameId, dispatch, history}){
         );
     }
     else{
-        dispatch(actions.findStatisticsByGame(gameId, () => history.push(`/statistics/game/${gameId}`)));
+        dispatch(actions.findStatisticsByGame(gameId, () => history(`/statistics/game/${gameId}`)));
         return(
             <div className="spinner-border color-byTeamName" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -136,7 +136,7 @@ function GameStatisticsFunction({gameStatistics, gameId, dispatch, history}){
 
 const GameStatistics = ({gameStatistics, gameId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

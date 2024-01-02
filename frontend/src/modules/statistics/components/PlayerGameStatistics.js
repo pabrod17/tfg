@@ -3,17 +3,17 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 
 const handleUpdatePlayerGameStatistics = (playerId, gameId, dispatch, history) => {
-    dispatch(actions.findStatisticsByPlayerAndGame(playerId, gameId, () => history.push(`/statistics/playerGame/update/${playerId}${gameId}`)));
+    dispatch(actions.findStatisticsByPlayerAndGame(playerId, gameId, () => history(`/statistics/playerGame/update/${playerId}${gameId}`)));
   }
   const handleRemovePlayerGameStatistics = (playerId, gameId, dispatch, history) => {
-    dispatch(actions.removeStatisticsToPlayerOfGame(playerId, gameId, () => history.push(`/games/home`)));
+    dispatch(actions.removeStatisticsToPlayerOfGame(playerId, gameId, () => history(`/games/home`)));
     window.location.reload('true');
     }
 
@@ -92,7 +92,7 @@ function PlayerGameStatisticsFunction({playerGameStatistics, playerId, gameId, d
         );
     }
     else{
-        dispatch(actions.findStatisticsByPlayerAndGame(playerId, gameId, () => history.push(`/statistics/playerGame/${playerId}${gameId}`)));
+        dispatch(actions.findStatisticsByPlayerAndGame(playerId, gameId, () => history(`/statistics/playerGame/${playerId}${gameId}`)));
         return(
             <div className="spinner-border color-byTeamName" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -116,7 +116,7 @@ function PlayerGameStatisticsFunction({playerGameStatistics, playerId, gameId, d
 
 const PlayerGameStatistics = ({playerGameStatistics, playerId, gameId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

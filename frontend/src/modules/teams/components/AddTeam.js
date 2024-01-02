@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
@@ -9,7 +9,7 @@ import * as actions from '../actions';
 const AddTeam = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [teamName, setTeamName] = useState('');
     const [backendErrors, setBackendErrors] = useState(null);
     let form;
@@ -31,7 +31,7 @@ const AddTeam = () => {
     }
 
     const reloadWindow = () =>{
-        history.push('/teams/new');
+        history('/teams/new');
         window.location.reload('true');
     }
 

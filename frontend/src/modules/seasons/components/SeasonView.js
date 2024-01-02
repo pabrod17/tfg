@@ -5,7 +5,7 @@ import * as selectorsUsers from '../../users/selectors';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import {FormattedDate} from 'react-intl';
 import * as actionsTeams from '../../teams/actions';
 import avatar from '../../players/components/avatar.jpg';
@@ -22,19 +22,19 @@ const SeasonView = () => {
     const {id} = useParams();
     const season = useSelector(selectors.getSeason);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleFindTrainingsToSeason = (id, dispatch, history) => {
-        dispatch(actionTrainings.findTrainingsBySeasonId(id, () => history.push('/trainings/home')));
+        dispatch(actionTrainings.findTrainingsBySeasonId(id, () => history('/trainings/home')));
     }
 
     const handleFindGamesToSeason = (id, dispatch, history) => {
-        dispatch(actionGames.findGamesBySeasonId(id, () => history.push('/games/home')));
+        dispatch(actionGames.findGamesBySeasonId(id, () => history('/games/home')));
     }
 
 
     const handleFindTeamsToSeason = (id, dispatch, history) => {
-        dispatch(actionsTeams.findTeamsToSeason(id, () => history.push('/teams/all/result')));
+        dispatch(actionsTeams.findTeamsToSeason(id, () => history('/teams/all/result')));
     }
 
     function SeasonView({season, dispatch}){
@@ -263,7 +263,7 @@ const SeasonView = () => {
                 // );
             }
             else{
-                dispatch(actions.findSeasonById(id, () => history.push(`/seasons/view/${id}`)));
+                dispatch(actions.findSeasonById(id, () => history(`/seasons/view/${id}`)));
                 return(
                     <div className="spinner-border color-byTeamName" role="status">
                     <span className="visually-hidden">Loading...</span>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import {Errors} from '../../common';
@@ -13,7 +13,7 @@ import * as actionsSeasons from '../../seasons/actions';
 
 const AddGame = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [teamId , setTeamId ] = useState(null);
     const [seasonId , setSeasonId ] = useState(null);
     const [gameDate , setGameDate ] = useState(null);
@@ -65,7 +65,7 @@ const AddGame = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/games/addGame');
+            history('/games/addGame');
             window.location.reload('true');
         }
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -15,7 +15,7 @@ const PlaysHome = () => {
     const {id} = useParams();
     const plays = useSelector(selectors.getPlays);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     
     const attack = "Ataque";
     const defense = "Defensa";
@@ -31,7 +31,7 @@ const PlaysHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/plays/addPlay/${id}`)}><FormattedMessage id="project.plays.fields.addPlay"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/plays/addPlay/${id}`)}><FormattedMessage id="project.plays.fields.addPlay"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

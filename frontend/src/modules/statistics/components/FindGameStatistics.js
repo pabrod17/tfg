@@ -4,14 +4,14 @@ import * as selectors from '../selectors';
 import GameStatistics from './GameStatistics';
 import {useParams} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import * as actions from '../actions';
 
 const FindGameStatistics = () => {
     const {gameId} = useParams();//gameId
     const gameStatistics = useSelector(selectors.getGameStatistics);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div>

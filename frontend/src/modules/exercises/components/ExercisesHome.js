@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -12,7 +12,7 @@ import {Pager} from '../../common';
 const ExercisesHome = () => {
     const exercisesSearch = useSelector(selectors.getExercisesSearch);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [page, setPage] = useState(0);
 
     const tactic = "Tactico";
@@ -51,7 +51,7 @@ const ExercisesHome = () => {
 
     const handleSetTypeExercise = (exerciseType, dispatch) => {
         dispatch(actions.findExercisesByTypePage({page: page, exerciseType: exerciseType}));
-        history.push(`/exercises/home/type/${exerciseType}`);
+        history(`/exercises/home/type/${exerciseType}`);
     }
 
     return(
@@ -59,7 +59,7 @@ const ExercisesHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/exercises/addExercise`)}><FormattedMessage id="project.exercises.fields.addExercise"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/exercises/addExercise`)}><FormattedMessage id="project.exercises.fields.addExercise"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

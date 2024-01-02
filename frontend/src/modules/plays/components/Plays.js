@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -14,27 +14,27 @@ import * as actionsTeams from '../../teams/actions';
 import * as selectorsTeams from '../../teams/selectors';
 
 const handleRemovePlay = (playId, id, dispatch, history) => {
-    dispatch(actions.removePlayToTeam(playId, id, () => history.push(`/plays/home/${id}`)));
+    dispatch(actions.removePlayToTeam(playId, id, () => history(`/plays/home/${id}`)));
     window.location.reload('true');
 }
 
 const handleUpdatePlay = (playId, id, dispatch, history) => {
-    dispatch(actions.findPlayById(playId, () => history.push(`/plays/update/${id}`)));
+    dispatch(actions.findPlayById(playId, () => history(`/plays/update/${id}`)));
   }
 
   const handleAddPlayToTeam = (playId, teamId, id, dispatch, history) => {
       if(id != teamId){
-        dispatch(actions.addPlayToTeam(teamId, playId, () => history.push(`/plays/home/${id}`)));
+        dispatch(actions.addPlayToTeam(teamId, playId, () => history(`/plays/home/${id}`)));
       }
   }
 
   const handleViewPlay = (playId, dispatch, history) => {
-    dispatch(actions.findPlayById(playId, () => history.push(`/plays/view/${playId}`)));
+    dispatch(actions.findPlayById(playId, () => history(`/plays/view/${playId}`)));
   }
 
 function PlaysList({ items, id, teamsList, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findPlaysByTeamId(id, () => history.push(`/plays/home/${id}`)));
+        dispatch(actions.findPlaysByTeamId(id, () => history(`/plays/home/${id}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -78,7 +78,7 @@ function PlaysList({ items, id, teamsList, fallback, dispatch, history}) {
 
 const Plays = ({plays, id}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const teams = useSelector(selectorsTeams.getAllTeams);
 

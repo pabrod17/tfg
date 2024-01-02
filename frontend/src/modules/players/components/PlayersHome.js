@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 // import {useDispatch} from 'react-redux';
 // import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 
@@ -26,7 +26,7 @@ const PlayersHome = () => {
     // const dispatch = useDispatch();
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const pointGuard = "Base";
     const shootingGuard = "Escolta";
@@ -58,13 +58,13 @@ const PlayersHome = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/players/addPlayer/${id}`)}><FormattedMessage id="project.players.fields.addPlayer"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/players/addPlayer/${id}`)}><FormattedMessage id="project.players.fields.addPlayer"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Second group">
-                        <button className="button dni"  onClick={() => history.push(`/players/dni/${id}`)}><FormattedMessage id="project.players.fields.dni"/></button>
+                        <button className="button dni"  onClick={() => history(`/players/dni/${id}`)}><FormattedMessage id="project.players.fields.dni"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5 btn" role="group" aria-label="Third group">
-                        <button className="button dni"  onClick={() => history.push(`/players/completedName/${id}`)}><FormattedMessage id="project.players.fields.nameAndSurnames"/></button>
+                        <button className="button dni"  onClick={() => history(`/players/completedName/${id}`)}><FormattedMessage id="project.players.fields.nameAndSurnames"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

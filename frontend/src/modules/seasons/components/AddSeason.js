@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {Errors} from '../../common';
 import * as actions from '../actions';
@@ -10,7 +10,7 @@ import * as actions from '../actions';
 const AddSeason = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [calendario, setCalendario] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -36,7 +36,7 @@ const AddSeason = () => {
     }
 
     const reloadWindow = () =>{
-        history.push('/seasons/new');
+        history('/seasons/new');
         window.location.reload('true');
     }
 

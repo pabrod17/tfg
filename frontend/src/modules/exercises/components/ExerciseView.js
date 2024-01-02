@@ -5,7 +5,7 @@ import {FormattedMessage} from 'react-intl';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import exercisesss from '../../app/components/exercise.jpg';
@@ -14,7 +14,7 @@ const ExerciseView = () => {
     const exercise = useSelector(selectors.getOneExercise);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     function ExerciseViewFunction({exercise, dispatch}){
         if(exercise){
@@ -39,7 +39,7 @@ const ExerciseView = () => {
             );
         }
         else{
-            dispatch(actions.findExerciseById(id, () => history.push(`/exercises/view/${id}`)));
+            dispatch(actions.findExerciseById(id, () => history(`/exercises/view/${id}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

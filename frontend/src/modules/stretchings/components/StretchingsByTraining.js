@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -11,21 +11,21 @@ import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import estiramientos from './estiramientos.jpg'; //1920x1200
 
 const handleRemoveStretchingToTraining = (id, trainingId, dispatch, history) => {
-    dispatch(actions.removeStretchingToTraining(trainingId, id, () => history.push(`/stretchings/home/training/${trainingId}`)));
+    dispatch(actions.removeStretchingToTraining(trainingId, id, () => history(`/stretchings/home/training/${trainingId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/update/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/update/${id}`)));
 }
 
 const handleViewStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/view/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/view/${id}`)));
 }
 
 function StretchingsList({ items, trainingId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findStretchingsByTrainingId(trainingId, () => history.push(`/stretchings/home/training/${trainingId}`)));
+        dispatch(actions.findStretchingsByTrainingId(trainingId, () => history(`/stretchings/home/training/${trainingId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -57,7 +57,7 @@ function StretchingsList({ items, trainingId, fallback, dispatch, history}) {
 
 const StretchingsByTraining = ({stretchings, trainingId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

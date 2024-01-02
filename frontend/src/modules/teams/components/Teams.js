@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import logo22 from './logo22.png';
 import {FormattedMessage} from 'react-intl';
@@ -49,23 +49,23 @@ function List({ items, fallback, dispatch, history}) {
   }
 
 const handleRemoveItem = (id, dispatch, history) => {
-  dispatch(actions.removeTeam(id, () => history.push('/teams/all/result')));
+  dispatch(actions.removeTeam(id, () => history('/teams/all/result')));
   window.location.reload('true');
 }
 
 const handleUpdateItem = (id, dispatch, history) => {
-  dispatch(actions.findTeamById(id, () => history.push('/teams/update')));
+  dispatch(actions.findTeamById(id, () => history('/teams/update')));
 }
 
 const handleViewTeam = (id, dispatch, history) => {
-  dispatch(actions.findTeamById(id, () => history.push(`/teams/view/${id}`)));
+  dispatch(actions.findTeamById(id, () => history(`/teams/view/${id}`)));
 }
 
 
 
 const Teams = ({teams}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
       <div className="card-group">

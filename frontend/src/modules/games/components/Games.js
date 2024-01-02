@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -22,57 +22,57 @@ import * as actionExercises from '../../exercises/actions';
 import * as selectorsExercises from '../../exercises/selectors';
 
 const handleViewGame = (id, dispatch, history) => {
-    dispatch(actions.findGameById(id, () => history.push(`/games/view/${id}`)));
+    dispatch(actions.findGameById(id, () => history(`/games/view/${id}`)));
 }
 
 const handleRemoveGame = (id, dispatch, history) => {
-    dispatch(actions.removeGame(id, () => history.push(`/games/home`)));
+    dispatch(actions.removeGame(id, () => history(`/games/home`)));
     window.location.reload('true');
 }
 
 const handleRemoveGameToPlayer = (gameId, playerId, dispatch, history) => {
   dispatch(actions.removePlayerToGame(playerId, gameId, () => console.log(gameId)));
   window.location.reload('true');
-  dispatch(actions.findGamesByPlayerId(playerId, () => history.push(`/games/home`)));
+  dispatch(actions.findGamesByPlayerId(playerId, () => history(`/games/home`)));
 }
 
 const handleUpdateGame = (id, dispatch, history) => {
-    dispatch(actions.findGameById(id, () => history.push(`/games/update/${id}`)));
+    dispatch(actions.findGameById(id, () => history(`/games/update/${id}`)));
 }
 
 const handleFindPlayersByGame = (gameId, id, dispatch, history) => {
   dispatch(actions.findGameById(gameId, () => console.log(gameId)));
-  dispatch(actionsPlayers.findPlayersByGame(gameId, () => history.push(`/players/home/game/${id}${gameId}`)));
+  dispatch(actionsPlayers.findPlayersByGame(gameId, () => history(`/players/home/game/${id}${gameId}`)));
 }
 
 const handleAddGameStatistics = (gameId, dispatch, history) => {
-  history.push(`/statistics/addGameStatistics/${gameId}`);
+  history(`/statistics/addGameStatistics/${gameId}`);
 }
 
 const handleFindGameStatisticsByGame = (gameId, dispatch, history) => {
-  dispatch(actionsStatistics.findStatisticsByGame(gameId, () => history.push(`/statistics/game/${gameId}`)));
+  dispatch(actionsStatistics.findStatisticsByGame(gameId, () => history(`/statistics/game/${gameId}`)));
 }
 
 const handleFindStretchingsByGame = (gameId, dispatch, history) => {
-  dispatch(actionStretchings.findStretchingsByGameId(gameId, () => history.push(`/stretchings/home/game/${gameId}`)));
+  dispatch(actionStretchings.findStretchingsByGameId(gameId, () => history(`/stretchings/home/game/${gameId}`)));
 }
 
 const handleAddStretchingToGame = (gameId, stretchingId, dispatch, history) => {
-  dispatch(actionStretchings.addStretchingToGame(gameId, stretchingId, () => history.push('/games/home')));
+  dispatch(actionStretchings.addStretchingToGame(gameId, stretchingId, () => history('/games/home')));
 }
 
 const handleFindExercisesByGame = (gameId, dispatch, history) => {
-  dispatch(actionExercises.findExercisesByGameId(gameId, () => history.push(`/exercises/home/game/${gameId}`)));
+  dispatch(actionExercises.findExercisesByGameId(gameId, () => history(`/exercises/home/game/${gameId}`)));
 }
 
 const handleAddExerciseToGame = (gameId, exerciseId, dispatch, history) => {
-  dispatch(actionExercises.addExerciseToGame(gameId, exerciseId, () => history.push('/games/home')));
+  dispatch(actionExercises.addExerciseToGame(gameId, exerciseId, () => history('/games/home')));
 }
 
 
 function GamesList({ items, exercisesList, stretchingsList, player, teamId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findGamesByUserId(() => history.push('/games/home')));
+        dispatch(actions.findGamesByUserId(() => history('/games/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -136,7 +136,7 @@ function GamesList({ items, exercisesList, stretchingsList, player, teamId, fall
 
 function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findGamesByUserId(() => history.push('/games/home')));
+        dispatch(actions.findGamesByUserId(() => history('/games/home')));
         return fallback;
     } else {
         return items.map(item => {
@@ -222,7 +222,7 @@ function GamesListUser({ items, exercisesList, stretchingsList, fallback, dispat
 
 const Games = ({games}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const team = useSelector(selectorsTeams.getTeam);
     const player = useSelector(selectorsPlayers.getPlayer);
@@ -232,14 +232,14 @@ const Games = ({games}) => {
     const exercisesList = exercises.exercises;
 
     if(!exercisesList) {
-        dispatch(actionExercises.findAllExercises(() => history.push('/trainings/home')));
+        dispatch(actionExercises.findAllExercises(() => history('/trainings/home')));
         return "Loading...";
     }
 
     const stretchingsList = stretchings.stretchings;
 
     if(!stretchingsList) {
-        dispatch(actionStretchings.findAllStretchings(() => history.push('/games/home')));
+        dispatch(actionStretchings.findAllStretchings(() => history('/games/home')));
         return "Loading...";
     }
 

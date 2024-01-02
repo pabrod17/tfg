@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import * as actions from '../actions';
 import {useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
@@ -14,7 +14,7 @@ const StretchingsHomeByType = () => {
 
     const stretchingsSearch = useSelector(selectors.getStretchingsSearch);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [page, setPage] = useState(0);
     const {stretchingType} = useParams();
 
@@ -56,7 +56,7 @@ const StretchingsHomeByType = () => {
 
     const handleSetTypeStretching = (stretchingType, dispatch) => {
         dispatch(actions.findStretchingsByTypePage({page: 0, stretchingType: stretchingType}));
-        history.push(`/stretchings/home/type/${stretchingType}`);
+        history(`/stretchings/home/type/${stretchingType}`);
     }
 
     return(
@@ -64,7 +64,7 @@ const StretchingsHomeByType = () => {
             <div>
                 <div className="btn-group white-space mx-auto">
                     <div class="btn-group mr-5 mb-5 " role="group" aria-label="First group">
-                        <button className="btn addplayer" onClick={() => history.push(`/stretchings/addStretching`)}><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
+                        <button className="btn addplayer" onClick={() => history(`/stretchings/addStretching`)}><FormattedMessage id="project.stretchings.fields.addStretching"/></button>
                     </div>
                     <div class="btn-group mr-5 mb-5" role="group" aria-label="Fift group">
                         <div class="dropdown">

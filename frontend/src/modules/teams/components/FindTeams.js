@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import * as actionsSeasons from '../../seasons/actions';
 import basketball from './basketball.jpg';
@@ -14,17 +14,17 @@ import * as actions from '../actions';
 const FindTeams = () => {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleSubmit = event => {
         event.preventDefault();
         dispatch(actions.findAllTeams());
-        history.push('/teams/all/result');
+        history('/teams/all/result');
     }
 
     const handleAddTeamToSeason = (dispatch, history ) => {
         dispatch(actions.findAllTeams());
-        history.push('/teams/addTeamToSeason');;
+        history('/teams/addTeamToSeason');;
     }
 
     return (

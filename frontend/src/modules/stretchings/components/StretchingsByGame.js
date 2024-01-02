@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import * as actions from '../actions';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import Card from "react-bootstrap/Card";
 import avatar from '../../players/components/avatar.jpg';
 import {FormattedMessage} from 'react-intl';
@@ -12,21 +12,21 @@ import estiramientos from './estiramientos.jpg'; //1920x1200
 
 
 const handleRemoveStretchingToGame = (id, gameId, dispatch, history) => {
-    dispatch(actions.removeStretchingToGame(gameId, id, () => history.push(`/stretchings/home/game/${gameId}`)));
+    dispatch(actions.removeStretchingToGame(gameId, id, () => history(`/stretchings/home/game/${gameId}`)));
     window.location.reload('true');
 }
 
 const handleUpdateStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/update/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/update/${id}`)));
 }
 
 const handleViewStretching = (id, dispatch, history) => {
-    dispatch(actions.findStretchingById(id, () => history.push(`/stretchings/view/${id}`)));
+    dispatch(actions.findStretchingById(id, () => history(`/stretchings/view/${id}`)));
 }
 
 function StretchingsList({ items, gameId, fallback, dispatch, history}) {
     if (!items || items.length === 0) {
-        dispatch(actions.findStretchingsByGameId(gameId, () => history.push(`/stretchings/home/game/${gameId}`)));
+        dispatch(actions.findStretchingsByGameId(gameId, () => history(`/stretchings/home/game/${gameId}`)));
         return fallback;
     } else {
         return items.map(item => {
@@ -64,7 +64,7 @@ function StretchingsList({ items, gameId, fallback, dispatch, history}) {
 
 const StretchingsByGame = ({stretchings, gameId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
     return(
         <div className="card-group">

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import {Errors} from '../../common';
@@ -12,7 +12,7 @@ const UpdateStretching = () => {
     const stretching = useSelector(selectors.getOneStretching);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [stretchingName, setStretchingName] = useState(stretching.stretchingName);
     const [description, setDescription] = useState(stretching.description);
     const [stretchingType, setStretchingType] = useState(stretching.stretchingType);
@@ -37,7 +37,7 @@ const UpdateStretching = () => {
         }
 
         const reloadWindow = () =>{
-            history.push(`/stretchings/home`);
+            history(`/stretchings/home`);
             window.location.reload('true');
         }
 

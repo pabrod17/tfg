@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import {useParams} from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import avatar from '../../players/components/avatar.jpg';
 import lesionPierna from '../../lesion/components/lesionPierna.jpg';
 import bigBall from '../../trainings/components/bigBall.jpg';
@@ -16,7 +16,7 @@ const GameView = () => {
     const game = useSelector(selectors.getOneGame);
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
 
 
     function GameViewFunction({game, dispatch}){
@@ -53,7 +53,7 @@ const GameView = () => {
 
         }
         else{
-            dispatch(actions.findGameById(id, () => history.push(`/games/view/${id}`)));
+            dispatch(actions.findGameById(id, () => history(`/games/view/${id}`)));
             return(
                 <div className="spinner-border color-byTeamName" role="status">
                 <span className="visually-hidden">Loading...</span>

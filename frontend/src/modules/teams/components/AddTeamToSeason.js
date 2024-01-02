@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {FormattedDate} from 'react-intl';
@@ -13,7 +13,7 @@ import * as actions from '../actions';
 import * as actionsSeasons from '../../seasons/actions';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
-//dispatch(actions.addTeamToSeason(seasonId, teamId, () => history.push('/')));
+//dispatch(actions.addTeamToSeason(seasonId, teamId, () => history('/')));
 
 //dos botones desplegables TEAMS and Seasons. Y un boton AddTeamToSeason
 
@@ -21,7 +21,7 @@ import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 const AddTeamToSeason = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [dropdownTeams, setDropdownTeams] = useState(false);
     const [dropdownSeasons, setDropdownSeasons] = useState(false);
     const [seasonId, setSeasonId] = useState(null);
@@ -38,7 +38,7 @@ const AddTeamToSeason = () => {
     // }
 
     // const handleAddTeamToSeason = (seasonId, teamId, dispatch, history) => {
-    //     dispatch(actions.addTeamToSeason(seasonId, teamId, () => history.push('/teams/all/result')));
+    //     dispatch(actions.addTeamToSeason(seasonId, teamId, () => history('/teams/all/result')));
     //     window.location.reload('true');
     //   }
 
@@ -70,7 +70,7 @@ const AddTeamToSeason = () => {
             }
         }
         const reloadWindow = () =>{
-            history.push('/teams/all/result');
+            history('/teams/all/result');
             window.location.reload('true');
         }
 
